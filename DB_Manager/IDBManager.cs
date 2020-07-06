@@ -22,7 +22,7 @@ namespace DB_Manager
         bool DBinsert(string table, string values, string field = "");
 
         [OperationContract]
-        bool DBdelate(string table, string condition);
+        bool DBdelete(string table, string condition);
 
         [OperationContract]
         SqlDataReader DBselect( string campi, string tabella, string condizione="");
