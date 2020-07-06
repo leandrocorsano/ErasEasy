@@ -33,12 +33,12 @@ namespace DB_Manager
             }
         }
 
-        public bool DBdelate(string table, string condition)
+        public bool DBdelete(string table, string condition)
         {
             using (SqlCommand command = this.DBconnection().CreateCommand())
             {
 
-                command.CommandText = "DELATE FROM " + table + "WHERE " + condition + " ;";
+                command.CommandText = "DELETE FROM " + table + "WHERE " + condition + " ;";
                 try
                 {
                     command.ExecuteNonQuery();
