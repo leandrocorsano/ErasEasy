@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Data.SqlClient;
 using System.Text;
 using System.Configuration;
+using MySql.Data.MySqlClient;
 
 
 namespace DB_Manager
@@ -14,21 +15,24 @@ namespace DB_Manager
     [ServiceContract]
     public interface IDBManager
     {
-        [OperationContract]
-        SqlConnection DBconnection();
+
+
+        
+        //[OperationContract]
+        //MySqlConnection DBconnection();
         
 
         [OperationContract]
         bool DBinsert(string table, string values, string field = "");
 
-        [OperationContract]
-        bool DBdelete(string table, string condition);
+        //[OperationContract]
+        //bool DBdelete(string table, string condition);
 
-        [OperationContract]
-        SqlDataReader DBselect( string campi, string tabella, string condizione="");
+        //[OperationContract]
+        //SqlDataReader DBselect( string campi, string tabella, string condizione="");
         
-        [OperationContract]
-        bool DBupdate(string table, string setter, string condition);
+        //[OperationContract]
+        //bool DBupdate(string table, string setter, string condition);
 
     }
 }
