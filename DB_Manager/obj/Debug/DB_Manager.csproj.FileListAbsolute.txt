@@ -1,0 +1,6 @@
+C:\Users\Francesca Rossi\Documents\unipr\Progetto erasmus\DB_Manager\obj\Debug\DB_Manager.csprojAssemblyReference.cache
+C:\Users\Francesca Rossi\Documents\unipr\Progetto erasmus\DB_Manager\bin\Debug\DB_Manager.exe.config
+C:\Users\Francesca Rossi\Documents\unipr\Progetto erasmus\DB_Manager\bin\Debug\DB_Manager.exe
+C:\Users\Francesca Rossi\Documents\unipr\Progetto erasmus\DB_Manager\bin\Debug\DB_Manager.pdb
+C:\Users\Francesca Rossi\Documents\unipr\Progetto erasmus\DB_Manager\obj\Debug\DB_Manager.exe
+C:\Users\Francesca Rossi\Documents\unipr\Progetto erasmus\DB_Manager\obj\Debug\DB_Manager.pdb
