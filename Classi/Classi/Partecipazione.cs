@@ -8,12 +8,12 @@ namespace Classi
 {
     public class Partecipazione
     {
-        public Partecipazione(int IdStud, int IdEv)
+        public Partecipazione(Studente IdStud, Evento IdEv)
         {
             this.IdStud = IdStud;
             this.IdEv = IdEv;
         }
-        public int IdStud { get; set; }
-        public int IdEv { get; set; }
+        public Studente IdStud { get; set; }
+        public Evento IdEv { get; set; }
     }
 }

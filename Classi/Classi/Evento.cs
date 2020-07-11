@@ -8,7 +8,7 @@ namespace Classi
 {
     public class Evento
     {
-        public Evento(int IdEv, string nome, string tipologia, int min_p, int max_p, int min_v, int max_v, int costo, string descrizione, int IdAss)
+        public Evento(int IdEv, string nome, string tipologia, int min_p, int max_p, int min_v, int max_v, int costo, string descrizione, Associazione IdAss)
         {
             this.IdEv = IdEv;
             this.nome = nome;
@@ -30,7 +30,7 @@ namespace Classi
         public int max_v { get; set; }
         public int costo { get; set; }
         public string descrizione { get; set; }
-        public int IdAss { get; set; }
+        public Associazione IdAss { get; set; }
 
     }
 }

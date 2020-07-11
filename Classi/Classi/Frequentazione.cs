@@ -8,15 +8,15 @@ namespace Classi
 {
     public class Frequentazione
     {
-        public Frequentazione(int IdStud, int IdUni, string tipo)
+        public Frequentazione(Studente IdStud, Universita IdUni, string tipo)
         {
             this.IdStud = IdStud;
             this.IdUni = IdUni;
             this.tipo = tipo;
 
         }
-        public int IdStud { get; set; }
-        public int IdUni { get; set; }
+        public Studente IdStud { get; set; }
+        public Universita IdUni { get; set; }
         public string tipo { get; set; }
     }
 }

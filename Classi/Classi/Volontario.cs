@@ -8,7 +8,7 @@ namespace Classi
 {
     public class Volontario
     {
-        public Volontario(int IdVolont, string nome, string cognome, int data_n, string email, int telefono, int data_iscr, string password, int IdAss)
+        public Volontario(int IdVolont, string nome, string cognome, int data_n, string email, int telefono, int data_iscr, string password, Associazione IdAss)
         {
             this.IdVolont = IdVolont;
             this.nome = nome;
@@ -29,7 +29,7 @@ namespace Classi
         public int telefono { get; set; }
         public int data_iscr { get; set; }
         public string password { get; set; }
-        public int IdAss { get; set; }
+        public Associazione IdAss { get; set; }
 
     }
 }

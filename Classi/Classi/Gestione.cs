@@ -8,12 +8,12 @@ namespace Classi
 {
     public class Gestione
     {
-        public Gestione(int IdVolont, int IdEv)
+        public Gestione(Volontario IdVolont, Evento IdEv)
         {
             this.IdVolont = IdVolont;
             this.IdEv = IdEv;
         }
-        public int IdVolont { get; set; }
-        public int IdEv{ get; set; }
+        public Volontario IdVolont { get; set; }
+        public Evento IdEv{ get; set; }
     }
 }

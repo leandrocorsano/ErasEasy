@@ -8,7 +8,7 @@ namespace Classi
 {
     public class Svolgimento
     {
-        public Svolgimento(int IdEv, int IdLuogo, int ora_i, int ora_f, int data_i, int data_f)
+        public Svolgimento(Evento IdEv, int IdLuogo, int ora_i, int ora_f, int data_i, int data_f)
         {
             this.IdEv = IdEv;
             this.IdLuogo = IdLuogo;
@@ -17,7 +17,7 @@ namespace Classi
             this.data_i = data_i;
             this.data_f = data_f;
         }
-        public int IdEv { get; set; }
+        public Evento IdEv { get; set; }
         public int IdLuogo { get; set; }
         public int ora_i { get; set; }
         public int ora_f { get; set; }
