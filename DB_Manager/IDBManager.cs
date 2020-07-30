@@ -23,8 +23,8 @@ namespace DB_Manager
         [OperationContract]
         bool DBinsert(string table, string values, string field = "");
 
-        //[OperationContract]
-        //bool DBdelete(string table, string condition);
+        [OperationContract]
+        bool DBdelete(string table, string condition);
 
         [OperationContract]
         MySqlDataReader DBselect( string campi, string tabella, string condizione="");

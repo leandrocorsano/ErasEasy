@@ -21,11 +21,12 @@ namespace DB_Manager
                 DBmanager.Open();
                 Console.WriteLine("Server database attivo, premi un tasto per interrompere");
                //bool result=prova.DBinsert("Studente","'pippo', 'paperino', '1999-05-24' ","Nome, Cognome, Data_n");
-                 MySqlDataReader myReader= prova.DBselect("*","Studente");
-                while (myReader.Read())
-                    {
-                        Console.WriteLine(myReader.GetString(0)+" "+myReader.GetString(1) );
-                    }
+                // MySqlDataReader myReader= prova.DBselect("*","Studente");
+                //while (myReader.Read())
+                   // {
+                      //  Console.WriteLine(myReader.GetString(0)+" "+myReader.GetString(1) );
+                    //}
+                bool result=prova.DBdelete("Studente","Nome='Francesca'");
                 Console.ReadLine();
                 DBmanager.Close();
                 Console.WriteLine("Server database chiuso");

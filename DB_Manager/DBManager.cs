@@ -69,27 +69,29 @@ namespace DB_Manager
         //        }
         //    }
 
-        //        public bool DBdelete(string table, string condition)
-        //        {
-        //            using (SqlCommand command = this.DBconnection().CreateCommand())
-        //            {
+                public bool DBdelete(string table, string condition)
+                {
+                   using (var command = DB_conn.getInstance().CreateCommand())
+                    {
+                    command.CommandText = "DELETE FROM " + table + " WHERE " + condition + " ;";
+                    Console.WriteLine(command.CommandText);
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex1)
+                    {
+                        Console.WriteLine(ex1.Message);
+                        throw;
+                    }
+                    return true; //rimozione andata a buon fine
 
-        //                command.CommandText = "DELETE FROM " + table + "WHERE " + condition + " ;";
-        //                try
-        //                {
-        //                    command.ExecuteNonQuery();
-        //                }
-        //                catch (Exception ex)
-        //                {
-        //                    throw;//riporto l'errore 
 
-        //                }
+                
 
-        //                return true; //Cancellazione andata a buon fine
-
-        //            }
-        //        }
-
+                    }
+                }
+                
         public bool DBinsert(string table, string values, string field = "")
         {
             using (var command = DB_conn.getInstance().CreateCommand())
