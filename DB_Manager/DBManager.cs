@@ -94,7 +94,7 @@ namespace DB_Manager
         {
             using (var command = DB_conn.getInstance().CreateCommand())
             {
-                command.CommandText = "INSERT INTO " + table + " " + field + " VALUES " + values + ";";
+                command.CommandText = "INSERT INTO " + table + " (" + field + ")  VALUES (" + values + ");";
                 Console.WriteLine(command.CommandText);
                 try
                 {
@@ -113,27 +113,44 @@ namespace DB_Manager
             }
         }
 
-        //        public SqlDataReader DBselect( string campi, string tabella, string condizione="")
-        //        {
-        //            /*funzione che implementa in maniera astratta una query di selezione nel DB 18/06*/
-        //            SqlCommand command = new SqlCommand();
-        //            //conn.Open();
-        //            using ( command.Connection=this.DBconnection())
-        //            {
+        public MySqlDataReader DBselect( string campi, string tabella, string condizione="")
+        {
+                    /*funzione che implementa in maniera astratta una query di selezione nel DB 18/06*/
+            
+                    using (var command = DB_conn.getInstance().CreateCommand())
+                    {
+                        MySqlDataReader risultato;
+                        if (condizione == "")
+                        {
+                            command.CommandText = "SELECT " + campi + " FROM " + tabella;
+                        }
+                        else
+                        {
+                            command.CommandText = "SELECT " + campi + " FROM " + tabella + " WHERE " + condizione;
+                        }
+                        Console.WriteLine(command.CommandText);
+                        try
+                        {
+                             risultato = command.ExecuteReader();
+                        
+         
+                        }
+                        catch (Exception ex1)
+                        {
+                            Console.WriteLine(ex1.Message);
+                            throw;
+                        }
+                        return risultato;
 
-        //                if (condizione == "")
-        //                {
-        //                    command.CommandText = "SELECT " + campi + " FROM " + tabella;
-        //                }
-        //                else
-        //                {
-        //                    command.CommandText = "SELECT " + campi + " FROM " + tabella + " WHERE " + condizione;
-        //                }
-        //                SqlDataReader risultato = command.ExecuteReader();
-        //                return risultato;
 
-        //            }
-        //        }
+                
+
+                    }
+        }   
+            
+            
+            
+  
 
         //        public bool DBupdate(string table, string setter, string condition)
         //        {

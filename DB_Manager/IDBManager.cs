@@ -18,8 +18,6 @@ namespace DB_Manager
 
 
         
-        //[OperationContract]
-        //MySqlConnection DBconnection();
         
 
         [OperationContract]
@@ -28,8 +26,8 @@ namespace DB_Manager
         //[OperationContract]
         //bool DBdelete(string table, string condition);
 
-        //[OperationContract]
-        //SqlDataReader DBselect( string campi, string tabella, string condizione="");
+        [OperationContract]
+        MySqlDataReader DBselect( string campi, string tabella, string condizione="");
         
         //[OperationContract]
         //bool DBupdate(string table, string setter, string condition);
