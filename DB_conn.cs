@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
+
+
+namespace DB_Manager
+{
+    class DB_conn
+    {
+        private static MySqlConnection instance = null;
+
+        private static readonly object padlock = new object();
+
+        private DB_conn() { }
+
+        public static MySqlConnection getInstance()
+        {
+            lock (padlock)
+            {
+                if (instance == null)
+                {
+                    instance = new MySqlConnection();
+                    instance.ConnectionString =
+                      "server=sql7.freesqldatabase.com;" +
+                      "database=sql7353524;" +
+                      "port=3306;" +
+                      "user=sql7353524;" +
+                      "password= R7ry1S5L1Z;";
+                    instance.Open();
+                }
+                return instance;
+            }
+        }
+    }
+}
