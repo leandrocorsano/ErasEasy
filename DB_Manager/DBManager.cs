@@ -154,29 +154,29 @@ namespace DB_Manager
             
   
 
-        //        public bool DBupdate(string table, string setter, string condition)
-        //        {
-        //            using (SqlCommand command = this.DBconnection().CreateCommand())
-        //            {
+               public bool DBupdate(string table, string setter, string condition)
+               {
+                    using (var command = DB_conn.getInstance().CreateCommand())
+                    {
+                    command.CommandText = "UPDATE " + table + " SET " + setter + " WHERE " + condition;
+                        Console.WriteLine(command.CommandText);
+                        try
+                        {
+                            command.ExecuteNonQuery();
+                        }
+                        catch (Exception ex1)
+                        {
+                            Console.WriteLine(ex1.Message);
+                            throw;
+                        }
+                        return true; //aggiornamento andato a buon fine
 
-        //                command.CommandText = "UPDATE " + table + " SET " + setter + " WHERE " + condition;
-        //                //Console.WriteLine(command.CommandText);
-        //                try
-        //                {
-        //                    command.ExecuteNonQuery();
-        //                }
-        //                catch (Exception ex)
-        //                {
-        //                    throw;//riporto l'errore 
-        //                          //return false; //inserimento non fatto
-
-
-        //                }
-
-        //                return true; //aggiornamneto andato a buon fine
-
-        //            }
-        //        }
+                    }
+               }    
+            
+            
+                    
+                
 
     }
 }

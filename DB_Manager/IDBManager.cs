@@ -29,8 +29,8 @@ namespace DB_Manager
         [OperationContract]
         MySqlDataReader DBselect( string campi, string tabella, string condizione="");
         
-        //[OperationContract]
-        //bool DBupdate(string table, string setter, string condition);
+        [OperationContract]
+        bool DBupdate(string table, string setter, string condition);
 
     }
 }
