@@ -32,5 +32,8 @@ namespace DB_Manager
         [OperationContract]
         bool DBupdate(string table, string setter, string condition);
 
+        [OperationContract]
+        bool DBtransaction(List<string> query);
+
     }
 }

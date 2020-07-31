@@ -26,7 +26,15 @@ namespace DB_Manager
                    // {
                       //  Console.WriteLine(myReader.GetString(0)+" "+myReader.GetString(1) );
                     //}
-                bool result=prova.DBdelete("Studente","Nome='Francesca'");
+                //bool result=prova.DBdelete("Studente","Nome='Francesca'");
+               // bool result=prova.DBupdate("Studente", "Data_n='1989-02-15'", "Cognome='Rossi'");
+               /*PROVA TRANSAZIONE*/
+               /*List<string> query_list=new List<string>();
+                string query1="Insert into `Studente`( `Nome`, `Cognome`, `Data_n`)  values ('Fra', 'Rossi', '1888-02-20');";
+                string query2="Insert into `Studente`( `Nome`, `Cognome`, `Data_n`)  values ('Francesc', 'Neri', '1999-02-20');";
+                query_list.Add(query1);
+                query_list.Add(query2);
+                bool t=prova.DBtransaction(query_list);*/
                 Console.ReadLine();
                 DBmanager.Close();
                 Console.WriteLine("Server database chiuso");

@@ -174,7 +174,37 @@ namespace DB_Manager
                     }
                }    
             
-            
+                public bool DBtransaction(List<string> query)
+               {
+                    using (var command = DB_conn.getInstance().CreateCommand())
+                    {
+                        MySqlTransaction transazione;
+                        transazione=DB_conn.getInstance().BeginTransaction();
+                        command.Transaction=transazione;
+                        int l=query.Count();
+                        try
+                        {
+                            for( int i=0; i<l; i++)
+                            {
+                              command.CommandText=query[i];
+                              command.ExecuteNonQuery();
+                            }
+                            transazione.Commit();
+                            Console.WriteLine("La transazione è andata a buon fine");
+
+                        }
+                        catch(Exception e)
+                        {
+                         Console.WriteLine(e.Message);
+                         throw;
+                        }
+                    return true; //transazione andato a buon fine    
+
+                        
+                    
+
+                    }
+               } 
                     
                 
 
