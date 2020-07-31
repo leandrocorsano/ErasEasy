@@ -18,21 +18,22 @@ namespace DB_Manager
 
 
         
-        //[OperationContract]
-        //MySqlConnection DBconnection();
         
 
         [OperationContract]
         bool DBinsert(string table, string values, string field = "");
 
-        //[OperationContract]
-        //bool DBdelete(string table, string condition);
+        [OperationContract]
+        bool DBdelete(string table, string condition);
 
-        //[OperationContract]
-        //SqlDataReader DBselect( string campi, string tabella, string condizione="");
+        [OperationContract]
+        MySqlDataReader DBselect( string campi, string tabella, string condizione="");
         
-        //[OperationContract]
-        //bool DBupdate(string table, string setter, string condition);
+        [OperationContract]
+        bool DBupdate(string table, string setter, string condition);
+
+        [OperationContract]
+        bool DBtransaction(List<string> query);
 
     }
 }

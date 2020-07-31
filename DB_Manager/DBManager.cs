@@ -69,32 +69,34 @@ namespace DB_Manager
         //        }
         //    }
 
-        //        public bool DBdelete(string table, string condition)
-        //        {
-        //            using (SqlCommand command = this.DBconnection().CreateCommand())
-        //            {
+                public bool DBdelete(string table, string condition)
+                {
+                   using (var command = DB_conn.getInstance().CreateCommand())
+                    {
+                    command.CommandText = "DELETE FROM " + table + " WHERE " + condition + " ;";
+                    Console.WriteLine(command.CommandText);
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex1)
+                    {
+                        Console.WriteLine(ex1.Message);
+                        throw;
+                    }
+                    return true; //rimozione andata a buon fine
 
-        //                command.CommandText = "DELETE FROM " + table + "WHERE " + condition + " ;";
-        //                try
-        //                {
-        //                    command.ExecuteNonQuery();
-        //                }
-        //                catch (Exception ex)
-        //                {
-        //                    throw;//riporto l'errore 
 
-        //                }
+                
 
-        //                return true; //Cancellazione andata a buon fine
-
-        //            }
-        //        }
-
+                    }
+                }
+                
         public bool DBinsert(string table, string values, string field = "")
         {
             using (var command = DB_conn.getInstance().CreateCommand())
             {
-                command.CommandText = "INSERT INTO " + table + " " + field + " VALUES " + values + ";";
+                command.CommandText = "INSERT INTO " + table + " (" + field + ")  VALUES (" + values + ");";
                 Console.WriteLine(command.CommandText);
                 try
                 {
@@ -113,51 +115,98 @@ namespace DB_Manager
             }
         }
 
-        //        public SqlDataReader DBselect( string campi, string tabella, string condizione="")
-        //        {
-        //            /*funzione che implementa in maniera astratta una query di selezione nel DB 18/06*/
-        //            SqlCommand command = new SqlCommand();
-        //            //conn.Open();
-        //            using ( command.Connection=this.DBconnection())
-        //            {
-
-        //                if (condizione == "")
-        //                {
-        //                    command.CommandText = "SELECT " + campi + " FROM " + tabella;
-        //                }
-        //                else
-        //                {
-        //                    command.CommandText = "SELECT " + campi + " FROM " + tabella + " WHERE " + condizione;
-        //                }
-        //                SqlDataReader risultato = command.ExecuteReader();
-        //                return risultato;
-
-        //            }
-        //        }
-
-        //        public bool DBupdate(string table, string setter, string condition)
-        //        {
-        //            using (SqlCommand command = this.DBconnection().CreateCommand())
-        //            {
-
-        //                command.CommandText = "UPDATE " + table + " SET " + setter + " WHERE " + condition;
-        //                //Console.WriteLine(command.CommandText);
-        //                try
-        //                {
-        //                    command.ExecuteNonQuery();
-        //                }
-        //                catch (Exception ex)
-        //                {
-        //                    throw;//riporto l'errore 
-        //                          //return false; //inserimento non fatto
+        public MySqlDataReader DBselect( string campi, string tabella, string condizione="")
+        {
+                    /*funzione che implementa in maniera astratta una query di selezione nel DB 18/06*/
+            
+                    using (var command = DB_conn.getInstance().CreateCommand())
+                    {
+                        MySqlDataReader risultato;
+                        if (condizione == "")
+                        {
+                            command.CommandText = "SELECT " + campi + " FROM " + tabella;
+                        }
+                        else
+                        {
+                            command.CommandText = "SELECT " + campi + " FROM " + tabella + " WHERE " + condizione;
+                        }
+                        Console.WriteLine(command.CommandText);
+                        try
+                        {
+                             risultato = command.ExecuteReader();
+                        
+         
+                        }
+                        catch (Exception ex1)
+                        {
+                            Console.WriteLine(ex1.Message);
+                            throw;
+                        }
+                        return risultato;
 
 
-        //                }
+                
 
-        //                return true; //aggiornamneto andato a buon fine
+                    }
+        }   
+            
+            
+            
+  
 
-        //            }
-        //        }
+               public bool DBupdate(string table, string setter, string condition)
+               {
+                    using (var command = DB_conn.getInstance().CreateCommand())
+                    {
+                    command.CommandText = "UPDATE " + table + " SET " + setter + " WHERE " + condition;
+                        Console.WriteLine(command.CommandText);
+                        try
+                        {
+                            command.ExecuteNonQuery();
+                        }
+                        catch (Exception ex1)
+                        {
+                            Console.WriteLine(ex1.Message);
+                            throw;
+                        }
+                        return true; //aggiornamento andato a buon fine
+
+                    }
+               }    
+            
+                public bool DBtransaction(List<string> query)
+               {
+                    using (var command = DB_conn.getInstance().CreateCommand())
+                    {
+                        MySqlTransaction transazione;
+                        transazione=DB_conn.getInstance().BeginTransaction();
+                        command.Transaction=transazione;
+                        int l=query.Count();
+                        try
+                        {
+                            for( int i=0; i<l; i++)
+                            {
+                              command.CommandText=query[i];
+                              command.ExecuteNonQuery();
+                            }
+                            transazione.Commit();
+                            Console.WriteLine("La transazione è andata a buon fine");
+
+                        }
+                        catch(Exception e)
+                        {
+                         Console.WriteLine(e.Message);
+                         throw;
+                        }
+                    return true; //transazione andato a buon fine    
+
+                        
+                    
+
+                    }
+               } 
+                    
+                
 
     }
 }
