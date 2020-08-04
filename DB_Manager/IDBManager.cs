@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Configuration;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 
 namespace DB_Manager
@@ -27,7 +28,7 @@ namespace DB_Manager
         bool DBdelete(string table, string condition);
 
         [OperationContract]
-        MySqlDataReader DBselect( string campi, string tabella, string condizione="");
+        DataSet DBselect( string campi, string tabella, string condizione="");
         
         [OperationContract]
         bool DBupdate(string table, string setter, string condition);

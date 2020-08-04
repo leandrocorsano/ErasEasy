@@ -5,7 +5,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-
+using MySql.Data.MySqlClient;
+using System.Data;
 namespace Admin_wcf
 {
     // NOTA: è possibile utilizzare il comando "Rinomina" del menu "Refactoring" per modificare il nome di classe "Server_Admin" nel codice e nel file di configurazione contemporaneamente.
@@ -35,9 +36,26 @@ namespace Admin_wcf
         }
 
    
-        Associazione IAssociation.Profile(int id)
+        public Associazione Profile(int id)
         {
-            throw new NotImplementedException();
+            var wcfclient = new DBManager.DBManagerClient(); //mi connetto al server
+            string cond = "IdAss=" + id.ToString();
+            DataSet ass_set = wcfclient.DBselect("*", "ASSOCIAZIONE", cond );
+            foreach (DataTable table in ass_set.Tables)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    foreach (DataColumn column in table.Columns)
+                    {
+                        string item = row[column].ToString();
+                        Console.WriteLine(item);
+                        Console.WriteLine();
+                        // read column and item
+                    }
+                }
+            }
+            Associazione a = new Associazione(1, "prova", "Parma", "Italia", "via palermo, 1", "3474233955", "p@gmail.com", "1234");
+            return a;
         }
 
       

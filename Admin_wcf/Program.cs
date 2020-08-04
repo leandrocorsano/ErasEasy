@@ -15,8 +15,9 @@ namespace Admin_wcf
             //Console.WriteLine("WCF CLIENT CREATO");
             /*PROVA REGISTRATION IASSOCIATION*/
             //Associazione a = new Associazione(1, "prova", "Parma", "Italia", "via palermo, 1", "3474233955", "p@gmail.com", "1234");
-            //Association ass = new Association();
+            Association ass = new Association();
             //bool r = ass.Registration(a);
+            Associazione a = ass.Profile(1);
             
 
 

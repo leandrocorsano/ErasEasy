@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Data;
 
 namespace DB_Manager
 {
@@ -115,13 +116,13 @@ namespace DB_Manager
             }
         }
 
-        public MySqlDataReader DBselect( string campi, string tabella, string condizione="")
+        public DataSet DBselect( string campi, string tabella, string condizione="")
         {
-                    /*funzione che implementa in maniera astratta una query di selezione nel DB 18/06*/
-            
-                    using (var command = DB_conn.getInstance().CreateCommand())
+            /*funzione che implementa in maniera astratta una query di selezione nel DB 18/06*/
+            DataSet ds1 = new DataSet();
+            using (var command = DB_conn.getInstance().CreateCommand())
                     {
-                        MySqlDataReader risultato;
+                        
                         if (condizione == "")
                         {
                             command.CommandText = "SELECT " + campi + " FROM " + tabella;
@@ -131,18 +132,10 @@ namespace DB_Manager
                             command.CommandText = "SELECT " + campi + " FROM " + tabella + " WHERE " + condizione;
                         }
                         Console.WriteLine(command.CommandText);
-                        try
-                        {
-                             risultato = command.ExecuteReader();
-                        
-         
-                        }
-                        catch (Exception ex1)
-                        {
-                            Console.WriteLine(ex1.Message);
-                            throw;
-                        }
-                        return risultato;
+
+                         MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                        adapter.Fill(ds1, "Tabella");
+                        return ds1;
 
 
                 

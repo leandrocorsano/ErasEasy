@@ -28,12 +28,10 @@ namespace Admin_wcf.DBManager {
         System.Threading.Tasks.Task<bool> DBdeleteAsync(string table, string condition);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBManager/DBselect", ReplyAction="http://tempuri.org/IDBManager/DBselectResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(string[]))]
-        object[] DBselect(string campi, string tabella, string condizione);
+        System.Data.DataSet DBselect(string campi, string tabella, string condizione);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBManager/DBselect", ReplyAction="http://tempuri.org/IDBManager/DBselectResponse")]
-        System.Threading.Tasks.Task<object[]> DBselectAsync(string campi, string tabella, string condizione);
+        System.Threading.Tasks.Task<System.Data.DataSet> DBselectAsync(string campi, string tabella, string condizione);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBManager/DBupdate", ReplyAction="http://tempuri.org/IDBManager/DBupdateResponse")]
         bool DBupdate(string table, string setter, string condition);
@@ -91,11 +89,11 @@ namespace Admin_wcf.DBManager {
             return base.Channel.DBdeleteAsync(table, condition);
         }
         
-        public object[] DBselect(string campi, string tabella, string condizione) {
+        public System.Data.DataSet DBselect(string campi, string tabella, string condizione) {
             return base.Channel.DBselect(campi, tabella, condizione);
         }
         
-        public System.Threading.Tasks.Task<object[]> DBselectAsync(string campi, string tabella, string condizione) {
+        public System.Threading.Tasks.Task<System.Data.DataSet> DBselectAsync(string campi, string tabella, string condizione) {
             return base.Channel.DBselectAsync(campi, tabella, condizione);
         }
         

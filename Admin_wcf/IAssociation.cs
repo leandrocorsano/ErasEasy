@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using Admin_wcf.Classi;
+using MySql.Data.MySqlClient;
 
 namespace Admin_wcf
 {
