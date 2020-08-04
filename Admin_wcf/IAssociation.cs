@@ -13,7 +13,7 @@ namespace Admin_wcf
     public interface IAssociation
     {
         [OperationContract]
-        bool Registration(Associazione a);
+        public bool Registration(Associazione a);
 
         [OperationContract]
         Associazione Login(string email, string password);
@@ -23,6 +23,7 @@ namespace Admin_wcf
 
         [OperationContract]
         bool UpdateProfile(Associazione a);
+
         [OperationContract]
         bool UpdatePassword(Associazione a, string new_password);
 
