@@ -4,9 +4,9 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using Admin_wcf.Classi;
+using Admin.Classi;
 
-namespace Admin_wcf
+namespace Admin
 {
     // NOTA: è possibile utilizzare il comando "Rinomina" del menu "Refactoring" per modificare il nome di interfaccia "IServer_Admin" nel codice e nel file di configurazione contemporaneamente.
     [ServiceContract]
