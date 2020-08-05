@@ -18,7 +18,14 @@ namespace Admin_wcf
             Association ass = new Association();
             //bool r = ass.Registration(a);
             Associazione a = ass.Profile(1);
-            
+            if (a != null)
+            {
+                Console.WriteLine(a.citta);
+            }
+            else
+            {
+                Console.WriteLine("pippo");
+            }
 
 
         }

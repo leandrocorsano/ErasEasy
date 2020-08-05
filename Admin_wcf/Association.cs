@@ -40,22 +40,33 @@ namespace Admin_wcf
         {
             var wcfclient = new DBManager.DBManagerClient(); //mi connetto al server
             string cond = "IdAss=" + id.ToString();
-            DataSet ass_set = wcfclient.DBselect("*", "ASSOCIAZIONE", cond );
+            Associazione a = null;
+            try { 
+            DataSet ass_set = wcfclient.DBselect("*", "ASSOCIAZIONE", cond); 
             foreach (DataTable table in ass_set.Tables)
             {
                 foreach (DataRow row in table.Rows)
                 {
-                    foreach (DataColumn column in table.Columns)
+                    a = new Associazione(Convert.ToInt32(row["IdAss"]), row["nome"].ToString(), row["citta"].ToString(), row["stato"].ToString(), row["via"].ToString(), row["tel"].ToString(), row["email"].ToString(), row["password"].ToString());
+                    return a;
+                    /* foreach (DataColumn column in table.Columns)
                     {
                         string item = row[column].ToString();
                         Console.WriteLine(item);
                         Console.WriteLine();
                         // read column and item
-                    }
+                    }*/
                 }
             }
-            Associazione a = new Associazione(1, "prova", "Parma", "Italia", "via palermo, 1", "3474233955", "p@gmail.com", "1234");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+
+            }
             return a;
+            
         }
 
       
