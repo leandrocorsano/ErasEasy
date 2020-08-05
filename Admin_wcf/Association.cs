@@ -71,9 +71,13 @@ namespace Admin_wcf
 
       
 
-        bool IAssociation.UpdatePassword(Associazione a, string new_password)
+        public bool UpdatePassword(int id, string new_password)
         {
-            throw new NotImplementedException();
+            var wcfclient = new DBManager.DBManagerClient(); //mi connetto al server
+            string set = "password='" + new_password+"'";
+            string condizione = "IdAss=" + id.ToString();
+
+            return wcfclient.DBupdate("ASSOCIAZIONE", set, condizione);
         }
 
         bool IAssociation.UpdateProfile(Associazione a)

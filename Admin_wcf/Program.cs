@@ -17,17 +17,17 @@ namespace Admin_wcf
             //Associazione a = new Associazione(1, "prova", "Parma", "Italia", "via palermo, 1", "3474233955", "p@gmail.com", "1234");
             Association ass = new Association();
             //bool r = ass.Registration(a);
-            Associazione a = ass.Profile(1);
-            if (a != null)
-            {
-                Console.WriteLine(a.citta);
-            }
-            else
-            {
-                Console.WriteLine("pippo");
-            }
+            //Associazione a = ass.Profile(1);
+            //if (a != null)
+            //{
+            //    Console.WriteLine(a.citta);
+            //}
+            //else
+            //{
+            //    Console.WriteLine("pippo");
+            //}
 
-
+            bool r = ass.UpdatePassword(1, "ciao");
         }
     }
 }

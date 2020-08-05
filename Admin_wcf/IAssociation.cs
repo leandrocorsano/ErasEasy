@@ -26,7 +26,7 @@ namespace Admin_wcf
         bool UpdateProfile(Associazione a);
 
         [OperationContract]
-        bool UpdatePassword(Associazione a, string new_password);
+        bool UpdatePassword(int id, string new_password);
 
 
     }
