@@ -14,20 +14,20 @@ namespace Admin_wcf
             //var wcfclient = new DBManager.DBManagerClient();
             //Console.WriteLine("WCF CLIENT CREATO");
             /*PROVA REGISTRATION IASSOCIATION*/
-            //Associazione a = new Associazione(1, "prova", "Parma", "Italia", "via palermo, 1", "3474233955", "p@gmail.com", "1234");
+            //Associazione a = new Associazione(2, "ESN", "Roma", "Italia", "via palermo, 1", "3474233955", "esn@gmail.com", "1234");
             Association ass = new Association();
             //bool r = ass.Registration(a);
-            //Associazione a = ass.Profile(1);
-            //if (a != null)
-            //{
-            //    Console.WriteLine(a.citta);
-            //}
+            /*Associazione a = ass.Profile(2);
+            if (a != null)
+            {
+                Console.WriteLine(a.citta);
+            }*/
             //else
             //{
             //    Console.WriteLine("pippo");
             //}
 
-            bool r = ass.UpdatePassword(1, "ciao");
+            //bool r = ass.UpdateProfile(a);
         }
     }
 }

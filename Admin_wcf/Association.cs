@@ -15,7 +15,7 @@ namespace Admin_wcf
     {
         public bool Registration(Associazione a)
         {
-            var wcfclient = new DBManager.DBManagerClient(); //mi connetto al server
+            var wcfclient = server_conn.getInstance();
             string valori = "" + a.IdAss + ",'" + a.nome + "','" + a.citta + "', '" + a.stato + "','" + a.via + "','" + a.tel + "','" + a.email + "','" + a.password + "'";
             bool risultato;
             try
@@ -38,7 +38,7 @@ namespace Admin_wcf
    
         public Associazione Profile(int id)
         {
-            var wcfclient = new DBManager.DBManagerClient(); //mi connetto al server
+            var wcfclient = server_conn.getInstance();
             string cond = "IdAss=" + id.ToString();
             Associazione a = null;
             try { 
@@ -73,16 +73,21 @@ namespace Admin_wcf
 
         public bool UpdatePassword(int id, string new_password)
         {
-            var wcfclient = new DBManager.DBManagerClient(); //mi connetto al server
+            var wcfclient = server_conn.getInstance();
             string set = "password='" + new_password+"'";
             string condizione = "IdAss=" + id.ToString();
 
             return wcfclient.DBupdate("ASSOCIAZIONE", set, condizione);
         }
 
-        bool IAssociation.UpdateProfile(Associazione a)
+        public bool UpdateProfile(Associazione a)
         {
-            throw new NotImplementedException();
+            /* N.B. è possibile modificare tutti i campi tranne la password e l'id*/
+            //var wcfclient = new DBManager.DBManagerClient(); //mi connetto al server
+            var wcfclient = server_conn.getInstance();
+            string condizione = "IdAss=" + a.IdAss;
+            string set = "nome='" + a.nome + "', citta='" + a.citta + "', stato='" + a.stato + "', via='" + a.via + "',tel='" + a.tel + "', email='" + a.email + "'";
+            return wcfclient.DBupdate("ASSOCIAZIONE", set, condizione);
         }
     }
 }
