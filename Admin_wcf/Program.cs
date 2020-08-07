@@ -17,11 +17,11 @@ namespace Admin_wcf
             //Associazione a = new Associazione(2, "ESN", "Roma", "Italia", "via palermo, 1", "3474233955", "esn@gmail.com", "1234");
             Association ass = new Association();
             //bool r = ass.Registration(a);
-            /*Associazione a = ass.Profile(2);
+            Associazione a = ass.Login("esn@gmail.com", "ciao");
             if (a != null)
             {
                 Console.WriteLine(a.citta);
-            }*/
+            }
             //else
             //{
             //    Console.WriteLine("pippo");
