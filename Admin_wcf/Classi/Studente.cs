@@ -8,7 +8,7 @@ namespace Admin_wcf.Classi
 {
     public class Studente
     {
-        public Studente(int IdStud, string nome, string cognome, string email, int tel, int data_n, string citta, string stato, string nazionalita, string password)
+        public Studente(int IdStud, string nome, string cognome, string email, string tel, string data_n, string citta, string stato, string nazionalita, string password, string instagram="", string facebook="")
         {
             this.IdStud = IdStud;
             this.nome = nome;
@@ -20,18 +20,21 @@ namespace Admin_wcf.Classi
             this.stato = stato; 
             this.nazionalita = nazionalita;
             this.password = password;
+            this.instagram = instagram;
+            this.facebook = facebook;
 
         }
         public int IdStud { get; set; }
         public string nome { get; set; }
         public string cognome { get; set; }
         public string email { get; set; }
-        public int tel { get; set; }
-        public int data_n { get; set; }
+        public string tel { get; set; }
+        public string data_n { get; set; }
         public string citta { get; set; }
         public string stato { get; set; }
         public string nazionalita { get; set; }
         public string password { get; set; }
-        
+        public string instagram { get; set; }
+        public string facebook { get; set; }
     }
 }

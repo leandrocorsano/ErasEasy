@@ -7,6 +7,7 @@ using System.ServiceModel;
 using System.Text;
 using MySql.Data.MySqlClient;
 using System.Data;
+
 namespace Admin_wcf
 {
     // NOTA: è possibile utilizzare il comando "Rinomina" del menu "Refactoring" per modificare il nome di classe "Server_Admin" nel codice e nel file di configurazione contemporaneamente.
