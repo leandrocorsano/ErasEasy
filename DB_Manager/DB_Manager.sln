@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB_Manager", "DB_Manager.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin_wcf", "..\Admin_wcf\Admin_wcf.csproj", "{C619AE07-35AA-45F6-8BB2-539023E36404}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErasEasyLife", "..\ErasEasyLife\ErasEasyLife.csproj", "{C6531F50-E7D1-4DA1-A92A-071CF04728F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C619AE07-35AA-45F6-8BB2-539023E36404}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C619AE07-35AA-45F6-8BB2-539023E36404}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C619AE07-35AA-45F6-8BB2-539023E36404}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6531F50-E7D1-4DA1-A92A-071CF04728F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6531F50-E7D1-4DA1-A92A-071CF04728F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6531F50-E7D1-4DA1-A92A-071CF04728F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6531F50-E7D1-4DA1-A92A-071CF04728F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
