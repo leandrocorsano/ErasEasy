@@ -22,15 +22,15 @@ namespace ErasEasyLife.Controllers
             return View();
         }
 
-        // GET: Associazione/Create
-        public ActionResult Create()
+        public ActionResult Login()
         {
             return View();
         }
 
-        // POST: Associazione/Create
+
+        // POST: Associazione/Registra
         [HttpPost]
-        public ActionResult Create(Association.Associazione model)
+        public ActionResult Registra(Association.Associazione model)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace ErasEasyLife.Controllers
                 }
                 else
                 {
-                    return View();
+                    return View("Registra");
                 }
             }
             catch
