@@ -2064,6 +2064,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Associazione\Registra.cshtml" />
     <Content Include="Views\Associazione\Login.cshtml" />
+    <Content Include="Views\Associazione\Inserisci.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

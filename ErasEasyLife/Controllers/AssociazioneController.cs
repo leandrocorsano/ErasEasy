@@ -24,18 +24,24 @@ namespace ErasEasyLife.Controllers
 
         public ActionResult Login()
         {
-            return View();
+            return View("Login");
+        }
+       [HttpGet]
+        public ActionResult Registra()
+        {
+            
+            
+                    return View();
+                
         }
 
-
-        // POST: Associazione/Registra
         [HttpPost]
+        // POST: Associazione/Create
         public ActionResult Registra(Association.Associazione model)
         {
             try
             {
-
-                if (ModelState.IsValid)
+                if ((ModelState.IsValid) && (model.nome != ""))
                 {// TODO: Add insert logic here
 
                     /*SERVER PER RESTITURIE I DATI A UNA PAGINA HTML*/
@@ -48,19 +54,21 @@ namespace ErasEasyLife.Controllers
                     //return RedirectToAction("Index");
                     return View("Index");
                 }
+
                 else
                 {
-                    return View("Registra");
+                    return View();
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return View();
             }
         }
 
         // GET: Associazione/Edit/5
-        public ActionResult Edit(int id)
+            public ActionResult Edit(int id)
         {
             return View();
         }

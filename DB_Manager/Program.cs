@@ -13,7 +13,7 @@ namespace DB_Manager
     {
         static void Main(string[] args)
         {
-            DBManager prova = new DBManager();
+            //DBManager prova = new DBManager();
             
             try
             {
