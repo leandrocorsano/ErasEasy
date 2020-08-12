@@ -1,0 +1,22 @@
+﻿
+@{
+   Layout = "~/Views/Shared/WhitoutMenu.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Success</title>
+</head>
+<body>
+    <div>
+        <div class="alert alert-success" role="alert">
+            @ViewBag.risposta
+        </div>
+            <a href="@ViewBag.url" class="btn bg-gradient-cyan">@ViewBag.link</a>
+
+        </div>
+</body>
+</html>

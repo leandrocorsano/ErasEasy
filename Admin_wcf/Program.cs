@@ -14,6 +14,8 @@ namespace Admin_wcf
         { //Student stud = new Student();
             try
             {
+                
+                Association ass = new Association();
                 ServiceHost ServerAssociazione = new ServiceHost(typeof(Association));
                 ServiceHost ServerVolontario = new ServiceHost(typeof(Volunteer));
                 ServiceHost ServerStudente = new ServiceHost(typeof(Student));
@@ -23,6 +25,8 @@ namespace Admin_wcf
                 Console.WriteLine("Server Associazione attivo, premi un tasto per interrompere");
                 Console.WriteLine("Server Volonatario attivo, premi un tasto per interrompere");
                 Console.WriteLine("Server Studente attivo, premi un tasto per interrompere");
+                Association a = new Association();
+
                 Student stud = new Student();
                 Studente s = stud.Profile(1);
                 Console.WriteLine(s.nome + " " + s.cognome);

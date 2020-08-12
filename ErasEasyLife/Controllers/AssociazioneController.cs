@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ErasEasyLife.Models;
 using ErasEasyLife.Association;
+using ErasEasyLife.Association;
 
 namespace ErasEasyLife.Controllers
 {
@@ -37,22 +38,34 @@ namespace ErasEasyLife.Controllers
 
         [HttpPost]
         // POST: Associazione/Create
-        public ActionResult Registra(Association.Associazione model)
+        public ActionResult Registra(Models.Associazione model)
         {
             try
             {
-                if ((ModelState.IsValid) && (model.nome != ""))
+                if ((ModelState.IsValid))
                 {// TODO: Add insert logic here
 
                     /*SERVER PER RESTITURIE I DATI A UNA PAGINA HTML*/
                     ViewData["Nome"] = model.nome;
                     ViewData["Citta"] = model.citta;
                     var webclient = new Association.AssociationClient();
-                    //Associazione ass = new Associazione(model.IdAss, model.nome, model.citta, model.stato, model.via, model.tel, model.email, model.password);
-                    bool r = webclient.Registration(model);
+                   
+                    Association.Associazione ass = new Association.Associazione();
+                    ass.IdAss = model.IdAss;
+                    ass.nome = model.nome;
+                    ass.citta = model.citta;
+                    ass.stato = model.stato;
+                    ass.tel = model.tel;
+                    ass.via = model.via;
+                    ass.password = model.password;
+                    ass.email = model.email;
+                    bool r = webclient.Registration(ass);
                     //ViewData["Address"] = smodel.Indirizzo;
                     //return RedirectToAction("Index");
-                    return View("Index");
+                    ViewBag.risposta = "Sei stato registrato con successo.";
+                    ViewBag.url = "Login";
+                    ViewBag.link = "Accedi";
+                    return View("Successo");
                 }
 
                 else

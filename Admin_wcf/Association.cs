@@ -1,4 +1,4 @@
-﻿using Admin_wcf.Classi;
+﻿//using Admin_wcf.Classi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +11,10 @@ using System.Data;
 namespace Admin_wcf
 {
     // NOTA: è possibile utilizzare il comando "Rinomina" del menu "Refactoring" per modificare il nome di classe "Server_Admin" nel codice e nel file di configurazione contemporaneamente.
-
+    [ServiceBehavior]
     public class Association : IAssociation
     {
+
         public bool Registration(Associazione a)
         {
             var wcfclient = server_conn.getInstance();
@@ -112,5 +113,39 @@ namespace Admin_wcf
             string set = "nome='" + a.nome + "', citta='" + a.citta + "', stato='" + a.stato + "', via='" + a.via + "',tel='" + a.tel + "', email='" + a.email + "'";
             return wcfclient.DBupdate("ASSOCIAZIONE", set, condizione);
         }
+    }
+    [DataContract]
+    public class Associazione
+    {
+
+        public Associazione(int IdAss, string nome, string citta, string stato, string via, string tel, string email, string password)
+        {
+            this.IdAss = IdAss;
+            this.nome = nome;
+            this.citta = citta;
+            this.stato = stato;
+            this.via = via;
+            this.tel = tel;
+            this.email = email;
+            this.password = password;
+        }
+        [DataMember]
+        public int IdAss { get; set; }
+        [DataMember]
+        public string nome { get; set; }
+        [DataMember]
+        public string citta { get; set; }
+        [DataMember]
+        public string stato { get; set; }
+        [DataMember]
+        public string via { get; set; }
+        [DataMember]
+        public string tel { get; set; }
+        [DataMember]
+        public string email { get; set; }
+        [DataMember]
+        public string password { get; set; }
+
+
     }
 }

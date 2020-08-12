@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using Admin_wcf.Classi;
+//using Admin_wcf.Classi;
 using MySql.Data.MySqlClient;
 
 namespace Admin_wcf
@@ -27,7 +27,8 @@ namespace Admin_wcf
 
         [OperationContract]
         bool UpdatePassword(int id, string new_password);
-
-
-    }
+        
+        
+        }
+    
 }

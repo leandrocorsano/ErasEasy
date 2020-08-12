@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-
+/* https://referencesource.microsoft.com/#System.ComponentModel.DataAnnotations */
 namespace ErasEasyLife.Models
 {
     [Serializable]
@@ -31,6 +31,7 @@ namespace ErasEasyLife.Models
         [DataMember]
         [Required(ErrorMessage = "Il cellulare è obbligatorio")]
         [Display(Name = "Telefono")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "Provided phone number not valid")]
         public string tel { get; set; }
         [DataMember]
         [Required(ErrorMessage = "L'email è obbligatoria")]
@@ -42,6 +43,7 @@ namespace ErasEasyLife.Models
         [Required(ErrorMessage = "Password obbligatoria")]
         [MinLength(6, ErrorMessage = "La password de contenere almeno 6 caratteri alfanumerici")]
         [RegularExpression(@"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}", ErrorMessage = "La password deve contenere almeno 1 lettera maiuscola, 1 minuscola e 1 numero e deve essere di almeno 6 caratteri")]
+        //[PasswordPropertyText] //per mettere gli asterischi
         public string password { get; set; }
     }
 }
