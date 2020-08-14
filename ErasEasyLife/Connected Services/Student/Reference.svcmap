@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7db2fd77-73b8-425c-9541-fac97f8ddd71" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Student/" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="3c70af1f-e40f-454f-a477-7cc8c204fbcf" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Student/?xsd=xsd2" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="4e6b76e6-b201-4ac7-902d-db0100d9f609" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Student/?xsd=xsd0" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="3bf30d63-b921-419b-a482-5b5f7654b3cc" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Student/?xsd=xsd1" />
+    <MetadataFile FileName="Student.wsdl" MetadataType="Wsdl" ID="c66fdb14-6109-46c0-b54a-0f7608dd2e1c" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Student/?wsdl" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="83dd64ca-0bd4-4f45-b7bc-0d79bdbbf7cd" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Student/?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
