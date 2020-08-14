@@ -12,67 +12,62 @@ namespace ErasEasyLife.Models
 {
     [Serializable]
     [DataContract]
-    public class Studente
+
+    public class Volontario
     {
 
         [DataMember]
-        public int IdStud { get; set; }
+        public int IdVolont { get; set; }
 
         [DataMember]
-        [Required(ErrorMessage = "Il nome dello studente è obbligatorio")]
+        [Required(ErrorMessage = "Il nome del volontario è obbligatorio")]
         [DisplayName("Nome")]
         public string nome { get; set; }
 
         [DataMember]
-        [Required(ErrorMessage = "Il cognome dello studente è obbligatorio")]
+        [Required(ErrorMessage = "Il cognome del volontario è obbligatorio")]
         [DisplayName("Cognome")]
         public string cognome { get; set; }
 
         [DataMember]
-        [Required(ErrorMessage = "La email dello studente è obbligatoria")]
+        [Required(ErrorMessage = "La data di nascita del volontario è obbligatoria")]
+        [DataType(DataType.Date, ErrorMessage = "La data di nascita non è valida")]
+        [DisplayName("Data di nascita")]
+        public string data_n { get; set; }
+
+        [DataMember]
+        [Required(ErrorMessage = "La email del volontario è obbligatoria")]
         [DataType(DataType.EmailAddress, ErrorMessage = "Perfavore inserisci un email valida")]
         [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Perfavore inserisci una mail valida")]
         [DisplayName("Email")]
         public string email { get; set; }
 
         [DataMember]
-        [Required(ErrorMessage = "Il cellulare dello studente è obbligatorio")]
+        [Required(ErrorMessage = "Il cellulare del volontario è obbligatorio")]
         [DisplayName("Telefono")]
         [DataType(DataType.PhoneNumber, ErrorMessage = "Provided phone number not valid")]
-        public string tel { get; set; }
+        public string telefono { get; set; }
 
         [DataMember]
-        [Required(ErrorMessage = "La data di nascita dello studente è obbligatoria")]
+        [Required(ErrorMessage = "La data di iscrizione del volontario è obbligatoria")]
         [DataType(DataType.Date, ErrorMessage = "La data di nascita non è valida")]
-        [DisplayName("Data di nascita")]
+        [DisplayName("Data di iscrizione")]
+        public string data_iscr { get; set; }
 
-        public string data_n { get; set; }
         [DataMember]
-        [Required(ErrorMessage = "La città dello studente è obbligatoria")]
-        [DisplayName("Città")]
-        public string citta { get; set; }
-        [DataMember]
-        [Required(ErrorMessage = "Lo stato dello studente è obbligatorio")]
-        [DisplayName("Stato")]
-        public string stato { get; set; }
-        [DataMember]
-        [Required(ErrorMessage = "La nazionalità dello studente è obbligatoria")]
-        [DisplayName("Nazionalità")]
-        public string nazionalita { get; set; }
-        [DataMember]
-        [Required(ErrorMessage = "Password obbligatoria")]
+        [Required(ErrorMessage = "La password è obbligatoria")]
         [MinLength(6, ErrorMessage = "La password de contenere almeno 6 caratteri alfanumerici")]
         [RegularExpression(@"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}", ErrorMessage = "La password deve contenere almeno 1 lettera maiuscola, 1 minuscola e 1 numero e deve essere di almeno 6 caratteri")]
-        //[PasswordPropertyText] //per mettere gli asterischi
         [DisplayName("Password")]
         public string password { get; set; }
+
         [DataMember]
-        [Required(ErrorMessage = "Profilo instragram")]
-        [DisplayName("Instagram")]
-        public string instagram { get; set; }
+        [Required(ErrorMessage = "Scrivere il ruolo")]
+        [DisplayName("Ruolo")]
+        public string ruolo { get; set; }
         [DataMember]
-        [DisplayName("Facebook")]
-        public string facebook { get; set; }
-    
+        [Required(ErrorMessage = "Scrivere l'associazione di appartenenza")]
+        [DisplayName("Associazione")]
+        public Associazione ass { get; set; }
     }
 }

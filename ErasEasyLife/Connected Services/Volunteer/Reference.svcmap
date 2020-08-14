@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="952b30f2-937d-4946-b3ed-7f7e26c21988" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Service1/" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="2947218d-2b5b-4c26-ac14-c34414bd19d3" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Service1/?disco" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="d0e7129e-2686-4e83-95fb-3f97cf5f5e35" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Service1/?xsd=xsd1" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="e9cf945d-6c18-43ac-b2d1-226ef235bce7" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Service1/?xsd=xsd2" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="e0c70cba-cde3-492b-b6b4-60d99f5e8b72" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Service1/?xsd=xsd0" />
+    <MetadataFile FileName="Volunteer.wsdl" MetadataType="Wsdl" ID="916ad0b7-202d-4157-ba78-9ab822d1d98d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Service1/?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

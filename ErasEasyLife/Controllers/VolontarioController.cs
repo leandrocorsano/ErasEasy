@@ -6,15 +6,15 @@ using System.Web.Mvc;
 
 namespace ErasEasyLife.Controllers
 {
-    public class StudenteController : Controller
+    public class VolontarioController : Controller
     {
-        // GET: Studente
+        // GET: Volontario
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Studente/Details/5
+        // GET: Volontario/Details/5
         public ActionResult Details(int id)
         {
             return View();
@@ -25,40 +25,38 @@ namespace ErasEasyLife.Controllers
             return View("Login");
         }
         [HttpGet]
-        // GET: Studente/Create
+        // GET: Volontario/Create
         public ActionResult Registra()
         {
             return View();
         }
 
-        // POST: Studente/Create
+        // POST: Volontario/Create
         [HttpPost]
-        public ActionResult Registra(Models.Studente model)
+        public ActionResult Registra(Models.Volontario model)
         {
             try
             {
                 if (ModelState.IsValid)
-                {// TODO: Add insert logic here
-
+                {
+                    // TODO: Add insert logic here
                     ViewData["Nome"] = model.nome;
                     ViewData["Cognome"] = model.cognome;
-                    var webclient = new Student.StudentClient();
-                    Student.Studente stud = new Student.Studente();
+                    var webclient = new Volunteer.VolunteerClient();
+                    Volunteer.Volontario vol = new Volunteer.Volontario();
 
-                    stud.IdStud = model.IdStud;
-                    stud.nome = model.nome;
-                    stud.cognome = model.cognome;
-                    stud.email = model.email;
-                    stud.tel = model.tel;
-                    stud.data_n = model.data_n;
-                    stud.citta = model.citta;
-                    stud.stato = model.stato;
-                    stud.nazionalita = model.nazionalita;
-                    stud.password = model.password;
-                    stud.instagram = model.instagram;
-                    stud.facebook = model.facebook;
+                    vol.IdVolont = model.IdVolont;
+                    vol.nome = model.nome;
+                    vol.cognome = model.cognome;
+                    vol.data_n = model.data_n;
+                    vol.telefono = model.telefono;
+                    vol.email = model.email;
+                    vol.data_iscr = model.data_iscr;
+                    vol.password = model.password;
+                    vol.ruolo = model.ruolo;
+                    vol.ass = model.ass;
 
-                    bool r = webclient.Registration(stud);
+                    bool r = webclient.Registration(vol);
 
                     ViewBag.risposta = "Sei stato registrato con successo";
                     ViewBag.url = "Login";
@@ -67,28 +65,25 @@ namespace ErasEasyLife.Controllers
                     return View("Successo");
 
                 }
-
                 else
                 {
                     return View();
                 }
-
-                
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return View();
             }
         }
 
-        // GET: Studente/Edit/5
+        // GET: Volontario/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Studente/Edit/5
+        // POST: Volontario/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -104,13 +99,13 @@ namespace ErasEasyLife.Controllers
             }
         }
 
-        // GET: Studente/Delete/5
+        // GET: Volontario/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Studente/Delete/5
+        // POST: Volontario/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
