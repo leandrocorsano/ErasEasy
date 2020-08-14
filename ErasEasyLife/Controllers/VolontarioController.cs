@@ -44,10 +44,10 @@ namespace ErasEasyLife.Controllers
                     ViewData["Nome"] = model.nome;
                     ViewData["Cognome"] = model.cognome;
                     var webclient = new Volunteer.VolunteerClient();
-                    var webclient1 = new Association.AssociationClient();
+                    
 
                     Volunteer.Volontario vol = new Volunteer.Volontario();
-                    Association.Associazione asso = webclient1.Profile(model.ass);
+                    Volunteer.Associazione assoc = webclient.GetAssociazione(model.ass);
 
                    
                     vol.IdVolont = model.IdVolont;
@@ -59,7 +59,7 @@ namespace ErasEasyLife.Controllers
                     vol.data_iscr = model.data_iscr;
                     vol.password = model.password;
                     vol.ruolo = model.ruolo;
-                    vol.ass = asso;
+                    vol.ass = assoc;
 
                     bool r = webclient.Registration(vol);
 

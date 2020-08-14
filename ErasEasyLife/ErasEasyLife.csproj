@@ -1940,6 +1940,9 @@
     <Content Include="Connected Services\Volunteer\ErasEasyLife.Volunteer.Volontario.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\Volunteer\ErasEasyLife.Volunteer.Associazione.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\Volunteer\item.disco" />
     <None Include="Connected Services\Volunteer\configuration91.svcinfo" />
     <None Include="Connected Services\Volunteer\configuration.svcinfo" />

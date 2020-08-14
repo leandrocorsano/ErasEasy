@@ -25,6 +25,7 @@ namespace Admin_wcf
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Console.WriteLine("problema con la registrazione");
                 throw;
             }
             return risultato;
@@ -110,6 +111,35 @@ namespace Admin_wcf
             string condizione = "idvolont=" + v.IdVolont;
             string set = "nome='" + v.nome + "', cognome='" + v.cognome + "', email='" + v.email + "',tel='" + v.telefono + "',ruolo='" + v.ruolo + "',data_iscrizione='" + v.data_iscr + "'";
             return wcfclient.DBupdate("VOLONTARIO", set, condizione);
+        }
+        public Associazione GetAssociazione(int id)
+        {
+            var wcfclient = server_conn.getInstance();
+            string cond = "idass=" + id.ToString();
+            Associazione a = null;
+            try
+            {
+                DataSet ass_set = wcfclient.DBselect("*", "ASSOCIAZIONE", cond);
+                foreach (DataTable table in ass_set.Tables)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+
+
+                        a = new Associazione(Convert.ToInt32(row["IdAss"]), row["nome"].ToString(), row["citta"].ToString(), row["stato"].ToString(), row["via"].ToString(), row["tel"].ToString(), row["email"].ToString(), row["password"].ToString());
+                        return a;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+
+            }
+            return a;
+
+
         }
     }
     

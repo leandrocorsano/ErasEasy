@@ -62,8 +62,7 @@ namespace ErasEasyLife.Models
         public string password { get; set; }
 
         [DataMember]
-        [Required(ErrorMessage = "Scrivere il ruolo")]
-        [DisplayName("Ruolo")]
+        
         public string ruolo { get; set; }
         [DataMember]
         [Required(ErrorMessage = "Scrivere l'associazione di appartenenza")]

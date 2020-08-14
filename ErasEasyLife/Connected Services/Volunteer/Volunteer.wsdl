@@ -37,6 +37,12 @@
   <wsdl:message name="IVolunteer_UpdatePassword_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdatePasswordResponse" />
   </wsdl:message>
+  <wsdl:message name="IVolunteer_GetAssociazione_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssociazione" />
+  </wsdl:message>
+  <wsdl:message name="IVolunteer_GetAssociazione_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssociazioneResponse" />
+  </wsdl:message>
   <wsdl:portType name="IVolunteer">
     <wsdl:operation name="Registration">
       <wsdl:input wsaw:Action="http://tempuri.org/IVolunteer/Registration" message="tns:IVolunteer_Registration_InputMessage" />
@@ -57,6 +63,10 @@
     <wsdl:operation name="UpdatePassword">
       <wsdl:input wsaw:Action="http://tempuri.org/IVolunteer/UpdatePassword" message="tns:IVolunteer_UpdatePassword_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IVolunteer/UpdatePasswordResponse" message="tns:IVolunteer_UpdatePassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssociazione">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVolunteer/GetAssociazione" message="tns:IVolunteer_GetAssociazione_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVolunteer/GetAssociazioneResponse" message="tns:IVolunteer_GetAssociazione_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IVolunteer" type="tns:IVolunteer">
@@ -99,6 +109,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdatePassword">
       <soap:operation soapAction="http://tempuri.org/IVolunteer/UpdatePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssociazione">
+      <soap:operation soapAction="http://tempuri.org/IVolunteer/GetAssociazione" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -392,6 +392,12 @@ namespace ErasEasyLife.Volunteer {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVolunteer/UpdatePassword", ReplyAction="http://tempuri.org/IVolunteer/UpdatePasswordResponse")]
         System.Threading.Tasks.Task<bool> UpdatePasswordAsync(int id, string new_password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVolunteer/GetAssociazione", ReplyAction="http://tempuri.org/IVolunteer/GetAssociazioneResponse")]
+        ErasEasyLife.Volunteer.Associazione GetAssociazione(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVolunteer/GetAssociazione", ReplyAction="http://tempuri.org/IVolunteer/GetAssociazioneResponse")]
+        System.Threading.Tasks.Task<ErasEasyLife.Volunteer.Associazione> GetAssociazioneAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -459,6 +465,14 @@ namespace ErasEasyLife.Volunteer {
         
         public System.Threading.Tasks.Task<bool> UpdatePasswordAsync(int id, string new_password) {
             return base.Channel.UpdatePasswordAsync(id, new_password);
+        }
+        
+        public ErasEasyLife.Volunteer.Associazione GetAssociazione(int id) {
+            return base.Channel.GetAssociazione(id);
+        }
+        
+        public System.Threading.Tasks.Task<ErasEasyLife.Volunteer.Associazione> GetAssociazioneAsync(int id) {
+            return base.Channel.GetAssociazioneAsync(id);
         }
     }
 }

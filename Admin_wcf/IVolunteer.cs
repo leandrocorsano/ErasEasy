@@ -27,5 +27,8 @@ namespace Admin_wcf
         [OperationContract]
         bool UpdatePassword(int id, string new_password);
 
+        [OperationContract]
+        Associazione GetAssociazione(int id);
+
     }
 }
