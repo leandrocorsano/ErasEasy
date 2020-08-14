@@ -68,6 +68,6 @@ namespace ErasEasyLife.Models
         [DataMember]
         [Required(ErrorMessage = "Scrivere l'associazione di appartenenza")]
         [DisplayName("Associazione")]
-        public Associazione ass { get; set; }
+        public int ass { get; set; }
     }
 }

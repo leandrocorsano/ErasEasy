@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ErasEasyLife.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -43,8 +44,12 @@ namespace ErasEasyLife.Controllers
                     ViewData["Nome"] = model.nome;
                     ViewData["Cognome"] = model.cognome;
                     var webclient = new Volunteer.VolunteerClient();
-                    Volunteer.Volontario vol = new Volunteer.Volontario();
+                    var webclient1 = new Association.AssociationClient();
 
+                    Volunteer.Volontario vol = new Volunteer.Volontario();
+                    Association.Associazione asso = webclient1.Profile(model.ass);
+
+                   
                     vol.IdVolont = model.IdVolont;
                     vol.nome = model.nome;
                     vol.cognome = model.cognome;
@@ -54,7 +59,7 @@ namespace ErasEasyLife.Controllers
                     vol.data_iscr = model.data_iscr;
                     vol.password = model.password;
                     vol.ruolo = model.ruolo;
-                    vol.ass = model.ass;
+                    vol.ass = asso;
 
                     bool r = webclient.Registration(vol);
 
