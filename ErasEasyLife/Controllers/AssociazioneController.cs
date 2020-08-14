@@ -34,7 +34,7 @@ namespace ErasEasyLife.Controllers
         {
             
             
-                    return View();
+            return View();
                 
         }
 

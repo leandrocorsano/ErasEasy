@@ -136,10 +136,12 @@
     </Compile>
     <Compile Include="Controllers\AssociazioneController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StudenteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Associazione.cs" />
+    <Compile Include="Models\Studente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1914,9 +1916,6 @@
     <None Include="Connected Services\Association\item.disco" />
     <None Include="Connected Services\Association\configuration91.svcinfo" />
     <None Include="Connected Services\Association\configuration.svcinfo" />
-    <None Include="Connected Services\Association\item3.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\Association\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -2093,6 +2092,7 @@
     <Content Include="Views\Associazione\Registra.cshtml" />
     <Content Include="Views\Associazione\Login.cshtml" />
     <Content Include="Views\Associazione\Successo.cshtml" />
+    <Content Include="Views\Studente\Registra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
