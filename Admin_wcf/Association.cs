@@ -7,6 +7,7 @@ using System.ServiceModel;
 using System.Text;
 using MySql.Data.MySqlClient;
 using System.Data;
+using Admin_wcf.Classi;
 
 namespace Admin_wcf
 {
@@ -112,6 +113,25 @@ namespace Admin_wcf
             string condizione = "IdAss=" + a.IdAss;
             string set = "nome='" + a.nome + "', citta='" + a.citta + "', stato='" + a.stato + "', via='" + a.via + "',tel='" + a.tel + "', email='" + a.email + "'";
             return wcfclient.DBupdate("ASSOCIAZIONE", set, condizione);
+        }
+        public bool Create_events(Evento e)
+        {
+            /* N.B. è possibile modificare tutti i campi tranne la password e l'id*/
+            //var wcfclient = new DBManager.DBManagerClient(); //mi connetto al server
+            var wcfclient = server_conn.getInstance();
+            string valori = "" + e.IdEv + ",'" + e.nome + "','" + e.tipologia + "', '" + e.min_p + "','" + e.max_p + "','" + e.min_v + "','" + e.max_v + "','" + e.costo + "','"+ e.descrizione + "','"+ e.ass.IdAss + "'";
+            bool risultato;
+            try
+            {
+                risultato = wcfclient.DBinsert("EVENTO", valori, "`idev`, `nome`, `tipologia`, `min_p`, `max_p`, `min_v`, `max_v`, `costo`, `descrizione`, `idass`");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+            return risultato;
+            ;
         }
     }
     [DataContract]

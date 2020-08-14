@@ -170,6 +170,195 @@ namespace ErasEasyLife.Association {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Evento", Namespace="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi")]
+    [System.SerializableAttribute()]
+    public partial class Evento : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdEvField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ErasEasyLife.Association.Associazione assField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int costoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string descrizioneField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int max_pField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int max_vField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int min_pField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int min_vField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string nomeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string tipologiaField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdEv {
+            get {
+                return this.IdEvField;
+            }
+            set {
+                if ((this.IdEvField.Equals(value) != true)) {
+                    this.IdEvField = value;
+                    this.RaisePropertyChanged("IdEv");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ErasEasyLife.Association.Associazione ass {
+            get {
+                return this.assField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.assField, value) != true)) {
+                    this.assField = value;
+                    this.RaisePropertyChanged("ass");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int costo {
+            get {
+                return this.costoField;
+            }
+            set {
+                if ((this.costoField.Equals(value) != true)) {
+                    this.costoField = value;
+                    this.RaisePropertyChanged("costo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string descrizione {
+            get {
+                return this.descrizioneField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.descrizioneField, value) != true)) {
+                    this.descrizioneField = value;
+                    this.RaisePropertyChanged("descrizione");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int max_p {
+            get {
+                return this.max_pField;
+            }
+            set {
+                if ((this.max_pField.Equals(value) != true)) {
+                    this.max_pField = value;
+                    this.RaisePropertyChanged("max_p");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int max_v {
+            get {
+                return this.max_vField;
+            }
+            set {
+                if ((this.max_vField.Equals(value) != true)) {
+                    this.max_vField = value;
+                    this.RaisePropertyChanged("max_v");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int min_p {
+            get {
+                return this.min_pField;
+            }
+            set {
+                if ((this.min_pField.Equals(value) != true)) {
+                    this.min_pField = value;
+                    this.RaisePropertyChanged("min_p");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int min_v {
+            get {
+                return this.min_vField;
+            }
+            set {
+                if ((this.min_vField.Equals(value) != true)) {
+                    this.min_vField = value;
+                    this.RaisePropertyChanged("min_v");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nome {
+            get {
+                return this.nomeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.nomeField, value) != true)) {
+                    this.nomeField = value;
+                    this.RaisePropertyChanged("nome");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string tipologia {
+            get {
+                return this.tipologiaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.tipologiaField, value) != true)) {
+                    this.tipologiaField = value;
+                    this.RaisePropertyChanged("tipologia");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Association.IAssociation")]
     public interface IAssociation {
@@ -203,6 +392,12 @@ namespace ErasEasyLife.Association {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/UpdatePassword", ReplyAction="http://tempuri.org/IAssociation/UpdatePasswordResponse")]
         System.Threading.Tasks.Task<bool> UpdatePasswordAsync(int id, string new_password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/Create_events", ReplyAction="http://tempuri.org/IAssociation/Create_eventsResponse")]
+        bool Create_events(ErasEasyLife.Association.Evento e);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/Create_events", ReplyAction="http://tempuri.org/IAssociation/Create_eventsResponse")]
+        System.Threading.Tasks.Task<bool> Create_eventsAsync(ErasEasyLife.Association.Evento e);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -270,6 +465,14 @@ namespace ErasEasyLife.Association {
         
         public System.Threading.Tasks.Task<bool> UpdatePasswordAsync(int id, string new_password) {
             return base.Channel.UpdatePasswordAsync(id, new_password);
+        }
+        
+        public bool Create_events(ErasEasyLife.Association.Evento e) {
+            return base.Channel.Create_events(e);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Create_eventsAsync(ErasEasyLife.Association.Evento e) {
+            return base.Channel.Create_eventsAsync(e);
         }
     }
 }

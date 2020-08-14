@@ -1909,6 +1909,9 @@
     <None Include="Connected Services\Association\item.disco" />
     <None Include="Connected Services\Association\configuration91.svcinfo" />
     <None Include="Connected Services\Association\configuration.svcinfo" />
+    <None Include="Connected Services\Association\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\Association\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
