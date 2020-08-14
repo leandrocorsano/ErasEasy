@@ -5,7 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using ErasEasyLife.Models;
 using ErasEasyLife.Association;
+#pragma warning disable CS0105 // La direttiva using per 'ErasEasyLife.Association' è già presente in questo spazio dei nomi
 using ErasEasyLife.Association;
+#pragma warning restore CS0105 // La direttiva using per 'ErasEasyLife.Association' è già presente in questo spazio dei nomi
 
 namespace ErasEasyLife.Controllers
 {
