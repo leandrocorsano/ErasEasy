@@ -7,6 +7,7 @@ using ErasEasyLife.Models;
 using ErasEasyLife.Association;
 #pragma warning disable CS0105 // La direttiva using per 'ErasEasyLife.Association' è già presente in questo spazio dei nomi
 using ErasEasyLife.Association;
+using System.Linq.Expressions;
 #pragma warning restore CS0105 // La direttiva using per 'ErasEasyLife.Association' è già presente in questo spazio dei nomi
 
 namespace ErasEasyLife.Controllers
@@ -37,6 +38,35 @@ namespace ErasEasyLife.Controllers
             return View();
                 
         }
+
+        [HttpPost]
+        public ActionResult Login(Models.Associazione model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var webclient = new Association.AssociationClient();
+                    Association.Associazione ass = webclient.Login(model.email, model.password);
+                    ViewBag.risposta = "Hai effettuato il login";
+                    
+                    return View("Successo");
+                }
+                else
+                {
+                    ViewBag("Dati errati");
+                    return View();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View();
+            }        
+        }
+
+        
 
         [HttpPost]
         // POST: Associazione/Create
