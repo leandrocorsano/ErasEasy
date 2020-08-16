@@ -43,6 +43,49 @@ namespace ErasEasyLife.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Login(Models.Volontario model)
+        {
+
+            if (ModelState.IsValidField("email") && ModelState.IsValidField("password"))
+            {
+                /*non controllo se modelstase is valid perchè non uso tutti i membri del modello ma solo 2*/
+
+                try
+                {
+                    var webclient = new Volunteer.VolunteerClient();
+                    Volunteer.Volontario vol = webclient.Login(model.email, model.password);
+                    if (vol != null)
+                    {
+                        ViewBag.risposta = "Hai effettuato il login";
+                        Session["Volontario"] = vol; //passo il volontario che è entrato tra le varie pagine web
+
+
+                        return View("Successo");
+                    }
+                    else
+                    {
+                        ViewBag.risposta = "Utente errato";
+                        ViewBag.url = "Login";
+                        ViewBag.link = "Accedi";
+                        return View("Errore");
+                    }
+
+
+                }
+                catch
+                {
+                    ViewBag.risposta = "Utente errato";
+                    ViewBag.url = "Login";
+                    ViewBag.link = "Accedi";
+                    return View("Successo");
+                }
+            }
+            else
+            {
+                return View();
+            }
+        }
         // POST: Volontario/Create
         [HttpPost]
         public ActionResult Registra(Models.Volontario model)

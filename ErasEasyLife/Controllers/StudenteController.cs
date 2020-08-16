@@ -31,6 +31,50 @@ namespace ErasEasyLife.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Login(Models.Studente model)
+        {
+
+            if (ModelState.IsValidField("email") && ModelState.IsValidField("password"))
+            {
+                /*non controllo se modelstase is valid perchè non uso tutti i membri del modello ma solo 2*/
+
+                try
+                {
+                    var webclient = new Student.StudentClient();
+                    Student.Studente stud = webclient.Login(model.email, model.password);
+                    if (stud != null)
+                    {
+                        ViewBag.risposta = "Hai effettuato il login";
+                        Session["associazione"] = stud; //passo lo studente che è entrato tra le varie pagine web
+
+
+                        return View("Successo");
+                    }
+                    else
+                    {
+                        ViewBag.risposta = "Utente errato";
+                        ViewBag.url = "Login";
+                        ViewBag.link = "Accedi";
+                        return View("Errore");
+                    }
+
+
+                }
+                catch
+                {
+                    ViewBag.risposta = "Utente errato";
+                    ViewBag.url = "Login";
+                    ViewBag.link = "Accedi";
+                    return View("Successo");
+                }
+            }
+            else
+            {
+                return View();
+            }
+        }
+
         // POST: Studente/Create
         [HttpPost]
         public ActionResult Registra(Models.Studente model)
