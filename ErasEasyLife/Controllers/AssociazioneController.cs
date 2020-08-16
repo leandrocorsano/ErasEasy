@@ -42,28 +42,45 @@ namespace ErasEasyLife.Controllers
         [HttpPost]
         public ActionResult Login(Models.Associazione model)
         {
-            try
+
+            if (ModelState.IsValidField("email") && ModelState.IsValidField("password"))
             {
-                if (ModelState.IsValid)
+                /*non controllo se modelstase is valid perchè non uso tutti i membri del modello ma solo 2*/
+
+                try
                 {
                     var webclient = new Association.AssociationClient();
                     Association.Associazione ass = webclient.Login(model.email, model.password);
-                    ViewBag.risposta = "Hai effettuato il login";
-                    
+                    if (ass != null)
+                    {
+                        ViewBag.risposta = "Hai effettuato il login";
+                        Session["associazione"] = ass; //passo l'associazione che è entrata tra le varie pagine web
+                        
+                       
+                        return View("Successo");
+                    }
+                    else
+                    {
+                        ViewBag.risposta = "Utente errato";
+                        ViewBag.url = "Login";
+                        ViewBag.link = "Accedi";
+                        return View("Errore");
+                    }
+
+
+                }
+                catch
+                {
+                    ViewBag.risposta = "Utente errato";
+                    ViewBag.url = "Login";
+                    ViewBag.link = "Accedi";
                     return View("Successo");
                 }
-                else
-                {
-                    ViewBag("Dati errati");
-                    return View();
-                }
-                
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine(ex.Message);
                 return View();
-            }        
+            }
         }
 
         

@@ -2131,6 +2131,7 @@
     <Content Include="Views\Volontario\Registra.cshtml" />
     <Content Include="Views\Volontario\Login.cshtml" />
     <Content Include="Views\Volontario\Successo.cshtml" />
+    <Content Include="Views\Associazione\Errore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
