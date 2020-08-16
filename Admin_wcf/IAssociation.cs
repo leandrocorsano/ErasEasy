@@ -32,6 +32,12 @@ namespace Admin_wcf
         bool Create_events(Evento e);
         [OperationContract]
         List<Associazione> Show_associations(string cond="");//la cond si usa nel caso vogliamo mostrare associazioni particolari
+        /*funzioni che mancano*/
+        //Show_Event(idassoc) (lista che mostra tutti gli eventi creati da una particolare associazione)
+        //Delete_Event(idevent) (boleano che conferma la cancellazione di un evento)
+        //Modify_event(Evento) (bool che conferma la modifica dell'evento)
+       
     }
-    
+
+
 }

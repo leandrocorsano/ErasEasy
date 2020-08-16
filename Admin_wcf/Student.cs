@@ -105,5 +105,47 @@ namespace Admin_wcf
             string set = "nome='" + s.nome + "', cognome='" + s.cognome + "', email='" + s.email + "',cellulare='" + s.tel + "', data_n='" + s.data_n + "', citta='" + s.citta + "', stato='" + s.stato + "', nazionalita='" + s.nazionalita + "', password='" + s.password + "', instagram='" + s.instagram + "', facebook='" + s.facebook + "'";
             return wcfclient.DBupdate("STUDENTE", set, condizione);
         }
+        public List<Studente> Show_students(string cond = "")
+        {
+            var wcfclient = server_conn.getInstance();
+            List<Studente> studenti = new List<Studente>();
+            try
+            {
+                DataSet stud_set = wcfclient.DBselect("*", "STUDENTE", "");
+                foreach (DataTable table in stud_set.Tables)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+                        Studente s = new Studente(Convert.ToInt32(row["IdStud"]), row["nome"].ToString(), row["cognome"].ToString(), row["email"].ToString(), row["cellulare"].ToString(), row["data_n"].ToString(), row["citta"].ToString(), row["stato"].ToString(), row["nazionalita"].ToString(), row["password"].ToString(), row["instagram"].ToString(), row["facebook"].ToString());
+                        studenti.Add(s);
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+
+            }
+            return studenti;
+        }
+        public bool BookEvent(int studente, int evento)
+        {
+            var wcfclient = server_conn.getInstance();
+            string valori = "" + studente + "," + evento + "";
+            bool risultato;
+            try
+            {
+                risultato = wcfclient.DBinsert("PARTECIPAZIONE", valori, "`idstud`, `idev`");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+            return risultato;
+        }
     }
+    
 }

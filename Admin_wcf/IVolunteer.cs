@@ -29,6 +29,11 @@ namespace Admin_wcf
 
         [OperationContract]
         Associazione GetAssociazione(int id);
+        /*funzioni che mancano*/
+        //show_volontari (lista di volontari)
+        //bookevent
+        //disdici event
+        //Show_Event(idstud) (lista che mostra tutti gli eventi a cui partecipa un volontario)
 
     }
 }

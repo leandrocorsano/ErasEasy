@@ -26,5 +26,18 @@ namespace Admin_wcf
 
         [OperationContract]
         bool UpdatePassword(int id, string new_password);
+
+        [OperationContract]
+        List<Studente> Show_students(string cond = "");
+
+        [OperationContract]
+        bool BookEvent(int studente, int evento);
+
+        /*funzioni che mancano*/
+        //Show_Event(idstud) (lista che mostra tutti gli eventi a cui partecipa uno studente)
+        //Disdici evento
+        //richiedi amicizia
+        //mostra amici
+        //conferma amicizia
     }
 }

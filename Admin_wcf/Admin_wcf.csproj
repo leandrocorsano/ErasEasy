@@ -116,6 +116,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Event.cs" />
+    <Compile Include="IEvent.cs" />
     <Compile Include="IVolunteer.cs" />
     <Compile Include="IStudent.cs" />
     <Compile Include="server_conn.cs" />
