@@ -88,4 +88,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="Show_associations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cond" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Show_associationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Admin_wcf" minOccurs="0" name="Show_associationsResult" nillable="true" type="q6:ArrayOfAssociazione" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

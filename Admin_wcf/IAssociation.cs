@@ -30,6 +30,8 @@ namespace Admin_wcf
 
         [OperationContract]
         bool Create_events(Evento e);
+        [OperationContract]
+        List<Associazione> Show_associations(string cond="");//la cond si usa nel caso vogliamo mostrare associazioni particolari
     }
     
 }

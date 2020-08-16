@@ -133,6 +133,30 @@ namespace Admin_wcf
             return risultato;
             ;
         }
+        public List<Associazione> Show_associations(string cond="")
+        {
+            var wcfclient = server_conn.getInstance();
+            List<Associazione> associazioni = new List<Associazione>();
+            try
+            {
+                DataSet ass_set = wcfclient.DBselect("*", "ASSOCIAZIONE", "");
+                foreach (DataTable table in ass_set.Tables)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+                        Associazione a = new Associazione(Convert.ToInt32(row["IdAss"]), row["nome"].ToString(), row["citta"].ToString(), row["stato"].ToString(), row["via"].ToString(), row["tel"].ToString(), row["email"].ToString(), row["password"].ToString());
+                        associazioni.Add(a);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+
+            }
+            return associazioni;
+        }
     }
     [DataContract]
     public class Associazione

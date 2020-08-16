@@ -3,7 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Mvc; 
+
 
 namespace ErasEasyLife.Controllers
 {
@@ -29,6 +30,16 @@ namespace ErasEasyLife.Controllers
         // GET: Volontario/Create
         public ActionResult Registra()
         {
+            var webclient = new Association.AssociationClient();
+            //IList<Association.Associazione> associazioni = new List<Association.Associazione>();
+            //List<Association.Associazione> associazioni = new List<Association.Associazione>();
+             Association.Associazione [] associazioni= webclient.Show_associations("");
+            //Association.Associazione [] associazioni = webclient.Show_associations("");
+           /* foreach(var ass in a)
+            {
+                associazioni.Add(ass);
+            }*/
+            ViewData["associazioni"] = associazioni;
             return View();
         }
 
@@ -45,7 +56,7 @@ namespace ErasEasyLife.Controllers
                     ViewData["Cognome"] = model.cognome;
                     var webclient = new Volunteer.VolunteerClient();
                     
-
+                    
                     Volunteer.Volontario vol = new Volunteer.Volontario();
                     Volunteer.Associazione assoc = webclient.GetAssociazione(model.ass);
 

@@ -44,6 +44,12 @@
   <wsdl:message name="IAssociation_Create_events_OutputMessage">
     <wsdl:part name="parameters" element="tns:Create_eventsResponse" />
   </wsdl:message>
+  <wsdl:message name="IAssociation_Show_associations_InputMessage">
+    <wsdl:part name="parameters" element="tns:Show_associations" />
+  </wsdl:message>
+  <wsdl:message name="IAssociation_Show_associations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Show_associationsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAssociation">
     <wsdl:operation name="Registration">
       <wsdl:input wsaw:Action="http://tempuri.org/IAssociation/Registration" message="tns:IAssociation_Registration_InputMessage" />
@@ -68,6 +74,10 @@
     <wsdl:operation name="Create_events">
       <wsdl:input wsaw:Action="http://tempuri.org/IAssociation/Create_events" message="tns:IAssociation_Create_events_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAssociation/Create_eventsResponse" message="tns:IAssociation_Create_events_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Show_associations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssociation/Show_associations" message="tns:IAssociation_Show_associations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssociation/Show_associationsResponse" message="tns:IAssociation_Show_associations_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAssociation" type="tns:IAssociation">
@@ -119,6 +129,15 @@
     </wsdl:operation>
     <wsdl:operation name="Create_events">
       <soap:operation soapAction="http://tempuri.org/IAssociation/Create_events" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Show_associations">
+      <soap:operation soapAction="http://tempuri.org/IAssociation/Show_associations" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
