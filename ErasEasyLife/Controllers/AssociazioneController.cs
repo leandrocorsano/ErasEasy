@@ -20,8 +20,8 @@ namespace ErasEasyLife.Controllers
             return View();
         }
 
-        // GET: Associazione/Details/5
-        public ActionResult Details(int id)
+        // GET: Associazione/Profile/5
+        public ActionResult Profilo()
         {
             return View();
         }
@@ -37,6 +37,34 @@ namespace ErasEasyLife.Controllers
             
             return View();
                 
+        }
+
+        [HttpPost]
+
+        public ActionResult Profilo(int id = 1)
+        {
+            try
+            {
+                
+                var webclient = new Association.AssociationClient();
+                Association.Associazione ass = webclient.Profile(id);
+                ViewData["Nome:"] = ass.nome;
+                ViewData["Città:"] = ass.citta;
+                ViewData["Stato:"] = ass.stato;
+                ViewData["Via:"] = ass.via;
+                ViewData["Telefono:"] = ass.tel;
+                ViewData["Email:"] = ass.email;
+
+                return View("Profilo");
+
+                
+
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View();
+            }
         }
 
         [HttpPost]
