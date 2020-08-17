@@ -29,9 +29,13 @@ namespace Admin_wcf
 
         [OperationContract]
         Associazione GetAssociazione(int id);
+
+        [OperationContract]
+        List<Volontario> Show_volontari(string cond = "");
+
+        [OperationContract]
+        bool BookEvent(int volontario, int evento);
         /*funzioni che mancano*/
-        //show_volontari (lista di volontari)
-        //bookevent
         //disdici event
         //Show_Event(idstud) (lista che mostra tutti gli eventi a cui partecipa un volontario)
 

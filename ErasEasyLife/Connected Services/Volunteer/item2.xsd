@@ -87,4 +87,33 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="Show_volontari">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cond" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Show_volontariResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Admin_wcf" minOccurs="0" name="Show_volontariResult" nillable="true" type="q6:ArrayOfVolontario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BookEvent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="volontario" type="xs:int" />
+        <xs:element minOccurs="0" name="evento" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BookEventResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="BookEventResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

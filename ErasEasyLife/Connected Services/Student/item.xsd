@@ -17,4 +17,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Studente" nillable="true" type="tns:Studente" />
+  <xs:complexType name="ArrayOfStudente">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Studente" nillable="true" type="tns:Studente" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStudente" nillable="true" type="tns:ArrayOfStudente" />
 </xs:schema>

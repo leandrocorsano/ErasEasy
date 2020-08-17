@@ -111,7 +111,7 @@ namespace Admin_wcf
             List<Studente> studenti = new List<Studente>();
             try
             {
-                DataSet stud_set = wcfclient.DBselect("*", "STUDENTE", "");
+                DataSet stud_set = wcfclient.DBselect("*", "STUDENTE", cond);
                 foreach (DataTable table in stud_set.Tables)
                 {
                     foreach (DataRow row in table.Rows)

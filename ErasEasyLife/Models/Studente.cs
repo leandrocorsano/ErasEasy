@@ -63,11 +63,11 @@ namespace ErasEasyLife.Models
         [Required(ErrorMessage = "Password obbligatoria")]
         [MinLength(6, ErrorMessage = "La password de contenere almeno 6 caratteri alfanumerici")]
         [RegularExpression(@"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}", ErrorMessage = "La password deve contenere almeno 1 lettera maiuscola, 1 minuscola e 1 numero e deve essere di almeno 6 caratteri")]
-        //[PasswordPropertyText] //per mettere gli asterischi
+
         [DisplayName("Password")]
         public string password { get; set; }
         [DataMember]
-        [Required(ErrorMessage = "Profilo instragram")]
+        
         [DisplayName("Instagram")]
         public string instagram { get; set; }
         [DataMember]

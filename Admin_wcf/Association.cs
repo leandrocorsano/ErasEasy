@@ -139,7 +139,7 @@ namespace Admin_wcf
             List<Associazione> associazioni = new List<Associazione>();
             try
             {
-                DataSet ass_set = wcfclient.DBselect("*", "ASSOCIAZIONE", "");
+                DataSet ass_set = wcfclient.DBselect("*", "ASSOCIAZIONE", cond);
                 foreach (DataTable table in ass_set.Tables)
                 {
                     foreach (DataRow row in table.Rows)

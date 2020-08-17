@@ -43,6 +43,18 @@
   <wsdl:message name="IVolunteer_GetAssociazione_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAssociazioneResponse" />
   </wsdl:message>
+  <wsdl:message name="IVolunteer_Show_volontari_InputMessage">
+    <wsdl:part name="parameters" element="tns:Show_volontari" />
+  </wsdl:message>
+  <wsdl:message name="IVolunteer_Show_volontari_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Show_volontariResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVolunteer_BookEvent_InputMessage">
+    <wsdl:part name="parameters" element="tns:BookEvent" />
+  </wsdl:message>
+  <wsdl:message name="IVolunteer_BookEvent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BookEventResponse" />
+  </wsdl:message>
   <wsdl:portType name="IVolunteer">
     <wsdl:operation name="Registration">
       <wsdl:input wsaw:Action="http://tempuri.org/IVolunteer/Registration" message="tns:IVolunteer_Registration_InputMessage" />
@@ -67,6 +79,14 @@
     <wsdl:operation name="GetAssociazione">
       <wsdl:input wsaw:Action="http://tempuri.org/IVolunteer/GetAssociazione" message="tns:IVolunteer_GetAssociazione_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IVolunteer/GetAssociazioneResponse" message="tns:IVolunteer_GetAssociazione_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Show_volontari">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVolunteer/Show_volontari" message="tns:IVolunteer_Show_volontari_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVolunteer/Show_volontariResponse" message="tns:IVolunteer_Show_volontari_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BookEvent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVolunteer/BookEvent" message="tns:IVolunteer_BookEvent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVolunteer/BookEventResponse" message="tns:IVolunteer_BookEvent_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IVolunteer" type="tns:IVolunteer">
@@ -118,6 +138,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetAssociazione">
       <soap:operation soapAction="http://tempuri.org/IVolunteer/GetAssociazione" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Show_volontari">
+      <soap:operation soapAction="http://tempuri.org/IVolunteer/Show_volontari" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookEvent">
+      <soap:operation soapAction="http://tempuri.org/IVolunteer/BookEvent" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

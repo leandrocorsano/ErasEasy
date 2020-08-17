@@ -37,6 +37,18 @@
   <wsdl:message name="IStudent_UpdatePassword_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdatePasswordResponse" />
   </wsdl:message>
+  <wsdl:message name="IStudent_Show_students_InputMessage">
+    <wsdl:part name="parameters" element="tns:Show_students" />
+  </wsdl:message>
+  <wsdl:message name="IStudent_Show_students_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Show_studentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStudent_BookEvent_InputMessage">
+    <wsdl:part name="parameters" element="tns:BookEvent" />
+  </wsdl:message>
+  <wsdl:message name="IStudent_BookEvent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BookEventResponse" />
+  </wsdl:message>
   <wsdl:portType name="IStudent">
     <wsdl:operation name="Registration">
       <wsdl:input wsaw:Action="http://tempuri.org/IStudent/Registration" message="tns:IStudent_Registration_InputMessage" />
@@ -57,6 +69,14 @@
     <wsdl:operation name="UpdatePassword">
       <wsdl:input wsaw:Action="http://tempuri.org/IStudent/UpdatePassword" message="tns:IStudent_UpdatePassword_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IStudent/UpdatePasswordResponse" message="tns:IStudent_UpdatePassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Show_students">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStudent/Show_students" message="tns:IStudent_Show_students_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStudent/Show_studentsResponse" message="tns:IStudent_Show_students_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BookEvent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStudent/BookEvent" message="tns:IStudent_BookEvent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStudent/BookEventResponse" message="tns:IStudent_BookEvent_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IStudent" type="tns:IStudent">
@@ -99,6 +119,24 @@
     </wsdl:operation>
     <wsdl:operation name="UpdatePassword">
       <soap:operation soapAction="http://tempuri.org/IStudent/UpdatePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Show_students">
+      <soap:operation soapAction="http://tempuri.org/IStudent/Show_students" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookEvent">
+      <soap:operation soapAction="http://tempuri.org/IStudent/BookEvent" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

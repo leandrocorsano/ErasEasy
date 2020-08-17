@@ -73,4 +73,33 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="Show_students">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cond" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Show_studentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="Show_studentsResult" nillable="true" type="q5:ArrayOfStudente" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BookEvent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="studente" type="xs:int" />
+        <xs:element minOccurs="0" name="evento" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BookEventResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="BookEventResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

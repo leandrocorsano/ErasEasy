@@ -28,4 +28,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Associazione" nillable="true" type="tns:Associazione" />
+  <xs:complexType name="ArrayOfVolontario">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Volontario" nillable="true" type="tns:Volontario" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVolontario" nillable="true" type="tns:ArrayOfVolontario" />
 </xs:schema>

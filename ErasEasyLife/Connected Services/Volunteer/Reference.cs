@@ -398,6 +398,18 @@ namespace ErasEasyLife.Volunteer {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVolunteer/GetAssociazione", ReplyAction="http://tempuri.org/IVolunteer/GetAssociazioneResponse")]
         System.Threading.Tasks.Task<ErasEasyLife.Volunteer.Associazione> GetAssociazioneAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVolunteer/Show_volontari", ReplyAction="http://tempuri.org/IVolunteer/Show_volontariResponse")]
+        ErasEasyLife.Volunteer.Volontario[] Show_volontari(string cond);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVolunteer/Show_volontari", ReplyAction="http://tempuri.org/IVolunteer/Show_volontariResponse")]
+        System.Threading.Tasks.Task<ErasEasyLife.Volunteer.Volontario[]> Show_volontariAsync(string cond);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVolunteer/BookEvent", ReplyAction="http://tempuri.org/IVolunteer/BookEventResponse")]
+        bool BookEvent(int volontario, int evento);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVolunteer/BookEvent", ReplyAction="http://tempuri.org/IVolunteer/BookEventResponse")]
+        System.Threading.Tasks.Task<bool> BookEventAsync(int volontario, int evento);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -473,6 +485,22 @@ namespace ErasEasyLife.Volunteer {
         
         public System.Threading.Tasks.Task<ErasEasyLife.Volunteer.Associazione> GetAssociazioneAsync(int id) {
             return base.Channel.GetAssociazioneAsync(id);
+        }
+        
+        public ErasEasyLife.Volunteer.Volontario[] Show_volontari(string cond) {
+            return base.Channel.Show_volontari(cond);
+        }
+        
+        public System.Threading.Tasks.Task<ErasEasyLife.Volunteer.Volontario[]> Show_volontariAsync(string cond) {
+            return base.Channel.Show_volontariAsync(cond);
+        }
+        
+        public bool BookEvent(int volontario, int evento) {
+            return base.Channel.BookEvent(volontario, evento);
+        }
+        
+        public System.Threading.Tasks.Task<bool> BookEventAsync(int volontario, int evento) {
+            return base.Channel.BookEventAsync(volontario, evento);
         }
     }
 }

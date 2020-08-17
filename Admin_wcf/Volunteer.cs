@@ -120,7 +120,8 @@ namespace Admin_wcf
             try
             {
                 DataSet ass_set = wcfclient.DBselect("*", "ASSOCIAZIONE", cond);
-                foreach (DataTable table in ass_set.Tables)
+                
+               foreach (DataTable table in ass_set.Tables)
                 {
                     foreach (DataRow row in table.Rows)
                     {
@@ -140,6 +141,49 @@ namespace Admin_wcf
             return a;
 
 
+        }
+        public List<Volontario> Show_volontari(string cond = "")
+        {
+            var wcfclient = server_conn.getInstance();
+            List<Volontario> volontari = new List<Volontario>();
+            try
+            {
+                DataSet vol_set = wcfclient.DBselect("*", "VOLONTARIO", cond);
+                Association ass = new Association();
+                foreach (DataTable table in vol_set.Tables)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+                        Associazione a = ass.Profile(Convert.ToInt32(row["idass"])); //recupero l'associazione corrispondente al volontario
+                        Volontario v = new Volontario(Convert.ToInt32(row["idvolont"]), row["nome"].ToString(), row["cognome"].ToString(), row["data_n"].ToString(), row["email"].ToString(), row["tel"].ToString(), row["data_iscrizione"].ToString(), row["password"].ToString(), a, row["ruolo"].ToString());
+                        
+                        volontari.Add(v);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+
+            }
+            return volontari;
+        }
+        public bool BookEvent(int volontario, int evento)
+        {
+            var wcfclient = server_conn.getInstance();
+            string valori = "" + volontario + "," + evento + "";
+            bool risultato;
+            try
+            {
+                risultato = wcfclient.DBinsert("PARTECIPAZIONE", valori, "`idstud`, `idev`");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+            return risultato;
         }
     }
     

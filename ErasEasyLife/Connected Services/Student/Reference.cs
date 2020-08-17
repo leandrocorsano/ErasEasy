@@ -267,6 +267,18 @@ namespace ErasEasyLife.Student {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/UpdatePassword", ReplyAction="http://tempuri.org/IStudent/UpdatePasswordResponse")]
         System.Threading.Tasks.Task<bool> UpdatePasswordAsync(int id, string new_password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/Show_students", ReplyAction="http://tempuri.org/IStudent/Show_studentsResponse")]
+        ErasEasyLife.Student.Studente[] Show_students(string cond);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/Show_students", ReplyAction="http://tempuri.org/IStudent/Show_studentsResponse")]
+        System.Threading.Tasks.Task<ErasEasyLife.Student.Studente[]> Show_studentsAsync(string cond);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/BookEvent", ReplyAction="http://tempuri.org/IStudent/BookEventResponse")]
+        bool BookEvent(int studente, int evento);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/BookEvent", ReplyAction="http://tempuri.org/IStudent/BookEventResponse")]
+        System.Threading.Tasks.Task<bool> BookEventAsync(int studente, int evento);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -334,6 +346,22 @@ namespace ErasEasyLife.Student {
         
         public System.Threading.Tasks.Task<bool> UpdatePasswordAsync(int id, string new_password) {
             return base.Channel.UpdatePasswordAsync(id, new_password);
+        }
+        
+        public ErasEasyLife.Student.Studente[] Show_students(string cond) {
+            return base.Channel.Show_students(cond);
+        }
+        
+        public System.Threading.Tasks.Task<ErasEasyLife.Student.Studente[]> Show_studentsAsync(string cond) {
+            return base.Channel.Show_studentsAsync(cond);
+        }
+        
+        public bool BookEvent(int studente, int evento) {
+            return base.Channel.BookEvent(studente, evento);
+        }
+        
+        public System.Threading.Tasks.Task<bool> BookEventAsync(int studente, int evento) {
+            return base.Channel.BookEventAsync(studente, evento);
         }
     }
 }
