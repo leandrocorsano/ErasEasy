@@ -21,10 +21,34 @@ namespace ErasEasyLife.Controllers
         }
 
         // GET: Associazione/Profile/5
+
         public ActionResult Profilo()
         {
-            return View();
+            //try
+            //{
+
+            //    Association.Associazione a = (Association.Associazione)Session["associazione"];
+            //    var webclient = new Association.AssociationClient();
+            //    Association.Associazione ass = webclient.Profile(a.IdAss);
+            //    ViewData["Nome"] = ass.nome;
+            //    ViewData["Citta"] = ass.citta;
+            //    ViewData["Stato"] = ass.stato;
+            //    ViewData["Via"] = ass.via;
+            //    ViewData["Telefono"] = ass.tel;
+            //    ViewData["Email"] = ass.email;
+
+                return View("Profilo");
+
+
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //    return View();
+            //}
         }
+
 
         public ActionResult Login()
         {
@@ -39,34 +63,9 @@ namespace ErasEasyLife.Controllers
                 
         }
 
-        [HttpPost]
+        
 
-        public ActionResult Profilo(int id = 1)
-        {
-            try
-            {
-                
-                var webclient = new Association.AssociationClient();
-                Association.Associazione ass = webclient.Profile(id);
-                ViewData["Nome:"] = ass.nome;
-                ViewData["Città:"] = ass.citta;
-                ViewData["Stato:"] = ass.stato;
-                ViewData["Via:"] = ass.via;
-                ViewData["Telefono:"] = ass.tel;
-                ViewData["Email:"] = ass.email;
-
-                return View("Profilo");
-
-                
-
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return View();
-            }
-        }
-
+        
         [HttpPost]
         public ActionResult Login(Models.Associazione model)
         {
@@ -81,11 +80,12 @@ namespace ErasEasyLife.Controllers
                     Association.Associazione ass = webclient.Login(model.email, model.password);
                     if (ass != null)
                     {
-                        ViewBag.risposta = "Hai effettuato il login";
+                        //ViewBag.risposta = "Hai effettuato il login";
                         Session["associazione"] = ass; //passo l'associazione che è entrata tra le varie pagine web
-                        
+
+                        //Profilo();
                        
-                        return View("Successo");
+                        return View("Profilo");
                     }
                     else
                     {
@@ -102,7 +102,7 @@ namespace ErasEasyLife.Controllers
                     ViewBag.risposta = "Utente errato";
                     ViewBag.url = "Login";
                     ViewBag.link = "Accedi";
-                    return View("Successo");
+                    return View("Errore");
                 }
             }
             else
