@@ -1,9 +1,7 @@
 ﻿
-
 @{
-    ViewBag.Title = ViewData[;
+    ViewBag.Title = "Profilo";
     Layout = "~/Views/Shared/WhitoutMenu.cshtml";
-    ErasEasyLife.Association.Associazione ass = (ErasEasyLife.Association.Associazione)
 }
 
 <!DOCTYPE html>
@@ -14,72 +12,27 @@
     <title>Profilo</title>
 </head>
 <body>
-    <div>
-        <h4>Associazione</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            
-            <dt>
-                @ViewData["Nome"]
-            </dt>
+   @{
+
+       ErasEasyLife.Association.Associazione ass = (ErasEasyLife.Association.Associazione)Session["associazione"];
     
-            <dd>
-                @ViewData["Nome"]
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.citta)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.citta)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.stato)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.stato)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.via)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.via)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.tel)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.tel)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.email)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.email)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.password)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.password)
-            </dd>
-    
-        </dl>
+       }
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4 text-center">@ViewBag.Title</h1>
+            </div>
+        </div>
+        <div class="card">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Nome</b></div><div class="col-6">@ass.nome</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Città</b></div><div class="col-6">@ass.citta</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Via</b></div><div class="col-6">@ass.via</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Stato</b></div><div class="col-6">@ass.stato</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Telefono</b></div><div class="col-6">@ass.tel</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Email</b></div><div class="col-6">@ass.email</div></div></li>
+            </ul>
+        </div>
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
 </body>
 </html>
