@@ -33,9 +33,6 @@ namespace Admin_wcf
         [OperationContract]
         bool BookEvent(int studente, int evento);
 
-        [OperationContract]
-        List<Evento> Show_Event(int idstud);
-
         /*funzioni che mancano*/
         //Show_Event(idstud) (lista che mostra tutti gli eventi a cui partecipa uno studente)
         //Disdici evento

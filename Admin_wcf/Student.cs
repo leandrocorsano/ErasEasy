@@ -107,11 +107,6 @@ namespace Admin_wcf
         }
         public List<Studente> Show_students(string cond = "")
         {
-            /* ---------------------------------------------------
-            * Elenco di tutti gli studenti data una determinata condizione
-            * ------------------------------------------------------*/
-
-
             var wcfclient = server_conn.getInstance();
             List<Studente> studenti = new List<Studente>();
             try
@@ -137,10 +132,6 @@ namespace Admin_wcf
         }
         public bool BookEvent(int studente, int evento)
         {
-            /* ---------------------------------------------------
-            * Funzione che permette di prenotarsi a un evento
-            * ------------------------------------------------------*/
-
             var wcfclient = server_conn.getInstance();
             string valori = "" + studente + "," + evento + "";
             bool risultato;
@@ -154,38 +145,6 @@ namespace Admin_wcf
                 throw;
             }
             return risultato;
-        }
-        public List<Evento> Show_Event(int idstud)
-        {
-            /* ---------------------------------------------------
-             * Eventi a cui ha partecipato/parteciperà uno studente
-             * ------------------------------------------------------*/
-            string cond = "E.idev=P.idev and P.idstud=" + idstud + "";
-            var wcfclient = server_conn.getInstance();
-            Association ass = new Association();
-            
-            List<Evento> eventi = new List<Evento>();
-            try
-            {
-                DataSet eventi_set = wcfclient.DBselect("*", "PARTECIPAZIONE as P, EVENTO as E", cond);
-                foreach (DataTable table in eventi_set.Tables)
-                {
-                    foreach (DataRow row in table.Rows)
-                    {
-                        Associazione a = ass.Profile(Convert.ToInt32(row["idass"]));
-                        Evento e = new Evento(Convert.ToInt32(row["idev"]), row["nome"].ToString(), row["tipologia"].ToString(), Convert.ToInt32(row["min_p"]), Convert.ToInt32(row["max_p"]), Convert.ToInt32(row["min_v"]), Convert.ToInt32(row["max_v"]), Convert.ToInt32(row["costo"]), row["descrizione"].ToString(),a );
-                        eventi.Add(e);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                throw;
-
-            }
-            return eventi;
-
         }
     }
     
