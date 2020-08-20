@@ -2146,6 +2146,8 @@
     <Content Include="Views\Associazione\Errore.cshtml" />
     <Content Include="Views\Associazione\Profilo.cshtml" />
     <Content Include="Views\Shared\AssociazioneMenu.cshtml" />
+    <Content Include="Views\Volontario\Profilo.cshtml" />
+    <Content Include="Views\Studente\Profilo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
