@@ -35,9 +35,12 @@ namespace Admin_wcf
 
         [OperationContract]
         bool BookEvent(int volontario, int evento);
+
+        [OperationContract]
+        List<Evento> Show_Event(int idvolont);
         /*funzioni che mancano*/
         //disdici event
-        //Show_Event(idstud) (lista che mostra tutti gli eventi a cui partecipa un volontario)
+       
 
     }
 }

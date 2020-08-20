@@ -1933,9 +1933,15 @@
     <Content Include="Connected Services\Student\ErasEasyLife.Student.Studente.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\Student\ErasEasyLife.Student.Evento.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\Student\item.disco" />
     <None Include="Connected Services\Student\configuration91.svcinfo" />
     <None Include="Connected Services\Student\configuration.svcinfo" />
+    <None Include="Connected Services\Student\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\Student\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -1946,9 +1952,15 @@
     <Content Include="Connected Services\Volunteer\ErasEasyLife.Volunteer.Associazione.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\Volunteer\ErasEasyLife.Volunteer.Evento.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\Volunteer\item.disco" />
     <None Include="Connected Services\Volunteer\configuration91.svcinfo" />
     <None Include="Connected Services\Volunteer\configuration.svcinfo" />
+    <None Include="Connected Services\Volunteer\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\Volunteer\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

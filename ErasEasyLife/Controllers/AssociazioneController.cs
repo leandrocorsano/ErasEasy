@@ -24,29 +24,7 @@ namespace ErasEasyLife.Controllers
 
         public ActionResult Profilo()
         {
-            //try
-            //{
-
-            //    Association.Associazione a = (Association.Associazione)Session["associazione"];
-            //    var webclient = new Association.AssociationClient();
-            //    Association.Associazione ass = webclient.Profile(a.IdAss);
-            //    ViewData["Nome"] = ass.nome;
-            //    ViewData["Citta"] = ass.citta;
-            //    ViewData["Stato"] = ass.stato;
-            //    ViewData["Via"] = ass.via;
-            //    ViewData["Telefono"] = ass.tel;
-            //    ViewData["Email"] = ass.email;
-
-                return View("Profilo");
-
-
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //    return View();
-            //}
+           return View("Profilo");
         }
 
 
@@ -57,8 +35,7 @@ namespace ErasEasyLife.Controllers
        [HttpGet]
         public ActionResult Registra()
         {
-            
-            
+                
             return View();
                 
         }

@@ -176,7 +176,7 @@ namespace Admin_wcf
             bool risultato;
             try
             {
-                risultato = wcfclient.DBinsert("PARTECIPAZIONE", valori, "`idstud`, `idev`");
+                risultato = wcfclient.DBinsert("GESTIONE", valori, "`idvolont`, `idev`");
             }
             catch (Exception ex)
             {
@@ -184,6 +184,38 @@ namespace Admin_wcf
                 throw;
             }
             return risultato;
+        }
+        public List<Evento> Show_Event(int idstud)
+        {
+            /* ---------------------------------------------------
+             * Eventi che ha gestisto/gestirà un volontario
+             * ------------------------------------------------------*/
+            string cond = "E.idev=G.idev and G.idvolont=" + idstud + "";
+            var wcfclient = server_conn.getInstance();
+            Association ass = new Association();
+
+            List<Evento> eventi = new List<Evento>();
+            try
+            {
+                DataSet eventi_set = wcfclient.DBselect("*", "GESTIONE as G, EVENTO as E", cond);
+                foreach (DataTable table in eventi_set.Tables)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+                        Associazione a = ass.Profile(Convert.ToInt32(row["idass"]));
+                        Evento e = new Evento(Convert.ToInt32(row["idev"]), row["nome"].ToString(), row["tipologia"].ToString(), Convert.ToInt32(row["min_p"]), Convert.ToInt32(row["max_p"]), Convert.ToInt32(row["min_v"]), Convert.ToInt32(row["max_v"]), Convert.ToInt32(row["costo"]), row["descrizione"].ToString(), a);
+                        eventi.Add(e);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+
+            }
+            return eventi;
+
         }
     }
     

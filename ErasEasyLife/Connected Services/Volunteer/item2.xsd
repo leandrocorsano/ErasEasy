@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Service1/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Admin_wcf" />
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Service1/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" />
   <xs:element name="Registration">
     <xs:complexType>
       <xs:sequence>
@@ -113,6 +114,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="BookEventResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Show_Event">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idvolont" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Show_EventResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="Show_EventResult" nillable="true" type="q7:ArrayOfEvento" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
