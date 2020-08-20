@@ -1,0 +1,42 @@
+﻿
+
+@{
+    ViewBag.Title = "Profilo";
+    Layout = "~/Views/Shared/WhitoutMenu.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Profilo</title>
+</head>
+<body>
+    @{
+
+        ErasEasyLife.Volunteer.Volontario vol = (ErasEasyLife.Volunteer.Volontario)Session["Volontario"];
+
+    }
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4 text-center">@ViewBag.Title</h1>
+            </div>
+        </div>
+        <div class="card">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Nome</b></div><div class="col-6">@vol.nome</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Cognome</b></div><div class="col-6">@vol.cognome</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Data di nascita</b></div><div class="col-6">@vol.data_n</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Telefono</b></div><div class="col-6">@vol.telefono</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Data di iscrizione</b></div><div class="col-6">@vol.data_iscr</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Email</b></div><div class="col-6">@vol.email</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Ruolo</b></div><div class="col-6">@vol.ruolo</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Associazione</b></div><div class="col-6">@vol.ass</div></div></li>
+            </ul>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

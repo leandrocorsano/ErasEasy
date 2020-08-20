@@ -15,9 +15,35 @@ namespace ErasEasyLife.Controllers
         }
 
         // GET: Studente/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Profilo()
         {
-            return View();
+            //try
+            //{
+
+            //    Student.Studente s = (Student.Studente)Session["Studente"];
+            //    var webclient = new Student.StudentClient();
+            //    Student.Studente stud = webclient.Profile(s.IdStud);
+            //    ViewData["Nome"] = stud.nome;
+            //    ViewData["Cognome"] = stud.cognome;
+            //     ViewData["Data di nascita"] = stud.data_n
+            //    ViewData["Citta"] = stud.citta;
+            //    ViewData["Stato"] = stud.stato;
+            //    ViewData["Nazionalità"] = stud.nazionalita;
+            //    ViewData["Telefono"] = stud.tel;
+            //    ViewData["Email"] = stud.email;      
+            //    ViewData["Instagram"] = stud.instagram;
+            //    ViewData["Facebook"] = stud.facebook;
+
+            return View("Profilo");
+
+
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //    return View();
+            //}
         }
 
         public ActionResult Login()
@@ -46,10 +72,10 @@ namespace ErasEasyLife.Controllers
                     if (stud != null)
                     {
                         ViewBag.risposta = "Hai effettuato il login";
-                        Session["associazione"] = stud; //passo lo studente che è entrato tra le varie pagine web
+                        Session["Studente"] = stud; //passo lo studente che è entrato tra le varie pagine web
 
 
-                        return View("Successo");
+                        return View("Profilo");
                     }
                     else
                     {
@@ -66,7 +92,7 @@ namespace ErasEasyLife.Controllers
                     ViewBag.risposta = "Utente errato";
                     ViewBag.url = "Login";
                     ViewBag.link = "Accedi";
-                    return View("Successo");
+                    return View("Errore");
                 }
             }
             else

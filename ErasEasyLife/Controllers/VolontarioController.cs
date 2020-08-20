@@ -17,9 +17,33 @@ namespace ErasEasyLife.Controllers
         }
 
         // GET: Volontario/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Profilo()
         {
-            return View();
+            //try
+            //{
+
+            //    Volunteer.Volontario v = (Volunteer.Volontario)Session["Volontario"];
+            //    var webclient = new Volunteer.VolunteerClient();
+            //    Volunteer.Volontario vol = webclient.Profile(v.IdVolont);
+            //    ViewData["Nome"] = vol.nome;
+            //    ViewData["Cognome"] = vol.cognome;
+            //     ViewData["Data di nascita"] = vol.data_n
+            //    ViewData["Telefono"] = vol.telefono;
+            //    ViewData["Email"] = vol.email;      
+            //    ViewData["Data iscrizione"] = vol.data_iscr;
+            //    ViewData["Ruolo"] = vol.ruolo;
+            //    ViewData["Associazione"] = vol.ass;
+
+            return View("Profilo");
+
+
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //    return View();
+            //}
         }
 
         public ActionResult Login()
@@ -61,7 +85,7 @@ namespace ErasEasyLife.Controllers
                         Session["Volontario"] = vol; //passo il volontario che è entrato tra le varie pagine web
 
 
-                        return View("Successo");
+                        return View("Profilo");
                     }
                     else
                     {
@@ -78,7 +102,7 @@ namespace ErasEasyLife.Controllers
                     ViewBag.risposta = "Utente errato";
                     ViewBag.url = "Login";
                     ViewBag.link = "Accedi";
-                    return View("Successo");
+                    return View("Errore");
                 }
             }
             else
