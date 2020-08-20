@@ -153,26 +153,57 @@ namespace ErasEasyLife.Controllers
         }
 
         // GET: Studente/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public ActionResult Modifica_Profilo()
         {
-            return View();
+            return View("Modifica_Profilo");
         }
 
         // POST: Studente/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Modifica_Profilo(Models.Studente model)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {// TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+                    var webclient = new Student.StudentClient();
+                    Student.Studente stud = new Student.Studente();
+
+                    stud.IdStud = model.IdStud;
+                    stud.nome = model.nome;
+                    stud.cognome = model.cognome;
+                    stud.email = model.email;
+                    stud.tel = model.tel;
+                    stud.data_n = model.data_n;
+                    stud.citta = model.citta;
+                    stud.stato = model.stato;
+                    stud.nazionalita = model.nazionalita;
+                    stud.password = model.password;
+                    stud.instagram = model.instagram;
+                    stud.facebook = model.facebook;
+                    Session["Studente"] = stud;
+
+                    bool r = webclient.UpdateProfile(stud);
+
+                    ViewBag.risposta = "Hai modificato i dati con successo";
+                    return View("Modifica_Profilo");
+
+                }
+                else
+                {
+                    return View();
+                }
+
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return View();
             }
         }
+
 
         // GET: Studente/Delete/5
         public ActionResult Delete(int id)

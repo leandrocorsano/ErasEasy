@@ -161,23 +161,57 @@ namespace ErasEasyLife.Controllers
         }
 
         // GET: Volontario/Edit/5
+        [HttpGet]
         public ActionResult Modifica_Profilo()
         {
-            return View();
+            return View("Modifica_Profilo");
         }
 
         // POST: Volontario/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Modifica_Profilo(Models.Volontario model)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    var webclient = new Volunteer.VolunteerClient();
+                    Volunteer.Volontario vol = new Volunteer.Volontario();
+                    Volunteer.Associazione assoc = webclient.GetAssociazione(model.ass);
 
-                return RedirectToAction("Index");
+
+                    vol.IdVolont = model.IdVolont;
+                    vol.nome = model.nome;
+                    vol.cognome = model.cognome;
+                    vol.data_n = model.data_n;
+                    vol.telefono = model.telefono;
+                    vol.email = model.email;
+                    vol.data_iscr = model.data_iscr;
+                    vol.password = model.password;
+                    vol.ruolo = model.ruolo;
+                    vol.ass = assoc;
+                    Session["Volontario"] = vol;
+
+                    bool r = webclient.UpdateProfile(vol);
+
+                    ViewBag.risposta = "Hai modificato i dati con successo";
+
+                    return View("Modifica_Profilo");
+
+                }
+                // TODO: Add update logic here
+                else
+                {
+                    /* ViewBag.risposta = "Non hai modificato i dati";
+                     ViewBag.Url = "Profilo";
+                     ViewBag.link = */
+                    return View();
+                }
+
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return View();
             }
         }

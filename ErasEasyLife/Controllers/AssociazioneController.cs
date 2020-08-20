@@ -135,23 +135,48 @@ namespace ErasEasyLife.Controllers
         }
 
         // GET: Associazione/Edit/5
+        [HttpGet]
             public ActionResult Modifica_Profilo()
         {
-            return View();
+            return View("Modifica_Profilo");
         }
 
         // POST: Associazione/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Modifica_Profilo(Models.Associazione model)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    var webclient = new Association.AssociationClient();
+                    Association.Associazione ass = new Association.Associazione();
+                    ass.IdAss = model.IdAss;
+                    ass.password = model.password;
+                    ass.nome = model.nome;
+                    ass.citta = model.citta;
+                    ass.stato = model.stato;
+                    ass.tel = model.tel;
+                    ass.email = model.email;
+                    ass.via = model.via;
+                    Session["Associazione"] = ass;
+                    bool r = webclient.UpdateProfile(ass);
+                    ViewBag.risposta = "Hai modificato i dati con successo";
 
-                return RedirectToAction("Index");
+                    return View("Modifica_Profilo");
+
+                }
+                // TODO: Add update logic here
+                else
+                {
+                    return View();
+                    
+                }
+                
             }
-            catch
+            catch(Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return View();
             }
         }
