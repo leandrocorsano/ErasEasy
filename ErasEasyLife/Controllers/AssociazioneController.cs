@@ -135,7 +135,7 @@ namespace ErasEasyLife.Controllers
         }
 
         // GET: Associazione/Edit/5
-            public ActionResult Edit(int id)
+            public ActionResult Modifica_Profilo()
         {
             return View();
         }
