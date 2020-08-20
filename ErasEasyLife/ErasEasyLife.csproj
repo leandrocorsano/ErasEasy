@@ -141,7 +141,6 @@
     </Compile>
     <Compile Include="Controllers\AssociazioneController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\StudenteController.cs" />
     <Compile Include="Controllers\VolontarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -150,6 +149,7 @@
     <Compile Include="Models\Studente.cs" />
     <Compile Include="Models\Volontario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controllers\StudenteController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Adminlte\css\adminlte.css.map" />
@@ -2146,6 +2146,8 @@
     <Content Include="Views\Associazione\Errore.cshtml" />
     <Content Include="Views\Associazione\Profilo.cshtml" />
     <Content Include="Views\Shared\AssociazioneMenu.cshtml" />
+    <Content Include="Views\Studente\Profilo.cshtml" />
+    <Content Include="Views\Volontario\Profilo %281%29.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
