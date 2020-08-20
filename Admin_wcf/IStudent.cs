@@ -37,7 +37,7 @@ namespace Admin_wcf
         List<Evento> Show_Event(int idstud);
 
         /*funzioni che mancano*/
-        //Show_Event(idstud) (lista che mostra tutti gli eventi a cui partecipa uno studente)
+       
         //Disdici evento
         //richiedi amicizia
         //mostra amici

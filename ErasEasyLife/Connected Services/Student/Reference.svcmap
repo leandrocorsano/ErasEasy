@@ -22,11 +22,12 @@
     <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Student/" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="3c70af1f-e40f-454f-a477-7cc8c204fbcf" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Student/?xsd=xsd2" />
     <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="4e6b76e6-b201-4ac7-902d-db0100d9f609" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Student/?xsd=xsd0" />
-    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="3bf30d63-b921-419b-a482-5b5f7654b3cc" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Student/?xsd=xsd1" />
     <MetadataFile FileName="Student.wsdl" MetadataType="Wsdl" ID="c66fdb14-6109-46c0-b54a-0f7608dd2e1c" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Student/?wsdl" />
     <MetadataFile FileName="item.disco" MetadataType="Disco" ID="83dd64ca-0bd4-4f45-b7bc-0d79bdbbf7cd" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Student/?disco" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="3c70af1f-e40f-454f-a477-7cc8c204fbcf" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Student/?xsd=xsd2" />
+    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="51b82be7-112e-41a3-9fb6-5578c5f88e11" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Student/?xsd=xsd3" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="3bf30d63-b921-419b-a482-5b5f7654b3cc" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Student/?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
