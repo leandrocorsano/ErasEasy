@@ -164,6 +164,7 @@
     <Content Include="Adminlte\css\alt\adminlte.pages.min.css.map" />
     <Content Include="Adminlte\css\alt\adminlte.plugins.css.map" />
     <Content Include="Adminlte\css\alt\adminlte.plugins.min.css.map" />
+    <Content Include="Adminlte\img\users.png" />
     <Content Include="Adminlte\js\adminlte.js.map" />
     <Content Include="Adminlte\js\adminlte.min.js.map" />
     <Content Include="Adminlte\plugins\.npmignore" />
@@ -2147,11 +2148,7 @@
     <Content Include="Views\Associazione\Profilo.cshtml" />
     <Content Include="Views\Shared\AssociazioneMenu.cshtml" />
     <Content Include="Views\Studente\Profilo.cshtml" />
-    <Content Include="Views\Volontario\Profilo.cshtml" />
-    <Content Include="Views\Associazione\Modifica_Profilo.cshtml" />
-    <Content Include="Views\Volontario\Modifica_Profilo.cshtml" />
-    <Content Include="Views\Studente\Modifica_Profilo.cshtml" />
-    <Content Include="Views\Volontario\Errore.cshtml" />
+    <Content Include="Views\Volontario\Profilo %281%29.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
