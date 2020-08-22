@@ -245,7 +245,7 @@ namespace ErasEasyLife.Controllers
                     ev.max_v = model.max_v;
                     ev.costo = model.costo;
                     ev.descrizione = model.descrizione;
-                    ev.ass = webclient.GetAssociazione(ass.IdAss);
+            
                     bool r = webclient.Create_events(ev);
                     ViewBag.risposta = "Evento creato con successo";
                     return View("Successo");
