@@ -52,9 +52,33 @@ namespace ErasEasyLife.Controllers
             return View("Login");
         }
         [HttpGet]
+        public ActionResult Elenco()
+        {
+            
+            return View();
+        }
+        [HttpGet]
         // GET: Studente/Create
         public ActionResult Registra()
         {
+            return View();
+        }
+
+        [HttpPost]
+        // GET: Volontario/Create
+        public ActionResult Elenco(Models.Studente model)
+        {
+            if (ModelState.IsValidField("nazionalita"))
+            {
+                
+                Student.Studente stud = (Student.Studente)Session["Studente"];
+                string cond = "idstud!=" + stud.IdStud+" and nazionalita='" + model.nazionalita + "'";
+                var webclient = new Student.StudentClient();
+                Student.Studente[] studenti = webclient.Show_students(cond);
+
+                ViewData["studenti"] = studenti;
+                return View();
+            }
             return View();
         }
 

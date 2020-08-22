@@ -2,6 +2,8 @@
 
 @{
     Layout = "~/Views/Shared/WhitoutMenu.cshtml";
+    List<string> nazionalita = new List<string>() {"--Seleziona Nazionalità---", "Italiana", "Francese", "Inglese", "Tedesca", "Spagnola","Polacca", "Austriaca", "Portoghese", "Belga", "Svizzera", "Albanese", "Moldava", "Greca", "Montenegrina", "Bulgara", "Rumena", "Svedese", "Finalandese", "Olandese", "Danese", "Slovacca", "Lituana", "Lettone", "Estone", "Ungherese", "Norvegese", "Bielorussa", "Slovena", "Irlandese", "Maltese", "Lussemburghese", "Islandese" };
+
 }
 
 <!DOCTYPE html>
@@ -91,7 +93,17 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.nazionalita, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.nazionalita, new { htmlAttributes = new { @class = "form-control" } })
+                    <select class="custom-select" name="@Html.NameFor(model => model.nazionalita)">
+
+
+                        @foreach (var nazione in nazionalita)
+                        {
+
+                            <option value="@nazione">
+                                @nazione
+                            </option>
+                        }
+                    </select>
                     @Html.ValidationMessageFor(model => model.nazionalita, "", new { @class = "text-danger" })
                 </div>
             </div>

@@ -146,6 +146,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Associazione.cs" />
+    <Compile Include="Models\CambioPass.cs" />
     <Compile Include="Models\Studente.cs" />
     <Compile Include="Models\Volontario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -164,6 +165,8 @@
     <Content Include="Adminlte\css\alt\adminlte.pages.min.css.map" />
     <Content Include="Adminlte\css\alt\adminlte.plugins.css.map" />
     <Content Include="Adminlte\css\alt\adminlte.plugins.min.css.map" />
+    <Content Include="Adminlte\img\facebook_logo.png" />
+    <Content Include="Adminlte\img\instagram_logo.png" />
     <Content Include="Adminlte\img\users.png" />
     <Content Include="Adminlte\js\adminlte.js.map" />
     <Content Include="Adminlte\js\adminlte.min.js.map" />
@@ -2154,6 +2157,8 @@
     <Content Include="Views\Volontario\Modifica_Profilo.cshtml" />
     <Content Include="Views\Shared\StudenteMenu.cshtml" />
     <Content Include="Views\Shared\VolontarioMenu.cshtml" />
+    <Content Include="Views\Studente\Elenco.cshtml" />
+    <Content Include="Views\Studente\Errore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

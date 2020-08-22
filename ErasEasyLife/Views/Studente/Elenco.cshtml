@@ -1,0 +1,134 @@
+﻿@model ErasEasyLife.Models.Studente
+@{
+    ViewBag.Title = "Elenco";
+    Layout = "~/Views/Shared/StudenteMenu.cshtml";
+}
+@{ 
+    List<string> nazionalita = new List<string>() {"--Seleziona Nazionalità---", "Italiana", "Francese", "Inglese", "Tedesca", "Spagnola","Polacca", "Austriaca", "Portoghese", "Belga", "Svizzera", "Albanese", "Moldava", "Greca", "Montenegrina", "Bulgara", "Rumena", "Svedese", "Finalandese", "Olandese", "Danese", "Slovacca", "Lituana", "Lettone", "Estone", "Ungherese", "Norvegese", "Bielorussa", "Slovena", "Irlandese", "Maltese", "Lussemburghese", "Islandese" };
+    Dictionary<string, string> bandiere = new Dictionary<string, string> {
+                {"Italiana", "https://www.countryflags.io/it/shiny/24.png" },
+                {"Francese", "https://www.countryflags.io/fr/shiny/24.png" },
+                {"Tedesca", "https://www.countryflags.io/de/shiny/24.png" },
+                {"Inglese", "https://www.countryflags.io/gb/shiny/24.png" },
+                {"Spagnola", "https://www.countryflags.io/es/shiny/24.png" },
+                {"Polacca", "https://www.countryflags.io/pl/shiny/24.png" },
+                {"Austriaca", "https://www.countryflags.io/at/shiny/24.png" },
+                {"Portoghese", "https://www.countryflags.io/pt/shiny/24.png" },
+                {"Belga", "https://www.countryflags.io/be/shiny/24.png" },
+                {"Svizzera", "https://www.countryflags.io/ch/shiny/24.png" },
+                {"Albanese", "https://www.countryflags.io/al/shiny/24.png" },
+                {"Moldava", "https://www.countryflags.io/md/shiny/24.png" },
+                {"Greca", "https://www.countryflags.io/gr/shiny/24.png"},
+                {"Montenegrina", "https://www.countryflags.io/me/shiny/24.png" },
+                {"Bulgara", "https://www.countryflags.io/bg/shiny/24.png" },
+                {"Rumena", "https://www.countryflags.io/ro/shiny/24.png" },
+                {"Svedese", "https://www.countryflags.io/se/shiny/24.png" },
+                {"Finlandese", "https://www.countryflags.io/fi/shiny/24.png" },
+                {"Olandese",  "https://www.countryflags.io/nl/shiny/24.png" },
+                {"Danese", "https://www.countryflags.io/dk/shiny/24.png"  },
+                {"Slovacca", "https://www.countryflags.io/sk/shiny/24.png" },
+                {"Lituana", "https://www.countryflags.io/lt/shiny/24.png" },
+                {"Lettone",  "https://www.countryflags.io/lv/shiny/24.png"},
+                {"Estone",  "https://www.countryflags.io/ee/shiny/24.png"},
+                {"Ungherese",  "https://www.countryflags.io/hu/shiny/24.png"},
+                {"Norvegese",  "https://www.countryflags.io/no/shiny/24.png" },
+                {"Bielorussa", "https://www.countryflags.io/by/shiny/24.png" },
+                {"Slovena",  "https://www.countryflags.io/si/shiny/24.png" },
+                {"Irlandese", "https://www.countryflags.io/ie/shiny/24.png"},
+                {"Maltese",  "https://www.countryflags.io/mt/shiny/24.png" },
+                {"Lussemburghese", "https://www.countryflags.io/lu/shiny/24.png" },
+                {"Islandese",  "https://www.countryflags.io/is/shiny/24.png" }
+            };
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Elenco Studenti</title>
+</head>
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">Elenco studenti</h1>
+        </div>
+    </div>
+   
+
+       
+   
+    <div class="card p-1">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <center>
+                    <div class="input-group mb-2 ">
+                        <select class="custom-select" name="@Html.NameFor(model => model.nazionalita)">
+
+
+                            @foreach (var nazione in nazionalita)
+                            {
+
+                                <option value="@nazione">
+                                    @nazione
+                                </option>
+                            }
+                        </select>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn bg-gradient-green btn-sm"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </center>
+
+            </div>
+
+
+
+        }
+        <div>
+
+            @if (ViewData["studenti"] != null)
+            {
+                <div class="row">
+                    @{
+                        foreach (var studente in ViewData["studenti"] as IList<ErasEasyLife.Student.Studente>)
+                        {
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <center>
+                                        <div class="card-header bg-green">
+                                            <img src="@bandiere[studente.nazionalita]" />
+                                            @studente.nome @studente.cognome
+                                        </div>
+                                        <div class="card-body bg-light">
+                                            <p><i class="fas fa-envelope"></i> @studente.email</p>
+                                            <p><i class="fas fa-city"></i> @studente.citta</p>
+                                            @if (studente.instagram != "")
+                                            {
+                                                <a href="@studente.instagram"><img src="~/adminlte/img/instagram_logo.png" width="48px" height="48px"></a>
+                                            }
+                                            @if (studente.facebook != "")
+                                            {
+                                                <a href="@studente.facebook"><img src="~/adminlte/img/facebook_logo.png" width="48px" height="48px"></a>
+                                            }
+                                        </div>
+                                    </center>
+                                </div>
+                            </div>
+
+                        }
+                    }
+
+                </div>
+            }
+
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>
+
