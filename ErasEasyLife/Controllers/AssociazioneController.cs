@@ -174,8 +174,8 @@ namespace ErasEasyLife.Controllers
                 // TODO: Add update logic here
                 else
                 {
-                    ViewBag.risposta = "Errore";
-                    return View("Errore");
+                   
+                    return View();
                     
                 }
                 
@@ -191,20 +191,26 @@ namespace ErasEasyLife.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                if ((ModelState.IsValid))
                 {
                     
                     var webclient = new Association.AssociationClient();
-                    Association.Associazione ass = new Association.Associazione();
-                    ass.password = model.password;
-                    Session["Associazione"] = ass;
+                    Association.Associazione ass =(Association.Associazione) Session["Associazione"]; //recupero l'associazione che è entrata
+
+                    ass.password = model.nuova_pass;
+                    
                     bool r = webclient.UpdatePassword(ass.IdAss, model.nuova_pass);
+                    if(r==true)
+                    {
+                        Session["Associazione"] = ass; //creo la nuova session
+                    }
                     ViewBag.risposta = "Hai cambiato password con successo";
                     return View("Successo");
 
                 }
                 else
                 {
+                    
                     return View();
                 }
             }catch(Exception ex)
