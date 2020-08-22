@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
+   
     <div class="wrapper">
 
         <!-- Navbar -->
@@ -30,7 +31,7 @@
 
             </ul>
 
-            
+
 
 
         </nav>
@@ -48,8 +49,8 @@
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    
-                  
+
+
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item has-treeview ">
                             <a href="#" class="nav-link text-white">
@@ -57,8 +58,8 @@
                                 <p>
                                     @{ErasEasyLife.Association.Associazione ass = (ErasEasyLife.Association.Associazione)Session["associazione"]; @ass.nome; }
                                 </p>
-                                    
-                                
+
+
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item " style="margin-left:15px;">
@@ -68,14 +69,20 @@
                                     </a>
                                 </li>
                                 <li class="nav-item " style="margin-left:15px;">
-                                    <a href="#" class="nav-link text-white">
+                                    <a href="@Url.Action("Modifica_Profilo", "Associazione")" class="nav-link text-white">
                                         <i class="nav-icon fas fa-pencil-alt"></i>
                                         <p>Modifica Profilo</p>
                                     </a>
                                 </li>
+                                <li class="nav-item " style="margin-left:15px;">
+                                    <a href="#" class="nav-link text-white">
+                                        <i class="nav-icon fas fa-lock"></i>
+                                        <p>Modifica Password</p>
+                                    </a>
+                                </li>
                             </ul>
-                            </li>
-                        </ul>
+                        </li>
+                    </ul>
                 </div>
 
                 <!-- Sidebar Menu -->
@@ -129,7 +136,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item" style="margin-left:15px;">
-                                    <a href="#" class="nav-link text-white" >
+                                    <a href="#" class="nav-link text-white">
                                         <i class="nav-icon fas fa-edit"></i>
                                         <p>Crea</p>
                                     </a>
@@ -199,6 +206,7 @@
             <!-- /.content-header -->
             <!-- Main content -->
             <div class="content">
+
                 <div class="container-fluid">
                     @RenderBody()
                 </div><!-- /.container-fluid -->

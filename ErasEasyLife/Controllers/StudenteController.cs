@@ -11,6 +11,7 @@ namespace ErasEasyLife.Controllers
         // GET: Studente
         public ActionResult Index()
         {
+
             return View();
         }
 

@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Profilo";
     Layout = "~/Views/Shared/AssociazioneMenu.cshtml";
+
+
 }
 
 <!DOCTYPE html>
@@ -12,11 +14,11 @@
     <title>Profilo</title>
 </head>
 <body>
-   @{
+    @{
 
-       ErasEasyLife.Association.Associazione ass = (ErasEasyLife.Association.Associazione)Session["Associazione"];
-    
-       }
+        ErasEasyLife.Association.Associazione ass = (ErasEasyLife.Association.Associazione)Session["Associazione"];
+
+    }
     <div class="container">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
@@ -31,6 +33,8 @@
                 <li class="list-group-item"><div class="row"><div class="col-6"><b>Stato</b></div><div class="col-6">@ass.stato</div></div></li>
                 <li class="list-group-item"><div class="row"><div class="col-6"><b>Telefono</b></div><div class="col-6">@ass.tel</div></div></li>
                 <li class="list-group-item"><div class="row"><div class="col-6"><b>Email</b></div><div class="col-6">@ass.email</div></div></li>
+                
+
             </ul>
         </div>
     </div>

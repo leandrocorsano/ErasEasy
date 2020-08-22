@@ -8,6 +8,7 @@ using Admin_wcf.Classi;
 using MySql.Data.MySqlClient;
 using System.Data;
 
+
 namespace Admin_wcf
 {
     // NOTA: è possibile utilizzare il comando "Rinomina" del menu "Refactoring" per modificare il nome di classe "Student" nel codice e nel file di configurazione contemporaneamente.
@@ -21,11 +22,13 @@ namespace Admin_wcf
             try
             {
                 risultato = wcfclient.DBinsert("STUDENTE", valori, "`idstud`, `nome`, `cognome`, `email`, `cellulare`, `data_n`, `citta`, `stato`, `nazionalita`, `password`, `instagram`, `facebook`");
+                Console.WriteLine("[OK] Registrazione Studente avvenuta con successo");
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("[ERROR]" + ex.Message);
                 throw;
+
             }
             return risultato;
         }
@@ -43,13 +46,19 @@ namespace Admin_wcf
                     foreach (DataRow row in table.Rows)
                     {
                         s = new Studente(Convert.ToInt32(row["IdStud"]), row["nome"].ToString(), row["cognome"].ToString(), row["email"].ToString(), row["cellulare"].ToString(), row["data_n"].ToString(), row["citta"].ToString(), row["stato"].ToString(), row["nazionalita"].ToString(), row["password"].ToString(), row["instagram"].ToString(), row["facebook"].ToString());
+                        Console.WriteLine("[OK] Login Studente avvenuto con succcesso!!");
                         return s;
                     }
                 }
+                if (s == null)
+                {
+                    Console.WriteLine("[WARNING] Credenziali login studente errate!!");
+                }
+
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("[ERROR]" + ex.Message);
                 throw;
 
             }
@@ -71,13 +80,14 @@ namespace Admin_wcf
                     foreach (DataRow row in table.Rows)
                     {
                         s = new Studente(Convert.ToInt32(row["IdStud"]), row["nome"].ToString(), row["cognome"].ToString(), row["email"].ToString(), row["cellulare"].ToString(), row["data_n"].ToString(), row["citta"].ToString(), row["stato"].ToString(), row["nazionalita"].ToString(), row["password"].ToString(), row["instagram"].ToString(), row["facebook"].ToString());
+                        Console.WriteLine("[OK] Profilo Studente restituito con successo!!");
                         return s;
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("[ERROR]" + ex.Message);
                 throw;
 
             }
@@ -92,8 +102,18 @@ namespace Admin_wcf
             var wcfclient = server_conn.getInstance();
             string set = "password='" + new_password + "'";
             string condizione = "IdStud=" + id.ToString();
+            try
+            {
+                bool r = wcfclient.DBupdate("STUDENTE", set, condizione);
+                Console.WriteLine("[OK] Password studente aggiornata con successo!!");
+                return r;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ERROR]" + ex.Message);
+                throw;
 
-            return wcfclient.DBupdate("STUDENTE", set, condizione);
+            }
         }
 
         public bool UpdateProfile(Studente s)
@@ -103,7 +123,18 @@ namespace Admin_wcf
             var wcfclient = server_conn.getInstance();
             string condizione = "IdStud=" + s.IdStud;
             string set = "nome='" + s.nome + "', cognome='" + s.cognome + "', email='" + s.email + "',cellulare='" + s.tel + "', data_n='" + s.data_n + "', citta='" + s.citta + "', stato='" + s.stato + "', nazionalita='" + s.nazionalita + "', password='" + s.password + "', instagram='" + s.instagram + "', facebook='" + s.facebook + "'";
-            return wcfclient.DBupdate("STUDENTE", set, condizione);
+            try
+            {
+                bool r = wcfclient.DBupdate("STUDENTE", set, condizione);
+                Console.WriteLine("[OK] Profilo studente aggiornato con successo!!");
+                return r;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ERROR]" + ex.Message);
+                throw;
+
+            }
         }
         public List<Studente> Show_students(string cond = "")
         {
@@ -126,10 +157,11 @@ namespace Admin_wcf
 
                     }
                 }
+                Console.WriteLine("[OK] Lista studenti restituita con successo!!");
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("[ERROR]" + ex.Message);
                 throw;
 
             }
@@ -147,11 +179,13 @@ namespace Admin_wcf
             try
             {
                 risultato = wcfclient.DBinsert("PARTECIPAZIONE", valori, "`idstud`, `idev`");
+                Console.WriteLine("[OK] Prenotazione evento da parte dello studente avvenuta con successo!!");
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("[ERROR]" + ex.Message);
                 throw;
+
             }
             return risultato;
         }
@@ -177,10 +211,11 @@ namespace Admin_wcf
                         eventi.Add(e);
                     }
                 }
+                Console.WriteLine("[OK] Lista eventi prenotati recuperata con successo!!");
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("[ERROR]" + ex.Message);
                 throw;
 
             }
