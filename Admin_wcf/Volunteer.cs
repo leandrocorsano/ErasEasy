@@ -21,11 +21,11 @@ namespace Admin_wcf
             try
             {
                 risultato = wcfclient.DBinsert("VOLONTARIO", valori, "`idvolont`, `nome`, `cognome`, `data_n`, `email`, `tel`, `data_iscrizione`, `password`, `ruolo`, `idass`");
+                Console.WriteLine("[OK] Registrazione volontario avvenuta con successo");
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("problema con la registrazione");
+                Console.WriteLine("[ERROR]"+ ex.Message);
                 throw;
             }
             return risultato;
@@ -47,13 +47,18 @@ namespace Admin_wcf
                         
                         Associazione a=ass.Profile(Convert.ToInt32(row["idass"])); //recupero l'associazione corrispondente al volontario
                         v = new Volontario(Convert.ToInt32(row["idvolont"]), row["nome"].ToString(), row["cognome"].ToString(), row["data_n"].ToString(), row["email"].ToString(), row["tel"].ToString(), row["data_iscrizione"].ToString(), row["password"].ToString(), a, row["ruolo"].ToString());
+                        Console.WriteLine("[OK] Login volontario avvenuto con successo!!");
                         return v;
                     }
+                }
+                if (v == null)
+                {
+                    Console.WriteLine("[WARNING] Credenziali login volntario errate!!");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("[ERROR]"+ ex.Message);
                 throw;
 
             }
@@ -78,13 +83,14 @@ namespace Admin_wcf
 
                         Associazione a = ass.Profile(Convert.ToInt32(row["idass"])); //recupero l'associazione corrispondente al volontario
                         v = new Volontario(Convert.ToInt32(row["idvolont"]), row["nome"].ToString(), row["cognome"].ToString(), row["data_n"].ToString(), row["email"].ToString(), row["tel"].ToString(), row["data_iscrizione"].ToString(), row["password"].ToString(), a, row["ruolo"].ToString());
+                        Console.WriteLine("[OK] Profilo Associazione restituito con successo!!");
                         return v;
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("[ERROR]" + ex.Message);
                 throw;
 
             }
@@ -100,7 +106,18 @@ namespace Admin_wcf
             string set = "password='" + new_password + "'";
             string condizione = "idvolont=" + id.ToString();
 
-            return wcfclient.DBupdate("VOLONTARIO", set, condizione);
+            try
+            {
+                bool r= wcfclient.DBupdate("VOLONTARIO", set, condizione);
+                Console.WriteLine("[OK] Password volontario aggiornata con successo!!");
+                return r;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ERROR]" + ex.Message);
+                throw;
+
+            }
         }
 
         public bool UpdateProfile(Volontario v)
@@ -110,7 +127,18 @@ namespace Admin_wcf
             var wcfclient = server_conn.getInstance();
             string condizione = "idvolont=" + v.IdVolont;
             string set = "nome='" + v.nome + "', cognome='" + v.cognome + "', email='" + v.email + "',tel='" + v.telefono + "',ruolo='" + v.ruolo + "',data_iscrizione='" + v.data_iscr + "'";
-            return wcfclient.DBupdate("VOLONTARIO", set, condizione);
+            try
+            {
+                bool r= wcfclient.DBupdate("VOLONTARIO", set, condizione);
+                Console.WriteLine("[OK] Profilo volontario aggiornato con successo!!");
+                return r;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ERROR]" + ex.Message);
+                throw;
+
+            }
         }
         public Associazione GetAssociazione(int id)
         {
@@ -128,13 +156,14 @@ namespace Admin_wcf
 
 
                         a = new Associazione(Convert.ToInt32(row["IdAss"]), row["nome"].ToString(), row["citta"].ToString(), row["stato"].ToString(), row["via"].ToString(), row["tel"].ToString(), row["email"].ToString(), row["password"].ToString());
+                        Console.WriteLine("[OK] Associazione de volontario restituita con successo!!");
                         return a;
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("[ERROR]" + ex.Message);
                 throw;
 
             }
@@ -160,10 +189,11 @@ namespace Admin_wcf
                         volontari.Add(v);
                     }
                 }
+                Console.WriteLine("[OK] Lista volontari restituita con successo!!");
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("[ERROR]" + ex.Message);
                 throw;
 
             }
@@ -177,20 +207,22 @@ namespace Admin_wcf
             try
             {
                 risultato = wcfclient.DBinsert("GESTIONE", valori, "`idvolont`, `idev`");
+                Console.WriteLine("[OK] Prenotazione da parte del volontario avvenuta con successo!!");
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("[ERROR]" + ex.Message);
                 throw;
+
             }
             return risultato;
         }
-        public List<Evento> Show_Event(int idstud)
+        public List<Evento> Show_Event(int idvol)
         {
             /* ---------------------------------------------------
              * Eventi che ha gestisto/gestirà un volontario
              * ------------------------------------------------------*/
-            string cond = "E.idev=G.idev and G.idvolont=" + idstud + "";
+            string cond = "E.idev=G.idev and G.idvolont=" + idvol + "";
             var wcfclient = server_conn.getInstance();
             Association ass = new Association();
 
@@ -207,10 +239,11 @@ namespace Admin_wcf
                         eventi.Add(e);
                     }
                 }
+                Console.WriteLine("[OK] Lista eventi gestiti da un volontario!!");
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("[ERROR]" + ex.Message);
                 throw;
 
             }

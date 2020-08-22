@@ -24,10 +24,11 @@ namespace Admin_wcf
             try
             {
                 risultato=wcfclient.DBinsert("ASSOCIAZIONE",valori,"`idass`, `nome`, `citta`, `stato`, `via`, `tel`, `email`, `password`");
+                Console.WriteLine("[OK] Registrazione Associazione avvenuta con successo!!");
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("[ERROR]"+ ex.Message);
                 throw;
             }
             return risultato;
@@ -46,13 +47,18 @@ namespace Admin_wcf
                     foreach (DataRow row in table.Rows)
                     {
                         a = new Associazione(Convert.ToInt32(row["IdAss"]), row["nome"].ToString(), row["citta"].ToString(), row["stato"].ToString(), row["via"].ToString(), row["tel"].ToString(), row["email"].ToString(), row["password"].ToString());
+                        Console.WriteLine("[OK] Login  Associazione avvenuto con successo!!");
                         return a;
                     }
+                }
+                if (a == null)
+                {
+                    Console.WriteLine("[WARNING] Credenziali login associazione errate!!");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("[ERROR]" + ex.Message);
                 throw;
 
             }
@@ -73,20 +79,14 @@ namespace Admin_wcf
                 foreach (DataRow row in table.Rows)
                 {
                     a = new Associazione(Convert.ToInt32(row["IdAss"]), row["nome"].ToString(), row["citta"].ToString(), row["stato"].ToString(), row["via"].ToString(), row["tel"].ToString(), row["email"].ToString(), row["password"].ToString());
+                    Console.WriteLine("[OK] Profilo Associazione restituito con successo!!");
                     return a;
-                    /* foreach (DataColumn column in table.Columns)
-                    {
-                        string item = row[column].ToString();
-                        Console.WriteLine(item);
-                        Console.WriteLine();
-                        // read column and item
-                    }*/
                 }
             }
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("[ERROR]" + ex.Message);
                 throw;
 
             }
@@ -101,18 +101,36 @@ namespace Admin_wcf
             var wcfclient = server_conn.getInstance();
             string set = "password='" + new_password+"'";
             string condizione = "IdAss=" + id.ToString();
-
-            return wcfclient.DBupdate("ASSOCIAZIONE", set, condizione);
+            try
+            {
+                bool r= wcfclient.DBupdate("ASSOCIAZIONE", set, condizione);
+                Console.WriteLine("[OK] Password Associazione aggiornata con successo!");
+                return r;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("[ERROR]" + ex.Message);
+                throw;
+            }
         }
 
         public bool UpdateProfile(Associazione a)
         {
             /* N.B. è possibile modificare tutti i campi tranne la password e l'id*/
-            //var wcfclient = new DBManager.DBManagerClient(); //mi connetto al server
             var wcfclient = server_conn.getInstance();
             string condizione = "IdAss=" + a.IdAss;
             string set = "nome='" + a.nome + "', citta='" + a.citta + "', stato='" + a.stato + "', via='" + a.via + "',tel='" + a.tel + "', email='" + a.email + "'";
-            return wcfclient.DBupdate("ASSOCIAZIONE", set, condizione);
+            try
+            {
+                bool r= wcfclient.DBupdate("ASSOCIAZIONE", set, condizione);
+                Console.WriteLine("[OK] Profilo Associazione aggiornato con successo!!");
+                return r;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("[ERROR]"+ ex.Message);
+                throw;
+            }
         }
         public bool Create_events(Evento e)
         {
@@ -120,18 +138,18 @@ namespace Admin_wcf
             //var wcfclient = new DBManager.DBManagerClient(); //mi connetto al server
             var wcfclient = server_conn.getInstance();
             string valori = "" + e.IdEv + ",'" + e.nome + "','" + e.tipologia + "', '" + e.min_p + "','" + e.max_p + "','" + e.min_v + "','" + e.max_v + "','" + e.costo + "','"+ e.descrizione + "','"+ e.ass.IdAss + "'";
-            bool risultato;
             try
             {
-                risultato = wcfclient.DBinsert("EVENTO", valori, "`idev`, `nome`, `tipologia`, `min_p`, `max_p`, `min_v`, `max_v`, `costo`, `descrizione`, `idass`");
+                bool risultato = wcfclient.DBinsert("EVENTO", valori, "`idev`, `nome`, `tipologia`, `min_p`, `max_p`, `min_v`, `max_v`, `costo`, `descrizione`, `idass`");
+                Console.WriteLine("[OK] Evento creato con successo!!");
+                return risultato;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("[ERROR]"+ ex.Message);
                 throw;
             }
-            return risultato;
-            ;
+           
         }
         public List<Associazione> Show_associations(string cond="")
         {
@@ -148,10 +166,11 @@ namespace Admin_wcf
                         associazioni.Add(a);
                     }
                 }
+                Console.WriteLine("[OK] Lista associazioni recuparata con successo!!");
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("[ERROR]"+ ex.Message);
                 throw;
 
             }

@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Profilo";
-    Layout = "~/Views/Shared/WhitoutMenu.cshtml";
+    Layout = "~/Views/Shared/VolontarioMenu.cshtml";
 }
 
 <!DOCTYPE html>
@@ -33,7 +33,7 @@
                 <li class="list-group-item"><div class="row"><div class="col-6"><b>Data di iscrizione</b></div><div class="col-6">@vol.data_iscr</div></div></li>
                 <li class="list-group-item"><div class="row"><div class="col-6"><b>Email</b></div><div class="col-6">@vol.email</div></div></li>
                 <li class="list-group-item"><div class="row"><div class="col-6"><b>Ruolo</b></div><div class="col-6">@vol.ruolo</div></div></li>
-                <li class="list-group-item"><div class="row"><div class="col-6"><b>Associazione</b></div><div class="col-6">@vol.ass</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Associazione</b></div><div class="col-6">@vol.ass.nome</div></div></li>
             </ul>
             </ul>
         </div>
