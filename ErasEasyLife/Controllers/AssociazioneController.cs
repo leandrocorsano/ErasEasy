@@ -39,6 +39,11 @@ namespace ErasEasyLife.Controllers
             return View();
                 
         }
+        [HttpGet]
+        public ActionResult Modifica_Pass()
+        {
+            return View("Modifica_Pass");
+        }
 
         
 
@@ -180,6 +185,34 @@ namespace ErasEasyLife.Controllers
                 Console.WriteLine(ex.Message);
                 return View();
             }
+        }
+        [HttpPost]
+        public ActionResult Modifica_Pass(Models.CambioPass model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    
+                    var webclient = new Association.AssociationClient();
+                    Association.Associazione ass = new Association.Associazione();
+                    ass.password = model.password;
+                    Session["Associazione"] = ass;
+                    bool r = webclient.UpdatePassword(ass.IdAss, model.nuova_pass);
+                    ViewBag.risposta = "Hai cambiato password con successo";
+                    return View("Successo");
+
+                }
+                else
+                {
+                    return View();
+                }
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View();
+            }
+
         }
 
         // GET: Associazione/Delete/5
