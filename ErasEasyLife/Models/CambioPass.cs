@@ -8,14 +8,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ErasEasyLife.Models
 {
+    [Serializable]
+    [DataContract]
     public class CambioPass
     {
-        [DataMember]
-        [Required]
-        [DataType(DataType.Password)]
-        [DisplayName("Password attuale")]
+        //[DataMember]
+        //[Required]
+        //[DataType(DataType.Password)]
+        //[DisplayName("Password attuale")]
 
-        public string password { get; set; }
+        //public string password { get; set; }
         [DataMember]
         [Required]
         [DataType(DataType.Password)]
