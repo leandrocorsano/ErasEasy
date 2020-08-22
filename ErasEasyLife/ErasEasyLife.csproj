@@ -146,6 +146,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Associazione.cs" />
+    <Compile Include="Models\CambioPass.cs" />
     <Compile Include="Models\Studente.cs" />
     <Compile Include="Models\Volontario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2149,6 +2150,7 @@
     <Content Include="Views\Shared\AssociazioneMenu.cshtml" />
     <Content Include="Views\Studente\Profilo.cshtml" />
     <Content Include="Views\Volontario\Profilo %281%29.cshtml" />
+    <Content Include="Views\Associazione\Modifica_Pass.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
