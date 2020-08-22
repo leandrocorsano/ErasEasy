@@ -168,13 +168,14 @@ namespace ErasEasyLife.Controllers
                     bool r = webclient.UpdateProfile(ass);
                     ViewBag.risposta = "Hai modificato i dati con successo";
 
-                    return View("Modifica_Profilo");
+                    return View("Profilo");
 
                 }
                 // TODO: Add update logic here
                 else
                 {
-                    return View();
+                    ViewBag.risposta = "Errore";
+                    return View("Errore");
                     
                 }
                 
