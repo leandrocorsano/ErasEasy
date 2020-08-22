@@ -220,6 +220,28 @@ namespace ErasEasyLife.Controllers
             }
 
         }
+         [HttpGet]
+         public ActionResult Elenco()
+        {
+            return View();
+        }
+        [HttpPost]
+        // GET: Volontario/Create
+        public ActionResult Elenco(Models.Associazione model)
+        {
+            if (ModelState.IsValidField("citta"))
+            {
+
+                Association.Associazione ass = (Association.Associazione)Session["Associazione"];
+                string cond = "idass!" + ass.IdAss + " and citta='" + model.citta + "'";
+                var webclient = new Association.AssociationClient();
+                Association.Associazione[] associazioni = webclient.Show_associations(cond);
+
+                ViewData["associazioni"] = associazioni;
+                return View();
+            }
+            return View();
+        }
         [HttpGet]
         public ActionResult Crea_Evento()
         {
@@ -245,6 +267,7 @@ namespace ErasEasyLife.Controllers
                     ev.max_v = model.max_v;
                     ev.costo = model.costo;
                     ev.descrizione = model.descrizione;
+                    ev.ass = (Association.Associazione)Session["Associazione"];
             
                     bool r = webclient.Create_events(ev);
                     ViewBag.risposta = "Evento creato con successo";
@@ -253,7 +276,7 @@ namespace ErasEasyLife.Controllers
                 }
                 else
                 {
-                    return View("Errore");
+                    return View();
                 }
             }
             catch (Exception ex)

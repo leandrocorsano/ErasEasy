@@ -2158,6 +2158,9 @@
     <Content Include="Views\Associazione\Modifica_Pass.cshtml" />
     <Content Include="Views\Shared\VolontarioMenu.cshtml" />
     <Content Include="Views\Associazione\Crea_Evento.cshtml" />
+    <Content Include="Views\Volontario\Modifica_Pass.cshtml" />
+    <Content Include="Views\Studente\Modifica_Pass.cshtml" />
+    <Content Include="Views\Studente\Elenco.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

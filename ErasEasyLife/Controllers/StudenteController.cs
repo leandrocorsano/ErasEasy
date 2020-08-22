@@ -228,6 +228,46 @@ namespace ErasEasyLife.Controllers
                 return View();
             }
         }
+        [HttpGet]
+        public ActionResult Modifica_Pass()
+        {
+            return View("Modifica_Pass");
+        }
+        [HttpPost]
+        public ActionResult Modifica_Pass(Models.CambioPass model)
+        {
+            try
+            {
+                if ((ModelState.IsValid))
+                {
+
+                    var webclient = new Student.StudentClient();
+                   Student.Studente stud = (Student.Studente)Session["Studente"]; //recupero lo studente che è entrato
+
+                    stud.password = model.nuova_pass;
+
+                    bool r = webclient.UpdatePassword(stud.IdStud, model.nuova_pass);
+                    if (r == true)
+                    {
+                        Session["Studente"] = stud; //creo la nuova session
+                    }
+                    ViewBag.risposta = "Hai cambiato password con successo";
+                    return View("Successo");
+
+                }
+                else
+                {
+
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View();
+            }
+
+        }
 
 
         // GET: Studente/Delete/5

@@ -50,7 +50,7 @@ namespace ErasEasyLife.Models
 
         [DataMember]
         [Required(ErrorMessage = "La data di iscrizione del volontario è obbligatoria")]
-        [DataType(DataType.Date, ErrorMessage = "La data di nascita non è valida")]
+        [DataType(DataType.Date, ErrorMessage = "La data di iscrizione non è valida")]
         [DisplayName("Data di iscrizione")]
         public string data_iscr { get; set; }
 
