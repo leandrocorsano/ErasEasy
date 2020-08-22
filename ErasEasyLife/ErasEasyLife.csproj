@@ -147,6 +147,7 @@
     </Compile>
     <Compile Include="Models\Associazione.cs" />
     <Compile Include="Models\CambioPass.cs" />
+    <Compile Include="Models\Evento.cs" />
     <Compile Include="Models\Studente.cs" />
     <Compile Include="Models\Volontario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2156,6 +2157,7 @@
     <Content Include="Views\Shared\StudenteMenu.cshtml" />
     <Content Include="Views\Associazione\Modifica_Pass.cshtml" />
     <Content Include="Views\Shared\VolontarioMenu.cshtml" />
+    <Content Include="Views\Associazione\Crea_Evento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

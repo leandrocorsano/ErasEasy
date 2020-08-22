@@ -220,7 +220,50 @@ namespace ErasEasyLife.Controllers
             }
 
         }
+        [HttpGet]
+        public ActionResult Crea_Evento()
+        {
+            return View("Crea_Evento");
+        }
+        [HttpPost]
+        public ActionResult Crea_Evento(Models.Evento model)
+        {
+            try
+            {
+                if ((ModelState.IsValid))
+                {
+                    var webclient = new Association.AssociationClient();
+                    Association.Associazione ass = (Association.Associazione)Session["Associazione"];
+                 
+                    Association.Evento ev = new Association.Evento();
+                    ev.IdEv = model.IdEv;
+                    ev.nome = model.nome;
+                    ev.tipologia = model.tipologia;
+                    ev.min_p = model.min_p;
+                    ev.max_p = model.max_p;
+                    ev.min_v = model.min_v;
+                    ev.max_v = model.max_v;
+                    ev.costo = model.costo;
+                    ev.descrizione = model.descrizione;
+                    ev.ass = webclient.GetAssociazione(ass.IdAss);
+                    bool r = webclient.Create_events(ev);
+                    ViewBag.risposta = "Evento creato con successo";
+                    return View("Successo");
 
+                }
+                else
+                {
+                    return View("Errore");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View();
+
+
+            }
+        }
         // GET: Associazione/Delete/5
         public ActionResult Delete(int id)
         {

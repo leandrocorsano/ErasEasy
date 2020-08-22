@@ -177,6 +177,7 @@ namespace Admin_wcf
             return associazioni;
         }
     }
+
     [DataContract]
     public class Associazione
     {
