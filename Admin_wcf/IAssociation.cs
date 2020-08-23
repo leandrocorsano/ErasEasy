@@ -31,6 +31,8 @@ namespace Admin_wcf
         [OperationContract]
         bool Create_events(Svolgimento s);
         [OperationContract]
+        List<string> GetCitta(string cond = "");
+        [OperationContract]
         List<Associazione> Show_associations(string cond="");//la cond si usa nel caso vogliamo mostrare associazioni particolari
         /*funzioni che mancano*/
         //Show_Event(idassoc) (lista che mostra tutti gli eventi creati da una particolare associazione)

@@ -6,6 +6,7 @@
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Server_Admin/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Server_Admin/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Admin_wcf" />
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Server_Admin/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Server_Admin/?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IAssociation_Registration_InputMessage">
@@ -44,6 +45,12 @@
   <wsdl:message name="IAssociation_Create_events_OutputMessage">
     <wsdl:part name="parameters" element="tns:Create_eventsResponse" />
   </wsdl:message>
+  <wsdl:message name="IAssociation_GetCitta_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCitta" />
+  </wsdl:message>
+  <wsdl:message name="IAssociation_GetCitta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCittaResponse" />
+  </wsdl:message>
   <wsdl:message name="IAssociation_Show_associations_InputMessage">
     <wsdl:part name="parameters" element="tns:Show_associations" />
   </wsdl:message>
@@ -74,6 +81,10 @@
     <wsdl:operation name="Create_events">
       <wsdl:input wsaw:Action="http://tempuri.org/IAssociation/Create_events" message="tns:IAssociation_Create_events_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAssociation/Create_eventsResponse" message="tns:IAssociation_Create_events_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCitta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssociation/GetCitta" message="tns:IAssociation_GetCitta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssociation/GetCittaResponse" message="tns:IAssociation_GetCitta_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Show_associations">
       <wsdl:input wsaw:Action="http://tempuri.org/IAssociation/Show_associations" message="tns:IAssociation_Show_associations_InputMessage" />
@@ -129,6 +140,15 @@
     </wsdl:operation>
     <wsdl:operation name="Create_events">
       <soap:operation soapAction="http://tempuri.org/IAssociation/Create_events" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCitta">
+      <soap:operation soapAction="http://tempuri.org/IAssociation/GetCitta" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

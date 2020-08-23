@@ -617,6 +617,12 @@ namespace ErasEasyLife.Association {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/Create_events", ReplyAction="http://tempuri.org/IAssociation/Create_eventsResponse")]
         System.Threading.Tasks.Task<bool> Create_eventsAsync(ErasEasyLife.Association.Svolgimento s);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/GetCitta", ReplyAction="http://tempuri.org/IAssociation/GetCittaResponse")]
+        string[] GetCitta(string cond);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/GetCitta", ReplyAction="http://tempuri.org/IAssociation/GetCittaResponse")]
+        System.Threading.Tasks.Task<string[]> GetCittaAsync(string cond);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/Show_associations", ReplyAction="http://tempuri.org/IAssociation/Show_associationsResponse")]
         ErasEasyLife.Association.Associazione[] Show_associations(string cond);
         
@@ -697,6 +703,14 @@ namespace ErasEasyLife.Association {
         
         public System.Threading.Tasks.Task<bool> Create_eventsAsync(ErasEasyLife.Association.Svolgimento s) {
             return base.Channel.Create_eventsAsync(s);
+        }
+        
+        public string[] GetCitta(string cond) {
+            return base.Channel.GetCitta(cond);
+        }
+        
+        public System.Threading.Tasks.Task<string[]> GetCittaAsync(string cond) {
+            return base.Channel.GetCittaAsync(cond);
         }
         
         public ErasEasyLife.Association.Associazione[] Show_associations(string cond) {

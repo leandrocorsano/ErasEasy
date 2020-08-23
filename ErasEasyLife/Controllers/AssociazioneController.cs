@@ -8,6 +8,7 @@ using ErasEasyLife.Association;
 #pragma warning disable CS0105 // La direttiva using per 'ErasEasyLife.Association' è già presente in questo spazio dei nomi
 using ErasEasyLife.Association;
 using System.Linq.Expressions;
+using System.Net;
 #pragma warning restore CS0105 // La direttiva using per 'ErasEasyLife.Association' è già presente in questo spazio dei nomi
 
 namespace ErasEasyLife.Controllers
@@ -231,10 +232,11 @@ namespace ErasEasyLife.Controllers
         {
             if (ModelState.IsValidField("citta"))
             {
-
+                var webclient = new Association.AssociationClient();
                 Association.Associazione ass = (Association.Associazione)Session["Associazione"];
                 string cond = "idass!" + ass.IdAss + " and citta='" + model.citta + "'";
-                var webclient = new Association.AssociationClient();
+                string[] listacitta = webclient.GetCitta("");
+                ViewData["citta"] = listacitta;
                 Association.Associazione[] associazioni = webclient.Show_associations(cond);
 
                 ViewData["associazioni"] = associazioni;
