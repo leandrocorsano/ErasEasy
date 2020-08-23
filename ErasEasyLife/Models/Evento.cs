@@ -13,6 +13,8 @@ namespace ErasEasyLife.Models
     public class Evento
     {
         [DataMember]
+        [Required(ErrorMessage = "Il nome dell'evento è obbligatorio")]
+        [DisplayName("Numero evento")]
         public int IdEv { get; set; }
         [DataMember]
         [Required(ErrorMessage = "Il nome dell'evento è obbligatorio")]
@@ -23,11 +25,11 @@ namespace ErasEasyLife.Models
         [DisplayName("Tipologia")]
         public string tipologia { get; set; }
         [DataMember]
-        [Required(ErrorMessage ="Inserire il numero minimo di partecipanti")]
+        [Required(ErrorMessage ="Inserire il numero minimo di studenti")]
         [DisplayName("Numero minimo di partecipanti")]
         public int min_p { get; set; }
         [DataMember]
-        [Required(ErrorMessage = "Inserire il numero massimo di partecipanti")]
+        [Required(ErrorMessage = "Inserire il numero massimo di studenti")]
         [DisplayName("Numero massimo di partecipanti")]
         public int max_p { get; set; }
         [DataMember]
@@ -45,8 +47,45 @@ namespace ErasEasyLife.Models
         [Required(ErrorMessage = "Inserire una descrizione")]
         [DisplayName("Descrizione")]
         public string descrizione { get; set; }
+        
         [DataMember]
-        public int ass { get; set; }
+        [Required(ErrorMessage = "L'ora di inzio dell'evento è obbligatoria")]
+        [DisplayName("Ora inizio")]
+        [DataType(DataType.Time, ErrorMessage = "Formato ora non valido")]
+        public string ora_i { get; set; }
+
+        [DataMember]
+        [Required(ErrorMessage = "L'ora di fine dell'evento è obbligatoria")]
+        [DisplayName("Ora fine")]
+        [DataType(DataType.Time, ErrorMessage = "Formato ora non valido")]
+        public string ora_f { get; set; }
+        [DataMember]
+        [Required(ErrorMessage = "La data d'inizio  dell'evento è obbligatoria")]
+        [DisplayName("Data inizio")]
+        [DataType(DataType.Date, ErrorMessage = "Formato data non valido")]
+        public string data_i { get; set; }
+        [DataMember]
+        [Required(ErrorMessage = "La data di fine dell'evento è obbligatoria")]
+        [DisplayName("Data fine")]
+        [DataType(DataType.Date, ErrorMessage = "Formato data non valido")]
+        public string data_f { get; set; }
+        [DataMember]
+        [Required(ErrorMessage = "L'id del luogo è obbligatorio")]
+        [DisplayName("IDluogo")]
+        public int IdLuogo { get; set; }
+        [DataMember]
+        [Required(ErrorMessage = "La città dell'evento è obbligatoria")]
+        [DisplayName("Città")]
+        public string citta { get; set; }
+        [DataMember]
+        [Required(ErrorMessage = "La via dell'evento è obbligatoria")]
+        [DisplayName("Via")]
+        public string via { get; set; }
+        [DataMember]
+        [Required(ErrorMessage = "Lo stato dove si svolge l'evento è obbligatoria")]
+        [DisplayName("Stato")]
+        public string stato { get; set; }
+
 
     }
 }

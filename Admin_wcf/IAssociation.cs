@@ -29,7 +29,7 @@ namespace Admin_wcf
         bool UpdatePassword(int id, string new_password);
 
         [OperationContract]
-        bool Create_events(Evento e);
+        bool Create_events(Svolgimento s);
         [OperationContract]
         List<Associazione> Show_associations(string cond="");//la cond si usa nel caso vogliamo mostrare associazioni particolari
         /*funzioni che mancano*/

@@ -9,6 +9,7 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using Admin_wcf.Classi;
 
+
 namespace Admin_wcf
 {
     // NOTA: è possibile utilizzare il comando "Rinomina" del menu "Refactoring" per modificare il nome di classe "Server_Admin" nel codice e nel file di configurazione contemporaneamente.
@@ -132,15 +133,22 @@ namespace Admin_wcf
                 throw;
             }
         }
-        public bool Create_events(Evento e)
+        public bool Create_events(Svolgimento s)
         {
             /* N.B. è possibile modificare tutti i campi tranne la password e l'id*/
             //var wcfclient = new DBManager.DBManagerClient(); //mi connetto al server
             var wcfclient = server_conn.getInstance();
-            string valori = "" + e.IdEv + ",'" + e.nome + "','" + e.tipologia + "', '" + e.min_p + "','" + e.max_p + "','" + e.min_v + "','" + e.max_v + "','" + e.costo + "','"+ e.descrizione + "','"+ e.ass.IdAss + "'";
+            string valori_evento = "" + s.evento.IdEv + ",'" + s.evento.nome + "','" + s.evento.tipologia + "', '" + s.evento.min_p + "','" + s.evento.max_p + "','" + s.evento.min_v + "','" + s.evento.max_v + "','" + s.evento.costo + "','"+ s.evento.descrizione + "','"+ s.evento.ass.IdAss + "'";
+            string valori_luogo = "" + s.luogo.IdLuogo + ", '" + s.luogo.citta + "', '" + s.luogo.via + "','" + s.luogo.stato + "'";
+            string valori_svolgim=""+s.evento.IdEv+", "+s.luogo.IdLuogo+", '"+s.ora_i+"', '"+s.ora_f+"', '"+s.data_i+"','"+s.data_f+"'";
+            string insert_evento = "INSERT INTO EVENTO(`idev`, `nome`, `tipologia`, `min_p`, `max_p`, `min_v`, `max_v`, `costo`, `descrizione`, `idass`) VALUES (" + valori_evento + ")";
+            string insert_luogo = "INSERT INTO LUOGO(`idluogo`, `citta`, `via`, `stato`) VALUES (" + valori_luogo + ")";
+            string insert_svolgim = "INSERT INTO SVOLGIMENTO(`idev`, `idluogo`, `ora_i`, `ora_f`, `data_i`, `data_f`) VALUES (" + valori_svolgim + ")";
+            string [] query = { insert_evento, insert_luogo, insert_svolgim };
+            
             try
             {
-                bool risultato = wcfclient.DBinsert("EVENTO", valori, "`idev`, `nome`, `tipologia`, `min_p`, `max_p`, `min_v`, `max_v`, `costo`, `descrizione`, `idass`");
+                bool risultato = wcfclient.DBtransaction(query);
                 Console.WriteLine("[OK] Evento creato con successo!!");
                 return risultato;
             }
@@ -176,6 +184,7 @@ namespace Admin_wcf
             }
             return associazioni;
         }
+       
     }
 
     [DataContract]

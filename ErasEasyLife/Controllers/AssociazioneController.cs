@@ -256,8 +256,9 @@ namespace ErasEasyLife.Controllers
                 {
                     var webclient = new Association.AssociationClient();
                     Association.Associazione ass = (Association.Associazione)Session["Associazione"];
-                 
                     Association.Evento ev = new Association.Evento();
+                    Association.Luogo l = new Association.Luogo();
+                    Association.Svolgimento svo = new Association.Svolgimento();
                     ev.IdEv = model.IdEv;
                     ev.nome = model.nome;
                     ev.tipologia = model.tipologia;
@@ -268,8 +269,17 @@ namespace ErasEasyLife.Controllers
                     ev.costo = model.costo;
                     ev.descrizione = model.descrizione;
                     ev.ass = (Association.Associazione)Session["Associazione"];
-            
-                    bool r = webclient.Create_events(ev);
+                    l.IdLuogo = model.IdLuogo;
+                    l.via = model.via;
+                    l.citta = model.citta;
+                    l.stato = model.stato;
+                    svo.evento = ev;
+                    svo.luogo = l;
+                    svo.data_i = model.data_i;
+                    svo.data_f = model.data_f;
+                    svo.ora_i = model.ora_i;
+                    svo.ora_f = model.ora_f;
+                    bool r = webclient.Create_events(svo);
                     ViewBag.risposta = "Evento creato con successo";
                     return View("Successo");
 
