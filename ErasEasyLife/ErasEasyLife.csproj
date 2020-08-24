@@ -1929,6 +1929,9 @@
     <None Include="Connected Services\Association\item3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\Association\item4.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\Association\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -2161,6 +2164,7 @@
     <Content Include="Views\Volontario\Modifica_Pass.cshtml" />
     <Content Include="Views\Studente\Modifica_Pass.cshtml" />
     <Content Include="Views\Studente\Elenco.cshtml" />
+    <Content Include="Views\Associazione\Elenco.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

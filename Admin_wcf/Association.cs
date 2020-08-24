@@ -159,6 +159,33 @@ namespace Admin_wcf
             }
            
         }
+
+        public List<string>GetCitta(string cond = "")
+        {
+            var wcfclient = server_conn.getInstance();
+            List<string>citta = new List<string>();
+            try
+            {
+                DataSet ass_set = wcfclient.DBselect("distinct citta", "ASSOCIAZIONE", cond);
+                foreach (DataTable table in ass_set.Tables)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+                        string c = row["citta"].ToString();
+                        citta.Add(c);
+                    }
+                }
+                Console.WriteLine("[OK] Lista città recuparata con successo!!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ERROR]" + ex.Message);
+                throw;
+
+            }
+            return citta;
+
+        }
         public List<Associazione> Show_associations(string cond="")
         {
             var wcfclient = server_conn.getInstance();

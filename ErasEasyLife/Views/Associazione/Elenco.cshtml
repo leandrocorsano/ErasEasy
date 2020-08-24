@@ -1,0 +1,86 @@
+﻿@model ErasEasyLife.Models.Associazione
+@{
+    ViewBag.Title = "Elenco";
+    Layout = "~/Views/Shared/AssociazioneMenu.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Elenco Associazioni</title>
+</head>
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">Elenco Associazioni</h1>
+        </div>
+    </div>
+
+    <div class="card p-1">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <center>
+                    <div class="input-group mb-2 ">
+                        <select class="custom-select" name="@Html.NameFor(model => model.citta)">
+                        
+
+                            @foreach (var cit in ViewData["citta"] as IEnumerable<string>)
+                            {
+
+                                <option value="@cit">
+                                    @cit
+                                </option>
+                            }
+                        </select>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn bg-gradient-green btn-sm"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </center>
+
+            </div>
+        }
+            <div>
+
+                @if (ViewData["associazioni"] != null)
+                {
+                    <div class="row">
+                        @{
+                            foreach (var associazione in ViewData["associazioni"] as IList<ErasEasyLife.Association.Associazione>)
+                            {
+                                <div class="col-sm-4">
+                                    <div class="card">
+                                        <center>
+                                            <div class="card-header bg-green">
+                                            
+                                                @associazione.nome @associazione.citta
+                                            </div>
+                                            <div class="card-body bg-light">
+                                                <p><i class="fas fa-envelope"></i> @associazione.via</p>
+                                                <p><i class="fas fa-city"></i> @associazione.tel</p>
+                                                
+                                            </div>
+                                        </center>
+                                    </div>
+                                </div>
+
+                            }
+                        }
+
+                    </div>
+                }
+
+            </div>
+        </div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </body>
+</html>
