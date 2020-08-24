@@ -224,6 +224,9 @@ namespace ErasEasyLife.Controllers
          [HttpGet]
          public ActionResult Elenco()
         {
+            var webclient = new Association.AssociationClient();
+            string[] listacitta = webclient.GetCitta("");
+            ViewData["citta"] = listacitta;
             return View();
         }
         [HttpPost]
@@ -233,13 +236,13 @@ namespace ErasEasyLife.Controllers
             if (ModelState.IsValidField("citta"))
             {
                 var webclient = new Association.AssociationClient();
-                Association.Associazione ass = (Association.Associazione)Session["Associazione"];
-                string cond = "idass!" + ass.IdAss + " and citta='" + model.citta + "'";
+               
+                string cond = "citta='" + model.citta + "'";
                 string[] listacitta = webclient.GetCitta("");
                 ViewData["citta"] = listacitta;
                 Association.Associazione[] associazioni = webclient.Show_associations(cond);
 
-                ViewData["associazioni"] = associazioni;
+                ViewData["elenco_associazioni"] = associazioni;
                 return View();
             }
             return View();

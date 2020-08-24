@@ -1,7 +1,7 @@
 ﻿@model ErasEasyLife.Models.Associazione
 @{
     ViewBag.Title = "Elenco";
-    Layout = "~/Views/Shared/AssociazioneMenu.cshtml";
+    Layout = "~/Views/Shared/StudenteMenu.cshtml";
 }
 
 
@@ -49,23 +49,25 @@
         }
             <div>
 
-                @if (ViewData["associazioni"] != null)
+              @if (ViewData["elenco_associazioni"] != null)
                 {
                     <div class="row">
                         @{
-                            foreach (var associazione in ViewData["associazioni"] as IList<ErasEasyLife.Association.Associazione>)
+                            foreach (var associazione in ViewData["elenco_associazioni"] as IEnumerable<ErasEasyLife.Association.Associazione>)
                             {
                                 <div class="col-sm-4">
                                     <div class="card">
                                         <center>
                                             <div class="card-header bg-green">
                                             
-                                                @associazione.nome @associazione.citta
+                                                @associazione.nome
                                             </div>
                                             <div class="card-body bg-light">
-                                                <p><i class="fas fa-envelope"></i> @associazione.via</p>
-                                                <p><i class="fas fa-city"></i> @associazione.tel</p>
-                                                
+                                                <p><b>Contatti:</b></p>
+                                                <p><i class="fas fa-city"></i> @associazione.citta<br /> Via @associazione.via </p>
+                                                <p><i class="fas fa-phone-alt"></i> @associazione.tel</p>
+                                                <p><a href="mailto:@associazione.email"><i class="fas fa-envelope"></i></a> @associazione.email</p>
+
                                             </div>
                                         </center>
                                     </div>

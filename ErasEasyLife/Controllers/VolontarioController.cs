@@ -268,8 +268,8 @@ namespace ErasEasyLife.Controllers
                 var webclient = new Volunteer.VolunteerClient();
                 Volunteer.Volontario vol = (Volunteer.Volontario)Session["Volontario"];
                 string cond = "idvolont!" + vol.IdVolont + " and ass='" + model.ass + "'";
-                Volunteer.Associazione[] listaass = webclient.GetAssociazione();
-                ViewData["Associazione"] = listaass;
+                //Volunteer.Associazione ass = webclient.GetAssociazione(vol.IdVolont);
+                //ViewData["Associazione"] = ass;
                 Volunteer.Volontario[] volontari = webclient.Show_volontari(cond);
 
                 ViewData["volontari"] = volontari;
