@@ -248,6 +248,19 @@ namespace ErasEasyLife.Controllers
             return View();
         }
         [HttpGet]
+        public ActionResult Elenco_Volontari()
+        {
+           
+                var webclient = new Volunteer.VolunteerClient();
+                Association.Associazione ass = (Association.Associazione)Session["Associazione"];
+                string cond = "idass=" + ass.IdAss;
+                Volunteer.Volontario[] volontari = webclient.Show_volontari(cond);
+
+                ViewData["elenco_volontari"] = volontari;
+                return View();
+
+        }
+        [HttpGet]
         public ActionResult Crea_Evento()
         {
             return View("Crea_Evento");

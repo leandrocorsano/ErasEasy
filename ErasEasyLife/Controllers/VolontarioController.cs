@@ -254,28 +254,20 @@ namespace ErasEasyLife.Controllers
             }
 
         }
+
         [HttpGet]
+        // GET: Volontario/Create
         public ActionResult Elenco()
         {
-            return View();
-        }
-        [HttpPost]
-        // GET: Volontario/Create
-        public ActionResult Elenco(Models.Volontario model)
-        {
-            if (ModelState.IsValidField("ass"))
-            {
+            
                 var webclient = new Volunteer.VolunteerClient();
                 Volunteer.Volontario vol = (Volunteer.Volontario)Session["Volontario"];
-                string cond = "idvolont!" + vol.IdVolont + " and ass='" + model.ass + "'";
-                //Volunteer.Associazione ass = webclient.GetAssociazione(vol.IdVolont);
-                //ViewData["Associazione"] = ass;
+                string cond = "idvolont!=" + vol.IdVolont + " and idass=" + vol.ass.IdAss + "";
                 Volunteer.Volontario[] volontari = webclient.Show_volontari(cond);
 
                 ViewData["volontari"] = volontari;
                 return View();
-            }
-            return View();
+            
         }
 
         // GET: Volontario/Delete/5

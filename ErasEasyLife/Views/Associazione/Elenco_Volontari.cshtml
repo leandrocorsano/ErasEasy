@@ -1,0 +1,85 @@
+﻿@model ErasEasyLife.Models.Volontario
+@{
+    ViewBag.Title = "Elenco Volontari";
+    Layout = "~/Views/Shared/AssociazioneMenu.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewBag.Title</title>
+</head>
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">Elenco Volontari</h1>
+        </div>
+    </div>
+
+    <div class="card p-1">
+        <div>
+
+            @if (ViewData["elenco_volontari"] != null)
+            {
+                <div class="row">
+                    @{
+                        foreach (var volontario in ViewData["elenco_volontari"] as IEnumerable<ErasEasyLife.Volunteer.Volontario>)
+                        {
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <center>
+                                        <div class="card-header bg-cyan">
+
+                                         <h4> @volontario.nome  @volontario.cognome</h4>
+                                        </div>
+                                        <div class="card-body bg-light">
+                                            <p><i class="fas fa-calendar"></i><b> Data iscrizione: </b><br /> @volontario.data_iscr </p>
+                                            @if (volontario.ruolo == "")
+                                            {
+                                                using (Html.BeginForm())
+                                                {
+                                                    @Html.AntiForgeryToken()
+
+                                                    <div class="form-group">
+                                             
+                                                            
+                                                                <input type="hidden" name="@Html.NameFor(Model=>Model.IdVolont)" value="@volontario.IdVolont" />
+                                                                
+                                                                    <center><button type="submit" class="btn bg-gradient-cyan btn-sm ">Aggiungi ruolo</button></center>
+                                                                
+                                                            
+                                                       
+
+                                                    </div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <p><i class="fas fa-user-alt"></i><b> Ruolo: </b> <br />@volontario.ruolo</p>
+                                            }
+                                            <p><i class="fas fa-phone"></i> @volontario.telefono</p>
+                                            <p><a href="mailto:@volontario.email"><i class="fas fa-envelope"></i></a> @volontario.email</p>
+
+                                        </div>
+                                    </center>
+                                </div>
+                            </div>
+
+                        }
+                    }
+
+                </div>
+            }
+
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>
+

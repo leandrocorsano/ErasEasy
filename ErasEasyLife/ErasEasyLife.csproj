@@ -2165,6 +2165,8 @@
     <Content Include="Views\Studente\Modifica_Pass.cshtml" />
     <Content Include="Views\Studente\Elenco.cshtml" />
     <Content Include="Views\Associazione\Elenco.cshtml" />
+    <Content Include="Views\Associazione\Elenco_Volontari.cshtml" />
+    <Content Include="Views\Volontario\Elenco.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
