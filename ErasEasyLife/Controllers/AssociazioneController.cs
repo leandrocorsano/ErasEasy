@@ -315,6 +315,62 @@ namespace ErasEasyLife.Controllers
 
             }
         }
+
+        [HttpGet]
+        public ActionResult Crea_Riunione()
+        {
+            return View("Crea_Riunione");
+        }
+        [HttpPost]
+        public ActionResult Crea_Riunione(Models.Evento model)
+        {
+            try
+            {
+                if ((ModelState.IsValid))
+                {
+                    var webclient = new Association.AssociationClient();
+                    Association.Associazione ass = (Association.Associazione)Session["Associazione"];
+                    Association.Evento ev = new Association.Evento();
+                    Association.Luogo l = new Association.Luogo();
+                    Association.Svolgimento svo = new Association.Svolgimento();
+                    ev.IdEv = model.IdEv;
+                    ev.nome = model.nome;
+                    ev.tipologia = model.tipologia;
+                    ev.min_p = model.min_p;
+                    ev.max_p = model.max_p;
+                    ev.min_v = model.min_v;
+                    ev.max_v = model.max_v;
+                    ev.costo = model.costo;
+                    ev.descrizione = model.descrizione;
+                    ev.ass = (Association.Associazione)Session["Associazione"];
+                    l.IdLuogo = model.IdLuogo;
+                    l.via = ass.via;
+                    l.citta = ass.citta;
+                    l.stato = ass.stato;
+                    svo.evento = ev;
+                    svo.luogo = l;
+                    svo.data_i = model.data_i;
+                    svo.data_f = model.data_f;
+                    svo.ora_i = model.ora_i;
+                    svo.ora_f = model.ora_f;
+                    bool r = webclient.Create_events(svo);
+                    ViewBag.risposta = "Evento creato con successo";
+                    return View("Successo");
+
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View();
+
+
+            }
+        }
         // GET: Associazione/Delete/5
         public ActionResult Delete(int id)
         {
