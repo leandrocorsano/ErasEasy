@@ -12,7 +12,7 @@ namespace Admin_wcf.Classi
     {
         public Svolgimento(Evento IdEv, Luogo luogo, string ora_i, string ora_f, string data_i, string data_f)
         {
-            this.evento = evento;
+            this.evento = IdEv;
             this.luogo = luogo;
             this.ora_i = ora_i;
             this.ora_f = ora_f;

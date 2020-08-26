@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using Admin_wcf.Classi;
 
 namespace Admin_wcf
 {
@@ -12,12 +13,12 @@ namespace Admin_wcf
     public interface IEvent
     {
         [OperationContract]
-        void DoWork();
+        List<Svolgimento> Show_events(string cond = "");
         /*funzioni che mancano*/
         //get_event_by_id(id)
-        //Show_event( datainzio, datafine, citta) (lista che mostra tutti gli eventi di un determinato periodo)
+        
         //All_event(citta) (lista che mostra tutti gli eventi in una determinata città)
         //All_riunioni(citta)
-        //Show_riunioni(datainzio, datafine, citta)
+ 
     }
 }

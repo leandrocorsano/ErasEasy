@@ -129,6 +129,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\Event\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\Student\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1936,12 +1941,35 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Connected Services\Event\ErasEasyLife.Event.Svolgimento.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\Event\item.disco" />
+    <None Include="Connected Services\Event\configuration91.svcinfo" />
+    <None Include="Connected Services\Event\configuration.svcinfo" />
+    <None Include="Connected Services\Event\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Connected Services\Student\ErasEasyLife.Student.Studente.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\Student\ErasEasyLife.Student.Evento.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Connected Services\Event\Event.wsdl" />
+    <None Include="Connected Services\Event\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\Event\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\Event\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\Event\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\Student\item.disco" />
     <None Include="Connected Services\Student\configuration91.svcinfo" />
     <None Include="Connected Services\Student\configuration.svcinfo" />
@@ -2182,6 +2210,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\Association\" />
+    <WCFMetadataStorage Include="Connected Services\Event\" />
     <WCFMetadataStorage Include="Connected Services\Student\" />
     <WCFMetadataStorage Include="Connected Services\Volunteer\" />
   </ItemGroup>
