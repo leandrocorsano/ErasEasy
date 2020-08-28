@@ -145,6 +145,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AssociazioneController.cs" />
+    <Compile Include="Controllers\EventoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\VolontarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2196,6 +2197,7 @@
     <Content Include="Views\Associazione\Elenco_Volontari.cshtml" />
     <Content Include="Views\Volontario\Elenco.cshtml" />
     <Content Include="Views\Associazione\Crea_Riunione.cshtml" />
+    <Content Include="Views\Evento\Lista_Eventi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
