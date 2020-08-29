@@ -57,6 +57,7 @@ namespace ErasEasyLife.Controllers
             
             return View();
         }
+        
         [HttpGet]
         // GET: Studente/Create
         public ActionResult Registra()
