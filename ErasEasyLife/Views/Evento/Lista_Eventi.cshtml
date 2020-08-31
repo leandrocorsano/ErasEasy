@@ -1,4 +1,4 @@
-﻿
+﻿@model ErasEasyLife.Models.Associazione
 @{
     ViewBag.Title = "Eventi";
     Layout = "~/Views/Shared/StudenteMenu.cshtml";
@@ -165,13 +165,13 @@ h1
   display: block
 }
 
-.card-cont a
+.card-cont .a
 {
   display: block;
   text-decoration: none;
   width: 80px;
   height: 30px;
-  background-color: #D8DDE0;
+  
   color: #fff;
   text-align: center;
   line-height: 30px;
@@ -181,12 +181,12 @@ h1
   bottom: 10px
 }
 
-.row:last-child .card:first-child .card-cont a
+.row:last-child .card:first-child .card-cont .a
 {
   background-color: #037FDD
 }
 
-.row:last-child .card:last-child .card-cont a
+.row:last-child .card:last-child .card-cont .a
 {
   background-color: #F8504C
 }
@@ -215,10 +215,42 @@ h1
 <body>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h2 class="display-4 text-center">Elenco Eventi</h2>
+            <h2 class="display-4 text-center">Prossimi Eventi</h2>
         </div>
     </div>
+    
+        @using (Html.BeginForm("Lista_Eventi", "Evento", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <center>
+                    <div class="input-group mb-2 ">
+                        <label>Scegli associazione &nbsp;</label>
+                        <select class="custom-select" name="@Html.NameFor(model => model.IdAss)">
 
+                            <option value="0">
+                                Tutte
+                            </option>
+                            @foreach (var ass in ViewData["associazioni"] as IList<ErasEasyLife.Association.Associazione>)
+                            {
+
+                                <option value="@ass.IdAss">
+                                    @ass.nome-@ass.citta, @ass.stato
+                                </option>
+                            }
+                        </select>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn bg-gradient-green btn-sm"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </center>
+
+            </div>
+
+
+
+        }
+   
     <section class="container">
 
         @if (ViewData["eventi"] != null)
@@ -242,13 +274,16 @@ h1
                         </section>
                         <section class="card-cont">
                             <small>@E.evento.tipologia</small>
+
                             <h2>@E.evento.nome</h2>
+                            <span> <i> @E.evento.ass.nome</i> </span>
                             <div class="even-date">
                                 <i class="fa fa-calendar"></i>
                                 <time>
                                     <span> &nbsp; Inizio: @Giorni[Date1.DayOfWeek.ToString()] @Date1.Day.ToString()  @Mesi[Date1.Month] @Date1.Year.ToString()  @E.ora_i</span>
                                     <span> &nbsp; Fine: @Giorni[Date2.DayOfWeek.ToString()] @Date2.Day.ToString()  @Mesi[Date2.Month] @Date2.Year.ToString()  @E.ora_f</span>
                                 </time>
+
                             </div>
                             <div class="even-info">
                                 <i class="fa fa-map-marker"></i>
@@ -257,23 +292,30 @@ h1
                                 </p>
                                 <i class="fa fa-dollar-sign"></i>
                                 <p> &nbsp; Costo: @E.evento.costo &euro; </p>
+
                             </div>
-                            
-                            <a href="#" class="bg-green">Dettagli</a>
+                            @using (Html.BeginForm("Dettagli", "Evento", FormMethod.Post))
+                            {
+                                
+                                <input type="hidden" value="@E.evento.IdEv"  name="idev" />
+                                <input type="submit" class="a bg-gradient-green" value="Dettagli" />
+
+                            }
+
                         </section>
                     </article>
                 </div>
-                
+
             }
         }
 
 
 
-        </section>
+    </section>
 
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
 </body>
 </html>
 

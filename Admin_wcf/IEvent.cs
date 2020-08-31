@@ -14,11 +14,15 @@ namespace Admin_wcf
     {
         [OperationContract]
         List<Svolgimento> Show_events(string cond = "");
+        [OperationContract]
+        Svolgimento Get_event_by_id(int id);
+        [OperationContract]
+        List<Studente> Event_partecipations(Svolgimento e);
         /*funzioni che mancano*/
         //get_event_by_id(id)
-        
+
         //All_event(citta) (lista che mostra tutti gli eventi in una determinata città)
         //All_riunioni(citta)
- 
+
     }
 }

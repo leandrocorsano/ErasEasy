@@ -105,9 +105,8 @@ namespace ErasEasyLife.Controllers
                 if ((ModelState.IsValid))
                 {// TODO: Add insert logic here
 
-                    /*SERVER PER RESTITURIE I DATI A UNA PAGINA HTML*/
-                    ViewData["Nome"] = model.nome;
-                    ViewData["Citta"] = model.citta;
+                   
+                  
                     var webclient = new Association.AssociationClient();
                    
                     Association.Associazione ass = new Association.Associazione();
