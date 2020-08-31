@@ -350,7 +350,7 @@ namespace ErasEasyLife.Controllers
                     svo.evento = ev;
                     svo.luogo = l;
                     svo.data_i = model.data_i;
-                    svo.data_f = model.data_f;
+                    svo.data_f = model.data_i;
                     svo.ora_i = model.ora_i;
                     svo.ora_f = model.ora_f;
                     bool r = webclient.Create_events(svo);
