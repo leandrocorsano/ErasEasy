@@ -105,9 +105,8 @@ namespace ErasEasyLife.Controllers
                 if ((ModelState.IsValid))
                 {// TODO: Add insert logic here
 
-                    /*SERVER PER RESTITURIE I DATI A UNA PAGINA HTML*/
-                    ViewData["Nome"] = model.nome;
-                    ViewData["Citta"] = model.citta;
+                   
+                  
                     var webclient = new Association.AssociationClient();
                    
                     Association.Associazione ass = new Association.Associazione();
@@ -350,7 +349,7 @@ namespace ErasEasyLife.Controllers
                     svo.evento = ev;
                     svo.luogo = l;
                     svo.data_i = model.data_i;
-                    svo.data_f = model.data_f;
+                    svo.data_f = model.data_i;
                     svo.ora_i = model.ora_i;
                     svo.ora_f = model.ora_f;
                     bool r = webclient.Create_events(svo);

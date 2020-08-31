@@ -577,15 +577,248 @@ namespace ErasEasyLife.Event {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Studente", Namespace="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi")]
+    [System.SerializableAttribute()]
+    public partial class Studente : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdStudField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string cittaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string cognomeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string data_nField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string emailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string facebookField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string instagramField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string nazionalitaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string nomeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string passwordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string statoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string telField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdStud {
+            get {
+                return this.IdStudField;
+            }
+            set {
+                if ((this.IdStudField.Equals(value) != true)) {
+                    this.IdStudField = value;
+                    this.RaisePropertyChanged("IdStud");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string citta {
+            get {
+                return this.cittaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.cittaField, value) != true)) {
+                    this.cittaField = value;
+                    this.RaisePropertyChanged("citta");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string cognome {
+            get {
+                return this.cognomeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.cognomeField, value) != true)) {
+                    this.cognomeField = value;
+                    this.RaisePropertyChanged("cognome");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string data_n {
+            get {
+                return this.data_nField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.data_nField, value) != true)) {
+                    this.data_nField = value;
+                    this.RaisePropertyChanged("data_n");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string email {
+            get {
+                return this.emailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.emailField, value) != true)) {
+                    this.emailField = value;
+                    this.RaisePropertyChanged("email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string facebook {
+            get {
+                return this.facebookField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.facebookField, value) != true)) {
+                    this.facebookField = value;
+                    this.RaisePropertyChanged("facebook");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string instagram {
+            get {
+                return this.instagramField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.instagramField, value) != true)) {
+                    this.instagramField = value;
+                    this.RaisePropertyChanged("instagram");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nazionalita {
+            get {
+                return this.nazionalitaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.nazionalitaField, value) != true)) {
+                    this.nazionalitaField = value;
+                    this.RaisePropertyChanged("nazionalita");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nome {
+            get {
+                return this.nomeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.nomeField, value) != true)) {
+                    this.nomeField = value;
+                    this.RaisePropertyChanged("nome");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string password {
+            get {
+                return this.passwordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.passwordField, value) != true)) {
+                    this.passwordField = value;
+                    this.RaisePropertyChanged("password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string stato {
+            get {
+                return this.statoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.statoField, value) != true)) {
+                    this.statoField = value;
+                    this.RaisePropertyChanged("stato");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string tel {
+            get {
+                return this.telField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.telField, value) != true)) {
+                    this.telField = value;
+                    this.RaisePropertyChanged("tel");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Event.IEvent")]
     public interface IEvent {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Show_events", ReplyAction="http://tempuri.org/IEvent/Show_eventsResponse")]
-        ErasEasyLife.Event.Svolgimento[] Show_events(string cond);
+        System.Collections.Generic.List<ErasEasyLife.Event.Svolgimento> Show_events(string cond);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Show_events", ReplyAction="http://tempuri.org/IEvent/Show_eventsResponse")]
-        System.Threading.Tasks.Task<ErasEasyLife.Event.Svolgimento[]> Show_eventsAsync(string cond);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Event.Svolgimento>> Show_eventsAsync(string cond);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Get_event_by_id", ReplyAction="http://tempuri.org/IEvent/Get_event_by_idResponse")]
+        ErasEasyLife.Event.Svolgimento Get_event_by_id(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Get_event_by_id", ReplyAction="http://tempuri.org/IEvent/Get_event_by_idResponse")]
+        System.Threading.Tasks.Task<ErasEasyLife.Event.Svolgimento> Get_event_by_idAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Event_partecipations", ReplyAction="http://tempuri.org/IEvent/Event_partecipationsResponse")]
+        System.Collections.Generic.List<ErasEasyLife.Event.Studente> Event_partecipations(ErasEasyLife.Event.Svolgimento e);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Event_partecipations", ReplyAction="http://tempuri.org/IEvent/Event_partecipationsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Event.Studente>> Event_partecipationsAsync(ErasEasyLife.Event.Svolgimento e);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -615,12 +848,28 @@ namespace ErasEasyLife.Event {
                 base(binding, remoteAddress) {
         }
         
-        public ErasEasyLife.Event.Svolgimento[] Show_events(string cond) {
+        public System.Collections.Generic.List<ErasEasyLife.Event.Svolgimento> Show_events(string cond) {
             return base.Channel.Show_events(cond);
         }
         
-        public System.Threading.Tasks.Task<ErasEasyLife.Event.Svolgimento[]> Show_eventsAsync(string cond) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Event.Svolgimento>> Show_eventsAsync(string cond) {
             return base.Channel.Show_eventsAsync(cond);
+        }
+        
+        public ErasEasyLife.Event.Svolgimento Get_event_by_id(int id) {
+            return base.Channel.Get_event_by_id(id);
+        }
+        
+        public System.Threading.Tasks.Task<ErasEasyLife.Event.Svolgimento> Get_event_by_idAsync(int id) {
+            return base.Channel.Get_event_by_idAsync(id);
+        }
+        
+        public System.Collections.Generic.List<ErasEasyLife.Event.Studente> Event_partecipations(ErasEasyLife.Event.Svolgimento e) {
+            return base.Channel.Event_partecipations(e);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Event.Studente>> Event_partecipationsAsync(ErasEasyLife.Event.Svolgimento e) {
+            return base.Channel.Event_partecipationsAsync(e);
         }
     }
 }

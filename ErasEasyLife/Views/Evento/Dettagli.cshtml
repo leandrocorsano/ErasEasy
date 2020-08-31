@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Dettagli";
+    Layout = "~/Views/Shared/StudenteMenu.cshtml";
+    ErasEasyLife.Event.Svolgimento s = ViewData["evento"] as ErasEasyLife.Event.Svolgimento;
+    List<ErasEasyLife.Event.Studente> studenti = ViewData["studenti"] as List<ErasEasyLife.Event.Studente>;
+    int posti_rimasti = s.evento.max_p - studenti.Count();
+    DateTime Date1 = DateTime.Parse(s.data_i);
+    DateTime Date2 = DateTime.Parse(s.data_f);
+}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4 text-center">@s.evento.nome</h1>
+    </div>
+</div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header bg-green text-center">
+                        Informazioni
+                    </div>
+                    <div class="card-body">
+                        <p><i class="fas fa-file-alt"></i><b> &nbsp; Descrizione:</b><br /> @s.evento.descrizione</p>
+                        <p><i class="fas fa-map-marked-alt"></i><b> &nbsp; Luogo:</b> @s.luogo.via (@s.luogo.citta, @s.luogo.stato)</p>
+                        <p><i class="fas fa-calendar-check"></i><b> &nbsp; Inizio:</b> @Date1.ToString("dd/MM/yyy")  ore @s.ora_i</p>
+                        <p><i class="fas fa-calendar-times"></i><b> &nbsp; Fine:</b> @Date2.ToString("dd/MM/yyy") ore @s.ora_f</p>
+                        <p><i class="fas fa-dollar-sign"></i><b> &nbsp; Costo:</b> @s.evento.costo &euro; </p>
+                        <p><i class="fas fa-chair"></i><b> &nbsp; Posti disponibili:</b> @posti_rimasti  </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header bg-green text-center">
+                        Studenti partecipanti
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+
+                            @foreach (var stud in studenti)
+                            {
+                                <li class="list-group-item">@stud.nome @stud.cognome</li>
+
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-6 text-right">
+                <a href="@Url.Action("Lista_Eventi", "Evento")" class="bg-gradient-green"><button class="bg-gradient-green">Indietro</button></a>&nbsp;
+            </div>
+            <div class="col-6 text-left">
+                @if (studenti.Contains(Session["studente"]))
+                {
+                    using (Html.BeginForm("Elimina_partecipazione", "Evento", FormMethod.Post))
+                    {
+
+                        <input type="hidden" value="@s.evento.IdEv" name="idev" />
+                        <input type="submit" class="a bg-danger" value="DISDICI" />
+
+                    }
+                }
+                else
+                {
+                    using (Html.BeginForm("Partecipa", "Evento", FormMethod.Post))
+                    {
+
+                        <input type="hidden" value="@s.evento.IdEv" name="idev" />
+                        <input type="submit" class="a bg-gradient-green" value="PARTECIPA" />
+
+                    }
+
+                }
+            </div>
+        </div>

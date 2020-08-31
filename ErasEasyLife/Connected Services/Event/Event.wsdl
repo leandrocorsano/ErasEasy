@@ -14,16 +14,54 @@
   <wsdl:message name="IEvent_Show_events_OutputMessage">
     <wsdl:part name="parameters" element="tns:Show_eventsResponse" />
   </wsdl:message>
+  <wsdl:message name="IEvent_Get_event_by_id_InputMessage">
+    <wsdl:part name="parameters" element="tns:Get_event_by_id" />
+  </wsdl:message>
+  <wsdl:message name="IEvent_Get_event_by_id_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Get_event_by_idResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEvent_Event_partecipations_InputMessage">
+    <wsdl:part name="parameters" element="tns:Event_partecipations" />
+  </wsdl:message>
+  <wsdl:message name="IEvent_Event_partecipations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Event_partecipationsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IEvent">
     <wsdl:operation name="Show_events">
       <wsdl:input wsaw:Action="http://tempuri.org/IEvent/Show_events" message="tns:IEvent_Show_events_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEvent/Show_eventsResponse" message="tns:IEvent_Show_events_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_event_by_id">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEvent/Get_event_by_id" message="tns:IEvent_Get_event_by_id_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEvent/Get_event_by_idResponse" message="tns:IEvent_Get_event_by_id_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Event_partecipations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEvent/Event_partecipations" message="tns:IEvent_Event_partecipations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEvent/Event_partecipationsResponse" message="tns:IEvent_Event_partecipations_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IEvent" type="tns:IEvent">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="Show_events">
       <soap:operation soapAction="http://tempuri.org/IEvent/Show_events" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_event_by_id">
+      <soap:operation soapAction="http://tempuri.org/IEvent/Get_event_by_id" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Event_partecipations">
+      <soap:operation soapAction="http://tempuri.org/IEvent/Event_partecipations" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

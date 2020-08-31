@@ -47,6 +47,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Google.Maps, Version=0.32.0.0, Culture=neutral, PublicKeyToken=4aa992bb5d22d4ff, processorArchitecture=MSIL">
+      <HintPath>..\DB_Manager\packages\gmaps-api-net.0.32.0\lib\net461\Google.Maps.dll</HintPath>
+    </Reference>
+    <Reference Include="GoogleMapsApi, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\DB_Manager\packages\GoogleMapsApi.0.80.0\lib\net40\GoogleMapsApi.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -1945,6 +1951,9 @@
     <Content Include="Connected Services\Event\ErasEasyLife.Event.Svolgimento.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\Event\ErasEasyLife.Event.Studente.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\Event\item.disco" />
     <None Include="Connected Services\Event\configuration91.svcinfo" />
     <None Include="Connected Services\Event\configuration.svcinfo" />
@@ -2198,6 +2207,7 @@
     <Content Include="Views\Volontario\Elenco.cshtml" />
     <Content Include="Views\Associazione\Crea_Riunione.cshtml" />
     <Content Include="Views\Evento\Lista_Eventi.cshtml" />
+    <Content Include="Views\Evento\Dettagli.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

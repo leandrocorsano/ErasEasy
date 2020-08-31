@@ -42,4 +42,27 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Luogo" nillable="true" type="tns:Luogo" />
+  <xs:complexType name="ArrayOfStudente">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Studente" nillable="true" type="tns:Studente" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStudente" nillable="true" type="tns:ArrayOfStudente" />
+  <xs:complexType name="Studente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdStud" type="xs:int" />
+      <xs:element minOccurs="0" name="citta" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cognome" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="data_n" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="facebook" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="instagram" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nazionalita" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nome" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="stato" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tel" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Studente" nillable="true" type="tns:Studente" />
 </xs:schema>
