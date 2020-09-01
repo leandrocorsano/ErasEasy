@@ -38,34 +38,42 @@
                                         </div>
                                         <div class="card-body bg-light">
                                             <p><i class="fas fa-calendar"></i><b> Data iscrizione: </b><br /> @volontario.data_iscr </p>
-                                            @if (volontario.ruolo == "")
+                                            @using (Html.BeginForm("Aggiungi_ruolo", "Associazione", FormMethod.Post))
                                             {
-                                                using (Html.BeginForm())
+                                                @Html.AntiForgeryToken()
+                                                if (volontario.ruolo == "")
                                                 {
-                                                    @Html.AntiForgeryToken()
+
 
                                                     <div class="form-group">
-                                             
-                                                            
-                                                                <input type="hidden" name="@Html.NameFor(Model=>Model.IdVolont)" value="@volontario.IdVolont" />
-                                                                
-                                                                    <center><button type="submit" class="btn bg-gradient-cyan btn-sm ">Aggiungi ruolo</button></center>
-                                                                
-                                                            
-                                                       
+
+
+                                                        <input type="hidden" name="@Html.NameFor(Model=>Model.IdVolont)" value="@volontario.IdVolont" />
+                                                        <label><i class="fas fa-user-alt"></i> Ruolo: &nbsp; </label><input type="text" name="@Html.NameFor(Model=>Model.ruolo)" />
+                                                        <center><button type="submit" class="btn bg-gradient-cyan btn-sm "><i class="fas fa-upload"></i> &nbsp; Aggiungi ruolo</button></center>
+
+
+
 
                                                     </div>
                                                 }
-                                            }
-                                            else
-                                            {
-                                                <p><i class="fas fa-user-alt"></i><b> Ruolo: </b> <br />@volontario.ruolo</p>
-                                            }
-                                            <p><i class="fas fa-phone"></i> @volontario.telefono</p>
-                                            <p><a href="mailto:@volontario.email"><i class="fas fa-envelope"></i></a> @volontario.email</p>
 
-                                        </div>
-                                    </center>
+                                                else
+
+                                                {
+                                                    <div class="form-group">
+                                                        <label><i class="fas fa-user-alt"></i> Ruolo: &nbsp; </label> <input type="text" name="@Html.NameFor(Model=>Model.ruolo)" value="@volontario.ruolo" />
+                                                        <input type="hidden" name="@Html.NameFor(Model=>Model.IdVolont)" value="@volontario.IdVolont" />
+                                                        <center><button type="submit" class="btn bg-gradient-cyan btn-sm "><i class="fas fa-edit"></i> &nbsp; Modifica ruolo</button></center>
+                                                     </div>
+                                                }
+                                                }
+
+                                                        <p><i class="fas fa-phone"></i> @volontario.telefono</p>
+                                                        <p><a href="mailto:@volontario.email"><i class="fas fa-envelope"></i></a> @volontario.email</p>
+
+                                                    </div>
+</center>
                                 </div>
                             </div>
 

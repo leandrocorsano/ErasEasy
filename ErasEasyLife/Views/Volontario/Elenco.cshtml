@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Colleghi";
     Layout = "~/Views/Shared/VolontarioMenu.cshtml";
+    ErasEasyLife.Volunteer.Volontario v = (ErasEasyLife.Volunteer.Volontario)Session["volontario"];
 }
 
 
@@ -13,47 +14,58 @@
     <title>ViewBag.Title</title>
 </head>
 <body>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4 text-center">Elenco colleghi</h1>
+    @if (v.ruolo != "")
+    {
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4 text-center">Elenco colleghi</h1>
+            </div>
         </div>
-    </div>
 
-    <div class="card p-1">
-        <div>
+        <div class="card p-1">
+            <div>
 
-            @if (ViewData["volontari"] != null)
-            {
-                <div class="row">
-                    @{
-                        foreach (var volontario in ViewData["volontari"] as IEnumerable<ErasEasyLife.Volunteer.Volontario>)
-                        {
-                            <div class="col-sm-4">
-                                <div class="card">
-                                    <center>
-                                        <div class="card-header bg-teal">
+                @if (ViewData["volontari"] != null)
+                {
+                    <div class="row">
+                        @{
+                            foreach (var volontario in ViewData["volontari"] as IEnumerable<ErasEasyLife.Volunteer.Volontario>)
+                            {
+                                <div class="col-sm-4">
+                                    <div class="card">
+                                        <center>
+                                            <div class="card-header bg-teal">
 
-                                            <h4> @volontario.nome  @volontario.cognome</h4>
-                                        </div>
-                                        <div class="card-body bg-light">
-                                            <p><i class="fas fa-phone"></i> @volontario.telefono</p>
-                                            <p><a href="mailto:@volontario.email"><i class="fas fa-envelope"></i></a> @volontario.email</p>
+                                                <h4> @volontario.nome  @volontario.cognome</h4>
+                                            </div>
+                                            <div class="card-body bg-light">
+                                                <p><i class="fas fa-phone"></i> @volontario.telefono</p>
+                                                <p><a href="mailto:@volontario.email"><i class="fas fa-envelope"></i></a> @volontario.email</p>
 
-                                        </div>
-                                    </center>
+                                            </div>
+                                        </center>
+                                    </div>
                                 </div>
-                            </div>
 
+                            }
                         }
-                    }
 
-                </div>
-            }
+                    </div>
+                }
 
+            </div>
         </div>
-    </div>
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">
+            <b>ATTENZIONE! Non hai i privilegi per accedere a questa pagina.</b><br />
+            La tua associazione non ti ha ancora confermato come suo volontario
+        </div>
+
+    }
 </body>
 </html>

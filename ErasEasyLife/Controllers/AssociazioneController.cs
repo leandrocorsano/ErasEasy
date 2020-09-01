@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 using ErasEasyLife.Models;
 using ErasEasyLife.Association;
 #pragma warning disable CS0105 // La direttiva using per 'ErasEasyLife.Association' è già presente in questo spazio dei nomi
@@ -94,7 +95,49 @@ namespace ErasEasyLife.Controllers
             }
         }
 
-        
+        [HttpPost]
+        public ActionResult Aggiungi_ruolo(Models.Volontario model)
+        {
+
+            if (ModelState.IsValidField("IdVolont") && ModelState.IsValidField("ruolo"))
+            {
+                /*non controllo se modelstase is valid perchè non uso tutti i membri del modello ma solo 2*/
+
+                try
+                {
+                    var webclient = new Association.AssociationClient();
+                    bool r =  webclient.add_ruolo(model.IdVolont, model.ruolo);
+                    if (r==true)
+                    {
+
+                        ViewBag.risposta = "Ruolo aggiunto con successo";
+                        ViewBag.url = "Elenco_Volontari";
+                        ViewBag.link = "Torna all'elenco";
+                        return View("Successo");
+                    }
+                    else
+                    {
+                        ViewBag.risposta = "C'è stato un problema";
+                        ViewBag.url = "Elenco_Volontari";
+                        ViewBag.link = "Torna all'elenco";
+                        return View("Errore");
+                    }
+
+
+                }
+                catch
+                {
+                    ViewBag.risposta = "C'è stato un problema";
+                    ViewBag.url = "Elenco_Volontari";
+                    ViewBag.link = "Torna all'elenco";
+                    return View("Errore");
+                }
+            }
+            else
+            {
+                return View("Elenco_Volontari");
+            }
+        }
 
         [HttpPost]
         // POST: Associazione/Create

@@ -63,6 +63,12 @@
   <wsdl:message name="IAssociation_Show_Event_OutputMessage">
     <wsdl:part name="parameters" element="tns:Show_EventResponse" />
   </wsdl:message>
+  <wsdl:message name="IAssociation_add_ruolo_InputMessage">
+    <wsdl:part name="parameters" element="tns:add_ruolo" />
+  </wsdl:message>
+  <wsdl:message name="IAssociation_add_ruolo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:add_ruoloResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAssociation">
     <wsdl:operation name="Registration">
       <wsdl:input wsaw:Action="http://tempuri.org/IAssociation/Registration" message="tns:IAssociation_Registration_InputMessage" />
@@ -99,6 +105,10 @@
     <wsdl:operation name="Show_Event">
       <wsdl:input wsaw:Action="http://tempuri.org/IAssociation/Show_Event" message="tns:IAssociation_Show_Event_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAssociation/Show_EventResponse" message="tns:IAssociation_Show_Event_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="add_ruolo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssociation/add_ruolo" message="tns:IAssociation_add_ruolo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssociation/add_ruoloResponse" message="tns:IAssociation_add_ruolo_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAssociation" type="tns:IAssociation">
@@ -177,6 +187,15 @@
     </wsdl:operation>
     <wsdl:operation name="Show_Event">
       <soap:operation soapAction="http://tempuri.org/IAssociation/Show_Event" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="add_ruolo">
+      <soap:operation soapAction="http://tempuri.org/IAssociation/add_ruolo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

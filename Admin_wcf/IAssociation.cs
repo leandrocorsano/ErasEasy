@@ -37,10 +37,12 @@ namespace Admin_wcf
         [OperationContract]
         List<Svolgimento> Show_Event(int idass, string tipologia="");
         /*funzioni che mancano*/
-        
+
         //Delete_Event(idevent) (boleano che conferma la cancellazione di un evento)
         //Modify_event(Evento) (bool che conferma la modifica dell'evento)
-        //add_ruolo(idvolont)
+        [OperationContract]
+        bool add_ruolo(int idvolont, string ruolo);
+        
 
     }
 
