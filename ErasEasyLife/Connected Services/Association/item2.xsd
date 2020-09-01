@@ -117,4 +117,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="Show_Event">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idass" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Show_EventResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="Show_EventResult" nillable="true" type="q8:ArrayOfSvolgimento" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

@@ -18,11 +18,8 @@ namespace Admin_wcf
         Svolgimento Get_event_by_id(int id);
         [OperationContract]
         List<Studente> Event_partecipations(Svolgimento e);
-        /*funzioni che mancano*/
-        //get_event_by_id(id)
-
-        //All_event(citta) (lista che mostra tutti gli eventi in una determinata città)
-        //All_riunioni(citta)
+        [OperationContract]
+        List<Volontario> Event_volunteers(Svolgimento e);
 
     }
 }

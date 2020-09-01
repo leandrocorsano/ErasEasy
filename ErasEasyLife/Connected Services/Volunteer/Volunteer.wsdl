@@ -62,6 +62,12 @@
   <wsdl:message name="IVolunteer_Show_Event_OutputMessage">
     <wsdl:part name="parameters" element="tns:Show_EventResponse" />
   </wsdl:message>
+  <wsdl:message name="IVolunteer_CancelBooking_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelBooking" />
+  </wsdl:message>
+  <wsdl:message name="IVolunteer_CancelBooking_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelBookingResponse" />
+  </wsdl:message>
   <wsdl:portType name="IVolunteer">
     <wsdl:operation name="Registration">
       <wsdl:input wsaw:Action="http://tempuri.org/IVolunteer/Registration" message="tns:IVolunteer_Registration_InputMessage" />
@@ -98,6 +104,10 @@
     <wsdl:operation name="Show_Event">
       <wsdl:input wsaw:Action="http://tempuri.org/IVolunteer/Show_Event" message="tns:IVolunteer_Show_Event_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IVolunteer/Show_EventResponse" message="tns:IVolunteer_Show_Event_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelBooking">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVolunteer/CancelBooking" message="tns:IVolunteer_CancelBooking_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVolunteer/CancelBookingResponse" message="tns:IVolunteer_CancelBooking_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IVolunteer" type="tns:IVolunteer">
@@ -176,6 +186,15 @@
     </wsdl:operation>
     <wsdl:operation name="Show_Event">
       <soap:operation soapAction="http://tempuri.org/IVolunteer/Show_Event" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelBooking">
+      <soap:operation soapAction="http://tempuri.org/IVolunteer/CancelBooking" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

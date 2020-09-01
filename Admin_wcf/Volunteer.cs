@@ -217,26 +217,28 @@ namespace Admin_wcf
             }
             return risultato;
         }
-        public List<Evento> Show_Event(int idvol)
+        public List<Svolgimento> Show_Event(int idvol)
         {
             /* ---------------------------------------------------
              * Eventi che ha gestisto/gestirà un volontario
              * ------------------------------------------------------*/
-            string cond = "E.idev=G.idev and G.idvolont=" + idvol + "";
+            string cond = "E.idev=G.idev and G.idvolont=" + idvol + " and S.idev=E.idev and S.idluogo=L.idluogo";
             var wcfclient = server_conn.getInstance();
             Association ass = new Association();
 
-            List<Evento> eventi = new List<Evento>();
+            List<Svolgimento> eventi = new List<Svolgimento>();
             try
             {
-                DataSet eventi_set = wcfclient.DBselect("*", "GESTIONE as G, EVENTO as E", cond);
+                DataSet eventi_set = wcfclient.DBselect("*", "GESTIONE as G, EVENTO as E, SVOLGIMENTO as S, LUOGO as L", cond);
                 foreach (DataTable table in eventi_set.Tables)
                 {
                     foreach (DataRow row in table.Rows)
                     {
                         Associazione a = ass.Profile(Convert.ToInt32(row["idass"]));
                         Evento e = new Evento(Convert.ToInt32(row["idev"]), row["nome"].ToString(), row["tipologia"].ToString(), Convert.ToInt32(row["min_p"]), Convert.ToInt32(row["max_p"]), Convert.ToInt32(row["min_v"]), Convert.ToInt32(row["max_v"]), Convert.ToInt32(row["costo"]), row["descrizione"].ToString(), a);
-                        eventi.Add(e);
+                        Luogo l = new Luogo(Convert.ToInt32(row["idluogo"]), row["citta"].ToString(), row["via"].ToString(), row["stato"].ToString());
+                        Svolgimento s = new Svolgimento(e, l, row["ora_i"].ToString(), row["ora_f"].ToString(), row["data_i"].ToString(), row["data_f"].ToString());
+                        eventi.Add(s);
                     }
                 }
                 Console.WriteLine("[OK] Lista eventi gestiti da un volontario!!");
@@ -250,6 +252,29 @@ namespace Admin_wcf
             return eventi;
 
         }
+        public bool CancelBooking(int volontario, int evento)
+        {
+            /* ---------------------------------------------------
+            * Funzione che permette di disdire un evento
+            * ------------------------------------------------------*/
+
+            var wcfclient = server_conn.getInstance();
+            string valori = "idvolont=" + volontario + " and idev=" + evento;
+            bool risultato;
+            try
+            {
+                risultato = wcfclient.DBdelete("GESTIONE", valori);
+                Console.WriteLine("[OK] Cancellazione della  prenotazione da parte del volontario avvenuta con successo!!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ERROR]" + ex.Message);
+                throw;
+
+            }
+            return risultato;
+        }
+    
     }
     
     [DataContract]

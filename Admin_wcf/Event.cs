@@ -113,5 +113,37 @@ namespace Admin_wcf
 
         }
 
+        public List<Volontario> Event_volunteers(Svolgimento e)
+        {
+            
+            var wcfclient = server_conn.getInstance();
+            string condizione = "G.idev=" + e.evento.IdEv;
+
+            List<Volontario> volontari = new List<Volontario>();
+            try
+            {
+                DataSet ev_set = wcfclient.DBselect("*", "GESTIONE AS G", condizione);
+                Volunteer vol = new Volunteer();
+                foreach (DataTable table in ev_set.Tables)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+                        Volontario v = vol.Profile(Convert.ToInt32(row["idvolont"])); //recupero l'associazione che ha creato l'evento
+                        volontari.Add(v);
+
+                    }
+                }
+                Console.WriteLine("[OK] Lista volontari  che partecipano all'evento " + e.evento.nome + " recuperata con successo!!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ERROR]" + ex.Message);
+                throw;
+
+            }
+            return volontari;
+
+        }
+
     }
 }

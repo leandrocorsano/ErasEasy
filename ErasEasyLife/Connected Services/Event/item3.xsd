@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Event/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" />
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Event/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Admin_wcf" />
   <xs:element name="Show_events">
     <xs:complexType>
       <xs:sequence>
@@ -40,6 +41,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="Event_partecipationsResult" nillable="true" type="q4:ArrayOfStudente" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Event_volunteers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="e" nillable="true" type="q5:Svolgimento" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Event_volunteersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Admin_wcf" minOccurs="0" name="Event_volunteersResult" nillable="true" type="q6:ArrayOfVolontario" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

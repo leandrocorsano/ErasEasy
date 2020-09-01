@@ -34,11 +34,14 @@ namespace Admin_wcf
         List<string> GetCitta(string cond = "");
         [OperationContract]
         List<Associazione> Show_associations(string cond="");//la cond si usa nel caso vogliamo mostrare associazioni particolari
+        [OperationContract]
+        List<Svolgimento> Show_Event(int idass);
         /*funzioni che mancano*/
-        //Show_Event(idassoc) (lista che mostra tutti gli eventi creati da una particolare associazione)
+        
         //Delete_Event(idevent) (boleano che conferma la cancellazione di un evento)
         //Modify_event(Evento) (bool che conferma la modifica dell'evento)
-       
+        //add_ruolo(idvolont)
+
     }
 
 

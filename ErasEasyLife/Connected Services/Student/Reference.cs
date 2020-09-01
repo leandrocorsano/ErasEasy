@@ -236,6 +236,131 @@ namespace ErasEasyLife.Student {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Svolgimento", Namespace="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi")]
+    [System.SerializableAttribute()]
+    public partial class Svolgimento : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string data_fField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string data_iField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ErasEasyLife.Student.Evento eventoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ErasEasyLife.Student.Luogo luogoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ora_fField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ora_iField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string data_f {
+            get {
+                return this.data_fField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.data_fField, value) != true)) {
+                    this.data_fField = value;
+                    this.RaisePropertyChanged("data_f");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string data_i {
+            get {
+                return this.data_iField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.data_iField, value) != true)) {
+                    this.data_iField = value;
+                    this.RaisePropertyChanged("data_i");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ErasEasyLife.Student.Evento evento {
+            get {
+                return this.eventoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.eventoField, value) != true)) {
+                    this.eventoField = value;
+                    this.RaisePropertyChanged("evento");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ErasEasyLife.Student.Luogo luogo {
+            get {
+                return this.luogoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.luogoField, value) != true)) {
+                    this.luogoField = value;
+                    this.RaisePropertyChanged("luogo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ora_f {
+            get {
+                return this.ora_fField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ora_fField, value) != true)) {
+                    this.ora_fField = value;
+                    this.RaisePropertyChanged("ora_f");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ora_i {
+            get {
+                return this.ora_iField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ora_iField, value) != true)) {
+                    this.ora_iField = value;
+                    this.RaisePropertyChanged("ora_i");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Evento", Namespace="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi")]
     [System.SerializableAttribute()]
     public partial class Evento : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -409,6 +534,99 @@ namespace ErasEasyLife.Student {
                 if ((object.ReferenceEquals(this.tipologiaField, value) != true)) {
                     this.tipologiaField = value;
                     this.RaisePropertyChanged("tipologia");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Luogo", Namespace="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi")]
+    [System.SerializableAttribute()]
+    public partial class Luogo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdLuogoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string cittaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string statoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string viaField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdLuogo {
+            get {
+                return this.IdLuogoField;
+            }
+            set {
+                if ((this.IdLuogoField.Equals(value) != true)) {
+                    this.IdLuogoField = value;
+                    this.RaisePropertyChanged("IdLuogo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string citta {
+            get {
+                return this.cittaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.cittaField, value) != true)) {
+                    this.cittaField = value;
+                    this.RaisePropertyChanged("citta");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string stato {
+            get {
+                return this.statoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.statoField, value) != true)) {
+                    this.statoField = value;
+                    this.RaisePropertyChanged("stato");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string via {
+            get {
+                return this.viaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.viaField, value) != true)) {
+                    this.viaField = value;
+                    this.RaisePropertyChanged("via");
                 }
             }
         }
@@ -627,10 +845,10 @@ namespace ErasEasyLife.Student {
         System.Threading.Tasks.Task<bool> BookEventAsync(int studente, int evento);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/Show_Event", ReplyAction="http://tempuri.org/IStudent/Show_EventResponse")]
-        ErasEasyLife.Student.Evento[] Show_Event(int idstud);
+        ErasEasyLife.Student.Svolgimento[] Show_Event(int idstud);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/Show_Event", ReplyAction="http://tempuri.org/IStudent/Show_EventResponse")]
-        System.Threading.Tasks.Task<ErasEasyLife.Student.Evento[]> Show_EventAsync(int idstud);
+        System.Threading.Tasks.Task<ErasEasyLife.Student.Svolgimento[]> Show_EventAsync(int idstud);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/CancelBooking", ReplyAction="http://tempuri.org/IStudent/CancelBookingResponse")]
         bool CancelBooking(int studente, int evento);
@@ -722,11 +940,11 @@ namespace ErasEasyLife.Student {
             return base.Channel.BookEventAsync(studente, evento);
         }
         
-        public ErasEasyLife.Student.Evento[] Show_Event(int idstud) {
+        public ErasEasyLife.Student.Svolgimento[] Show_Event(int idstud) {
             return base.Channel.Show_Event(idstud);
         }
         
-        public System.Threading.Tasks.Task<ErasEasyLife.Student.Evento[]> Show_EventAsync(int idstud) {
+        public System.Threading.Tasks.Task<ErasEasyLife.Student.Svolgimento[]> Show_EventAsync(int idstud) {
             return base.Channel.Show_EventAsync(idstud);
         }
         

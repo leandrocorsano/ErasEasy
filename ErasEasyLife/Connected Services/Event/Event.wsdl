@@ -26,6 +26,12 @@
   <wsdl:message name="IEvent_Event_partecipations_OutputMessage">
     <wsdl:part name="parameters" element="tns:Event_partecipationsResponse" />
   </wsdl:message>
+  <wsdl:message name="IEvent_Event_volunteers_InputMessage">
+    <wsdl:part name="parameters" element="tns:Event_volunteers" />
+  </wsdl:message>
+  <wsdl:message name="IEvent_Event_volunteers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Event_volunteersResponse" />
+  </wsdl:message>
   <wsdl:portType name="IEvent">
     <wsdl:operation name="Show_events">
       <wsdl:input wsaw:Action="http://tempuri.org/IEvent/Show_events" message="tns:IEvent_Show_events_InputMessage" />
@@ -38,6 +44,10 @@
     <wsdl:operation name="Event_partecipations">
       <wsdl:input wsaw:Action="http://tempuri.org/IEvent/Event_partecipations" message="tns:IEvent_Event_partecipations_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEvent/Event_partecipationsResponse" message="tns:IEvent_Event_partecipations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Event_volunteers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEvent/Event_volunteers" message="tns:IEvent_Event_volunteers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEvent/Event_volunteersResponse" message="tns:IEvent_Event_volunteers_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IEvent" type="tns:IEvent">
@@ -62,6 +72,15 @@
     </wsdl:operation>
     <wsdl:operation name="Event_partecipations">
       <soap:operation soapAction="http://tempuri.org/IEvent/Event_partecipations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Event_volunteers">
+      <soap:operation soapAction="http://tempuri.org/IEvent/Event_volunteers" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

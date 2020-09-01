@@ -36,4 +36,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Luogo" nillable="true" type="tns:Luogo" />
+  <xs:complexType name="ArrayOfSvolgimento">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Svolgimento" nillable="true" type="tns:Svolgimento" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSvolgimento" nillable="true" type="tns:ArrayOfSvolgimento" />
 </xs:schema>

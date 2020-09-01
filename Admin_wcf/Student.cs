@@ -189,26 +189,28 @@ namespace Admin_wcf
             }
             return risultato;
         }
-        public List<Evento> Show_Event(int idstud)
+        public List<Svolgimento> Show_Event(int idstud)
         {
             /* ---------------------------------------------------
              * Eventi a cui ha partecipato/parteciperà uno studente
              * ------------------------------------------------------*/
-            string cond = "E.idev=P.idev and P.idstud=" + idstud + "";
+            string cond = "E.idev=P.idev and P.idstud=" + idstud + " and S.idev=E.idev and S.idluogo=L.idluogo";
             var wcfclient = server_conn.getInstance();
             Association ass = new Association();
             
-            List<Evento> eventi = new List<Evento>();
+            List<Svolgimento> eventi = new List<Svolgimento>();
             try
             {
-                DataSet eventi_set = wcfclient.DBselect("*", "PARTECIPAZIONE as P, EVENTO as E", cond);
+                DataSet eventi_set = wcfclient.DBselect("*", "PARTECIPAZIONE as P, EVENTO as E, SVOLGIMENTO as S, LUOGO as L", cond);
                 foreach (DataTable table in eventi_set.Tables)
                 {
                     foreach (DataRow row in table.Rows)
                     {
                         Associazione a = ass.Profile(Convert.ToInt32(row["idass"]));
                         Evento e = new Evento(Convert.ToInt32(row["idev"]), row["nome"].ToString(), row["tipologia"].ToString(), Convert.ToInt32(row["min_p"]), Convert.ToInt32(row["max_p"]), Convert.ToInt32(row["min_v"]), Convert.ToInt32(row["max_v"]), Convert.ToInt32(row["costo"]), row["descrizione"].ToString(),a );
-                        eventi.Add(e);
+                        Luogo l = new Luogo(Convert.ToInt32(row["idluogo"]), row["citta"].ToString(), row["via"].ToString(), row["stato"].ToString());
+                        Svolgimento s = new Svolgimento(e, l, row["ora_i"].ToString(), row["ora_f"].ToString(), row["data_i"].ToString(), row["data_f"].ToString());
+                        eventi.Add(s);
                     }
                 }
                 Console.WriteLine("[OK] Lista eventi prenotati recuperata con successo!!");

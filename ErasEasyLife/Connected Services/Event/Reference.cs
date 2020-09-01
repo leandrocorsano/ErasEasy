@@ -798,6 +798,195 @@ namespace ErasEasyLife.Event {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Volontario", Namespace="http://schemas.datacontract.org/2004/07/Admin_wcf")]
+    [System.SerializableAttribute()]
+    public partial class Volontario : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdVolontField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ErasEasyLife.Event.Associazione assField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string cognomeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string data_iscrField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string data_nField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string emailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string nomeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string passwordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ruoloField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string telefonoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdVolont {
+            get {
+                return this.IdVolontField;
+            }
+            set {
+                if ((this.IdVolontField.Equals(value) != true)) {
+                    this.IdVolontField = value;
+                    this.RaisePropertyChanged("IdVolont");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ErasEasyLife.Event.Associazione ass {
+            get {
+                return this.assField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.assField, value) != true)) {
+                    this.assField = value;
+                    this.RaisePropertyChanged("ass");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string cognome {
+            get {
+                return this.cognomeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.cognomeField, value) != true)) {
+                    this.cognomeField = value;
+                    this.RaisePropertyChanged("cognome");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string data_iscr {
+            get {
+                return this.data_iscrField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.data_iscrField, value) != true)) {
+                    this.data_iscrField = value;
+                    this.RaisePropertyChanged("data_iscr");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string data_n {
+            get {
+                return this.data_nField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.data_nField, value) != true)) {
+                    this.data_nField = value;
+                    this.RaisePropertyChanged("data_n");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string email {
+            get {
+                return this.emailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.emailField, value) != true)) {
+                    this.emailField = value;
+                    this.RaisePropertyChanged("email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nome {
+            get {
+                return this.nomeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.nomeField, value) != true)) {
+                    this.nomeField = value;
+                    this.RaisePropertyChanged("nome");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string password {
+            get {
+                return this.passwordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.passwordField, value) != true)) {
+                    this.passwordField = value;
+                    this.RaisePropertyChanged("password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ruolo {
+            get {
+                return this.ruoloField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ruoloField, value) != true)) {
+                    this.ruoloField = value;
+                    this.RaisePropertyChanged("ruolo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string telefono {
+            get {
+                return this.telefonoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.telefonoField, value) != true)) {
+                    this.telefonoField = value;
+                    this.RaisePropertyChanged("telefono");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Event.IEvent")]
     public interface IEvent {
@@ -819,6 +1008,12 @@ namespace ErasEasyLife.Event {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Event_partecipations", ReplyAction="http://tempuri.org/IEvent/Event_partecipationsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Event.Studente>> Event_partecipationsAsync(ErasEasyLife.Event.Svolgimento e);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Event_volunteers", ReplyAction="http://tempuri.org/IEvent/Event_volunteersResponse")]
+        System.Collections.Generic.List<ErasEasyLife.Event.Volontario> Event_volunteers(ErasEasyLife.Event.Svolgimento e);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Event_volunteers", ReplyAction="http://tempuri.org/IEvent/Event_volunteersResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Event.Volontario>> Event_volunteersAsync(ErasEasyLife.Event.Svolgimento e);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -870,6 +1065,14 @@ namespace ErasEasyLife.Event {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Event.Studente>> Event_partecipationsAsync(ErasEasyLife.Event.Svolgimento e) {
             return base.Channel.Event_partecipationsAsync(e);
+        }
+        
+        public System.Collections.Generic.List<ErasEasyLife.Event.Volontario> Event_volunteers(ErasEasyLife.Event.Svolgimento e) {
+            return base.Channel.Event_volunteers(e);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Event.Volontario>> Event_volunteersAsync(ErasEasyLife.Event.Svolgimento e) {
+            return base.Channel.Event_volunteersAsync(e);
         }
     }
 }

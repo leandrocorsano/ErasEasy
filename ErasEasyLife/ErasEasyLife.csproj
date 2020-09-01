@@ -1935,6 +1935,9 @@
     <Content Include="Connected Services\Association\ErasEasyLife.Association.Associazione.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\Association\ErasEasyLife.Association.Svolgimento.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\Association\item.disco" />
     <None Include="Connected Services\Association\configuration91.svcinfo" />
     <None Include="Connected Services\Association\configuration.svcinfo" />
@@ -1954,6 +1957,9 @@
     <Content Include="Connected Services\Event\ErasEasyLife.Event.Studente.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\Event\ErasEasyLife.Event.Volontario.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\Event\item.disco" />
     <None Include="Connected Services\Event\configuration91.svcinfo" />
     <None Include="Connected Services\Event\configuration.svcinfo" />
@@ -1962,9 +1968,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="Connected Services\Student\ErasEasyLife.Student.Studente.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\Student\ErasEasyLife.Student.Evento.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\Event\Event.wsdl" />
@@ -1980,6 +1983,9 @@
     <None Include="Connected Services\Event\item3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Connected Services\Student\ErasEasyLife.Student.Svolgimento.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\Student\item.disco" />
     <None Include="Connected Services\Student\configuration91.svcinfo" />
     <None Include="Connected Services\Student\configuration.svcinfo" />
@@ -1996,7 +2002,7 @@
     <Content Include="Connected Services\Volunteer\ErasEasyLife.Volunteer.Associazione.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\Volunteer\ErasEasyLife.Volunteer.Evento.datasource">
+    <Content Include="Connected Services\Volunteer\ErasEasyLife.Volunteer.Svolgimento.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\Volunteer\item.disco" />

@@ -24,12 +24,23 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfStudente" nillable="true" type="tns:ArrayOfStudente" />
-  <xs:complexType name="ArrayOfEvento">
+  <xs:complexType name="ArrayOfSvolgimento">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Evento" nillable="true" type="tns:Evento" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Svolgimento" nillable="true" type="tns:Svolgimento" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfEvento" nillable="true" type="tns:ArrayOfEvento" />
+  <xs:element name="ArrayOfSvolgimento" nillable="true" type="tns:ArrayOfSvolgimento" />
+  <xs:complexType name="Svolgimento">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="data_f" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="data_i" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="evento" nillable="true" type="tns:Evento" />
+      <xs:element minOccurs="0" name="luogo" nillable="true" type="tns:Luogo" />
+      <xs:element minOccurs="0" name="ora_f" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ora_i" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Svolgimento" nillable="true" type="tns:Svolgimento" />
   <xs:complexType name="Evento">
     <xs:sequence>
       <xs:element minOccurs="0" name="IdEv" type="xs:int" />
@@ -45,4 +56,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Evento" nillable="true" type="tns:Evento" />
+  <xs:complexType name="Luogo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdLuogo" type="xs:int" />
+      <xs:element minOccurs="0" name="citta" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="stato" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="via" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Luogo" nillable="true" type="tns:Luogo" />
 </xs:schema>
