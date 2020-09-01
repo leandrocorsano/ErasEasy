@@ -247,6 +247,25 @@ namespace Admin_wcf
 
         }
 
+        public bool add_ruolo(int idvolont, string ruolo)
+        {
+            var wcfclient = server_conn.getInstance();
+            string cond = "idvolont=" + idvolont;
+            string modify = "ruolo='" + ruolo + "'";
+
+            try
+            {
+                bool risultato = wcfclient.DBupdate("VOLONTARIO", modify, cond);
+                Console.WriteLine("[OK] Volontario aggiunto con successo!!");
+                return risultato;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ERROR]" + ex.Message);
+                throw;
+            }
+        }
+
     }
 
     [DataContract]
