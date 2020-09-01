@@ -36,8 +36,11 @@ namespace Admin_wcf
         [OperationContract]
         List<Evento> Show_Event(int idstud);
 
+        [OperationContract]
+        bool CancelBooking(int studente, int evento);
+
         /*funzioni che mancano*/
-       
+
         //Disdici evento
         //richiedi amicizia
         //mostra amici

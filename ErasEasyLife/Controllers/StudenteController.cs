@@ -229,6 +229,60 @@ namespace ErasEasyLife.Controllers
                 return View();
             }
         }
+        [HttpPost]
+        public ActionResult Partecipa(FormCollection form)
+        {
+            try
+            {
+                int evento = Int32.Parse(form["idev"]);
+                Student.Studente stud = (Student.Studente)Session["studente"];
+                var webclient = new Student.StudentClient();
+                bool r = webclient.BookEvent(stud.IdStud, evento );
+                if(r==true)
+                {
+                    ViewBag.risposta = "Evento prenotato con successo";
+                    ViewBag.url = "../Evento/Lista_eventi";
+                    ViewBag.link = "Torna agli eventi";
+                    return View("Successo");
+                }
+                else
+                {
+                    return View("~/Evento/Lista_Eventi");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View("~/Evento/Lista_Eventi");
+            }
+        }
+        [HttpPost]
+        public ActionResult Elimina_partecipazione(FormCollection form)
+        {
+            try
+            {
+                int evento = Int32.Parse(form["idev"]);
+                Student.Studente stud = (Student.Studente)Session["studente"];
+                var webclient = new Student.StudentClient();
+                bool r = webclient.CancelBooking(stud.IdStud, evento);
+                if (r == true)
+                {
+                    ViewBag.risposta = "Cancellazione prenotazione avvenuta con successo";
+                    ViewBag.url = "../Evento/Lista_eventi";
+                    ViewBag.link = "Torna agli eventi";
+                    return View("Successo");
+                }
+                else
+                {
+                    return View("Evento/lista_Eventi");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View("Evento/lista_Eventi");
+            }
+        }
         [HttpGet]
         public ActionResult Modifica_Pass()
         {

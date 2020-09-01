@@ -86,9 +86,9 @@ namespace ErasEasyLife.Controllers
             DateTime oggi = DateTime.Today;
             Volunteer.Volontario vol = (Volunteer.Volontario)Session["Volontario"];
             
-            string cond = " and data_i > '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia ='riunione' and idass = " + vol.ass.IdAss; //"order by data_i";
+            string cond = " and data_i > '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia ='riunione' and idass = " + vol.ass.IdAss + "order by data_i";
             var webclient = new Event.EventClient();
-            Event.Svolgimento[] riunioni = webclient.Show_events(cond);
+            List<Event.Svolgimento> riunioni = webclient.Show_events(cond);
 
             ViewData["riunioni"] = riunioni;
             return View();

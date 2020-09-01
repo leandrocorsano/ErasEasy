@@ -222,6 +222,28 @@ namespace Admin_wcf
             return eventi;
 
         }
+        public bool CancelBooking(int studente, int evento)
+        {
+            /* ---------------------------------------------------
+            * Funzione che permette di disdire un evento
+            * ------------------------------------------------------*/
+
+            var wcfclient = server_conn.getInstance();
+            string valori = "idstud=" + studente + " and idev=" + evento ;
+            bool risultato;
+            try
+            {
+                risultato = wcfclient.DBdelete("PARTECIPAZIONE", valori);
+                Console.WriteLine("[OK] Cancellazione della  prenotazione da parte dello studente avvenuta con successo!!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ERROR]" + ex.Message);
+                throw;
+
+            }
+            return risultato;
+        }
     }
     
 }
