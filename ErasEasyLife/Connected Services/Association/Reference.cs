@@ -630,10 +630,10 @@ namespace ErasEasyLife.Association {
         System.Threading.Tasks.Task<ErasEasyLife.Association.Associazione[]> Show_associationsAsync(string cond);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/Show_Event", ReplyAction="http://tempuri.org/IAssociation/Show_EventResponse")]
-        ErasEasyLife.Association.Svolgimento[] Show_Event(int idass);
+        ErasEasyLife.Association.Svolgimento[] Show_Event(int idass, string tipologia);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/Show_Event", ReplyAction="http://tempuri.org/IAssociation/Show_EventResponse")]
-        System.Threading.Tasks.Task<ErasEasyLife.Association.Svolgimento[]> Show_EventAsync(int idass);
+        System.Threading.Tasks.Task<ErasEasyLife.Association.Svolgimento[]> Show_EventAsync(int idass, string tipologia);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -727,12 +727,12 @@ namespace ErasEasyLife.Association {
             return base.Channel.Show_associationsAsync(cond);
         }
         
-        public ErasEasyLife.Association.Svolgimento[] Show_Event(int idass) {
-            return base.Channel.Show_Event(idass);
+        public ErasEasyLife.Association.Svolgimento[] Show_Event(int idass, string tipologia) {
+            return base.Channel.Show_Event(idass, tipologia);
         }
         
-        public System.Threading.Tasks.Task<ErasEasyLife.Association.Svolgimento[]> Show_EventAsync(int idass) {
-            return base.Channel.Show_EventAsync(idass);
+        public System.Threading.Tasks.Task<ErasEasyLife.Association.Svolgimento[]> Show_EventAsync(int idass, string tipologia) {
+            return base.Channel.Show_EventAsync(idass, tipologia);
         }
     }
 }

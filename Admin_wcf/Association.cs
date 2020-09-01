@@ -211,12 +211,12 @@ namespace Admin_wcf
             }
             return associazioni;
         }
-        public List<Svolgimento> Show_Event(int idass)
+        public List<Svolgimento> Show_Event(int idass, string tipologia = "")
         {
             /* ---------------------------------------------------
              * Eventi che ha creato una determita associazione
              * ------------------------------------------------------*/
-            string cond = "E.idass=" + idass + " and S.idev=E.idev and S.idluogo=L.idluogo";
+            string cond = "E.idass=" + idass + " and S.idev=E.idev and S.idluogo=L.idluogo and" + tipologia;
             var wcfclient = server_conn.getInstance();
             Association ass = new Association();
 

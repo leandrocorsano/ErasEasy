@@ -35,7 +35,7 @@ namespace Admin_wcf
         [OperationContract]
         List<Associazione> Show_associations(string cond="");//la cond si usa nel caso vogliamo mostrare associazioni particolari
         [OperationContract]
-        List<Svolgimento> Show_Event(int idass);
+        List<Svolgimento> Show_Event(int idass, string tipologia="");
         /*funzioni che mancano*/
         
         //Delete_Event(idevent) (boleano che conferma la cancellazione di un evento)

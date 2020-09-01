@@ -370,6 +370,28 @@ namespace ErasEasyLife.Controllers
 
             }
         }
+        [HttpGet]
+        public ActionResult Elenco_Eventi()
+        {
+            var webclient = new Association.AssociationClient();
+            Association.Associazione ass = (Association.Associazione)Session["Associazione"];
+            string tipologia = " E.tipologia != 'riunione'";
+            Association.Svolgimento[] listaeventi = webclient.Show_Event(ass.IdAss, tipologia);
+            ViewData["eventi"] = listaeventi;
+            return View();
+        }
+        [HttpGet]
+        public ActionResult Elenco_Riunioni()
+        {
+            var webclient = new Association.AssociationClient();
+            Association.Associazione ass = (Association.Associazione)Session["Associazione"];
+            string tipologia = " E.tipologia = 'riunione'";
+            Association.Svolgimento[] listariunioni = webclient.Show_Event(ass.IdAss, tipologia);
+            ViewData["riunioni"] = listariunioni;
+            return View();
+
+        }
+        
         // GET: Associazione/Delete/5
         public ActionResult Delete(int id)
         {
