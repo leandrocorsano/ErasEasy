@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "Dettagli_Riunione";
+    Layout = "~/Views/Shared/VolontarioMenu.cshtml";
+    ErasEasyLife.Event.Svolgimento s = ViewData["evento"] as ErasEasyLife.Event.Svolgimento;
+    List<ErasEasyLife.Event.Volontario> volontari = ViewData["volontari"] as List<ErasEasyLife.Event.Volontario>;
+    int posti_rimasti = s.evento.max_v - volontari.Count();
+    ErasEasyLife.Volunteer.Volontario volontario_entrato = (ErasEasyLife.Volunteer.Volontario)Session["volontario"];
+    DateTime Date1 = DateTime.Parse(s.data_i);
+    DateTime Date2 = DateTime.Parse(s.data_f);
+    bool prenotato = false; //mi dice se ho già prenotato quest'evento
+    foreach (var vol in volontari)
+    {
+        if (vol.IdVolont == volontario_entrato.IdVolont)
+        {
+            prenotato = true;
+        }
+    }
+   
+}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4 text-center">@s.evento.nome</h1>
+    </div>
+</div>
+@{
+    string color;
+    if (posti_rimasti > 0)
+    {
+        color = "bg-success";
+    }
+    else
+    {
+        color = "bg-danger";
+    }
+}
+<div class="small-box @color">
+    <div class="inner text-center">
+        <h1 class="display-2"> @posti_rimasti</h1>
+
+        <h3>Posti disponibili</h3>
+    </div>
+    <div class="small-box-footer">
+        <div class="row ">
+            <div class="col-6 text-right">
+                <a href="@Url.Action("Lista_Eventi", "Evento")"><button class="a .btn .btn-app "><i class="fas fa-arrow-left"></i>Indietro</button></a>&nbsp;
+            </div>
+            <div class="col-6 text-left">
+
+                @if (prenotato)
+                {
+                    using (Html.BeginForm("Elimina_partecipazione", "Volontario", FormMethod.Post))
+                    {
+
+                        <input type="hidden" value="@s.evento.IdEv" name="idev" />
+                        <button type="submit" class="a .btn .btn-app "><i class="fas fa-trash-alt"></i>Elimina partecipazione</button>
+
+                    }
+                }
+                else if (posti_rimasti > 0)
+                {
+                    using (Html.BeginForm("Partecipa", "Volontario", FormMethod.Post))
+                    {
+
+                        <input type="hidden" value="@s.evento.IdEv" name="idev" />
+                        <button type="submit" class="a .btn .btn-app "><i class="fas fa-check-square"></i>Partecipa</button>
+
+                    }
+
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header bg-green text-center">
+                <h3> Informazioni</h3>
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote " style="border-left: .2rem solid green;"><i class="fas fa-file-alt"></i>&nbsp; @s.evento.descrizione</blockquote>
+                <p><i class="fas fa-map-marked-alt"></i><b> &nbsp; Luogo:</b> @s.luogo.via (@s.luogo.citta, @s.luogo.stato)</p>
+                <p><i class="fas fa-calendar-check"></i><b> &nbsp; Inizio:</b> @Date1.ToString("dd/MM/yyy")  ore @s.ora_i</p>
+                <p><i class="fas fa-calendar-times"></i><b> &nbsp; Fine:</b> @Date2.ToString("dd/MM/yyy") ore @s.ora_f</p>
+                
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header bg-green text-center">
+                <h3> Volontari partecipanti</h3>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+
+                    @foreach (var vol in volontari)
+                    {
+
+                        <li class="list-group-item">
+                             <i class="fas fa-user"></i>@vol.nome @vol.cognome 
+                            
+                        </li>
+
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

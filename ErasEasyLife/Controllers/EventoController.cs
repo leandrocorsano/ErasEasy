@@ -80,6 +80,24 @@ namespace ErasEasyLife.Controllers
             
            
         }
+        [HttpPost]
+        public ActionResult Dettagli_Riunione(FormCollection form)
+        {
+
+            int id = Int32.Parse(form["idev"]);
+            var webclient = new Event.EventClient();
+
+            Event.Svolgimento e = webclient.Get_event_by_id(id);
+            List<Event.Volontario> volontari = webclient.Event_volunteers(e);
+            ViewData["evento"] = e;
+            ViewData["volontari"] = volontari;
+
+
+
+            return View();
+
+
+        }
         [HttpGet]
         public ActionResult Lista_Riunioni()
         {
