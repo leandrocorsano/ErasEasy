@@ -833,10 +833,10 @@ namespace ErasEasyLife.Student {
         System.Threading.Tasks.Task<bool> UpdatePasswordAsync(int id, string new_password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/Show_students", ReplyAction="http://tempuri.org/IStudent/Show_studentsResponse")]
-        ErasEasyLife.Student.Studente[] Show_students(string cond);
+        System.Collections.Generic.List<ErasEasyLife.Student.Studente> Show_students(string cond);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/Show_students", ReplyAction="http://tempuri.org/IStudent/Show_studentsResponse")]
-        System.Threading.Tasks.Task<ErasEasyLife.Student.Studente[]> Show_studentsAsync(string cond);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Student.Studente>> Show_studentsAsync(string cond);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/BookEvent", ReplyAction="http://tempuri.org/IStudent/BookEventResponse")]
         bool BookEvent(int studente, int evento);
@@ -845,16 +845,40 @@ namespace ErasEasyLife.Student {
         System.Threading.Tasks.Task<bool> BookEventAsync(int studente, int evento);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/Show_Event", ReplyAction="http://tempuri.org/IStudent/Show_EventResponse")]
-        ErasEasyLife.Student.Svolgimento[] Show_Event(int idstud);
+        System.Collections.Generic.List<ErasEasyLife.Student.Svolgimento> Show_Event(int idstud);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/Show_Event", ReplyAction="http://tempuri.org/IStudent/Show_EventResponse")]
-        System.Threading.Tasks.Task<ErasEasyLife.Student.Svolgimento[]> Show_EventAsync(int idstud);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Student.Svolgimento>> Show_EventAsync(int idstud);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/CancelBooking", ReplyAction="http://tempuri.org/IStudent/CancelBookingResponse")]
         bool CancelBooking(int studente, int evento);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/CancelBooking", ReplyAction="http://tempuri.org/IStudent/CancelBookingResponse")]
         System.Threading.Tasks.Task<bool> CancelBookingAsync(int studente, int evento);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/Friendship_Request", ReplyAction="http://tempuri.org/IStudent/Friendship_RequestResponse")]
+        bool Friendship_Request(int stud1, int stud2);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/Friendship_Request", ReplyAction="http://tempuri.org/IStudent/Friendship_RequestResponse")]
+        System.Threading.Tasks.Task<bool> Friendship_RequestAsync(int stud1, int stud2);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/Friendship_State", ReplyAction="http://tempuri.org/IStudent/Friendship_StateResponse")]
+        bool Friendship_State(int stud1, int stud2, string state);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/Friendship_State", ReplyAction="http://tempuri.org/IStudent/Friendship_StateResponse")]
+        System.Threading.Tasks.Task<bool> Friendship_StateAsync(int stud1, int stud2, string state);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/Show_Friends", ReplyAction="http://tempuri.org/IStudent/Show_FriendsResponse")]
+        System.Collections.Generic.List<ErasEasyLife.Student.Studente> Show_Friends(ErasEasyLife.Student.Studente stud, string state);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/Show_Friends", ReplyAction="http://tempuri.org/IStudent/Show_FriendsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Student.Studente>> Show_FriendsAsync(ErasEasyLife.Student.Studente stud, string state);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/My_Friendship_Request", ReplyAction="http://tempuri.org/IStudent/My_Friendship_RequestResponse")]
+        System.Collections.Generic.List<ErasEasyLife.Student.Studente> My_Friendship_Request(ErasEasyLife.Student.Studente stud);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/My_Friendship_Request", ReplyAction="http://tempuri.org/IStudent/My_Friendship_RequestResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Student.Studente>> My_Friendship_RequestAsync(ErasEasyLife.Student.Studente stud);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -924,11 +948,11 @@ namespace ErasEasyLife.Student {
             return base.Channel.UpdatePasswordAsync(id, new_password);
         }
         
-        public ErasEasyLife.Student.Studente[] Show_students(string cond) {
+        public System.Collections.Generic.List<ErasEasyLife.Student.Studente> Show_students(string cond) {
             return base.Channel.Show_students(cond);
         }
         
-        public System.Threading.Tasks.Task<ErasEasyLife.Student.Studente[]> Show_studentsAsync(string cond) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Student.Studente>> Show_studentsAsync(string cond) {
             return base.Channel.Show_studentsAsync(cond);
         }
         
@@ -940,11 +964,11 @@ namespace ErasEasyLife.Student {
             return base.Channel.BookEventAsync(studente, evento);
         }
         
-        public ErasEasyLife.Student.Svolgimento[] Show_Event(int idstud) {
+        public System.Collections.Generic.List<ErasEasyLife.Student.Svolgimento> Show_Event(int idstud) {
             return base.Channel.Show_Event(idstud);
         }
         
-        public System.Threading.Tasks.Task<ErasEasyLife.Student.Svolgimento[]> Show_EventAsync(int idstud) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Student.Svolgimento>> Show_EventAsync(int idstud) {
             return base.Channel.Show_EventAsync(idstud);
         }
         
@@ -954,6 +978,38 @@ namespace ErasEasyLife.Student {
         
         public System.Threading.Tasks.Task<bool> CancelBookingAsync(int studente, int evento) {
             return base.Channel.CancelBookingAsync(studente, evento);
+        }
+        
+        public bool Friendship_Request(int stud1, int stud2) {
+            return base.Channel.Friendship_Request(stud1, stud2);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Friendship_RequestAsync(int stud1, int stud2) {
+            return base.Channel.Friendship_RequestAsync(stud1, stud2);
+        }
+        
+        public bool Friendship_State(int stud1, int stud2, string state) {
+            return base.Channel.Friendship_State(stud1, stud2, state);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Friendship_StateAsync(int stud1, int stud2, string state) {
+            return base.Channel.Friendship_StateAsync(stud1, stud2, state);
+        }
+        
+        public System.Collections.Generic.List<ErasEasyLife.Student.Studente> Show_Friends(ErasEasyLife.Student.Studente stud, string state) {
+            return base.Channel.Show_Friends(stud, state);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Student.Studente>> Show_FriendsAsync(ErasEasyLife.Student.Studente stud, string state) {
+            return base.Channel.Show_FriendsAsync(stud, state);
+        }
+        
+        public System.Collections.Generic.List<ErasEasyLife.Student.Studente> My_Friendship_Request(ErasEasyLife.Student.Studente stud) {
+            return base.Channel.My_Friendship_Request(stud);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Student.Studente>> My_Friendship_RequestAsync(ErasEasyLife.Student.Studente stud) {
+            return base.Channel.My_Friendship_RequestAsync(stud);
         }
     }
 }

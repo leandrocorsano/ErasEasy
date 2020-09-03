@@ -62,6 +62,30 @@
   <wsdl:message name="IStudent_CancelBooking_OutputMessage">
     <wsdl:part name="parameters" element="tns:CancelBookingResponse" />
   </wsdl:message>
+  <wsdl:message name="IStudent_Friendship_Request_InputMessage">
+    <wsdl:part name="parameters" element="tns:Friendship_Request" />
+  </wsdl:message>
+  <wsdl:message name="IStudent_Friendship_Request_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Friendship_RequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStudent_Friendship_State_InputMessage">
+    <wsdl:part name="parameters" element="tns:Friendship_State" />
+  </wsdl:message>
+  <wsdl:message name="IStudent_Friendship_State_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Friendship_StateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStudent_Show_Friends_InputMessage">
+    <wsdl:part name="parameters" element="tns:Show_Friends" />
+  </wsdl:message>
+  <wsdl:message name="IStudent_Show_Friends_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Show_FriendsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStudent_My_Friendship_Request_InputMessage">
+    <wsdl:part name="parameters" element="tns:My_Friendship_Request" />
+  </wsdl:message>
+  <wsdl:message name="IStudent_My_Friendship_Request_OutputMessage">
+    <wsdl:part name="parameters" element="tns:My_Friendship_RequestResponse" />
+  </wsdl:message>
   <wsdl:portType name="IStudent">
     <wsdl:operation name="Registration">
       <wsdl:input wsaw:Action="http://tempuri.org/IStudent/Registration" message="tns:IStudent_Registration_InputMessage" />
@@ -98,6 +122,22 @@
     <wsdl:operation name="CancelBooking">
       <wsdl:input wsaw:Action="http://tempuri.org/IStudent/CancelBooking" message="tns:IStudent_CancelBooking_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IStudent/CancelBookingResponse" message="tns:IStudent_CancelBooking_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Friendship_Request">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStudent/Friendship_Request" message="tns:IStudent_Friendship_Request_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStudent/Friendship_RequestResponse" message="tns:IStudent_Friendship_Request_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Friendship_State">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStudent/Friendship_State" message="tns:IStudent_Friendship_State_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStudent/Friendship_StateResponse" message="tns:IStudent_Friendship_State_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Show_Friends">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStudent/Show_Friends" message="tns:IStudent_Show_Friends_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStudent/Show_FriendsResponse" message="tns:IStudent_Show_Friends_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="My_Friendship_Request">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStudent/My_Friendship_Request" message="tns:IStudent_My_Friendship_Request_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStudent/My_Friendship_RequestResponse" message="tns:IStudent_My_Friendship_Request_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IStudent" type="tns:IStudent">
@@ -176,6 +216,42 @@
     </wsdl:operation>
     <wsdl:operation name="CancelBooking">
       <soap:operation soapAction="http://tempuri.org/IStudent/CancelBooking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Friendship_Request">
+      <soap:operation soapAction="http://tempuri.org/IStudent/Friendship_Request" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Friendship_State">
+      <soap:operation soapAction="http://tempuri.org/IStudent/Friendship_State" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Show_Friends">
+      <soap:operation soapAction="http://tempuri.org/IStudent/Show_Friends" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="My_Friendship_Request">
+      <soap:operation soapAction="http://tempuri.org/IStudent/My_Friendship_Request" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

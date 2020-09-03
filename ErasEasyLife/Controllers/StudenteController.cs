@@ -52,12 +52,15 @@ namespace ErasEasyLife.Controllers
             return View("Login");
         }
         [HttpGet]
+        // GET: Volontario/Create
         public ActionResult Elenco()
         {
-            
-            return View();
-        }
-        
+           
+                
+                return View();
+            }
+         
+
         [HttpGet]
         // GET: Studente/Create
         public ActionResult Registra()
@@ -75,9 +78,14 @@ namespace ErasEasyLife.Controllers
                 Student.Studente stud = (Student.Studente)Session["Studente"];
                 string cond = "idstud!=" + stud.IdStud+" and nazionalita='" + model.nazionalita + "'";
                 var webclient = new Student.StudentClient();
-                Student.Studente[] studenti = webclient.Show_students(cond);
-
+                List<Student.Studente> studenti = webclient.Show_students(cond);
+                List<Student.Studente> mie_richieste = webclient.Show_Friends(stud, "Richiesta");
+                List<Student.Studente> altri_richieste = webclient.My_Friendship_Request(stud);
+                List<Student.Studente> conferme = webclient.Show_Friends(stud, "Conferma");
                 ViewData["studenti"] = studenti;
+                ViewData["altri_richieste"] = altri_richieste;
+                ViewData["mie_richieste"] = mie_richieste;
+                ViewData["conferme"] = conferme;
                 return View();
             }
             return View();
@@ -281,6 +289,81 @@ namespace ErasEasyLife.Controllers
             {
                 Console.WriteLine(ex.Message);
                 return View("Evento/lista_Eventi");
+            }
+        }
+        [HttpPost]
+        public ActionResult Richiesta_Amicizia(FormCollection form)
+        {
+            try
+            {
+                int stud2 = Int32.Parse(form["idstud"]);
+                Student.Studente stud = (Student.Studente)Session["studente"];
+                var webclient = new Student.StudentClient();
+                bool r = webclient.Friendship_Request(stud.IdStud, stud2);
+                if(r == true)
+                {
+                    ViewBag.risposta = "Richiesta di amicizia avvenuta con successo";
+                    ViewBag.url = "../Studente/Elenco";
+                    ViewBag.link = "Torna all'elenco studenti";
+                    return View("Successo");
+                }
+                else
+                {
+                    return View("Elenco");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View("Elenco");
+            }
+        }
+        [HttpPost]
+        public ActionResult Conferma_Amicizia(FormCollection form)
+        {
+            try
+            {
+                int stud1 = Int32.Parse(form["idstud"]);
+                Student.Studente stud = (Student.Studente)Session["studente"];
+                var webclient = new Student.StudentClient();
+                bool r = webclient.Friendship_State(stud1, stud.IdStud, "Conferma");
+                if (r == true)
+                {
+                    ViewBag.risposta = "Richiesta di amicizia avvenuta con successo";
+                    ViewBag.url = "../Studente/Elenco";
+                    ViewBag.link = "Torna all'elenco studenti";
+                    return View("Successo");
+                }
+                else
+                {
+                    return View("Richieste_Amicizia");
+                }
+                
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View("Richieste_Amicizia");
+            }
+        }
+        [HttpGet]
+        public ActionResult Richieste_Amicizia()
+        {
+            try
+            {
+                
+                Student.Studente stud = (Student.Studente)Session["studente"];
+                var webclient = new Student.StudentClient();
+                List<Student.Studente> richieste = webclient.My_Friendship_Request(stud);
+                ViewData["richieste"] = richieste;
+                return View("");
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View("");
             }
         }
         [HttpGet]
