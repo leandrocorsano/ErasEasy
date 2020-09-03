@@ -1,0 +1,281 @@
+﻿@{
+    ViewBag.Title = "Mie riunioni";
+    Layout = "~/Views/Shared/VolontarioMenu.cshtml";
+    Dictionary<string, string> Giorni = new Dictionary<string, string> { { "Monday", "Lunedì" }, { "Tuesday", "Martedì" },
+                                                                        { "Wednesday", "Mercoledì" }, {"Thursday", "Giovedì" }, {"Friday", "Venerdì" },
+                                                                        {"Saturday", "Sabato" }, {"Sunday", "Domenica" } };
+    Dictionary<int, string> Mesi = new Dictionary<int, string> { { 1, "Gen" }, { 2, "Feb" },
+                                                                        { 3 , "Mar" }, {4, "Apr" }, {5, "Mag" },
+                                                                        {6, "Giu" }, {7, "Lug" }, {8, "Ago" } , {9, "Set" } , {10, "Ott" },
+                                                                         {11, "Nov" }, {12, "Dic" }   };
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Elenco mie riunioni</title>
+    <style type="text/css">
+
+        {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            box-sizing: border-box
+        }
+
+
+
+        .fl-left {
+            float: left
+        }
+
+        .fl-right {
+            float: right
+        }
+
+        .container {
+            width: 90%;
+            margin: 100px auto
+        }
+
+        h1 {
+            text-transform: uppercase;
+            font-weight: 900;
+            border-left: 10px solid #fec500;
+            padding-left: 10px;
+            margin-bottom: 30px
+        }
+
+        .row {
+            overflow: hidden
+        }
+
+        .card {
+            display: table-row;
+            width: 100%;
+            background-color: #6c757d;
+            color: #f8f9fa;
+            margin-bottom: 10px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            border-radius: 4px;
+            position: relative
+        }
+
+            .card + .card {
+                margin-left: 2%
+            }
+
+        .date {
+            display: table-cell;
+            width: 25%;
+            position: relative;
+            text-align: center;
+            border-right: 2px dashed #dadde6
+        }
+
+            .date:before,
+            .date:after {
+                content: "";
+                display: block;
+                width: 30px;
+                height: 30px;
+                background-color: #f8f9fa;
+                position: absolute;
+                top: -15px;
+                right: -15px;
+                z-index: 1;
+                border-radius: 50%
+            }
+
+            .date:after {
+                top: auto;
+                bottom: -15px
+            }
+
+            .date time {
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                -webkit-transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%)
+            }
+
+                .date time span {
+                    display: block
+                }
+
+        .Giorno {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 250%
+        }
+
+        .date time span:last-child {
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: -10px
+        }
+
+        .card-cont {
+            display: table-cell;
+            width: 75%;
+            font-size: 85%;
+            padding: 10px 10px 30px 50px
+        }
+
+            .card-cont h3 {
+                color: #3C3C3C;
+                font-size: 130%
+            }
+
+        .row:last-child .card:last-of-type .card-cont h3 {
+            text-decoration: line-through
+        }
+
+        .card-cont > div {
+            display: table-row
+        }
+
+        .card-cont .even-date i,
+        .card-cont .even-info i,
+        .card-cont .even-date time,
+        .card-cont .even-info p {
+            display: table-cell
+        }
+
+        .card-cont .even-date i,
+        .card-cont .even-info i {
+            padding: 5% 5% 0 0
+        }
+
+        .card-cont .even-info p {
+            padding: 30px 50px 0 0
+        }
+
+        .card-cont .even-date time span {
+            display: block
+        }
+
+        .card-cont .a {
+            display: block;
+            text-decoration: none;
+            width: 80px;
+            height: 30px;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 2px;
+            position: absolute;
+            right: 10px;
+            bottom: 10px
+        }
+
+        .row:last-child .card:first-child .card-cont .a {
+            background-color: #037FDD
+        }
+
+        .row:last-child .card:last-child .card-cont .a {
+            background-color: #F8504C
+        }
+
+        @@media screen and (max-width: 860px) {
+            .card {
+                display: block;
+                float: none;
+                width: 100%;
+                margin-bottom: 10px
+            }
+
+                .card + .card {
+                    margin-left: 0
+                }
+
+            .card-cont .even-date,
+            .card-cont .even-info {
+                font-size: 75%
+            }
+        }
+    </style>
+</head>
+<body>
+    @{
+        ErasEasyLife.Volunteer.Volontario vol = (ErasEasyLife.Volunteer.Volontario)Session["Volontario"];
+    }
+
+
+    <section class="container">
+
+        @if (ViewData["riunioni"] != null)
+        {
+
+
+            foreach (var E in ViewData["riunioni"] as IList<ErasEasyLife.Volunteer.Svolgimento>)
+            {
+                <div class="row">
+                    <article class="card ft-left">
+                        <section class="date">
+                            <time>
+                                @{
+                                    DateTime Date1 = DateTime.Parse(E.data_i);
+                                   
+                                }
+                                <span>@Giorni[Date1.DayOfWeek.ToString()]</span>
+
+                                <span class="Giorno">@Date1.Day.ToString()</span><span>@Mesi[Date1.Month]</span>
+                            </time>
+                        </section>
+                        <section class="card-cont">
+                            <small>@E.evento.tipologia</small>
+
+                            <h2>@E.evento.nome</h2>
+                            <span> <i> @E.evento.ass.nome</i> </span>
+                            <div class="even-date">
+                                <i class="fa fa-calendar"></i>
+                                <time>
+                                    <span> &nbsp; Inizio: @Giorni[Date1.DayOfWeek.ToString()] @Date1.Day.ToString()  @Mesi[Date1.Month] @Date1.Year.ToString()  @E.ora_i</span>
+                               
+                                </time>
+
+                            </div>
+                            <div class="even-info">
+                                <i class="fa fa-map-marker"></i>
+                                <p>
+                                    &nbsp; @E.luogo.via   &nbsp;  @E.luogo.citta, @E.luogo.stato
+                                </p>
+                                <i class="fa fa-dollar-sign"></i>
+                                <p> &nbsp; Costo: @E.evento.costo &euro; </p>
+
+                            </div>
+                            @using (Html.BeginForm("Dettagli_Evento", "Associazione", FormMethod.Post))
+                            {
+
+                                <input type="hidden" value="@E.evento.IdEv" name="idev" />
+                                <input type="submit" class="a bg-gradient-green" value="Dettagli" />
+
+                            }
+
+                        </section>
+                    </article>
+                </div>
+
+            }
+        }
+
+
+
+    </section>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>
+
+
+
+

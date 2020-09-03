@@ -37,7 +37,7 @@ namespace Admin_wcf
         bool BookEvent(int volontario, int evento);
 
         [OperationContract]
-        List<Svolgimento> Show_Event(int idvol);
+        List<Svolgimento> Show_Event(int idvol, string tipologia = "");
 
         [OperationContract]
         bool CancelBooking(int volontario, int evento);

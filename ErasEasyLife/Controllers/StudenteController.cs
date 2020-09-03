@@ -237,6 +237,15 @@ namespace ErasEasyLife.Controllers
                 return View();
             }
         }
+        [HttpGet]
+        public ActionResult MieiEventi()
+        {
+            var webclient = new Student.StudentClient();
+            Student.Studente stud = (Student.Studente)Session["Studente"];
+            List<Student.Svolgimento> listaeventi = webclient.Show_Event(stud.IdStud);
+            ViewData["eventi"] = listaeventi;
+            return View();
+        }
         [HttpPost]
         public ActionResult Partecipa(FormCollection form)
         {

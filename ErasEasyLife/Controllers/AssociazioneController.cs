@@ -413,6 +413,7 @@ namespace ErasEasyLife.Controllers
 
             }
         }
+       
         [HttpGet]
         public ActionResult Elenco_Eventi()
         {

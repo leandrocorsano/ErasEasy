@@ -148,6 +148,29 @@ namespace ErasEasyLife.Controllers
                 return View("Evento/lista_Eventi");
             }
         }
+        [HttpGet]
+        public ActionResult MieiEventi()
+        {
+            var webclient = new Volunteer.VolunteerClient();
+            Volunteer.Volontario vol = (Volunteer.Volontario)Session["Volontario"];
+            string tipologia = " E.tipologia != 'riunione'";
+            Volunteer.Svolgimento[] listaeventi = webclient.Show_Event(vol.IdVolont, tipologia);
+            ViewData["eventi"] = listaeventi;
+            return View();
+
+        }
+        [HttpGet]
+        public ActionResult MieRiunioni()
+        {
+            var webclient = new Volunteer.VolunteerClient();
+            Volunteer.Volontario vol = (Volunteer.Volontario)Session["Volontario"];
+            string tipologia = " E.tipologia = 'riunione'";
+            Volunteer.Svolgimento[] listariunioni = webclient.Show_Event(vol.IdVolont, tipologia);
+            ViewData["riunioni"] = listariunioni;
+            return View();
+
+        }
+            
         [HttpPost]
         public ActionResult Partecipa(FormCollection form)
         {

@@ -217,12 +217,12 @@ namespace Admin_wcf
             }
             return risultato;
         }
-        public List<Svolgimento> Show_Event(int idvol)
+        public List<Svolgimento> Show_Event(int idvol, string tipologia = "")
         {
             /* ---------------------------------------------------
              * Eventi che ha gestisto/gestirà un volontario
              * ------------------------------------------------------*/
-            string cond = "E.idev=G.idev and G.idvolont=" + idvol + " and S.idev=E.idev and S.idluogo=L.idluogo";
+            string cond = "E.idev=G.idev and G.idvolont=" + idvol + " and S.idev=E.idev and S.idluogo=L.idluogo and" + tipologia;
             var wcfclient = server_conn.getInstance();
             Association ass = new Association();
 
