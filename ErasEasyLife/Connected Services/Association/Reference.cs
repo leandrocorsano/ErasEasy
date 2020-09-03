@@ -633,7 +633,7 @@ namespace ErasEasyLife.Association {
         ErasEasyLife.Association.Svolgimento[] Show_Event(int idass, string tipologia);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/Show_Event", ReplyAction="http://tempuri.org/IAssociation/Show_EventResponse")]
-        System.Threading.Tasks.Task<ErasEasyLife.Association.Svolgimento[]> Show_EventAsync(int idass, string tipologia);
+        System.Threading.Tasks.Task<ErasEasyLife.Association.Svolgimento[]> Show_EventAsync(int idass);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -733,6 +733,14 @@ namespace ErasEasyLife.Association {
         
         public System.Threading.Tasks.Task<ErasEasyLife.Association.Svolgimento[]> Show_EventAsync(int idass, string tipologia) {
             return base.Channel.Show_EventAsync(idass, tipologia);
+        }
+        
+        public bool add_ruolo(int idvolont, string ruolo) {
+            return base.Channel.add_ruolo(idvolont, ruolo);
+        }
+        
+        public System.Threading.Tasks.Task<bool> add_ruoloAsync(int idvolont, string ruolo) {
+            return base.Channel.add_ruoloAsync(idvolont, ruolo);
         }
     }
 }
