@@ -290,19 +290,19 @@ h1
                                 <p>
                                     &nbsp; @E.luogo.via   &nbsp;  @E.luogo.citta, @E.luogo.stato
                                 </p>
-                                <i class="fa fa-dollar-sign"></i>
-                                <p> &nbsp; Costo: @E.evento.costo &euro; </p>
+
 
                             </div>
                             @using (Html.BeginForm("Dettagli", "Evento", FormMethod.Post))
                             {
                                 
-                                <input type="hidden" value="@E.evento.IdEv"  name="idev" />
-                                <input type="submit" class="a bg-gradient-green" value="Dettagli" />
 
-                            }
+                                    <input type="hidden" value="@E.evento.IdEv" name="idev" />
+                                    <input type="submit" class="a bg-gradient-green" value="Dettagli" />
+                                
+                              }
 
-                        </section>
+                            </section>
                     </article>
                 </div>
 

@@ -246,6 +246,131 @@ namespace Admin_wcf
             }
             return risultato;
         }
+
+        public bool Friendship_Request(int stud1, int stud2)
+        {
+            /* ---------------------------------------------------
+            * Funzione che permette di richiedere l'amicizia
+            * ------------------------------------------------------*/
+
+            var wcfclient = server_conn.getInstance();
+            string valori = "'Richiesta' , "+ stud1.ToString() + "," + stud2.ToString()+"";
+            bool risultato;
+            try
+            {
+                risultato = wcfclient.DBinsert("AMICIZIA", valori,"`Stato`, `idstud1`, `idstud2`");
+                Console.WriteLine("[OK] Richiesta di amicizia avvenuta con successo!!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ERROR]" + ex.Message);
+                throw;
+
+            }
+            return risultato;
+
+        }
+        public bool Friendship_State(int stud1, int stud2, string state)
+        {
+            /* ---------------------------------------------------
+            * Funzione che permette di Confermare/Annullare la richiesta d'amicizia
+            * ------------------------------------------------------*/
+
+            var wcfclient = server_conn.getInstance();
+            string cond = "idstud1=" + stud1.ToString() + " and idstud2=" + stud2.ToString() ;
+            string modifica = "Stato='" + state + "'";
+            bool risultato;
+            try
+            {
+                risultato = wcfclient.DBupdate("AMICIZIA", modifica, cond);
+                Console.WriteLine("[OK] Modifica stato richiesta amicizia avvenuta con successo !!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ERROR]" + ex.Message);
+                throw;
+
+            }
+            return risultato;
+
+        }
+
+        public List<Studente> Show_Friends(Studente stud, string state)
+        {
+            /* ---------------------------------------------------
+            * Funzione che permette di vedere l'elenco degli amici 
+            * ------------------------------------------------------*/
+
+            var wcfclient = server_conn.getInstance();
+            string cond = "A.idstud2=S.idstud and A.idstud1=" + stud.IdStud.ToString() + " and A.Stato='" +state+"'";
+            List<Studente> studenti = new List<Studente>();
+            try
+            {
+                DataSet stud_set = wcfclient.DBselect("*", "AMICIZIA as A, STUDENTE as S", cond);
+                foreach (DataTable table in stud_set.Tables)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+                        Studente s = new Studente(Convert.ToInt32(row["IdStud"]), row["nome"].ToString(), row["cognome"].ToString(), row["email"].ToString(), row["cellulare"].ToString(), row["data_n"].ToString(), row["citta"].ToString(), row["stato"].ToString(), row["nazionalita"].ToString(), row["password"].ToString(), row["instagram"].ToString(), row["facebook"].ToString());
+                        studenti.Add(s);
+
+                    }
+                }
+                cond = "A.idstud1=S.idstud and A.idstud2=" + stud.IdStud.ToString() + " and A.Stato='" + state + "'";
+                DataSet stud_set1 = wcfclient.DBselect("*", "AMICIZIA as A, STUDENTE as S", cond);
+                foreach (DataTable table in stud_set1.Tables)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+                        Studente s = new Studente(Convert.ToInt32(row["IdStud"]), row["nome"].ToString(), row["cognome"].ToString(), row["email"].ToString(), row["cellulare"].ToString(), row["data_n"].ToString(), row["citta"].ToString(), row["stato"].ToString(), row["nazionalita"].ToString(), row["password"].ToString(), row["instagram"].ToString(), row["facebook"].ToString());
+                        studenti.Add(s);
+
+                    }
+                }
+                Console.WriteLine("[OK] Lista Amici/Richieste restitutita con successo!!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ERROR]" + ex.Message);
+                throw;
+
+            }
+            return studenti;
+
+        }
+
+        public List<Studente> My_Friendship_Request(Studente stud)
+        {
+            /* ---------------------------------------------------
+            * Funzione che permette di vedere le mie richieste a cui posso rispondere
+            * ------------------------------------------------------*/
+
+            var wcfclient = server_conn.getInstance();
+            string cond = "A.idstud1=S.idstud and A.idstud2=" + stud.IdStud.ToString() + " and A.Stato='Richiesta'";
+            List<Studente> studenti = new List<Studente>();
+            try
+            {
+                DataSet stud_set = wcfclient.DBselect("*", "AMICIZIA as A, STUDENTE as S", cond);
+                foreach (DataTable table in stud_set.Tables)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+                        Studente s = new Studente(Convert.ToInt32(row["IdStud"]), row["nome"].ToString(), row["cognome"].ToString(), row["email"].ToString(), row["cellulare"].ToString(), row["data_n"].ToString(), row["citta"].ToString(), row["stato"].ToString(), row["nazionalita"].ToString(), row["password"].ToString(), row["instagram"].ToString(), row["facebook"].ToString());
+                        studenti.Add(s);
+
+                    }
+                }
+                Console.WriteLine("[OK] Lista Amici/Richieste restitutita con successo!!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ERROR]" + ex.Message);
+                throw;
+
+            }
+            return studenti;
+
+        }
     }
     
 }

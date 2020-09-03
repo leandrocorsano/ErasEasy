@@ -252,8 +252,13 @@
                                     </p>
 
                                 </div>
+                                @using (Html.BeginForm("Dettagli_Riunione", "Evento", FormMethod.Post))
+                                {
 
-                                <a href="#" class="bg-green">Dettagli</a>
+                                <input type="hidden" value="@E.evento.IdEv" name="idev" />
+                                <input type="submit" class="a bg-gradient-green" value="Dettagli" />
+
+                                }
                             </section>
                         </article>
                     </div>

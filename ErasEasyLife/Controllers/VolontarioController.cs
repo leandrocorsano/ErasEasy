@@ -110,6 +110,82 @@ namespace ErasEasyLife.Controllers
                 return View();
             }
         }
+        [HttpPost]
+        public ActionResult Elimina_partecipazione(FormCollection form)
+        {
+            try
+            {
+                int evento = Int32.Parse(form["idev"]);
+                var webclient = new Event.EventClient();
+                Event.Svolgimento e = webclient.Get_event_by_id(evento);
+                Volunteer.Volontario vol = (Volunteer.Volontario)Session["volontario"];
+                var webclient1 = new Volunteer.VolunteerClient();
+                bool r = webclient1.CancelBooking(vol.IdVolont, evento);
+                if (r == true)
+                {
+                    if (e.evento.tipologia == "Riunione")
+                    {
+                        ViewBag.risposta = "Riunione cancellata con successo";
+                        ViewBag.url = "../Evento/Lista_riunioni";
+                        ViewBag.link = "Torna alle riunioni";
+                    }
+                    else
+                    {
+                        ViewBag.risposta = "Evento cancellato con successo";
+                        ViewBag.url = "../Volontario/Lista_Eventi";
+                        ViewBag.link = "Torna agli eventi";
+                    }
+                    return View("Successo");
+                }
+                else
+                {
+                    return View("Evento/lista_Eventi");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View("Evento/lista_Eventi");
+            }
+        }
+        [HttpPost]
+        public ActionResult Partecipa(FormCollection form)
+        {
+            try
+            {
+                int evento = Int32.Parse(form["idev"]);
+                var webclient= new Event.EventClient();
+                Event.Svolgimento e = webclient.Get_event_by_id(evento);
+                Volunteer.Volontario vol = (Volunteer.Volontario)Session["volontario"];
+                var webclient1 = new Volunteer.VolunteerClient();
+                bool r = webclient1.BookEvent(vol.IdVolont, evento);
+                if (r == true)
+                {
+                    if (e.evento.tipologia == "Riunione")
+                    {
+                        ViewBag.risposta = "Riunione prenotata con successo";
+                        ViewBag.url = "../Evento/Lista_riunioni";
+                        ViewBag.link = "Torna alle riunioni";
+                    }
+                    else
+                    {
+                        ViewBag.risposta = "Evento prenotata con successo";
+                        ViewBag.url = "../Volontario/Lista_Eventi";
+                        ViewBag.link = "Torna agli eventi";
+                    }
+                    return View("Successo");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View();
+            }
+        }
         // POST: Volontario/Create
         [HttpPost]
         public ActionResult Registra(Models.Volontario model)

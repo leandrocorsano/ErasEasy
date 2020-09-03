@@ -38,12 +38,23 @@ namespace Admin_wcf
 
         [OperationContract]
         bool CancelBooking(int studente, int evento);
+        [OperationContract]
+        bool Friendship_Request(int stud1, int stud2);
+        [OperationContract]
+        bool Friendship_State(int stud1, int stud2, string state);
+        [OperationContract]
+        List<Studente> Show_Friends(Studente stud, string state);
+
+        [OperationContract]
+        List<Studente> My_Friendship_Request(Studente stud);
 
         /*funzioni che mancano*/
 
-        //Disdici evento
-        //richiedi amicizia
+
+
         //mostra amici
-        //conferma amicizia
+
+        //registra_università
+        //mostra_università
     }
 }

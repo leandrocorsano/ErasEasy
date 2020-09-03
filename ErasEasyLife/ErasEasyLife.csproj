@@ -2216,6 +2216,9 @@
     <Content Include="Views\Evento\Dettagli.cshtml" />
     <Content Include="Views\Associazione\Elenco_Eventi.cshtml" />
     <Content Include="Views\Associazione\Elenco_Riunioni.cshtml" />
+    <Content Include="Views\Evento\Dettagli_Riunione.cshtml" />
+    <Content Include="Views\Associazione\Dettagli_Evento.cshtml" />
+    <Content Include="Views\Studente\Richieste_Amicizia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

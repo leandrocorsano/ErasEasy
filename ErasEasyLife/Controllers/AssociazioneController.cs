@@ -434,7 +434,27 @@ namespace ErasEasyLife.Controllers
             return View();
 
         }
-        
+        [HttpPost]
+        public ActionResult Dettagli_Evento(FormCollection form)
+        {
+
+            int id = Int32.Parse(form["idev"]);
+            var webclient = new Event.EventClient();
+
+            Event.Svolgimento e = webclient.Get_event_by_id(id);
+            List<Event.Studente> studenti = webclient.Event_partecipations(e);
+            List<Event.Volontario> volontari = webclient.Event_volunteers(e);
+            ViewData["evento"] = e;
+            ViewData["studenti"] = studenti;
+            ViewData["volontari"] = volontari;
+
+
+
+            return View();
+
+
+        }
+
         // GET: Associazione/Delete/5
         public ActionResult Delete(int id)
         {

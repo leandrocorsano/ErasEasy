@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/StudenteMenu.cshtml";
 }
 @{ 
+    
     List<string> nazionalita = new List<string>() {"--Seleziona Nazionalità---", "Italiana", "Francese", "Inglese", "Tedesca", "Spagnola","Polacca", "Austriaca", "Portoghese", "Belga", "Svizzera", "Albanese", "Moldava", "Greca", "Montenegrina", "Bulgara", "Rumena", "Svedese", "Finalandese", "Olandese", "Danese", "Slovacca", "Lituana", "Lettone", "Estone", "Ungherese", "Norvegese", "Bielorussa", "Slovena", "Irlandese", "Maltese", "Lussemburghese", "Islandese" };
     Dictionary<string, string> bandiere = new Dictionary<string, string> {
                 {"Italiana", "https://www.countryflags.io/it/shiny/24.png" },
@@ -89,12 +90,15 @@
         }
         <div>
 
-            @if (ViewData["studenti"] != null)
+            @if(ViewData["studenti"] != null)
             {
                 <div class="row">
                     @{
                         foreach (var studente in ViewData["studenti"] as IList<ErasEasyLife.Student.Studente>)
                         {
+                            bool richiesta_inviata = false;
+                            bool richiesta_ricevuta = false;
+                            bool conferma = false;
                             <div class="col-sm-4">
                                 <div class="card">
                                     <center>
@@ -105,15 +109,88 @@
                                         <div class="card-body bg-light">
                                             <p><i class="fas fa-envelope"></i> @studente.email</p>
                                             <p><i class="fas fa-city"></i> @studente.citta</p>
-                                            @if (studente.instagram != "")
-                                            {
-                                                <a href="@studente.instagram"><img src="~/adminlte/img/instagram_logo.png" width="48px" height="48px"></a>
-                                            }
-                                            @if (studente.facebook != "")
-                                            {
-                                                <a href="@studente.facebook"><img src="~/adminlte/img/facebook_logo.png" width="48px" height="48px"></a>
-                                            }
-                                        </div>
+
+                                            @{
+                                                List<ErasEasyLife.Student.Studente> mie_richieste = ViewData["mie_richieste"] as List<ErasEasyLife.Student.Studente>;
+                                                List<ErasEasyLife.Student.Studente> altri_richieste = ViewData["altri_richieste"] as List<ErasEasyLife.Student.Studente>;
+                                                List<ErasEasyLife.Student.Studente> conferme = ViewData["conferme"] as List<ErasEasyLife.Student.Studente>;
+                                                foreach (var r in mie_richieste)
+                                                {
+                                                    if (r.IdStud == studente.IdStud)
+                                                    {
+                                                        richiesta_ricevuta = false;
+                                                        richiesta_inviata = true;
+                                                    }
+
+                                                }
+                                                foreach (var r in altri_richieste)
+                                                {
+                                                    if (r.IdStud == studente.IdStud)
+                                                    {
+                                                        richiesta_ricevuta = true;
+                                                        richiesta_inviata = false;
+                                                    }
+
+                                                }
+                                                foreach (var c in conferme)
+                                                {
+                                                    if (c.IdStud == studente.IdStud)
+                                                    {
+                                                        conferma = true;
+                                                    }
+
+                                                }
+                                                if (richiesta_ricevuta == true)
+                                                {
+                                                    <p class="text-warning">
+                                                        <b>Ti ha inviato una richiesta d'amicizia</b>
+                                                    </p>
+                                                    <a href="@Url.Action("RIchieste_Amicizia", "Studente")">
+                                                        <button class="bg-secondary">Vai alle richieste</button></a>
+                                                        }
+                                                        else if (richiesta_inviata == true)
+                                                        {
+                                                        <p class="text-green">
+                                                            <b>Richiesta inviata</b>
+                                                        </p>
+                                                        using (Html.BeginForm("Annulla_Richiesta", "Studente", FormMethod.Post))
+                                                        {
+
+                                                        <div class="form-group">
+                                                            <input type="hidden" value="@studente.IdStud" name="idstud" />
+                                                            <input type="submit" class="a bg-gradient-danger" value="Annulla Richiesta" />
+                                                        </div>
+                                                        }
+                                                        }
+                                                        else if (conferma == true)
+                                                        {
+                                                        <div class="alert alert-info" role="alert">
+                                                            <b>Amicizia confermata</b>
+                                                        </div>
+                                                        }
+                                                        else
+                                                        {
+                                                        using (Html.BeginForm("Richiesta_Amicizia", "Studente", FormMethod.Post))
+                                                        {
+
+                                                        <div class="form-group">
+                                                            <input type="hidden" value="@studente.IdStud" name="idstud" />
+                                                            <input type="submit" class="a bg-gradient-green" value="Richiedi amicizia" />
+                                                        </div>
+                                                        }
+                                                        }
+                                                        if (studente.instagram != "")
+                                                        {
+                                                        <a href="@studente.instagram"><img src="~/adminlte/img/instagram_logo.png" width="36px" height="36px"></a>
+                                                        }
+                                                        if (studente.facebook != "")
+                                                        {
+                                                        <a href="@studente.facebook"><img src="~/adminlte/img/facebook_logo.png" width="36px" height="36px"></a>
+                                                        }
+
+                                                        }
+
+</div>
                                     </center>
                                 </div>
                             </div>
