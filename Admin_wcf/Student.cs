@@ -371,6 +371,85 @@ namespace Admin_wcf
             return studenti;
 
         }
+        public bool Delete_Friendship(int stud1, int stud2)
+        {
+            /* ---------------------------------------------------
+            * Funzione che permette di vedere annulare una richiesta oppure rifiutare un amicizia
+            * ------------------------------------------------------*/
+
+            var wcfclient = server_conn.getInstance();
+            string cond = "idstud1=" + stud1 + " and idstud2=" + stud2;
+            bool result;
+            try
+            {
+                result = wcfclient.DBdelete("AMICIZIA", cond);
+                Console.WriteLine("[OK] Richiesta d'amicizia annullata con successo!!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ERROR]" + ex.Message);
+                throw;
+
+            }
+            return result;
+
+        }
+        public bool University_Registration(Frequentazione f)
+        {
+            var wcfclient = server_conn.getInstance();
+            string valori_uni = "" + f.universita.IdUni.ToString() + ", '" + f.universita.nome + "','" + f.universita.citta + "', '" + f.universita.stato + "'";
+            string valori_freq = "'" + f.tipo + "'" + f.studente.IdStud.ToString() + ", " + f.universita.IdUni.ToString();
+            string query_uni = "INSERT INTO `UNIVERSITA`(`iduni`, `nome`, `citta`, `stato`) VALUES ("+valori_uni+")";
+            string query_freq= "INSERT INTO `FREQUENTAZIONE`(`tipo`, `idstud`, `iduni`) VALUES(" + valori_freq + ")";
+            string[] queries = { query_uni, query_freq };
+            try
+            {
+                bool risultato = wcfclient.DBtransaction(queries);
+                Console.WriteLine("[OK] Registrazione università avvenuta con successo");
+                return risultato;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ERROR]" + ex.Message);
+                throw;
+
+            }
+            
+        }
+
+        public List<Frequentazione> GetUniversity(Studente s)
+        {
+            /* ---------------------------------------------------
+            * Funzione che permette recuperare le università dello studente
+            * ------------------------------------------------------*/
+
+            var wcfclient = server_conn.getInstance();
+            string cond = "F.idstud=S.idstud and F.iduni=U.iduni and idstud="+s.IdStud.ToString();
+            List<Frequentazione> univesita = new List<Frequentazione>();
+            try
+            {
+                DataSet uni_set = wcfclient.DBselect("*", "FREQUENTAZIONE as F, STUDENTE as S, UNIVERSITA as U", cond);
+                foreach (DataTable table in uni_set.Tables)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+                        Universita u = new Universita(Convert.ToInt32(row["iduni"]), row["nome"].ToString(), row["citta"].ToString(), row["stato"].ToString());
+                        Studente stud = new Studente(Convert.ToInt32(row["IdStud"]), row["nome"].ToString(), row["cognome"].ToString(), row["email"].ToString(), row["cellulare"].ToString(), row["data_n"].ToString(), row["citta"].ToString(), row["stato"].ToString(), row["nazionalita"].ToString(), row["password"].ToString(), row["instagram"].ToString(), row["facebook"].ToString());
+                        Frequentazione f = new Frequentazione(stud, u, row["tipo"].ToString());
+                        univesita.Add(f);
+                    }
+                }
+                Console.WriteLine("[OK] Lista universita' restitutita con successo!!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ERROR]" + ex.Message);
+                throw;
+
+            }
+            return univesita;
+
+        }
     }
     
 }

@@ -1986,6 +1986,9 @@
     <Content Include="Connected Services\Student\ErasEasyLife.Student.Svolgimento.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\Student\ErasEasyLife.Student.Frequentazione.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\Student\item.disco" />
     <None Include="Connected Services\Student\configuration91.svcinfo" />
     <None Include="Connected Services\Student\configuration.svcinfo" />
@@ -2222,6 +2225,10 @@
     <Content Include="Views\Studente\MieiEventi.cshtml" />
     <Content Include="Views\Volontario\MieiEventi.cshtml" />
     <Content Include="Views\Volontario\MieRiunioni.cshtml" />
+    <Content Include="Views\Evento\Lista_Riunioni.cshtml" />
+    <Content Include="Views\Studente\Elenco_Amici.cshtml" />
+    <Content Include="Views\Studente\Le_mie_richieste.cshtml" />
+    <Content Include="Views\Studente\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

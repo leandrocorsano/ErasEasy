@@ -79,13 +79,17 @@ namespace ErasEasyLife.Controllers
                 string cond = "idstud!=" + stud.IdStud+" and nazionalita='" + model.nazionalita + "'";
                 var webclient = new Student.StudentClient();
                 List<Student.Studente> studenti = webclient.Show_students(cond);
-                List<Student.Studente> mie_richieste = webclient.Show_Friends(stud, "Richiesta");
-                List<Student.Studente> altri_richieste = webclient.My_Friendship_Request(stud);
+                List<Student.Studente> richieste_totali = webclient.Show_Friends(stud, "Richiesta");
+                List<Student.Studente> richieste_ricevute = webclient.My_Friendship_Request(stud);
+                richieste_ricevute.ForEach(x => { richieste_totali.Remove(x); }); //tengo solo le richieste che ho inviato
+                
                 List<Student.Studente> conferme = webclient.Show_Friends(stud, "Conferma");
+                List<Student.Studente> amicizie_rifiutate = webclient.Show_Friends(stud, "Rifiutata");
                 ViewData["studenti"] = studenti;
-                ViewData["altri_richieste"] = altri_richieste;
-                ViewData["mie_richieste"] = mie_richieste;
+                ViewData["altri_richieste"] = richieste_ricevute;
+                ViewData["mie_richieste"] = richieste_totali;
                 ViewData["conferme"] = conferme;
+                ViewData["rifiutate"] = amicizie_rifiutate;
                 return View();
             }
             return View();
@@ -134,6 +138,8 @@ namespace ErasEasyLife.Controllers
                 return View();
             }
         }
+
+
 
         // POST: Studente/Create
         [HttpPost]
@@ -328,6 +334,39 @@ namespace ErasEasyLife.Controllers
             }
         }
         [HttpPost]
+        public ActionResult Annulla_Richiesta(FormCollection form)
+        {
+            try
+            {
+                int stud2= Int32.Parse(form["idstud"]);
+                Student.Studente stud = (Student.Studente)Session["studente"];
+                var webclient = new Student.StudentClient();
+                bool r = webclient.Delete_Friendship(stud.IdStud, stud2);
+                if (r == true)
+                {
+                    ViewBag.risposta = "Hai annullato la richiesta d'amicizia";
+                    ViewBag.url = "../Studente/Elenco";
+                    ViewBag.link = "Torna all'elenco";
+                    return View("Successo");
+                }
+                else
+                {
+                    ViewBag.risposta = "Qualcosa è andato storto, riprova!";
+                    ViewBag.url = "../Studente/Elenco";
+                    ViewBag.link = "Torna all'elenco";
+                    return View("Errore");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                ViewBag.risposta = "Qualcosa è andato storto, riprova!";
+                ViewBag.url = "../Studente/Elenco";
+                ViewBag.link = "Torna all'elenco";
+                return View("Errore");
+            }
+        }
+        [HttpPost]
         public ActionResult Conferma_Amicizia(FormCollection form)
         {
             try
@@ -356,6 +395,40 @@ namespace ErasEasyLife.Controllers
                 return View("Richieste_Amicizia");
             }
         }
+        [HttpPost]
+        public ActionResult Rifiuta_Amicizia(FormCollection form)
+        {
+            try
+            {
+                int stud1 = Int32.Parse(form["idstud"]);
+                Student.Studente stud = (Student.Studente)Session["studente"];
+                var webclient = new Student.StudentClient();
+                bool r = webclient.Friendship_State(stud1, stud.IdStud, "Rifiutata");
+                if (r == true)
+                {
+                    ViewBag.risposta = "Richiesta di amicizia rifiutata";
+                    ViewBag.url = "../Studente/Elenco";
+                    ViewBag.link = "Torna alle richieste";
+                    return View("Successo");
+                }
+                else
+                {
+                    ViewBag.risposta = "Qualcosa è andato storto, riprova!";
+                    ViewBag.url = "../Studente/Elenco";
+                    ViewBag.link = "Torna all'elenco";
+                    return View("Errore");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                ViewBag.risposta = "Qualcosa è andato storto, riprova!";
+                ViewBag.url = "../Studente/Elenco";
+                ViewBag.link = "Torna all'elenco";
+                return View("Errore");
+            }
+        }
+
         [HttpGet]
         public ActionResult Richieste_Amicizia()
         {
@@ -376,9 +449,58 @@ namespace ErasEasyLife.Controllers
             }
         }
         [HttpGet]
+        public ActionResult Elenco_Amici()
+        {
+            Student.Studente stud = (Student.Studente)Session["studente"];
+            var webclient = new Student.StudentClient();
+            List<Student.Studente> amici = webclient.Show_Friends(stud, "Conferma");
+            ViewData["amici"] = amici;
+            return View();
+      
+        }
+        [HttpGet]
+        public ActionResult Le_mie_richieste()
+        {
+            Student.Studente stud = (Student.Studente)Session["studente"];
+            var webclient = new Student.StudentClient();
+            List<Student.Studente> richieste_totali = webclient.Show_Friends(stud, "Richiesta");
+            List<Student.Studente> richieste_ricevute = webclient.My_Friendship_Request(stud);
+            richieste_ricevute.ForEach(x => { richieste_totali.Remove(x); }); //tengo solo le richieste che ho inviato
+            
+
+                ViewData["richieste"] = richieste_totali;
+
+                return View();
+
+            
+        }
+        [HttpGet]
         public ActionResult Modifica_Pass()
         {
             return View("Modifica_Pass");
+        }
+        [HttpGet]
+        public ActionResult Dashboard()
+        {
+            var studclient = new Student.StudentClient();
+            Student.Studente stud = (Student.Studente)Session["studente"];
+            List<Student.Studente> richieste_totali = studclient.Show_Friends(stud, "Richiesta");
+            List<Student.Studente> richieste_ricevute = studclient.My_Friendship_Request(stud);
+            richieste_ricevute.ForEach(x => { richieste_totali.Remove(x); }); //tengo solo le richieste che ho inviato
+            List<Student.Studente> conferme = studclient.Show_Friends(stud, "Conferma");
+            List<Student.Svolgimento> miei_eventi = studclient.Show_Event(stud.IdStud);
+
+            ViewData["n_altre_richieste"] = richieste_ricevute.Count();
+            ViewData["n_mie_richieste"] = richieste_totali.Count();
+            ViewData["n_conferme"] = conferme.Count();
+            ViewData["n_miei_eventi"] = miei_eventi.Count();
+
+            var eventclient = new Event.EventClient();
+            DateTime oggi = DateTime.Today;
+            string cond = " and data_i > '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='riunione' ";
+            List<Event.Svolgimento> eventi = eventclient.Show_events(cond);
+            ViewData["n_prossimi_eventi"] = eventi.Count();
+            return View();
         }
         [HttpPost]
         public ActionResult Modifica_Pass(Models.CambioPass model)

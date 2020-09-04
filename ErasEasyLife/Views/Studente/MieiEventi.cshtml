@@ -251,7 +251,7 @@
                                 <p> &nbsp; Cost: @E.evento.costo &euro; </p>
 
                             </div>
-                            @using (Html.BeginForm("Dettagli_Evento", "Associazione", FormMethod.Post))
+                            @using (Html.BeginForm("Dettagli", "Evento", FormMethod.Post))
                             {
 
                                 <input type="hidden" value="@E.evento.IdEv" name="idev" />

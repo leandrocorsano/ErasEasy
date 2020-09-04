@@ -65,4 +65,27 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Luogo" nillable="true" type="tns:Luogo" />
+  <xs:complexType name="Frequentazione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="studente" nillable="true" type="tns:Studente" />
+      <xs:element minOccurs="0" name="tipo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="universita" nillable="true" type="tns:Universita" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Frequentazione" nillable="true" type="tns:Frequentazione" />
+  <xs:complexType name="Universita">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdUni" type="xs:int" />
+      <xs:element minOccurs="0" name="citta" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nome" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="stato" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Universita" nillable="true" type="tns:Universita" />
+  <xs:complexType name="ArrayOfFrequentazione">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Frequentazione" nillable="true" type="tns:Frequentazione" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFrequentazione" nillable="true" type="tns:ArrayOfFrequentazione" />
 </xs:schema>
