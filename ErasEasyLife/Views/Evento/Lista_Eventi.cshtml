@@ -280,8 +280,8 @@ h1
                             <div class="even-date">
                                 <i class="fa fa-calendar"></i>
                                 <time>
-                                    <span> &nbsp; Inizio: @Giorni[Date1.DayOfWeek.ToString()] @Date1.Day.ToString()  @Mesi[Date1.Month] @Date1.Year.ToString()  @E.ora_i</span>
-                                    <span> &nbsp; Fine: @Giorni[Date2.DayOfWeek.ToString()] @Date2.Day.ToString()  @Mesi[Date2.Month] @Date2.Year.ToString()  @E.ora_f</span>
+                                    <span> &nbsp; <b>Inizio:</b> @Giorni[Date1.DayOfWeek.ToString()] @Date1.Day.ToString()  @Mesi[Date1.Month] @Date1.Year.ToString()  @E.ora_i</span>
+                                    <span> &nbsp; <b>Fine:</b> @Giorni[Date2.DayOfWeek.ToString()] @Date2.Day.ToString()  @Mesi[Date2.Month] @Date2.Year.ToString()  @E.ora_f</span>
                                 </time>
 
                             </div>
@@ -289,6 +289,10 @@ h1
                                 <i class="fa fa-map-marker"></i>
                                 <p>
                                     &nbsp; @E.luogo.via   &nbsp;  @E.luogo.citta, @E.luogo.stato
+                                </p>
+                                <i class="fa fa-dollar-sign"></i>
+                                <p>
+                                    &nbsp;<b> Costo:</b>  @E.evento.costo &euro;
                                 </p>
 
 

@@ -170,7 +170,37 @@ namespace ErasEasyLife.Controllers
             return View();
 
         }
-            
+        [HttpGet]
+        public ActionResult Lista_Eventi()
+        {
+            DateTime oggi = DateTime.Today;
+            Volunteer.Volontario vol = (Volunteer.Volontario)Session["Volontario"];
+
+            string cond = " and data_i > '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='riunione' and idass = " + vol.ass.IdAss + " order by data_i";
+            var webclient = new Event.EventClient();
+            List<Event.Svolgimento> eventi = webclient.Show_events(cond);
+
+            ViewData["eventi"] = eventi;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Dettagli_Evento(FormCollection form)
+        {
+
+            int id = Int32.Parse(form["idev"]);
+            var webclient = new Event.EventClient();
+
+            Event.Svolgimento e = webclient.Get_event_by_id(id);
+            List<Event.Volontario> volontari = webclient.Event_volunteers(e);
+            ViewData["evento"] = e;
+            ViewData["volontari"] = volontari;
+
+
+
+            return View();
+
+
+        }
         [HttpPost]
         public ActionResult Partecipa(FormCollection form)
         {
@@ -200,7 +230,10 @@ namespace ErasEasyLife.Controllers
                 }
                 else
                 {
-                    return View();
+                    ViewBag.risposta = "C'è stato un errore, Riprova!";
+                    ViewBag.url = "../Volontario/Lista_Eventi";
+                    ViewBag.link = "Torna agli eventi";
+                    return View("Errore");
                 }
             }
             catch (Exception ex)

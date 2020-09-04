@@ -178,6 +178,10 @@
     <Content Include="Adminlte\css\alt\adminlte.pages.min.css.map" />
     <Content Include="Adminlte\css\alt\adminlte.plugins.css.map" />
     <Content Include="Adminlte\css\alt\adminlte.plugins.min.css.map" />
+    <Content Include="Adminlte\img\ErasEasyLife.gif" />
+    <Content Include="Adminlte\img\ERASEASYLIFE.png" />
+    <Content Include="Adminlte\img\ERASEASYLIFE1.png" />
+    <Content Include="Adminlte\img\ERASEASYLIFE2.png" />
     <Content Include="Adminlte\img\users.png" />
     <Content Include="Adminlte\js\adminlte.js.map" />
     <Content Include="Adminlte\js\adminlte.min.js.map" />
@@ -1932,6 +1936,8 @@
     <Content Include="Adminlte\plugins\toastr\toastr.css" />
     <Content Include="Adminlte\plugins\toastr\toastr.min.css" />
     <Content Include="Adminlte\plugins\toastr\toastr.min.js" />
+    <Content Include="Adminlte\video\ErasEasyLife.mp4" />
+    <Content Include="cappello.ico" />
     <Content Include="Connected Services\Association\ErasEasyLife.Association.Associazione.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -2024,7 +2030,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="favicon.ico" />
+    <Content Include="favicon1.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Connected Services\Association\item.xsd">
@@ -2229,6 +2235,8 @@
     <Content Include="Views\Studente\Elenco_Amici.cshtml" />
     <Content Include="Views\Studente\Le_mie_richieste.cshtml" />
     <Content Include="Views\Studente\Dashboard.cshtml" />
+    <Content Include="Views\Volontario\Lista_Eventi.cshtml" />
+    <Content Include="Views\Volontario\Dettagli_Evento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2261,6 +2269,10 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
