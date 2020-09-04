@@ -2,12 +2,10 @@
 @{
     ViewBag.Title = "Events";
     Layout = "~/Views/Shared/StudenteMenu.cshtml";
-    Dictionary<string, string> Giorni = new Dictionary<string, string> { { "Monday", "Lunedì" }, { "Tuesday", "Martedì" },
-                                                                        { "Wednesday", "Mercoledì" }, {"Thursday", "Giovedì" }, {"Friday", "Venerdì" },
-                                                                        {"Saturday", "Sabato" }, {"Sunday", "Domenica" } };
-    Dictionary<int, string> Mesi = new Dictionary<int, string> { { 1, "Gen" }, { 2, "Feb" },
-                                                                        { 3 , "Mar" }, {4, "Apr" }, {5, "Mag" },
-                                                                        {6, "Giu" }, {7, "Lug" }, {8, "Ago" } , {9, "Set" } , {10, "Ott" }, 
+    
+     Dictionary<int, string> Mesi = new Dictionary<int, string> { { 1, "Gen" }, { 2, "Feb" },
+                                                                        { 3 , "Mar" }, {4, "Avr" }, {5, "May" },
+                                                                        {6, "June" }, {7, "July" }, {8, "Aug" } , {9, "Sept" } , {10, "Oct" },
                                                                          {11, "Nov" }, {12, "Dic" }   };
 }
 
@@ -267,7 +265,7 @@ h1
                                     DateTime Date1 = DateTime.Parse(E.data_i);
                                     DateTime Date2 = DateTime.Parse(E.data_f);
                                 }
-                                <span>@Giorni[Date1.DayOfWeek.ToString()]</span>
+                                <span>@Date1.DayOfWeek.ToString()</span>
 
                                 <span class="Giorno">@Date1.Day.ToString()</span><span>@Mesi[Date1.Month]</span>
                             </time>
@@ -280,8 +278,8 @@ h1
                             <div class="even-date">
                                 <i class="fa fa-calendar"></i>
                                 <time>
-                                    <span> &nbsp; Start: @Giorni[Date1.DayOfWeek.ToString()] @Date1.Day.ToString()  @Mesi[Date1.Month] @Date1.Year.ToString()  @E.ora_i</span>
-                                    <span> &nbsp; End: @Giorni[Date2.DayOfWeek.ToString()] @Date2.Day.ToString()  @Mesi[Date2.Month] @Date2.Year.ToString()  @E.ora_f</span>
+                                    <span> &nbsp; Start: @Date1.DayOfWeek.ToString() @Date1.Day.ToString()  @Mesi[Date1.Month] @Date1.Year.ToString()  @E.ora_i</span>
+                                    <span> &nbsp; End: @Date2.DayOfWeek.ToString() @Date2.Day.ToString()  @Mesi[Date2.Month] @Date2.Year.ToString()  @E.ora_f</span>
                                 </time>
 
                             </div>
@@ -290,7 +288,10 @@ h1
                                 <p>
                                     &nbsp; @E.luogo.via   &nbsp;  @E.luogo.citta, @E.luogo.stato
                                 </p>
-
+                                <i class="fa fa-dollar-sign"></i>
+                                <p>
+                                    &nbsp;<b> Costo:</b>  @E.evento.costo &euro;
+                                </p>
 
                             </div>
                             @using (Html.BeginForm("Dettagli", "Evento", FormMethod.Post))

@@ -166,14 +166,8 @@
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                @if (@ViewContext.RouteData.Values["controller"].ToString() != "Home" ||
-                                    @ViewContext.RouteData.Values["action"].ToString() != "Index")
-                                {
-                                    <li class="breadcrumb-item">
-                                        @Html.ActionLink("Home Page", "Index", "Home")
-                                    </li>
-                                }
-                                <li class="breadcrumb-item active">@ViewBag.Title</li>
+                                <li class="breadcrumb-item active"> @Html.ActionLink("Association", "Dashboard", "Associazione")</li>
+                                <li class="breadcrumb-item ">@ViewBag.Title</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->

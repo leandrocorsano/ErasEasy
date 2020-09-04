@@ -130,20 +130,20 @@
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
 
-                        @foreach (var stud in studenti)
+                        @foreach (var stud in studenti )
                         {
 
-                            <li class="list-group-item">
-                                <img src="@bandiere[stud.nazionalita]" /> &nbsp; @stud.nome @stud.cognome &nbsp;
-                                @if (stud.instagram != "")
-                                {
-                                    <a href="@stud.instagram"><img src="~/adminlte/img/instagram_logo.png" width="24px" height="24px"></a>
-                                }
-                                @if (stud.facebook != "")
-                                {
-                                    <a href="@stud.facebook"><img src="~/adminlte/img/facebook_logo.png" width="24px" height="24px"></a>
-                                }
-                            </li>
+                        <li class="list-group-item">
+                            <img src="@bandiere[stud.nazionalita]" /> &nbsp; @stud.nome @stud.cognome &nbsp;
+                            @if (stud.instagram != "")
+                            {
+                                <a href="@stud.instagram"><img src="~/adminlte/img/instagram_logo.png" width="24px" height="24px"></a>
+                            }
+                            @if (stud.facebook != "")
+                            {
+                                <a href="@stud.facebook"><img src="~/adminlte/img/facebook_logo.png" width="24px" height="24px"></a>
+                            }
+                        </li>
 
                         }
                     </ul>

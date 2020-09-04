@@ -1,13 +1,13 @@
 ﻿@{
-    ViewBag.Title = "My meetings";
+    ViewBag.Title = "My Meeting";
     Layout = "~/Views/Shared/VolontarioMenu.cshtml";
-    Dictionary<string, string> Giorni = new Dictionary<string, string> { { "Monday", "Lunedì" }, { "Tuesday", "Martedì" },
-                                                                        { "Wednesday", "Mercoledì" }, {"Thursday", "Giovedì" }, {"Friday", "Venerdì" },
-                                                                        {"Saturday", "Sabato" }, {"Sunday", "Domenica" } };
-    Dictionary<int, string> Mesi = new Dictionary<int, string> { { 1, "Gen" }, { 2, "Feb" },
-                                                                        { 3 , "Mar" }, {4, "Apr" }, {5, "Mag" },
-                                                                        {6, "Giu" }, {7, "Lug" }, {8, "Ago" } , {9, "Set" } , {10, "Ott" },
-                                                                         {11, "Nov" }, {12, "Dic" }   };
+    ErasEasyLife.Volunteer.Volontario v = (ErasEasyLife.Volunteer.Volontario)Session["volontario"];
+
+
+    Dictionary<int, string> Mesi = new Dictionary<int, string> { { 1, "January" }, { 2, "Febbruary" },
+                                                                        { 3 , "March" }, {4, "Avril" }, {5, "May" },
+                                                                        {6, "June" }, {7, "July" }, {8, "August" } , {9, "September" } , {10, "October" },
+                                                                         {11, "November" }, {12, "December" }   };
 }
 
 <!DOCTYPE html>
@@ -15,8 +15,8 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>My meetings list</title>
-    <style type="text/css">
+    <title>Elenco Riunioni</title>
+    @*<style type="text/css">
 
         {
             margin: 0;
@@ -161,11 +161,12 @@
             display: block
         }
 
-        .card-cont .a {
+        .card-cont a {
             display: block;
             text-decoration: none;
             width: 80px;
             height: 30px;
+            background-color: #D8DDE0;
             color: #fff;
             text-align: center;
             line-height: 30px;
@@ -175,11 +176,11 @@
             bottom: 10px
         }
 
-        .row:last-child .card:first-child .card-cont .a {
+        .row:last-child .card:first-child .card-cont a {
             background-color: #037FDD
         }
 
-        .row:last-child .card:last-child .card-cont .a {
+        .row:last-child .card:last-child .card-cont a {
             background-color: #F8504C
         }
 
@@ -200,79 +201,83 @@
                 font-size: 75%
             }
         }
-    </style>
+    </style>*@
 </head>
 <body>
-    @{
-        ErasEasyLife.Volunteer.Volontario vol = (ErasEasyLife.Volunteer.Volontario)Session["Volontario"];
-    }
+    @if (v.ruolo != "")
+    {
+        
+        <section class="container">
 
-
-    <section class="container">
-
-        @if (ViewData["riunioni"] != null)
-        {
-
-
-            foreach (var E in ViewData["riunioni"] as IList<ErasEasyLife.Volunteer.Svolgimento>)
+            @if (ViewData["riunioni"] != null)
             {
+
                 <div class="row">
-                    <article class="card ft-left">
-                        <section class="date">
-                            <time>
-                                @{
-                                    DateTime Date1 = DateTime.Parse(E.data_i);
-                                   
-                                }
-                                <span>@Giorni[Date1.DayOfWeek.ToString()]</span>
-
-                                <span class="Giorno">@Date1.Day.ToString()</span><span>@Mesi[Date1.Month]</span>
-                            </time>
-                        </section>
-                        <section class="card-cont">
-                            <small>@E.evento.tipologia</small>
-
-                            <h2>@E.evento.nome</h2>
-                            <span> <i> @E.evento.ass.nome</i> </span>
-                            <div class="even-date">
-                                <i class="fa fa-calendar"></i>
+                    @foreach (var E in ViewData["riunioni"] as IList<ErasEasyLife.Volunteer.Svolgimento>
+                        )
+                        {
+                        <div class="col-sm-6">
+                        <article class="card text-center">
+                            <section class="card-header bg-teal">
                                 <time>
-                                    <span> &nbsp; Start: @Giorni[Date1.DayOfWeek.ToString()] @Date1.Day.ToString()  @Mesi[Date1.Month] @Date1.Year.ToString()  @E.ora_i</span>
-                               
+                                    @{
+                                        DateTime Date1 = DateTime.Parse(E.data_i);
+                                        
+                                    }
+                                    <h3>
+                                        @Date1.DayOfWeek.ToString() @Date1.Day.ToString() @Mesi[Date1.Month]
+                                    </h3>
                                 </time>
+                            </section>
+                            <section class="card-body">
 
-                            </div>
-                            <div class="even-info">
-                                <i class="fa fa-map-marker"></i>
-                                <p>
-                                    &nbsp; @E.luogo.via   &nbsp;  @E.luogo.citta, @E.luogo.stato
-                                </p>
-                                <i class="fa fa-dollar-sign"></i>
-                                <p> &nbsp; Cost: @E.evento.costo &euro; </p>
+                                <h2>@E.evento.nome</h2>
+                                <div >
+                                    <i class="fa fa-calendar"></i>
+                                    <time>
+                                        &nbsp; <b>Start:</b> @E.ora_i<br />
+                                        &nbsp; &nbsp;  <b>End:</b> @E.ora_f
+                                    </time>
+                                </div>
+                                <div >
+                                    
+                                    <p>
+                                        <i class="fa fa-map-marker"></i>
+                                        &nbsp; @E.luogo.via   &nbsp;  @E.luogo.citta, @E.luogo.stato
+                                    </p>
 
-                            </div>
-                            @using (Html.BeginForm("Dettagli_Evento", "Associazione", FormMethod.Post))
-                            {
+                                </div>
+                                @using (Html.BeginForm("Dettagli_Riunione", "Evento", FormMethod.Post))
+                                {
 
-                                <input type="hidden" value="@E.evento.IdEv" name="idev" />
-                                <input type="submit" class="a bg-gradient-green" value="Details" />
+                                    <input type="hidden" value="@E.evento.IdEv" name="idev" />
+                                    <input type="submit" class="a bg-gradient-teal" value="Details" />
 
-                            }
-
-                        </section>
-                    </article>
+                                }
+                            </section>
+                        </article>
                 </div>
 
             }
-        }
+            </div>
+            }
 
 
 
-    </section>
+        </section>
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">
+            <b>ATTENZIONE! Non hai i privilegi per accedere a questa pagina.</b><br />
+            La tua associazione non ti ha ancora confermato come suo volontario
+        </div>
+
+    }
 </body>
 </html>
 
