@@ -73,7 +73,7 @@ namespace ErasEasyLife.Controllers
                     }
                     else
                     {
-                        ViewBag.risposta = "Utente errato";
+                        ViewBag.risposta = "Wrong user";
                         ViewBag.url = "Login";
                         ViewBag.link = "Accedi";
                         return View("Errore");
@@ -83,7 +83,7 @@ namespace ErasEasyLife.Controllers
                 }
                 catch
                 {
-                    ViewBag.risposta = "Utente errato";
+                    ViewBag.risposta = "Wrong user";
                     ViewBag.url = "Login";
                     ViewBag.link = "Accedi";
                     return View("Errore");
@@ -110,14 +110,14 @@ namespace ErasEasyLife.Controllers
                     if (r==true)
                     {
 
-                        ViewBag.risposta = "Ruolo aggiunto con successo";
+                        ViewBag.risposta = "Role successfully added";
                         ViewBag.url = "Elenco_Volontari";
                         ViewBag.link = "Torna all'elenco";
                         return View("Successo");
                     }
                     else
                     {
-                        ViewBag.risposta = "C'è stato un problema";
+                        ViewBag.risposta = "Something has gone wrong";
                         ViewBag.url = "Elenco_Volontari";
                         ViewBag.link = "Torna all'elenco";
                         return View("Errore");
@@ -127,7 +127,7 @@ namespace ErasEasyLife.Controllers
                 }
                 catch
                 {
-                    ViewBag.risposta = "C'è stato un problema";
+                    ViewBag.risposta = "Something has gone wrong";
                     ViewBag.url = "Elenco_Volontari";
                     ViewBag.link = "Torna all'elenco";
                     return View("Errore");
@@ -164,7 +164,7 @@ namespace ErasEasyLife.Controllers
                     bool r = webclient.Registration(ass);
                     //ViewData["Address"] = smodel.Indirizzo;
                     //return RedirectToAction("Index");
-                    ViewBag.risposta = "Sei stato registrato con successo.";
+                    ViewBag.risposta = "Successfully registered";
                     ViewBag.url = "Login";
                     ViewBag.link = "Accedi";
                     return View("Successo");
@@ -209,7 +209,7 @@ namespace ErasEasyLife.Controllers
                     ass.via = model.via;
                     Session["Associazione"] = ass;
                     bool r = webclient.UpdateProfile(ass);
-                    ViewBag.risposta = "Hai modificato i dati con successo";
+                    ViewBag.risposta = "Profile successfully updated";
 
                     return View("Profilo");
 
@@ -247,7 +247,7 @@ namespace ErasEasyLife.Controllers
                     {
                         Session["Associazione"] = ass; //creo la nuova session
                     }
-                    ViewBag.risposta = "Hai cambiato password con successo";
+                    ViewBag.risposta = "Password successfully updated";
                     return View("Successo");
 
                 }
@@ -340,7 +340,7 @@ namespace ErasEasyLife.Controllers
                     svo.ora_i = model.ora_i;
                     svo.ora_f = model.ora_f;
                     bool r = webclient.Create_events(svo);
-                    ViewBag.risposta = "Evento creato con successo";
+                    ViewBag.risposta = "Event successfully created";
                     return View("Successo");
 
                 }
@@ -396,7 +396,7 @@ namespace ErasEasyLife.Controllers
                     svo.ora_i = model.ora_i;
                     svo.ora_f = model.ora_f;
                     bool r = webclient.Create_events(svo);
-                    ViewBag.risposta = "Evento creato con successo";
+                    ViewBag.risposta = "Meeting successfully created";
                     return View("Successo");
 
                 }

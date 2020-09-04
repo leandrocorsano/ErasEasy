@@ -21,16 +21,16 @@ namespace ErasEasyLife.Models
         [DataMember]
         [Required]
         [DataType(DataType.Password)]
-        [DisplayName("Nuova password")]
-        [MinLength(6, ErrorMessage = "La password de contenere almeno 6 caratteri alfanumerici")]
-        [RegularExpression(@"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}", ErrorMessage = "La password deve contenere almeno 1 lettera maiuscola, 1 minuscola e 1 numero e deve essere di almeno 6 caratteri")]
+        [DisplayName("New password")]
+        [MinLength(6, ErrorMessage = "Password must contain at least 6 alphanumeric characters")]
+        [RegularExpression(@"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}", ErrorMessage = "Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number, and must be at least 6 characters long")]
         public string nuova_pass { get; set; }
 
         [DataMember]
         [Required]
         [DataType(DataType.Password)]
-        [DisplayName("Conferma password")]
-        [Compare("nuova_pass", ErrorMessage = "Nuova password e conferma password non coincidono")]
+        [DisplayName("Confirm password")]
+        [Compare("nuova_pass", ErrorMessage = "New password and confirm password do not match")]
         public string conferma_pass { get; set; }
 
 

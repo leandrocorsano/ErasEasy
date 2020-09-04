@@ -16,53 +16,55 @@ namespace ErasEasyLife.Models
     {
 
         [DataMember]
+        [Required(ErrorMessage ="Required student ID")]
+        [DisplayName("ID")]
         public int IdStud { get; set; }
 
         [DataMember]
-        [Required(ErrorMessage = "Il nome dello studente è obbligatorio")]
-        [DisplayName("Nome")]
+        [Required(ErrorMessage = "Required student first name")]
+        [DisplayName("First Name")]
         public string nome { get; set; }
 
         [DataMember]
-        [Required(ErrorMessage = "Il cognome dello studente è obbligatorio")]
-        [DisplayName("Cognome")]
+        [Required(ErrorMessage = "Required student last name")]
+        [DisplayName("Last Name")]
         public string cognome { get; set; }
 
         [DataMember]
-        [Required(ErrorMessage = "La email dello studente è obbligatoria")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "Perfavore inserisci un email valida")]
-        [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Perfavore inserisci una mail valida")]
+        [Required(ErrorMessage = "Required student email")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Please insert a valid email")]
+        [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Please insert a valid email")]
         [DisplayName("Email")]
         public string email { get; set; }
 
         [DataMember]
-        [Required(ErrorMessage = "Il cellulare dello studente è obbligatorio")]
-        [DisplayName("Telefono")]
+        [Required(ErrorMessage = "Required student phone number")]
+        [DisplayName("Phone")]
         [DataType(DataType.PhoneNumber, ErrorMessage = "Provided phone number not valid")]
         public string tel { get; set; }
 
         [DataMember]
-        [Required(ErrorMessage = "La data di nascita dello studente è obbligatoria")]
-        [DataType(DataType.Date, ErrorMessage = "La data di nascita non è valida")]
-        [DisplayName("Data di nascita")]
+        [Required(ErrorMessage = "Required student date of birth")]
+        [DataType(DataType.Date, ErrorMessage = "Birth date not valid")]
+        [DisplayName("Date of birth")]
 
         public string data_n { get; set; }
         [DataMember]
-        [Required(ErrorMessage = "La città dello studente è obbligatoria")]
-        [DisplayName("Città")]
+        [Required(ErrorMessage = "Required student city")]
+        [DisplayName("City")]
         public string citta { get; set; }
         [DataMember]
-        [Required(ErrorMessage = "Lo stato dello studente è obbligatorio")]
-        [DisplayName("Stato")]
+        [Required(ErrorMessage = "Required student state")]
+        [DisplayName("State")]
         public string stato { get; set; }
         [DataMember]
-        [Required(ErrorMessage = "La nazionalità dello studente è obbligatoria")]
-        [DisplayName("Nazionalità")]
+        [Required(ErrorMessage = "Required student nationality")]
+        [DisplayName("Nationality")]
         public string nazionalita { get; set; }
         [DataMember]
-        [Required(ErrorMessage = "Password obbligatoria")]
-        [MinLength(6, ErrorMessage = "La password de contenere almeno 6 caratteri alfanumerici")]
-        [RegularExpression(@"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}", ErrorMessage = "La password deve contenere almeno 1 lettera maiuscola, 1 minuscola e 1 numero e deve essere di almeno 6 caratteri")]
+        [Required(ErrorMessage = "Required Password ")]
+        [MinLength(6, ErrorMessage = "Password must contain at least 6 alphanumeric characters")]
+        [RegularExpression(@"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}", ErrorMessage = "Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number, and must be at least 6 characters long")]
 
         [DisplayName("Password")]
         public string password { get; set; }

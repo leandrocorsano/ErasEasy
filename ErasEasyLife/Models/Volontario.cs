@@ -17,47 +17,49 @@ namespace ErasEasyLife.Models
     {
 
         [DataMember]
+        [Required(ErrorMessage ="Required volunteer ID")]
+        [DisplayName("ID")]
         public int IdVolont { get; set; }
 
         [DataMember]
-        [Required(ErrorMessage = "Il nome del volontario è obbligatorio")]
-        [DisplayName("Nome")]
+        [Required(ErrorMessage = "Required volunteer first name")]
+        [DisplayName("First name")]
         public string nome { get; set; }
 
         [DataMember]
-        [Required(ErrorMessage = "Il cognome del volontario è obbligatorio")]
-        [DisplayName("Cognome")]
+        [Required(ErrorMessage = "Required volunteer last name")]
+        [DisplayName("Last name")]
         public string cognome { get; set; }
 
         [DataMember]
-        [Required(ErrorMessage = "La data di nascita del volontario è obbligatoria")]
+        [Required(ErrorMessage = "Required volunteer birth of date")]
         [DataType(DataType.Date, ErrorMessage = "La data di nascita non è valida")]
-        [DisplayName("Data di nascita")]
+        [DisplayName("Date of birth")]
         public string data_n { get; set; }
 
         [DataMember]
-        [Required(ErrorMessage = "La email del volontario è obbligatoria")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "Perfavore inserisci un email valida")]
-        [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Perfavore inserisci una mail valida")]
+        [Required(ErrorMessage = "Required volunteer email")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Required volunteer email")]
+        [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Please insert a valid email")]
         [DisplayName("Email")]
         public string email { get; set; }
 
         [DataMember]
-        [Required(ErrorMessage = "Il cellulare del volontario è obbligatorio")]
-        [DisplayName("Telefono")]
+        [Required(ErrorMessage = "Required volunteer phone number")]
+        [DisplayName("Phone")]
         [DataType(DataType.PhoneNumber, ErrorMessage = "Provided phone number not valid")]
         public string telefono { get; set; }
 
         [DataMember]
-        [Required(ErrorMessage = "La data di iscrizione del volontario è obbligatoria")]
-        [DataType(DataType.Date, ErrorMessage = "La data di iscrizione non è valida")]
-        [DisplayName("Data di iscrizione")]
+        [Required(ErrorMessage = "Required volunteer date of registration")]
+        [DataType(DataType.Date, ErrorMessage = "Registration date not valid")]
+        [DisplayName("Registration date")]
         public string data_iscr { get; set; }
 
         [DataMember]
-        [Required(ErrorMessage = "La password è obbligatoria")]
-        [MinLength(6, ErrorMessage = "La password de contenere almeno 6 caratteri alfanumerici")]
-        [RegularExpression(@"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}", ErrorMessage = "La password deve contenere almeno 1 lettera maiuscola, 1 minuscola e 1 numero e deve essere di almeno 6 caratteri")]
+        [Required(ErrorMessage = "Required password")]
+        [MinLength(6, ErrorMessage = "Password must contain at least 6 alphanumeric characters")]
+        [RegularExpression(@"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}", ErrorMessage = "Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number, and must be at least 6 characters long")]
         [DisplayName("Password")]
         public string password { get; set; }
 
@@ -65,8 +67,8 @@ namespace ErasEasyLife.Models
         
         public string ruolo { get; set; }
         [DataMember]
-        [Required(ErrorMessage = "Scrivere l'associazione di appartenenza")]
-        [DisplayName("Associazione")]
+        [Required(ErrorMessage = "Write your membership association")]
+        [DisplayName("Association")]
         public int ass { get; set; }
     }
 }

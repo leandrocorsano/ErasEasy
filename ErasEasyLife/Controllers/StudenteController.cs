@@ -109,7 +109,7 @@ namespace ErasEasyLife.Controllers
                     Student.Studente stud = webclient.Login(model.email, model.password);
                     if (stud != null)
                     {
-                        ViewBag.risposta = "Hai effettuato il login";
+                        ViewBag.risposta = "Successfully signed in";
                         Session["Studente"] = stud; //passo lo studente che è entrato tra le varie pagine web
 
 
@@ -117,7 +117,7 @@ namespace ErasEasyLife.Controllers
                     }
                     else
                     {
-                        ViewBag.risposta = "Utente errato";
+                        ViewBag.risposta = "Wrong user";
                         ViewBag.url = "Login";
                         ViewBag.link = "Accedi";
                         return View("Errore");
@@ -127,7 +127,7 @@ namespace ErasEasyLife.Controllers
                 }
                 catch
                 {
-                    ViewBag.risposta = "Utente errato";
+                    ViewBag.risposta = "Wrong user";
                     ViewBag.url = "Login";
                     ViewBag.link = "Accedi";
                     return View("Errore");
@@ -170,7 +170,7 @@ namespace ErasEasyLife.Controllers
 
                     bool r = webclient.Registration(stud);
 
-                    ViewBag.risposta = "Sei stato registrato con successo";
+                    ViewBag.risposta = "Successfully registered";
                     ViewBag.url = "Login";
                     ViewBag.link = "Accedi";
 
@@ -227,7 +227,7 @@ namespace ErasEasyLife.Controllers
 
                     bool r = webclient.UpdateProfile(stud);
 
-                    ViewBag.risposta = "Hai modificato i dati con successo";
+                    ViewBag.risposta = "Profile successfully updated";
                     return View("Modifica_Profilo");
 
                 }
@@ -263,7 +263,7 @@ namespace ErasEasyLife.Controllers
                 bool r = webclient.BookEvent(stud.IdStud, evento );
                 if(r==true)
                 {
-                    ViewBag.risposta = "Evento prenotato con successo";
+                    ViewBag.risposta = "Event successfully booked";
                     ViewBag.url = "../Evento/Lista_eventi";
                     ViewBag.link = "Torna agli eventi";
                     return View("Successo");
@@ -290,7 +290,7 @@ namespace ErasEasyLife.Controllers
                 bool r = webclient.CancelBooking(stud.IdStud, evento);
                 if (r == true)
                 {
-                    ViewBag.risposta = "Cancellazione prenotazione avvenuta con successo";
+                    ViewBag.risposta = "Booking successfully cancelled";
                     ViewBag.url = "../Evento/Lista_eventi";
                     ViewBag.link = "Torna agli eventi";
                     return View("Successo");
@@ -317,7 +317,7 @@ namespace ErasEasyLife.Controllers
                 bool r = webclient.Friendship_Request(stud.IdStud, stud2);
                 if(r == true)
                 {
-                    ViewBag.risposta = "Richiesta di amicizia avvenuta con successo";
+                    ViewBag.risposta = "Friend request succesfully sent";
                     ViewBag.url = "../Studente/Elenco";
                     ViewBag.link = "Torna all'elenco studenti";
                     return View("Successo");
@@ -377,7 +377,7 @@ namespace ErasEasyLife.Controllers
                 bool r = webclient.Friendship_State(stud1, stud.IdStud, "Conferma");
                 if (r == true)
                 {
-                    ViewBag.risposta = "Richiesta di amicizia avvenuta con successo";
+                    ViewBag.risposta = "Friend request confirmed!";
                     ViewBag.url = "../Studente/Elenco";
                     ViewBag.link = "Torna all'elenco studenti";
                     return View("Successo");
@@ -520,7 +520,7 @@ namespace ErasEasyLife.Controllers
                     {
                         Session["Studente"] = stud; //creo la nuova session
                     }
-                    ViewBag.risposta = "Hai cambiato password con successo";
+                    ViewBag.risposta = "Password successfully updated";
                     return View("Successo");
 
                 }

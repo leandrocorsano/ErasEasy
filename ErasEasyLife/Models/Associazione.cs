@@ -14,40 +14,42 @@ namespace ErasEasyLife.Models
     public class Associazione
     {
         [DataMember]
+        [Required(ErrorMessage = "Required association ID")]
+        [DisplayName("ID")]
         public int IdAss { get; set; }
         [DataMember]
-        [Required(ErrorMessage = "Il nome dell'associazione è obbligatorio")]
-        [Display(Name = "Nome")]
+        [Required(ErrorMessage = "Required association name")]
+        [Display(Name = "Name")]
         public string nome { get; set; }
         [DataMember]
-        [Required(ErrorMessage = "La città dell'associazione è obbligatoria")]
-        [Display(Name = "Città")]
+        [Required(ErrorMessage = "Required association city")]
+        [Display(Name = "City")]
         public string citta { get; set; }
         [DataMember]
-        [Required(ErrorMessage = "Lo stato dell'associazione è obbligatorio")]
-        [DisplayName("Stato")]
+        [Required(ErrorMessage = "Required association state")]
+        [DisplayName("State")]
         public string stato { get; set; }
         [DataMember]
-        [Required(ErrorMessage = "La via della sede è obbligatoria")]
-        [DisplayName("Via")]
+        [Required(ErrorMessage = "Required association address")]
+        [DisplayName("Address")]
         public string via { get; set; }
         [DataMember]
-        [Required(ErrorMessage = "Il cellulare è obbligatorio")]
-        [Display(Name = "Telefono")]
+        [Required(ErrorMessage = "Required association phone")]
+        [Display(Name = "Phone")]
         [DataType(DataType.PhoneNumber, ErrorMessage = "Provided phone number not valid")]
         public string tel { get; set; }
         [DataMember]
-        [Required(ErrorMessage = "L'email è obbligatoria")]
+        [Required(ErrorMessage = "Required association email")]
         [DisplayName("Email")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "Perfavore inserisci un email valida") ]
-        [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Perfavore inserisci una mail valida")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Please insert a valid email") ]
+        [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Please insert a valid email")]
         public string email { get; set; }
 
         [DataMember]
-        [Required(ErrorMessage = "Password obbligatoria")]
+        [Required(ErrorMessage = "Required password")]
         [DisplayName("Password")]
-        [MinLength(6, ErrorMessage = "La password de contenere almeno 6 caratteri alfanumerici")]
-        [RegularExpression(@"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}", ErrorMessage = "La password deve contenere almeno 1 lettera maiuscola, 1 minuscola e 1 numero e deve essere di almeno 6 caratteri")]
+        [MinLength(6, ErrorMessage = "Password must contain at least 6 alphanumeric characters")]
+        [RegularExpression(@"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}", ErrorMessage = "Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number, and must be at least 6 characters long")]
         //[PasswordPropertyText] //per mettere gli asterischi
         public string password { get; set; }
     }

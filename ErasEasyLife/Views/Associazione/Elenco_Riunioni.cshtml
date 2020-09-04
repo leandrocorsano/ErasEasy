@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Riunioni";
+    ViewBag.Title = "Meetings";
     Layout = "~/Views/Shared/AssociazioneMenu.cshtml";
     Dictionary<string, string> Giorni = new Dictionary<string, string> { { "Monday", "Lunedì" }, { "Tuesday", "Martedì" },
                                                                         { "Wednesday", "Mercoledì" }, {"Thursday", "Giovedì" }, {"Friday", "Venerdì" },
@@ -15,7 +15,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Elenco Eventi</title>
+    <title>Meetings list</title>
     <style type="text/css">
 
         {
@@ -237,7 +237,7 @@
                             <div class="even-date">
                                 <i class="fa fa-calendar"></i>
                                 <time>
-                                    <span> &nbsp; Inizio: @Giorni[Date1.DayOfWeek.ToString()] @Date1.Day.ToString()  @Mesi[Date1.Month] @Date1.Year.ToString()  @E.ora_i</span>
+                                    <span> &nbsp; Start: @Giorni[Date1.DayOfWeek.ToString()] @Date1.Day.ToString()  @Mesi[Date1.Month] @Date1.Year.ToString()  @E.ora_i</span>
                                    
                                 </time>
 
@@ -254,7 +254,7 @@
                             {
 
                                 <input type="hidden" value="@E.evento.IdEv" name="idev" />
-                                <input type="submit" class="a bg-gradient-green" value="Dettagli" />
+                                <input type="submit" class="a bg-gradient-green" value="Details" />
 
                             }
 

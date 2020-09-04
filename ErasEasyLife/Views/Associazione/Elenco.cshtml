@@ -1,6 +1,6 @@
 ﻿@model ErasEasyLife.Models.Associazione
 @{
-    ViewBag.Title = "Elenco";
+    ViewBag.Title = "List";
     Layout = "~/Views/Shared/StudenteMenu.cshtml";
 }
 
@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Elenco Associazioni</title>
+    <title>Associations list</title>
 </head>
 <body>
     <div class="jumbotron jumbotron-fluid">
@@ -64,7 +64,7 @@
                                             </div>
                                             <div class="card-body bg-light">
                                                 <p><b>Contatti:</b></p>
-                                                <p><i class="fas fa-city"></i> @associazione.citta<br /> Via @associazione.via </p>
+                                                <p><i class="fas fa-city"></i> @associazione.citta<br /> Address @associazione.via </p>
                                                 <p><i class="fas fa-phone-alt"></i> @associazione.tel</p>
                                                 <p><a href="mailto:@associazione.email"><i class="fas fa-envelope"></i></a> @associazione.email</p>
 
