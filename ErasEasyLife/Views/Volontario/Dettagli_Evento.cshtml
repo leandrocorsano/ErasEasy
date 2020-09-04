@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Dettagli";
+    ViewBag.Title = "Details";
     Layout = "~/Views/Shared/VolontarioMenu.cshtml";
     ErasEasyLife.Event.Svolgimento s = ViewData["evento"] as ErasEasyLife.Event.Svolgimento;
     List<ErasEasyLife.Event.Volontario> volontari = ViewData["volontari"] as List<ErasEasyLife.Event.Volontario>;
@@ -43,7 +43,7 @@
         <div class="small-box-footer">
             <div class="row ">
                 <div class="col-6 text-right">
-                    <a href="@Url.Action("Lista_Eventi", "Evento")" ><button class="a .btn .btn-app "><i class="fas fa-arrow-left"></i>Indietro</button></a>&nbsp;
+                    <a href="@Url.Action("Lista_Eventi", "Evento")" ><button class="a .btn .btn-app "><i class="fas fa-arrow-left"></i>Back</button></a>&nbsp;
                 </div>
                 <div class="col-6 text-left">
 
@@ -53,7 +53,7 @@
                         {
 
                             <input type="hidden" value="@s.evento.IdEv" name="idev" />
-                            <button type="submit" class="a .btn .btn-app " ><i class="fas fa-trash-alt"></i>Elimina partecipazione</button>
+                            <button type="submit" class="a .btn .btn-app " ><i class="fas fa-trash-alt"></i>Cancel partecipation</button>
 
                         }
                     }
@@ -63,7 +63,7 @@
                         {
 
                             <input type="hidden" value="@s.evento.IdEv" name="idev" />
-                            <button type="submit" class="a .btn .btn-app "><i class="fas fa-check-square"></i>Partecipa</button>
+                            <button type="submit" class="a .btn .btn-app "><i class="fas fa-check-square"></i>Partecipate</button>
 
                         }
 
@@ -77,14 +77,14 @@
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-header bg-teal text-center">
-                    <h3> Informazioni</h3>
+                    <h3> Informations</h3>
                 </div>
                 <div class="card-body">
                     <blockquote class="blockquote " style="border-left: .2rem solid green;"><i class="fas fa-file-alt"></i>&nbsp; @s.evento.descrizione</blockquote>
-                    <p><i class="fas fa-map-marked-alt"></i><b> &nbsp; Luogo:</b> @s.luogo.via (@s.luogo.citta, @s.luogo.stato)</p>
-                    <p><i class="fas fa-calendar-check"></i><b> &nbsp; Inizio:</b> @Date1.ToString("dd/MM/yyy")  ore @s.ora_i</p>
-                    <p><i class="fas fa-calendar-times"></i><b> &nbsp; Fine:</b> @Date2.ToString("dd/MM/yyy") ore @s.ora_f</p>
-                    <p><i class="fas fa-dollar-sign"></i><b> &nbsp; Costo:</b> @s.evento.costo &euro; </p>
+                    <p><i class="fas fa-map-marked-alt"></i><b> &nbsp; Place:</b> @s.luogo.via (@s.luogo.citta, @s.luogo.stato)</p>
+                    <p><i class="fas fa-calendar-check"></i><b> &nbsp; Start:</b> @Date1.ToString("dd/MM/yyy")  time @s.ora_i</p>
+                    <p><i class="fas fa-calendar-times"></i><b> &nbsp; End:</b> @Date2.ToString("dd/MM/yyy") time @s.ora_f</p>
+                    <p><i class="fas fa-dollar-sign"></i><b> &nbsp; Cost:</b> @s.evento.costo &euro; </p>
 
                 </div>
             </div>
@@ -92,7 +92,7 @@
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-header bg-teal text-center">
-                    <h3> Volontari partecipanti</h3>
+                    <h3> Partecipating Volunteers</h3>
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
