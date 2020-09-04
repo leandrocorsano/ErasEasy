@@ -191,4 +191,47 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="Delete_Friendship">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stud1" type="xs:int" />
+        <xs:element minOccurs="0" name="stud2" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Delete_FriendshipResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Delete_FriendshipResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="University_Registration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="f" nillable="true" type="q11:Frequentazione" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="University_RegistrationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="University_RegistrationResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUniversity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="s" nillable="true" type="q12:Studente" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUniversityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="GetUniversityResult" nillable="true" type="q13:ArrayOfFrequentazione" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

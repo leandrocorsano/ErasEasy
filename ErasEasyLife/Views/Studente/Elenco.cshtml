@@ -99,6 +99,7 @@
                             bool richiesta_inviata = false;
                             bool richiesta_ricevuta = false;
                             bool conferma = false;
+                            bool rifiutata = false;
                             <div class="col-sm-4">
                                 <div class="card">
                                     <center>
@@ -114,6 +115,7 @@
                                                 List<ErasEasyLife.Student.Studente> mie_richieste = ViewData["mie_richieste"] as List<ErasEasyLife.Student.Studente>;
                                                 List<ErasEasyLife.Student.Studente> altri_richieste = ViewData["altri_richieste"] as List<ErasEasyLife.Student.Studente>;
                                                 List<ErasEasyLife.Student.Studente> conferme = ViewData["conferme"] as List<ErasEasyLife.Student.Studente>;
+                                                List<ErasEasyLife.Student.Studente> rifiutate = ViewData["rifiutate"] as List<ErasEasyLife.Student.Studente>;
                                                 foreach (var r in mie_richieste)
                                                 {
                                                     if (r.IdStud == studente.IdStud)
@@ -140,57 +142,72 @@
                                                     }
 
                                                 }
+                                                foreach (var rif in rifiutate)
+                                                {
+                                                    if (rif.IdStud == studente.IdStud)
+                                                    {
+                                                        rifiutata = true;
+                                                    }
+
+                                                }
                                                 if (richiesta_ricevuta == true)
                                                 {
                                                     <p class="text-warning">
                                                         <b>Ti ha inviato una richiesta d'amicizia</b>
                                                     </p>
                                                     <a href="@Url.Action("RIchieste_Amicizia", "Studente")">
-                                                        <button class="bg-secondary">Vai alle richieste</button></a>
-                                                        }
-                                                        else if (richiesta_inviata == true)
-                                                        {
-                                                        <p class="text-green">
-                                                            <b>Richiesta inviata</b>
-                                                        </p>
-                                                        using (Html.BeginForm("Annulla_Richiesta", "Studente", FormMethod.Post))
-                                                        {
+                                                        <button class="bg-secondary">Vai alle richieste</button>
+                                                    </a>
+                                                }
+                                                else if (richiesta_inviata == true)
+                                                {
+                                                    <p class="text-green">
+                                                        <b>Richiesta inviata</b>
+                                                    </p>
+                                                    using (Html.BeginForm("Annulla_Richiesta", "Studente", FormMethod.Post))
+                                                    {
 
                                                         <div class="form-group">
                                                             <input type="hidden" value="@studente.IdStud" name="idstud" />
                                                             <input type="submit" class="a bg-gradient-danger" value="Annulla Richiesta" />
                                                         </div>
-                                                        }
-                                                        }
-                                                        else if (conferma == true)
-                                                        {
-                                                        <div class="alert alert-info" role="alert">
-                                                            <b>Amicizia confermata</b>
-                                                        </div>
-                                                        }
-                                                        else
-                                                        {
-                                                        using (Html.BeginForm("Richiesta_Amicizia", "Studente", FormMethod.Post))
-                                                        {
+                                                    }
+                                                }
+                                                else if (conferma == true)
+                                                {
+                                                    <div class="alert alert-info" role="alert">
+                                                        <b>Amicizia confermata</b>
+                                                    </div>
+                                                }
+                                                else if (rifiutata == true)
+                                                {
+                                                    <div class="alert alert-danger" role="alert">
+                                                        <b>Richiesta Rifiutata</b>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    using (Html.BeginForm("Richiesta_Amicizia", "Studente", FormMethod.Post))
+                                                    {
 
                                                         <div class="form-group">
                                                             <input type="hidden" value="@studente.IdStud" name="idstud" />
                                                             <input type="submit" class="a bg-gradient-green" value="Richiedi amicizia" />
                                                         </div>
-                                                        }
-                                                        }
-                                                        if (studente.instagram != "")
-                                                        {
-                                                        <a href="@studente.instagram"><img src="~/adminlte/img/instagram_logo.png" width="36px" height="36px"></a>
-                                                        }
-                                                        if (studente.facebook != "")
-                                                        {
-                                                        <a href="@studente.facebook"><img src="~/adminlte/img/facebook_logo.png" width="36px" height="36px"></a>
-                                                        }
+                                                    }
+                                                }
+                                                if (studente.instagram != "")
+                                                {
+                                                    <a href="@studente.instagram"><img src="~/adminlte/img/instagram_logo.png" width="36px" height="36px"></a>
+                                                }
+                                                if (studente.facebook != "")
+                                                {
+                                                    <a href="@studente.facebook"><img src="~/adminlte/img/facebook_logo.png" width="36px" height="36px"></a>
+                                                }
 
-                                                        }
+                                            }
 
-</div>
+                                        </div>
                                     </center>
                                 </div>
                             </div>

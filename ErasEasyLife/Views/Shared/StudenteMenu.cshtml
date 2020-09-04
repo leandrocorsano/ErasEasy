@@ -87,7 +87,17 @@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item has-treeview ">
+                            <a href="@Url.Action("Dashboard", "Studente")" class="nav-link  bg-light ">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Dashboard
 
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item has-treeview menu-open">
                             <a href="#" class="nav-link text-white">
@@ -98,7 +108,7 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                              
+
                                 <li class="nav-item" style="margin-left:15px;">
                                     <a href="@Url.Action("Lista_eventi", "Evento")" class="nav-link text-white">
                                         <i class="fas fa-forward nav-icon"> </i>
@@ -106,9 +116,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item" style="margin-left:15px;">
-                                    <a href="@Url.Action(" Contact ", "Home ")" class="nav-link text-white">
-                                        <i class=" fas fa-backward nav-icon"> </i>
-                                        <p>Eventi Passati</p>
+                                    <a href="@Url.Action("MieiEventi", "Studente")" class="nav-link text-white">
+                                        <i class=" fas fa-clipboard-list nav-icon"> </i>
+                                        <p>I miei eventi</p>
                                     </a>
                                 </li>
                             </ul>
@@ -125,13 +135,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item" style="margin-left:15px;">
-                                    <a href="@Url.Action("Elenco", "Studente")" class="nav-link text-white" >
+                                    <a href="@Url.Action("Elenco", "Studente")" class="nav-link text-white">
                                         <i class="nav-icon fas fa-user-graduate"></i>
                                         <p>Elenco studenti</p>
                                     </a>
                                 </li>
                                 <li class="nav-item" style="margin-left:15px;">
-                                    <a href="@Url.Action( "Home", "Home ")" class="nav-link text-white">
+                                    <a href="@Url.Action( "Elenco_Amici", "Studente")" class="nav-link text-white">
                                         <i class="fas fa-users nav-icon"> </i>
                                         <p>Amici</p>
                                     </a>
@@ -139,7 +149,40 @@
                                 <li class="nav-item" style="margin-left:15px;">
                                     <a href="@Url.Action("Richieste_Amicizia", "Studente")" class="nav-link text-white">
                                         <i class="fas fa-user-plus nav-icon "> </i>
-                                        <p>Richieste amicizia</p>
+                                        <p>Richieste ricevute</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="margin-left:15px;">
+                                    <a href="@Url.Action("Le_mie_richieste", "Studente")" class="nav-link text-white">
+                                        <i class="fas fa-clock nav-icon "> </i>
+                                        <p>Richieste inviate</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item has-treeview menu-open">
+                            <a href="#" class="nav-link text-white">
+                                <i class="nav-icon fas fa-university"></i>
+                                <p>
+                                    Università
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item" style="margin-left:15px;">
+                                    <a href="#" class="nav-link text-white">
+                                        <i class="fas fa-edit nav-icon "> </i>
+                                        <p>Registra</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="margin-left:15px;">
+                                    <a href="#" class="nav-link text-white">
+                                        <i class="fas fa-list nav-icon "> </i>
+                                        <p>Mostra</p>
                                     </a>
                                 </li>
                             </ul>
@@ -151,7 +194,7 @@
                                 <i class="nav-icon fas fa-city"></i>
                                 <p>
                                     Associazioni
-                                    <i class="right fas fa-angle-left"></i>
+
                                 </p>
                             </a>
                         </li>

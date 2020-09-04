@@ -48,13 +48,15 @@ namespace Admin_wcf
         [OperationContract]
         List<Studente> My_Friendship_Request(Studente stud);
 
-        /*funzioni che mancano*/
+        [OperationContract]
+        bool Delete_Friendship(int stud1, int stud2);
 
+        [OperationContract]
+        bool University_Registration(Frequentazione f);
 
+        [OperationContract]
+        List<Frequentazione> GetUniversity(Studente s);
 
-        //mostra amici
-
-        //registra_università
-        //mostra_università
+       
     }
 }

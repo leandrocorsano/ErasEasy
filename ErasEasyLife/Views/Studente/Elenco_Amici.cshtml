@@ -1,10 +1,10 @@
 ﻿@model ErasEasyLife.Models.Studente
 @{
-    ViewBag.Title = "Richieste Amicizia";
+    ViewBag.Title = "Elenco Amici";
     Layout = "~/Views/Shared/StudenteMenu.cshtml";
 }
 @{ 
-    
+
     List<string> nazionalita = new List<string>() {"--Seleziona Nazionalità---", "Italiana", "Francese", "Inglese", "Tedesca", "Spagnola","Polacca", "Austriaca", "Portoghese", "Belga", "Svizzera", "Albanese", "Moldava", "Greca", "Montenegrina", "Bulgara", "Rumena", "Svedese", "Finalandese", "Olandese", "Danese", "Slovacca", "Lituana", "Lettone", "Estone", "Ungherese", "Norvegese", "Bielorussa", "Slovena", "Irlandese", "Maltese", "Lussemburghese", "Islandese" };
     Dictionary<string, string> bandiere = new Dictionary<string, string> {
                 {"Italiana", "https://www.countryflags.io/it/shiny/24.png" },
@@ -40,6 +40,7 @@
                 {"Lussemburghese", "https://www.countryflags.io/lu/shiny/24.png" },
                 {"Islandese",  "https://www.countryflags.io/is/shiny/24.png" }
             };
+    List<ErasEasyLife.Student.Studente> amici = ViewData["amici"] as List<ErasEasyLife.Student.Studente>;
 }
 
 <!DOCTYPE html>
@@ -47,62 +48,40 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Richieste Amicizia</title>
+    <title>Elenco Amici</title>
 </head>
 <body>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-4 text-center">Richieste Amicizia</h1>
+            <h1 class="display-4 text-center">I miei amici</h1>
         </div>
     </div>
 
-                <div class="row">
-                    @{
-                        foreach (var studente in ViewData["richieste"] as IList<ErasEasyLife.Student.Studente>)
-                        {
-                            
-                            <div class="col-sm-4">
-                                <div class="card">
-                                    <center>
-                                        <div class="card-header bg-green">
-                                            <img src="@bandiere[studente.nazionalita]" />
-                                            @studente.nome @studente.cognome
-                                        </div>
-                                        <div class="card-body bg-light">
-                                      
+        <div class="row">
+            @{
+                foreach (var studente in amici)
+                {
 
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <center>
+                                <div class="card-heder ">
 
-
-                                            @using (Html.BeginForm("Conferma_Amicizia", "Studente", FormMethod.Post))
-                                            {
-
-                                                <div class="form-group">
-                                                    <input type="hidden" value="@studente.IdStud" name="idstud" />
-                                                    <input type="submit" class="a bg-gradient-green" value="Conferma amicizia" />
-                                                </div>
-                                            }
-                                            @using (Html.BeginForm("Rifiuta_Amicizia", "Studente", FormMethod.Post))
-                                            {
-
-                                                <div class="form-group">
-                                                    <input type="hidden" value="@studente.IdStud" name="idstud" />
-                                                    <input type="submit" class="a bg-gradient-danger" value="Rifiuta amicizia" />
-                                                </div>
-                                            }
-                                            
-
-                                        </div>
-                                    </center>
+                                    <img src="@bandiere[studente.nazionalita]" />
+                                    <a href="https://wa.me/@studente.tel" class="text-dark"> @studente.nome @studente.cognome </a>
                                 </div>
-                            </div>
 
-                        }
-                    }
+                            </center>
+                        </div>
+                    </div>
 
-                </div>
-            
+                }
+            }
 
         </div>
+
+
+    </div>
     </div>
     <div>
         @Html.ActionLink("Back to List", "Index")

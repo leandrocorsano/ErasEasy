@@ -3,20 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace Admin_wcf.Classi
 {
+    [DataContract]
     public class Frequentazione
     {
-        public Frequentazione(Studente IdStud, Universita IdUni, string tipo)
+        public Frequentazione(Studente stud, Universita Uni, string tipo)
         {
-            this.IdStud = IdStud;
-            this.IdUni = IdUni;
+            this.studente = stud;
+            this.universita = Uni;
             this.tipo = tipo;
 
         }
-        public Studente IdStud { get; set; }
-        public Universita IdUni { get; set; }
+        [DataMember]
+        public Studente studente { get; set; }
+        [DataMember]
+        public Universita universita { get; set; }
+        [DataMember]
         public string tipo { get; set; }
     }
 }

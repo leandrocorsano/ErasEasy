@@ -106,9 +106,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item" style="margin-left:15px;">
-                                    <a href="@Url.Action(" Contact ", "Home ")" class="nav-link text-white">
-                                        <i class=" fas fa-backward nav-icon"> </i>
-                                        <p>Eventi Passati</p>
+                                    <a href="@Url.Action("MieiEventi", "Volontario")" class="nav-link text-white">
+                                        <i class=" fas fa-clipboard-list nav-icon"> </i>
+                                        <p>I  miei eventi</p>
                                     </a>
                                 </li>
           
@@ -133,9 +133,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item" style="margin-left:15px;">
-                                    <a href="@Url.Action(" Contact ", "Home ")" class="nav-link text-white">
-                                        <i class="fas fa-backward nav-icon"> </i>
-                                        <p>Riunioni passate</p>
+                                    <a href="@Url.Action("MieRiunioni", "Volontario")" class="nav-link text-white">
+                                        <i class="fas fa-clipboard-list nav-icon"> </i>
+                                        <p>Le mie riunioni</p>
                                     </a>
                                 </li>
                             </ul>
@@ -166,6 +166,7 @@
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h2 class="m-0 text-dark">@ViewBag.Title</h2>
+                            
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
