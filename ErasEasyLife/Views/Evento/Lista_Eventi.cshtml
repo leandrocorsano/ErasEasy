@@ -1,6 +1,6 @@
 ﻿@model ErasEasyLife.Models.Associazione
 @{
-    ViewBag.Title = "Eventi";
+    ViewBag.Title = "Events";
     Layout = "~/Views/Shared/StudenteMenu.cshtml";
     Dictionary<string, string> Giorni = new Dictionary<string, string> { { "Monday", "Lunedì" }, { "Tuesday", "Martedì" },
                                                                         { "Wednesday", "Mercoledì" }, {"Thursday", "Giovedì" }, {"Friday", "Venerdì" },
@@ -215,7 +215,7 @@ h1
 <body>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h2 class="display-4 text-center">Prossimi Eventi</h2>
+            <h2 class="display-4 text-center">Upcoming Events</h2>
         </div>
     </div>
     
@@ -225,7 +225,7 @@ h1
             <div class="form-group">
                 <center>
                     <div class="input-group mb-2 ">
-                        <label>Scegli associazione &nbsp;</label>
+                        <label>Choose Association &nbsp;</label>
                         <select class="custom-select" name="@Html.NameFor(model => model.IdAss)">
 
                             <option value="0">
@@ -280,8 +280,8 @@ h1
                             <div class="even-date">
                                 <i class="fa fa-calendar"></i>
                                 <time>
-                                    <span> &nbsp; Inizio: @Giorni[Date1.DayOfWeek.ToString()] @Date1.Day.ToString()  @Mesi[Date1.Month] @Date1.Year.ToString()  @E.ora_i</span>
-                                    <span> &nbsp; Fine: @Giorni[Date2.DayOfWeek.ToString()] @Date2.Day.ToString()  @Mesi[Date2.Month] @Date2.Year.ToString()  @E.ora_f</span>
+                                    <span> &nbsp; Start: @Giorni[Date1.DayOfWeek.ToString()] @Date1.Day.ToString()  @Mesi[Date1.Month] @Date1.Year.ToString()  @E.ora_i</span>
+                                    <span> &nbsp; End: @Giorni[Date2.DayOfWeek.ToString()] @Date2.Day.ToString()  @Mesi[Date2.Month] @Date2.Year.ToString()  @E.ora_f</span>
                                 </time>
 
                             </div>
@@ -298,7 +298,7 @@ h1
                                 
 
                                     <input type="hidden" value="@E.evento.IdEv" name="idev" />
-                                    <input type="submit" class="a bg-gradient-green" value="Dettagli" />
+                                    <input type="submit" class="a bg-gradient-green" value="Details" />
                                 
                               }
 

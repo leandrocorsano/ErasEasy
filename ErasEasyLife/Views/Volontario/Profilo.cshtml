@@ -1,7 +1,7 @@
 ﻿
 
 @{
-    ViewBag.Title = "Profilo";
+    ViewBag.Title = "Profile";
     Layout = "~/Views/Shared/VolontarioMenu.cshtml";
 }
 
@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Profilo</title>
+    <title>Profile</title>
 </head>
 <body>
     @{
@@ -26,14 +26,14 @@
         </div>
         <div class="card">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><div class="row"><div class="col-6"><b>Nome</b></div><div class="col-6">@vol.nome</div></div></li>
-                <li class="list-group-item"><div class="row"><div class="col-6"><b>Cognome</b></div><div class="col-6">@vol.cognome</div></div></li>
-                <li class="list-group-item"><div class="row"><div class="col-6"><b>Data di nascita</b></div><div class="col-6">@vol.data_n</div></div></li>
-                <li class="list-group-item"><div class="row"><div class="col-6"><b>Telefono</b></div><div class="col-6">@vol.telefono</div></div></li>
-                <li class="list-group-item"><div class="row"><div class="col-6"><b>Data di iscrizione</b></div><div class="col-6">@vol.data_iscr</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>First Name</b></div><div class="col-6">@vol.nome</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Last Name</b></div><div class="col-6">@vol.cognome</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Date of birth</b></div><div class="col-6">@vol.data_n</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Phone</b></div><div class="col-6">@vol.telefono</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Registration </b></div><div class="col-6">@vol.data_iscr</div></div></li>
                 <li class="list-group-item"><div class="row"><div class="col-6"><b>Email</b></div><div class="col-6">@vol.email</div></div></li>
-                <li class="list-group-item"><div class="row"><div class="col-6"><b>Ruolo</b></div><div class="col-6">@vol.ruolo</div></div></li>
-                <li class="list-group-item"><div class="row"><div class="col-6"><b>Associazione</b></div><div class="col-6">@vol.ass.nome</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Role</b></div><div class="col-6">@vol.ruolo</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Association</b></div><div class="col-6">@vol.ass.nome</div></div></li>
             </ul>
             </ul>
         </div>

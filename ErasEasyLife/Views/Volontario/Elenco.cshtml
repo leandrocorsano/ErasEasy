@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Colleghi";
+    ViewBag.Title = "Volunteers";
     Layout = "~/Views/Shared/VolontarioMenu.cshtml";
     ErasEasyLife.Volunteer.Volontario v = (ErasEasyLife.Volunteer.Volontario)Session["volontario"];
 }
@@ -18,7 +18,7 @@
     {
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <h1 class="display-4 text-center">Elenco colleghi</h1>
+                <h1 class="display-4 text-center">Volunteers list</h1>
             </div>
         </div>
 
@@ -62,8 +62,8 @@
     else
     {
         <div class="alert alert-warning" role="alert">
-            <b>ATTENZIONE! Non hai i privilegi per accedere a questa pagina.</b><br />
-            La tua associazione non ti ha ancora confermato come suo volontario
+            <b>WARNING! You don't have privileges to access the page.</b><br />
+            Your association hasn't confirmed you yet.
         </div>
 
     }

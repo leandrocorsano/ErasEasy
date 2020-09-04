@@ -81,7 +81,7 @@ namespace ErasEasyLife.Controllers
                     Volunteer.Volontario vol = webclient.Login(model.email, model.password);
                     if (vol != null)
                     {
-                        ViewBag.risposta = "Hai effettuato il login";
+                        ViewBag.risposta = "Successfully signed in";
                         Session["Volontario"] = vol; //passo il volontario che è entrato tra le varie pagine web
 
 
@@ -89,7 +89,7 @@ namespace ErasEasyLife.Controllers
                     }
                     else
                     {
-                        ViewBag.risposta = "Utente errato";
+                        ViewBag.risposta = "Wrong user";
                         ViewBag.url = "Login";
                         ViewBag.link = "Accedi";
                         return View("Errore");
@@ -99,7 +99,7 @@ namespace ErasEasyLife.Controllers
                 }
                 catch
                 {
-                    ViewBag.risposta = "Utente errato";
+                    ViewBag.risposta = "Wrong user";
                     ViewBag.url = "Login";
                     ViewBag.link = "Accedi";
                     return View("Errore");
@@ -125,13 +125,13 @@ namespace ErasEasyLife.Controllers
                 {
                     if (e.evento.tipologia == "Riunione")
                     {
-                        ViewBag.risposta = "Riunione cancellata con successo";
+                        ViewBag.risposta = "Meeting successfully cancelled";
                         ViewBag.url = "../Evento/Lista_riunioni";
                         ViewBag.link = "Torna alle riunioni";
                     }
                     else
                     {
-                        ViewBag.risposta = "Evento cancellato con successo";
+                        ViewBag.risposta = "Event successfully cancelled";
                         ViewBag.url = "../Volontario/Lista_Eventi";
                         ViewBag.link = "Torna agli eventi";
                     }
@@ -186,13 +186,13 @@ namespace ErasEasyLife.Controllers
                 {
                     if (e.evento.tipologia == "Riunione")
                     {
-                        ViewBag.risposta = "Riunione prenotata con successo";
+                        ViewBag.risposta = "Meeting successfully booked";
                         ViewBag.url = "../Evento/Lista_riunioni";
                         ViewBag.link = "Torna alle riunioni";
                     }
                     else
                     {
-                        ViewBag.risposta = "Evento prenotata con successo";
+                        ViewBag.risposta = "Event successfully booked";
                         ViewBag.url = "../Volontario/Lista_Eventi";
                         ViewBag.link = "Torna agli eventi";
                     }
@@ -240,7 +240,7 @@ namespace ErasEasyLife.Controllers
 
                     bool r = webclient.Registration(vol);
 
-                    ViewBag.risposta = "Sei stato registrato con successo";
+                    ViewBag.risposta = "Successfully registered";
                     ViewBag.url = "Login";
                     ViewBag.link = "Accedi";
 
@@ -293,7 +293,7 @@ namespace ErasEasyLife.Controllers
 
                     bool r = webclient.UpdateProfile(vol);
 
-                    ViewBag.risposta = "Hai modificato i dati con successo";
+                    ViewBag.risposta = "Profile successfully updated";
 
                     return View("Modifica_Profilo");
 
@@ -336,7 +336,7 @@ namespace ErasEasyLife.Controllers
                     {
                         Session["Volontario"] = vol; //creo la nuova session
                     }
-                    ViewBag.risposta = "Hai cambiato password con successo";
+                    ViewBag.risposta = "Password successfully updated";
                     return View("Successo");
 
                 }
