@@ -161,6 +161,7 @@
     <Compile Include="Models\CambioPass.cs" />
     <Compile Include="Models\Evento.cs" />
     <Compile Include="Models\Studente.cs" />
+    <Compile Include="Models\Universita.cs" />
     <Compile Include="Models\Volontario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\StudenteController.cs" />
@@ -2237,6 +2238,7 @@
     <Content Include="Views\Studente\Dashboard.cshtml" />
     <Content Include="Views\Volontario\Lista_Eventi.cshtml" />
     <Content Include="Views\Volontario\Dettagli_Evento.cshtml" />
+    <Content Include="Views\Studente\Registra_Uni.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -191,6 +191,48 @@ namespace ErasEasyLife.Controllers
                 return View();
             }
         }
+        [HttpGet]
+        public ActionResult Registra_Uni()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Registra_Uni(Models.Universita model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var webclient = new Student.StudentClient();
+                    Student.Studente stud = (Student.Studente)Session["Studente"];
+                    Student.Frequentazione f = new Student.Frequentazione();
+                    Student.Universita u = new Student.Universita();
+
+                    u.IdUni = model.IdUni;
+                    u.nome = model.nome;
+                    u.citta = model.citta;
+                    u.stato = model.stato;
+                    f.universita = u;
+                    f.studente = stud; 
+                    f.tipo = model.type;
+                    bool r = webclient.University_Registration(f);
+
+                    ViewBag.risposta = "Successfully registered";
+
+                    return View("Successo");
+            
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View();
+            }
+        }
 
         // GET: Studente/Edit/5
         [HttpGet]
