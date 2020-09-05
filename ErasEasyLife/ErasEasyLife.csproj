@@ -2239,6 +2239,7 @@
     <Content Include="Views\Volontario\Lista_Eventi.cshtml" />
     <Content Include="Views\Volontario\Dettagli_Evento.cshtml" />
     <Content Include="Views\Studente\Registra_Uni.cshtml" />
+    <Content Include="Views\Studente\Lista_Uni.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

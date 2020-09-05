@@ -206,12 +206,13 @@ namespace ErasEasyLife.Controllers
                     var webclient = new Student.StudentClient();
                     Student.Studente stud = (Student.Studente)Session["Studente"];
                     Student.Frequentazione f = new Student.Frequentazione();
-                    Student.Universita u = new Student.Universita();
-
-                    u.IdUni = model.IdUni;
-                    u.nome = model.nome;
-                    u.citta = model.citta;
-                    u.stato = model.stato;
+                    Student.Universita u = new Student.Universita
+                    {
+                        IdUni = model.IdUni,
+                        nome = model.nome,
+                        citta = model.citta,
+                        stato = model.stato
+                    };
                     f.universita = u;
                     f.studente = stud; 
                     f.tipo = model.type;
@@ -234,6 +235,16 @@ namespace ErasEasyLife.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult Lista_Uni()
+        {
+            var webclient = new Student.StudentClient();
+            Student.Studente stud = (Student.Studente)Session["Studente"];
+            List<Student.Frequentazione> listauni = webclient.GetUniversity(stud);
+            ViewData["universita"] = listauni;
+            return View();
+
+        }
         // GET: Studente/Edit/5
         [HttpGet]
         public ActionResult Modifica_Profilo()
