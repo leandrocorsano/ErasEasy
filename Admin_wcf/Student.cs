@@ -399,8 +399,10 @@ namespace Admin_wcf
             var wcfclient = server_conn.getInstance();
             string valori_uni = "" + f.universita.IdUni.ToString() + ", '" + f.universita.nome + "','" + f.universita.citta + "', '" + f.universita.stato + "'";
             string valori_freq = "'" + f.tipo + "'" + f.studente.IdStud.ToString() + ", " + f.universita.IdUni.ToString();
-            string query_uni = "INSERT INTO `UNIVERSITA`(`iduni`, `nome`, `citta`, `stato`) VALUES ("+valori_uni+")";
-            string query_freq= "INSERT INTO `FREQUENTAZIONE`(`tipo`, `idstud`, `iduni`) VALUES(" + valori_freq + ")";
+            string query_uni = "INSERT INTO `UNIVERSITA`(`iduni`, `nome`, `citta`, `stato`) VALUES ( "+valori_uni+" )";
+            string query_freq= "INSERT INTO `FREQUENTAZIONE`(`tipo`, `idstud`, `iduni`) VALUES ( " + valori_freq + " )";
+            Console.WriteLine(query_uni);
+            Console.WriteLine(query_freq);
             string[] queries = { query_uni, query_freq };
             try
             {

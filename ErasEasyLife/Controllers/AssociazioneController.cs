@@ -6,12 +6,7 @@ using System.Web.Mvc;
 
 
 using ErasEasyLife.Models;
-using ErasEasyLife.Association;
-#pragma warning disable CS0105 // La direttiva using per 'ErasEasyLife.Association' è già presente in questo spazio dei nomi
-using ErasEasyLife.Association;
-using System.Linq.Expressions;
-using System.Net;
-#pragma warning restore CS0105 // La direttiva using per 'ErasEasyLife.Association' è già presente in questo spazio dei nomi
+
 
 namespace ErasEasyLife.Controllers
 {
@@ -308,6 +303,7 @@ namespace ErasEasyLife.Controllers
         {
             return View("Crea_Evento");
         }
+        
         [HttpPost]
         public ActionResult Crea_Evento(Models.Evento model)
         {
@@ -373,6 +369,7 @@ namespace ErasEasyLife.Controllers
 
             }
         }
+
 
         [HttpGet]
         public ActionResult Crea_Riunione()
@@ -500,6 +497,73 @@ namespace ErasEasyLife.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Modifica_Evento(Models.Evento model)
+        {
+            try
+            {
+                if ((ModelState.IsValid))
+                {
+                    DateTime Data1 = DateTime.Parse(model.data_i);
+                    DateTime Data2 = DateTime.Parse(model.data_f);
+                    if (model.tipologia == "Riunione")
+                    {
+                        ViewBag.risposta = "You can't create a meeting in this page";
+                        return View("Errore");
+                    }
+                    else if (Data1 > Data2)
+                    {
+                        ViewBag.risposta = "The end date is before the start date";
+                        return View("Errore");
+                    }
+                    else
+                    {
+                        var webclient = new Event.EventClient();
+                        Event.Associazione ass = (Event.Associazione)Session["Associazione"];
+                        Event.Evento ev = new Event.Evento();
+                        Event.Luogo l = new Event.Luogo();
+                        Event.Svolgimento svo = new Event.Svolgimento();
+                        ev.IdEv = model.IdEv;
+                        ev.nome = model.nome;
+                        ev.tipologia = model.tipologia;
+                        ev.min_p = model.min_p;
+                        ev.max_p = model.max_p;
+                        ev.min_v = model.min_v;
+                        ev.max_v = model.max_v;
+                        ev.costo = model.costo;
+                        ev.descrizione = model.descrizione;
+                        ev.ass = ass;
+                        l.IdLuogo = model.IdLuogo;
+                        l.via = model.via;
+                        l.citta = model.citta;
+                        l.stato = model.stato;
+                        svo.evento = ev;
+                        svo.luogo = l;
+                        svo.data_i = model.data_i;
+                        svo.data_f = model.data_f;
+                        svo.ora_i = model.ora_i;
+                        svo.ora_f = model.ora_f;
+                        bool r = webclient.Edit_Event(svo);
+                        ViewBag.risposta = "Event successfully modified";
+                        return View("Successo");
+                    }
+
+                }
+                else
+                {
+                    ViewBag.risposta = "Error1";
+                    return View("Successo");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                ViewBag.risposta = "Error2: "+ ex.Message;
+                return View("Successo");
+
+
+            }
+        }
 
         [HttpPost]
         public ActionResult Elimina_Evento(FormCollection form)

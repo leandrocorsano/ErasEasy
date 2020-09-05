@@ -1950,9 +1950,6 @@
     <None Include="Connected Services\Association\item3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\Association\item4.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\Association\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -1998,9 +1995,6 @@
     <None Include="Connected Services\Student\item.disco" />
     <None Include="Connected Services\Student\configuration91.svcinfo" />
     <None Include="Connected Services\Student\configuration.svcinfo" />
-    <None Include="Connected Services\Student\item3.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\Student\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

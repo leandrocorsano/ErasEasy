@@ -28,10 +28,7 @@ namespace Admin_wcf
                 Console.WriteLine("Server Volonatario attivo, premi un tasto per interrompere");
                 Console.WriteLine("Server Studente attivo, premi un tasto per interrompere");
                 Console.WriteLine("Server Evento attivo, premi un tasto per interrompere");
-               /* Student stud = new Student();
-                Studente s = stud.Profile(1);
-                List<Studente> studenti = stud.Show_Friends(s, "confermata");
-                Console.WriteLine(studenti.Count());*/
+
                 Console.ReadLine();
                 ServerAssociazione.Close();
                 ServerVolontario.Close();

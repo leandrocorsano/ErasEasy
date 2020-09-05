@@ -422,7 +422,7 @@ namespace ErasEasyLife.Event {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Associazione", Namespace="http://schemas.datacontract.org/2004/07/Admin_wcf")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Associazione", Namespace="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi")]
     [System.SerializableAttribute()]
     public partial class Associazione : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1015,6 +1015,12 @@ namespace ErasEasyLife.Event {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Event_volunteers", ReplyAction="http://tempuri.org/IEvent/Event_volunteersResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Event.Volontario>> Event_volunteersAsync(ErasEasyLife.Event.Svolgimento e);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Edit_Event", ReplyAction="http://tempuri.org/IEvent/Edit_EventResponse")]
+        bool Edit_Event(ErasEasyLife.Event.Svolgimento s);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Edit_Event", ReplyAction="http://tempuri.org/IEvent/Edit_EventResponse")]
+        System.Threading.Tasks.Task<bool> Edit_EventAsync(ErasEasyLife.Event.Svolgimento s);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Delete_Event", ReplyAction="http://tempuri.org/IEvent/Delete_EventResponse")]
         bool Delete_Event(ErasEasyLife.Event.Svolgimento s);
         
@@ -1085,6 +1091,14 @@ namespace ErasEasyLife.Event {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Event.Volontario>> Event_volunteersAsync(ErasEasyLife.Event.Svolgimento e) {
             return base.Channel.Event_volunteersAsync(e);
+        }
+        
+        public bool Edit_Event(ErasEasyLife.Event.Svolgimento s) {
+            return base.Channel.Edit_Event(s);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Edit_EventAsync(ErasEasyLife.Event.Svolgimento s) {
+            return base.Channel.Edit_EventAsync(s);
         }
         
         public bool Delete_Event(ErasEasyLife.Event.Svolgimento s) {

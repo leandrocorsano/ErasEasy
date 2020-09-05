@@ -32,6 +32,12 @@
   <wsdl:message name="IEvent_Event_volunteers_OutputMessage">
     <wsdl:part name="parameters" element="tns:Event_volunteersResponse" />
   </wsdl:message>
+  <wsdl:message name="IEvent_Edit_Event_InputMessage">
+    <wsdl:part name="parameters" element="tns:Edit_Event" />
+  </wsdl:message>
+  <wsdl:message name="IEvent_Edit_Event_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Edit_EventResponse" />
+  </wsdl:message>
   <wsdl:message name="IEvent_Delete_Event_InputMessage">
     <wsdl:part name="parameters" element="tns:Delete_Event" />
   </wsdl:message>
@@ -60,6 +66,10 @@
     <wsdl:operation name="Event_volunteers">
       <wsdl:input wsaw:Action="http://tempuri.org/IEvent/Event_volunteers" message="tns:IEvent_Event_volunteers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEvent/Event_volunteersResponse" message="tns:IEvent_Event_volunteers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Edit_Event">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEvent/Edit_Event" message="tns:IEvent_Edit_Event_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEvent/Edit_EventResponse" message="tns:IEvent_Edit_Event_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Delete_Event">
       <wsdl:input wsaw:Action="http://tempuri.org/IEvent/Delete_Event" message="tns:IEvent_Delete_Event_InputMessage" />
@@ -101,6 +111,15 @@
     </wsdl:operation>
     <wsdl:operation name="Event_volunteers">
       <soap:operation soapAction="http://tempuri.org/IEvent/Event_volunteers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Edit_Event">
+      <soap:operation soapAction="http://tempuri.org/IEvent/Edit_Event" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
