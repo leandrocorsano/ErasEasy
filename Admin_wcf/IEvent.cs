@@ -20,6 +20,13 @@ namespace Admin_wcf
         List<Studente> Event_partecipations(Svolgimento e);
         [OperationContract]
         List<Volontario> Event_volunteers(Svolgimento e);
+        [OperationContract]
+        bool Edit_Event(Svolgimento s);
+        [OperationContract]
+        bool Delete_Event(Svolgimento s);
+        [OperationContract]
+        void Send_Email(string nome, string email, string body_message, string sub);
+
 
     }
 }

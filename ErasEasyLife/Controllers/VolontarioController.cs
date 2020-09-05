@@ -218,28 +218,31 @@ namespace ErasEasyLife.Controllers
                     {
                         ViewBag.risposta = "Meeting successfully booked";
                         ViewBag.url = "../Evento/Lista_riunioni";
-                        ViewBag.link = "Torna alle riunioni";
+                        ViewBag.link = "Back to meetings";
                     }
                     else
                     {
                         ViewBag.risposta = "Event successfully booked";
                         ViewBag.url = "../Volontario/Lista_Eventi";
-                        ViewBag.link = "Torna agli eventi";
+                        ViewBag.link = "Back to events";
                     }
                     return View("Successo");
                 }
                 else
                 {
-                    ViewBag.risposta = "C'è stato un errore, Riprova!";
+                    ViewBag.risposta = "There was an errore, Try again!";
                     ViewBag.url = "../Volontario/Lista_Eventi";
-                    ViewBag.link = "Torna agli eventi";
+                    ViewBag.link = "Back to list";
                     return View("Errore");
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return View();
+                ViewBag.risposta = "There was an errore, Try again!";
+                ViewBag.url = "../Volontario/Lista_Eventi";
+                ViewBag.link = "Back to list";
+                return View("Errore");
             }
         }
         // POST: Volontario/Create

@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classi\Amicizia.cs" />
+    <Compile Include="Classi\Associazione.cs" />
     <Compile Include="Classi\Evento.cs" />
     <Compile Include="Classi\Frequentazione.cs" />
     <Compile Include="Classi\Gestione.cs" />
