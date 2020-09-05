@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 using ErasEasyLife.Models;
 using ErasEasyLife.Association;
 #pragma warning disable CS0105 // La direttiva using per 'ErasEasyLife.Association' è già presente in questo spazio dei nomi
@@ -314,34 +315,49 @@ namespace ErasEasyLife.Controllers
             {
                 if ((ModelState.IsValid))
                 {
-                    var webclient = new Association.AssociationClient();
-                    Association.Associazione ass = (Association.Associazione)Session["Associazione"];
-                    Association.Evento ev = new Association.Evento();
-                    Association.Luogo l = new Association.Luogo();
-                    Association.Svolgimento svo = new Association.Svolgimento();
-                    ev.IdEv = model.IdEv;
-                    ev.nome = model.nome;
-                    ev.tipologia = model.tipologia;
-                    ev.min_p = model.min_p;
-                    ev.max_p = model.max_p;
-                    ev.min_v = model.min_v;
-                    ev.max_v = model.max_v;
-                    ev.costo = model.costo;
-                    ev.descrizione = model.descrizione;
-                    ev.ass = (Association.Associazione)Session["Associazione"];
-                    l.IdLuogo = model.IdLuogo;
-                    l.via = model.via;
-                    l.citta = model.citta;
-                    l.stato = model.stato;
-                    svo.evento = ev;
-                    svo.luogo = l;
-                    svo.data_i = model.data_i;
-                    svo.data_f = model.data_f;
-                    svo.ora_i = model.ora_i;
-                    svo.ora_f = model.ora_f;
-                    bool r = webclient.Create_events(svo);
-                    ViewBag.risposta = "Event successfully created";
-                    return View("Successo");
+                    DateTime Data1 = DateTime.Parse(model.data_i);
+                    DateTime Data2 = DateTime.Parse(model.data_f);
+                    if (model.tipologia == "Riunione")
+                    {
+                        ViewBag.risposta = "You can't create a meeting in this page";
+                        return View("Errore");
+                    }
+                    else if (Data1 > Data2)
+                    {
+                        ViewBag.risposta = "The end date is before the start date";
+                        return View("Errore");
+                    }
+                    else
+                    {
+                        var webclient = new Association.AssociationClient();
+                        Association.Associazione ass = (Association.Associazione)Session["Associazione"];
+                        Association.Evento ev = new Association.Evento();
+                        Association.Luogo l = new Association.Luogo();
+                        Association.Svolgimento svo = new Association.Svolgimento();
+                        ev.IdEv = model.IdEv;
+                        ev.nome = model.nome;
+                        ev.tipologia = model.tipologia;
+                        ev.min_p = model.min_p;
+                        ev.max_p = model.max_p;
+                        ev.min_v = model.min_v;
+                        ev.max_v = model.max_v;
+                        ev.costo = model.costo;
+                        ev.descrizione = model.descrizione;
+                        ev.ass = (Association.Associazione)Session["Associazione"];
+                        l.IdLuogo = model.IdLuogo;
+                        l.via = model.via;
+                        l.citta = model.citta;
+                        l.stato = model.stato;
+                        svo.evento = ev;
+                        svo.luogo = l;
+                        svo.data_i = model.data_i;
+                        svo.data_f = model.data_f;
+                        svo.ora_i = model.ora_i;
+                        svo.ora_f = model.ora_f;
+                        bool r = webclient.Create_events(svo);
+                        ViewBag.risposta = "Event successfully created";
+                        return View("Successo");
+                    }
 
                 }
                 else
@@ -452,6 +468,100 @@ namespace ErasEasyLife.Controllers
 
 
             return View();
+
+
+        }
+        [HttpPost]
+        public ActionResult Dettagli_Riunione(FormCollection form)
+        {
+
+            int id = Int32.Parse(form["idev"]);
+            var webclient = new Event.EventClient();
+
+            Event.Svolgimento e = webclient.Get_event_by_id(id);
+            List<Event.Volontario> volontari = webclient.Event_volunteers(e);
+            ViewData["evento"] = e;
+            ViewData["volontari"] = volontari;
+
+
+
+            return View();
+
+
+        }
+        [HttpPost]
+        public ActionResult Edit_Evento(FormCollection form)
+        {
+            int id = Int32.Parse(form["idev"]);
+            var webclient = new Event.EventClient();
+
+            Event.Svolgimento e = webclient.Get_event_by_id(id);
+            ViewData["evento"] = e;
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Elimina_Evento(FormCollection form)
+        {
+            
+                try
+            {
+                int id = Int32.Parse(form["idev"]);
+                var webclient = new Event.EventClient();
+
+                Event.Svolgimento e = webclient.Get_event_by_id(id);
+                List<Event.Studente> studenti= webclient.Event_partecipations(e);
+                List<Event.Volontario> volontari = webclient.Event_volunteers(e);
+                DateTime data = DateTime.Parse(e.data_i);
+                bool r = webclient.Delete_Event(e);
+                if (r == true)
+                {
+                    if (e.evento.tipologia == "Riunione")
+                    {
+                        string body = "The meeting name "+e.evento.nome+" of " + data.ToString("dd/MM/yy") + " was canceled by the " + e.evento.ass.nome;
+                        volontari.ForEach(vol =>
+                        {
+                            
+                            webclient.Send_Email(vol.nome, vol.email, body, "Meeting Canceled");
+                        });
+                        ViewBag.risposta = "Meeting successfully canceled";
+                        ViewBag.url = "../Associazione/Elenco_riunioni";
+                        ViewBag.link = "Back to meetings";
+                    }
+                    else
+                    {
+                        string body = "The event name " + e.evento.nome + " of " + data.ToString("dd/MM/yy") + " was canceled by the " + e.evento.ass.nome;
+                        studenti.ForEach(stud =>
+                        {
+                            webclient.Send_Email(stud.nome, stud.email, body, "Event Canceled");
+                        });
+                        volontari.ForEach(vol =>
+                        {
+                            webclient.Send_Email(vol.nome, vol.email, body, "Event Canceled");
+                        });
+                        ViewBag.risposta = "Event successfully canceled";
+                        ViewBag.url = "../Associazione/Elenco_Eventi";
+                        ViewBag.link = "Back to events";
+                    }
+                    return View("Successo");
+                }
+                else
+                {
+                    ViewBag.risposta = "There was an errore, Try again!";
+                    ViewBag.url = "../Associazione/Elenco_Eventi";
+                    ViewBag.link = "Back to list";
+                    return View("Errore");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                ViewBag.risposta = "There was an errore, Try again!";
+                ViewBag.url = "../Associazione/Elenco_Eventi";
+                ViewBag.link = "Back to list";
+                return View("Errore");
+            }
 
 
         }

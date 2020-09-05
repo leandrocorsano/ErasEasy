@@ -32,6 +32,18 @@
   <wsdl:message name="IEvent_Event_volunteers_OutputMessage">
     <wsdl:part name="parameters" element="tns:Event_volunteersResponse" />
   </wsdl:message>
+  <wsdl:message name="IEvent_Delete_Event_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete_Event" />
+  </wsdl:message>
+  <wsdl:message name="IEvent_Delete_Event_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Delete_EventResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEvent_Send_Email_InputMessage">
+    <wsdl:part name="parameters" element="tns:Send_Email" />
+  </wsdl:message>
+  <wsdl:message name="IEvent_Send_Email_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Send_EmailResponse" />
+  </wsdl:message>
   <wsdl:portType name="IEvent">
     <wsdl:operation name="Show_events">
       <wsdl:input wsaw:Action="http://tempuri.org/IEvent/Show_events" message="tns:IEvent_Show_events_InputMessage" />
@@ -48,6 +60,14 @@
     <wsdl:operation name="Event_volunteers">
       <wsdl:input wsaw:Action="http://tempuri.org/IEvent/Event_volunteers" message="tns:IEvent_Event_volunteers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEvent/Event_volunteersResponse" message="tns:IEvent_Event_volunteers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete_Event">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEvent/Delete_Event" message="tns:IEvent_Delete_Event_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEvent/Delete_EventResponse" message="tns:IEvent_Delete_Event_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Send_Email">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEvent/Send_Email" message="tns:IEvent_Send_Email_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEvent/Send_EmailResponse" message="tns:IEvent_Send_Email_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IEvent" type="tns:IEvent">
@@ -81,6 +101,24 @@
     </wsdl:operation>
     <wsdl:operation name="Event_volunteers">
       <soap:operation soapAction="http://tempuri.org/IEvent/Event_volunteers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_Event">
+      <soap:operation soapAction="http://tempuri.org/IEvent/Delete_Event" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Send_Email">
+      <soap:operation soapAction="http://tempuri.org/IEvent/Send_Email" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

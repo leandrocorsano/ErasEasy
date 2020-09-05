@@ -1014,6 +1014,18 @@ namespace ErasEasyLife.Event {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Event_volunteers", ReplyAction="http://tempuri.org/IEvent/Event_volunteersResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Event.Volontario>> Event_volunteersAsync(ErasEasyLife.Event.Svolgimento e);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Delete_Event", ReplyAction="http://tempuri.org/IEvent/Delete_EventResponse")]
+        bool Delete_Event(ErasEasyLife.Event.Svolgimento s);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Delete_Event", ReplyAction="http://tempuri.org/IEvent/Delete_EventResponse")]
+        System.Threading.Tasks.Task<bool> Delete_EventAsync(ErasEasyLife.Event.Svolgimento s);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Send_Email", ReplyAction="http://tempuri.org/IEvent/Send_EmailResponse")]
+        void Send_Email(string nome, string email, string body_message, string sub);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Send_Email", ReplyAction="http://tempuri.org/IEvent/Send_EmailResponse")]
+        System.Threading.Tasks.Task Send_EmailAsync(string nome, string email, string body_message, string sub);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1073,6 +1085,22 @@ namespace ErasEasyLife.Event {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Event.Volontario>> Event_volunteersAsync(ErasEasyLife.Event.Svolgimento e) {
             return base.Channel.Event_volunteersAsync(e);
+        }
+        
+        public bool Delete_Event(ErasEasyLife.Event.Svolgimento s) {
+            return base.Channel.Delete_Event(s);
+        }
+        
+        public System.Threading.Tasks.Task<bool> Delete_EventAsync(ErasEasyLife.Event.Svolgimento s) {
+            return base.Channel.Delete_EventAsync(s);
+        }
+        
+        public void Send_Email(string nome, string email, string body_message, string sub) {
+            base.Channel.Send_Email(nome, email, body_message, sub);
+        }
+        
+        public System.Threading.Tasks.Task Send_EmailAsync(string nome, string email, string body_message, string sub) {
+            return base.Channel.Send_EmailAsync(nome, email, body_message, sub);
         }
     }
 }

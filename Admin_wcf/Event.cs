@@ -6,6 +6,8 @@ using System.ServiceModel;
 using System.Text;
 using System.Data;
 using Admin_wcf.Classi;
+using System.Net;
+using System.Net.Mail;
 
 namespace Admin_wcf
 {
@@ -113,6 +115,7 @@ namespace Admin_wcf
 
         }
 
+
         public List<Volontario> Event_volunteers(Svolgimento e)
         {
             
@@ -143,6 +146,87 @@ namespace Admin_wcf
             }
             return volontari;
 
+        }
+        public bool Edit_Event(Svolgimento s)
+        {
+            /* N.B. è possibile modificare tutti i campi tranne la password e l'id*/
+            //var wcfclient = new DBManager.DBManagerClient(); //mi connetto al server
+            var wcfclient = server_conn.getInstance();
+            string valori_evento =  "nome='" + s.evento.nome + "', tipologi='" + s.evento.tipologia + "', min_p='" + s.evento.min_p + "', max_p='" + s.evento.max_p + "', min_v='" + s.evento.min_v + "', max_v='" + s.evento.max_v + "', costo='" + s.evento.costo + "', descrizione='" + s.evento.descrizione + "', idass='" + s.evento.ass.IdAss + "'";
+            string valori_luogo = " citta='" + s.luogo.citta + "', via='" + s.luogo.via + "', stato='" + s.luogo.stato + "'";
+            string query_evento = "UPDATE EVENTO SET "+ valori_evento + " WHERE idev=" + s.evento.IdEv;
+            string query_luogo = "UPDATE LUOGO SET " + valori_evento + " WHERE idluogo=" + s.luogo.IdLuogo;
+
+            string[] query = {query_evento, query_luogo };
+            try
+            {
+                bool risultato = wcfclient.DBtransaction(query);
+                Console.WriteLine("[OK] Evento modificato con successo!!");
+                return risultato;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ERROR]" + ex.Message);
+                throw;
+            }
+
+        }
+        public bool Delete_Event(Svolgimento s)
+        {
+            /* N.B. è possibile modificare tutti i campi tranne la password e l'id*/
+            //var wcfclient = new DBManager.DBManagerClient(); //mi connetto al server
+            var wcfclient = server_conn.getInstance();
+            string query_svolgimento = "DELETE FROM SVOLGIMENTO WHERE idev=" + s.evento.IdEv;
+            string query_evento = "DELETE FROM EVENTO WHERE idev=" + s.evento.IdEv;
+            string query_luogo = "DELETE FROM LUOGO WHERE idluogo=" + s.luogo.IdLuogo;
+            string query_partecipaz = "DELETE FROM PARTECIPAZIONE WHERE idev=" + s.evento.IdEv;
+            string query_gestione = "DELETE FROM GESTIONE WHERE idev=" + s.evento.IdEv;
+            string[] query = { query_svolgimento, query_evento, query_luogo, query_partecipaz, query_gestione };
+            try
+            {
+                bool risultato = wcfclient.DBtransaction(query);
+                Console.WriteLine("[OK] Evento cancellato con successo!!");
+                return risultato;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ERROR]" + ex.Message);
+                throw;
+            }
+
+        }
+        public void Send_Email(string nome, string email, string body_message, string sub)
+        {
+            var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";
+            var message = new MailMessage();
+            message.To.Add(new MailAddress(email));  // replace with valid value 
+            message.From = new MailAddress("progetto.erasmus2020@gmail.com");  // replace with valid value
+            message.Subject = "ErasEasyLife: "+ sub;
+            message.Body = string.Format(body, nome, email , body_message);
+            message.IsBodyHtml = true;
+
+            using (var smtp = new SmtpClient())
+            {
+                var credential = new NetworkCredential
+                {
+                    UserName = "progetto.erasmus2020@gmail.com",  // replace with valid value
+                    Password = "Eraseasylife2020"  // replace with valid value
+                };
+                smtp.Credentials = credential;
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 25;
+                smtp.EnableSsl = true;
+                try
+                {
+                    smtp.Send(message);
+                    Console.WriteLine("[OK] Email inviata con successo!!");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("[ERROR]" + ex.Message);
+                    throw;
+                }
+            }
         }
 
     }

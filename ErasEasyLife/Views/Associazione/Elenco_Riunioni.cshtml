@@ -4,10 +4,10 @@
     Dictionary<string, string> Giorni = new Dictionary<string, string> { { "Monday", "Lunedì" }, { "Tuesday", "Martedì" },
                                                                         { "Wednesday", "Mercoledì" }, {"Thursday", "Giovedì" }, {"Friday", "Venerdì" },
                                                                         {"Saturday", "Sabato" }, {"Sunday", "Domenica" } };
-    Dictionary<int, string> Mesi = new Dictionary<int, string> { { 1, "Gen" }, { 2, "Feb" },
-                                                                        { 3 , "Mar" }, {4, "Apr" }, {5, "Mag" },
-                                                                        {6, "Giu" }, {7, "Lug" }, {8, "Ago" } , {9, "Set" } , {10, "Ott" },
-                                                                         {11, "Nov" }, {12, "Dic" }   };
+    Dictionary<int, string> Mesi = new Dictionary<int, string> { { 1, "January" }, { 2, "Febbruary" },
+                                                                        { 3 , "March" }, {4, "Avril" }, {5, "May" },
+                                                                        {6, "June" }, {7, "July" }, {8, "August" } , {9, "September" } , {10, "October" },
+                                                                         {11, "November" }, {12, "December" }   };
 }
 
 <!DOCTYPE html>
@@ -16,7 +16,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Meetings list</title>
-    <style type="text/css">
+    @*<style type="text/css">
 
         {
             margin: 0;
@@ -200,7 +200,7 @@
                 font-size: 75%
             }
         }
-    </style>
+    </style>*@
 </head>
 <body>
     @{
@@ -213,61 +213,61 @@
         @if (ViewData["riunioni"] != null)
         {
 
+            <div class="row">
+                @foreach (var E in ViewData["riunioni"] as IList<ErasEasyLife.Association.Svolgimento>
+                    )
+                    {
 
-            foreach (var E in ViewData["riunioni"] as IList<ErasEasyLife.Association.Svolgimento>)
-            {
-                <div class="row">
-                    <article class="card ft-left">
-                        <section class="date">
-                            <time>
-                                @{
-                                    DateTime Date1 = DateTime.Parse(E.data_i);
-                               
-                                }
-                                <span>@Giorni[Date1.DayOfWeek.ToString()]</span>
-
-                                <span class="Giorno">@Date1.Day.ToString()</span><span>@Mesi[Date1.Month]</span>
-                            </time>
-                        </section>
-                        <section class="card-cont">
-                            <small>@E.evento.tipologia</small>
-
-                            <h2>@E.evento.nome</h2>
-                            <span> <i> @E.evento.ass.nome</i> </span>
-                            <div class="even-date">
-                                <i class="fa fa-calendar"></i>
+                    <div class="col-sm-6">
+                        <article class="card text-center">
+                            <section class="card-header bg-cyan">
                                 <time>
-                                    <span> &nbsp; Start: @Giorni[Date1.DayOfWeek.ToString()] @Date1.Day.ToString()  @Mesi[Date1.Month] @Date1.Year.ToString()  @E.ora_i</span>
-                                   
+                                    @{
+                                        DateTime Date1 = DateTime.Parse(E.data_i);
+
+                                    }
+                                    <h3>
+                                        @Date1.DayOfWeek.ToString() @Date1.Day.ToString() @Mesi[Date1.Month]
+                                    </h3>
                                 </time>
+                            </section>
+                            <section class="card-body">
 
-                            </div>
-                            <div class="even-info">
-                                <i class="fa fa-map-marker"></i>
-                                <p>
-                                    &nbsp; @E.luogo.via   &nbsp;  @E.luogo.citta, @E.luogo.stato
-                                </p>
-                                
+                                <h2>@E.evento.nome</h2>
+                                <div>
+                                    <i class="fa fa-clock"></i>
+                                    <time>
+                                        &nbsp; <b>Start:</b> @E.ora_i<br />
+                                        &nbsp; <b>End:</b> @E.ora_f
+                                    </time>
+                                </div>
+                                <div>
 
-                            </div>
-                            @using (Html.BeginForm("Dettagli_Riunione", "Associazione", FormMethod.Post))
-                            {
+                                    <p>
+                                        <i class="fa fa-map-marker"></i>
+                                        &nbsp; @E.luogo.via   &nbsp;  @E.luogo.citta, @E.luogo.stato
+                                    </p>
 
-                                <input type="hidden" value="@E.evento.IdEv" name="idev" />
-                                <input type="submit" class="a bg-gradient-green" value="Details" />
+                                </div>
+                                @using (Html.BeginForm("Dettagli_Riunione", "Associazione", FormMethod.Post))
+                                {
 
-                            }
+                                    <input type="hidden" value="@E.evento.IdEv" name="idev" />
+                                    <input type="submit" class="a bg-gradient-green" value="Details" />
 
-                        </section>
-                    </article>
+                                }
+
+                            </section>
+                        </article>
+                    </div>
+
+                    }
                 </div>
-
-            }
-        }
+                    }
 
 
 
-    </section>
+        </section>
 
     <div>
         @Html.ActionLink("Back to List", "Index")

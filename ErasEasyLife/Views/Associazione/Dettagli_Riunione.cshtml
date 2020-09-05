@@ -3,9 +3,7 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/AssociazioneMenu.cshtml";
     ErasEasyLife.Event.Svolgimento s = ViewData["evento"] as ErasEasyLife.Event.Svolgimento;
-    List<ErasEasyLife.Event.Studente> studenti = ViewData["studenti"] as List<ErasEasyLife.Event.Studente>;
     List<ErasEasyLife.Event.Volontario> volontari = ViewData["volontari"] as List<ErasEasyLife.Event.Volontario>;
-    int n_studenti = studenti.Count();
     int n_volontari = volontari.Count();
     DateTime Date1 = DateTime.Parse(s.data_i);
     DateTime Date2 = DateTime.Parse(s.data_f);
@@ -51,38 +49,21 @@
         </div>
     </div>
 @{ 
-    string color1;
-    if(n_studenti>0)
-    {
-        color1 = "bg-success";
-    }
-    else
-    {
-        color1 = "bg-danger";
-    }
-    string color2;
+  
+    string color;
     if(n_volontari>0)
     {
-        color2 = "bg-success";
+        color = "bg-success";
     }
     else
     {
-        color2 = "bg-danger";
+        color = "bg-danger";
     }
 }
 <div class="row">
 
-    <div class="col-sm-6">
-        <div class="small-box @color1">
-            <div class="inner text-center">
-                <h1 class="display-2"> @n_studenti</h1>
-
-                <h3>Students booked</h3>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="small-box @color2">
+    <div class="col-sm-12">
+        <div class="small-box @color">
             <div class="inner text-center">
                 <h1 class="display-2"> @n_volontari</h1>
 
@@ -98,11 +79,11 @@
         </div>
         <div class="col-sm-2 text-center">
 
-            @using (Html.BeginForm("Edit_Evento", "Associazione", FormMethod.Post))
+            @using (Html.BeginForm("Modifica_Riunione", "Associazione", FormMethod.Post))
             {
 
                 <input type="hidden" value="@s.evento.IdEv" name="idev" />
-                <button type="submit" class="a .btn .btn-app bg-secondary "><i class="fas fa-edit"></i>Edit Event</button>
+                <button type="submit" class="a .btn .btn-app bg-secondary "><i class="fas fa-edit"></i>Edit Meeting</button>
 
             }
         </div>
@@ -111,7 +92,7 @@
             {
 
                 <input type="hidden" value="@s.evento.IdEv" name="idev" />
-                <button type="submit" class="a .btn .btn-app bg-secondary"><i class="fas fa-trash-alt"></i>Delete Event</button>
+                <button type="submit" class="a .btn .btn-app bg-secondary"><i class="fas fa-trash-alt"></i>Delete Meeting</button>
 
             }
 
@@ -122,28 +103,24 @@
 
 
     <div class="row">
-
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-header bg-cyan text-center">
-                    <h3> Students booked</h3>
+                    <h3> Informations</h3>
                 </div>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
+                <div class="card-body text-center">
+                    <blockquote class="blockquote " style="border-left: .2rem solid green;"><i class="fas fa-file-alt"></i>&nbsp; @s.evento.descrizione</blockquote>
+                    <p><i class="fas fa-map-marked-alt"></i><b> &nbsp; Place:</b> @s.luogo.via (@s.luogo.citta, @s.luogo.stato)</p>
+                    <p><i class="fas fa-calendar"></i><b> &nbsp; Date:</b> @Date1.ToString("dd/MM/yyy")  </p>
+                    <p>
+                        <i class="fas fa-clock"></i><b> &nbsp; Hour :</b>  @s.ora_i-@s.ora_f
+                    </p>
 
-                        @foreach (var stud in studenti)
-                        {
 
-                            <li class="list-group-item">
-                                <img src="@bandiere[stud.nazionalita]" /> &nbsp; @stud.nome @stud.cognome &nbsp;
-                                <a href="mailto:@stud.email"><i class="fas fa-envelope"></i></a>
-                            </li>
-
-                        }
-                    </ul>
                 </div>
             </div>
         </div>
+
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-header bg-cyan text-center">
@@ -166,21 +143,5 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-header bg-cyan text-center">
-                    <h3> Informations</h3>
-                </div>
-                <div class="card-body text-center">
-                    <blockquote class="blockquote " style="border-left: .2rem solid green;"><i class="fas fa-file-alt"></i>&nbsp; @s.evento.descrizione</blockquote>
-                    <p><i class="fas fa-map-marked-alt"></i><b> &nbsp; Place:</b> @s.luogo.via (@s.luogo.citta, @s.luogo.stato)</p>
-                    <p><i class="fas fa-calendar-check"></i><b> &nbsp; Start:</b> @Date1.ToString("dd/MM/yyy")  ore @s.ora_i</p>
-                    <p><i class="fas fa-calendar-times"></i><b> &nbsp; End:</b> @Date2.ToString("dd/MM/yyy") ore @s.ora_f</p>
-                    <p><i class="fas fa-dollar-sign"></i><b> &nbsp; Cost:</b> @s.evento.costo &euro; </p>
 
-                </div>
-            </div>
-        </div>
-    </div>
 
