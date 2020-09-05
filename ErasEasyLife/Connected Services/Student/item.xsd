@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Student/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Admin_wcf" />
   <xs:complexType name="Studente">
     <xs:sequence>
       <xs:element minOccurs="0" name="IdStud" type="xs:int" />
@@ -44,7 +43,7 @@
   <xs:complexType name="Evento">
     <xs:sequence>
       <xs:element minOccurs="0" name="IdEv" type="xs:int" />
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Admin_wcf" minOccurs="0" name="ass" nillable="true" type="q1:Associazione" />
+      <xs:element minOccurs="0" name="ass" nillable="true" type="tns:Associazione" />
       <xs:element minOccurs="0" name="costo" type="xs:int" />
       <xs:element minOccurs="0" name="descrizione" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="max_p" type="xs:int" />
@@ -56,6 +55,19 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Evento" nillable="true" type="tns:Evento" />
+  <xs:complexType name="Associazione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdAss" type="xs:int" />
+      <xs:element minOccurs="0" name="citta" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nome" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="stato" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="via" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Associazione" nillable="true" type="tns:Associazione" />
   <xs:complexType name="Luogo">
     <xs:sequence>
       <xs:element minOccurs="0" name="IdLuogo" type="xs:int" />

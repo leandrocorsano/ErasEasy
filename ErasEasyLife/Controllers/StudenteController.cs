@@ -117,24 +117,21 @@ namespace ErasEasyLife.Controllers
                     }
                     else
                     {
-                        ViewBag.risposta = "Wrong user";
-                        ViewBag.url = "Login";
-                        ViewBag.link = "Accedi";
-                        return View("Errore");
+                        ViewBag.message = "Wrong user";
+                        return View();
                     }
 
 
                 }
                 catch
                 {
-                    ViewBag.risposta = "Wrong user";
-                    ViewBag.url = "Login";
-                    ViewBag.link = "Accedi";
-                    return View("Errore");
+                    ViewBag.message = "There is an error, try again!";
+                    return View();
                 }
             }
             else
             {
+                ViewBag.message = "There is an error, try again!";
                 return View();
             }
         }

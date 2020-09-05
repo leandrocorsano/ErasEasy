@@ -180,16 +180,20 @@ namespace DB_Manager
                             for( int i=0; i<l; i++)
                             {
                               command.CommandText=query[i];
+                              
                               command.ExecuteNonQuery();
+
                             }
                             transazione.Commit();
+                          
                             Console.WriteLine("La transazione è andata a buon fine");
 
                         }
                         catch(Exception e)
                         {
                          Console.WriteLine(e.Message);
-                         throw;
+                            transazione.Rollback();
+                            throw;
                         }
                     return true; //transazione andato a buon fine    
 

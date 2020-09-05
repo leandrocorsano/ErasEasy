@@ -6,12 +6,7 @@ using System.Web.Mvc;
 
 
 using ErasEasyLife.Models;
-using ErasEasyLife.Association;
-#pragma warning disable CS0105 // La direttiva using per 'ErasEasyLife.Association' è già presente in questo spazio dei nomi
-using ErasEasyLife.Association;
-using System.Linq.Expressions;
-using System.Net;
-#pragma warning restore CS0105 // La direttiva using per 'ErasEasyLife.Association' è già presente in questo spazio dei nomi
+
 
 namespace ErasEasyLife.Controllers
 {
@@ -74,24 +69,21 @@ namespace ErasEasyLife.Controllers
                     }
                     else
                     {
-                        ViewBag.risposta = "Wrong user";
-                        ViewBag.url = "Login";
-                        ViewBag.link = "Accedi";
-                        return View("Errore");
+                        ViewBag.message = "Wrong user";
+                        return View();
                     }
 
 
                 }
                 catch
                 {
-                    ViewBag.risposta = "Wrong user";
-                    ViewBag.url = "Login";
-                    ViewBag.link = "Accedi";
-                    return View("Errore");
+                    ViewBag.message = "Wrong user";
+                    return View();
                 }
             }
             else
             {
+                ViewBag.message = "Wrong user";
                 return View();
             }
         }
@@ -308,6 +300,7 @@ namespace ErasEasyLife.Controllers
         {
             return View("Crea_Evento");
         }
+        
         [HttpPost]
         public ActionResult Crea_Evento(Models.Evento model)
         {
@@ -373,6 +366,7 @@ namespace ErasEasyLife.Controllers
 
             }
         }
+
 
         [HttpGet]
         public ActionResult Crea_Riunione()
@@ -500,6 +494,211 @@ namespace ErasEasyLife.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Edit_Riunione(FormCollection form)
+        {
+            int id = Int32.Parse(form["idev"]);
+            var webclient = new Event.EventClient();
+
+            Event.Svolgimento e = webclient.Get_event_by_id(id);
+            ViewData["evento"] = e;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Modifica_Evento(Models.Evento model)
+        {
+            try
+            {
+                if ((ModelState.IsValid))
+                {
+                    DateTime Data1 = DateTime.Parse(model.data_i);
+                    DateTime Data2 = DateTime.Parse(model.data_f);
+                    if (model.tipologia == "Riunione")
+                    {
+                        ViewBag.risposta = "You can't create a meeting in this page";
+                        return View("Errore");
+                    }
+                    else if (Data1 > Data2)
+                    {
+                        ViewBag.risposta = "The end date is before the start date";
+                        return View("Errore");
+                    }
+                    else
+                    {
+                        var webclient = new Event.EventClient();
+                        Association.Associazione ass = (Association.Associazione)Session["associazione"];
+                        Console.WriteLine(ass.nome);
+                        Event.Evento ev = new Event.Evento();
+                        Event.Luogo l = new Event.Luogo();
+                        Event.Svolgimento svo = new Event.Svolgimento();
+                        Event.Associazione assoc = new Event.Associazione();
+                        ev.IdEv = model.IdEv;
+                        ev.nome = model.nome;
+                        ev.tipologia = model.tipologia;
+                        ev.min_p = model.min_p;
+                        ev.max_p = model.max_p;
+                        ev.min_v = model.min_v;
+                        ev.max_v = model.max_v;
+                        ev.costo = model.costo;
+                        ev.descrizione = model.descrizione;
+                        assoc.IdAss = ass.IdAss;
+                        assoc.nome = ass.nome;
+                        assoc.citta = ass.citta;
+                        assoc.stato = ass.stato;
+                        assoc.via = ass.via;
+                        assoc.tel = ass.tel;
+                        assoc.email = ass.email;
+                        assoc.password = ass.password;
+                        ev.ass = assoc;
+                        l.IdLuogo = model.IdLuogo;
+                        l.via = model.via;
+                        l.citta = model.citta;
+                        l.stato = model.stato;
+                        svo.evento = ev;
+                        svo.luogo = l;
+                        svo.data_i = model.data_i;
+                        svo.data_f = model.data_f;
+                        svo.ora_i = model.ora_i;
+                        svo.ora_f = model.ora_f;
+                        List<Event.Studente> studenti = webclient.Event_partecipations(svo);
+                        List<Event.Volontario> volontari = webclient.Event_volunteers(svo);
+                        bool r = webclient.Edit_Event(svo);
+                        if (r==true)
+                        {
+                            string body = "The event name " + svo.evento.nome + " of " + Data1.ToString("dd/MM/yy") + " was updated by the " + svo.evento.ass.nome;
+                            studenti.ForEach(stud =>
+                            {
+                                webclient.Send_Email(stud.nome, stud.email, body, "Event Modified");
+                            });
+                            volontari.ForEach(vol =>
+                            {
+                                webclient.Send_Email(vol.nome, vol.email, body, "Event Modified");
+                            });
+                            ViewBag.risposta = "Event successfully modified";
+                            ViewBag.url = "../Associazione/Elenco_Eventi";
+                            ViewBag.link = "Back to events";
+                            return View("Successo");
+                        }
+                       else
+                        {
+                            ViewBag.risposta = "There is an error, try again";
+                            ViewBag.url = "../Associazione/Elenco_Eventi";
+                            ViewBag.link = "Back to events";
+                            return View("Errore");
+                        }
+                    }
+
+                }
+                else
+                {
+                    ViewBag.risposta = "There is an error, try again";
+                    ViewBag.url = "../Associazione/Elenco_Eventi";
+                    ViewBag.link = "Back to events";
+                    return View("Errore");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                ViewBag.risposta = "[Error]: "+ ex.Message;
+                ViewBag.risposta = "There is an error, try again";
+                ViewBag.url = "../Associazione/Elenco_Eventi";
+                ViewBag.link = "Back to events";
+                return View("Successo");
+
+
+            }
+        }
+        [HttpPost]
+        public ActionResult Modifica_Riunione(Models.Evento model)
+        {
+            try
+            {
+                if ((ModelState.IsValid))
+                {
+                    DateTime Data1 = DateTime.Parse(model.data_i);
+                    DateTime Data2 = DateTime.Parse(model.data_f);
+                   
+                        var webclient = new Event.EventClient();
+                        Association.Associazione ass = (Association.Associazione)Session["associazione"];
+                        Console.WriteLine(ass.nome);
+                        Event.Evento ev = new Event.Evento();
+                        Event.Luogo l = new Event.Luogo();
+                        Event.Svolgimento svo = new Event.Svolgimento();
+                        Event.Associazione assoc = new Event.Associazione();
+                        ev.IdEv = model.IdEv;
+                        ev.nome = model.nome;
+                        ev.tipologia = model.tipologia;
+                        ev.min_p = model.min_p;
+                        ev.max_p = model.max_p;
+                        ev.min_v = model.min_v;
+                        ev.max_v = model.max_v;
+                        ev.costo = model.costo;
+                        ev.descrizione = model.descrizione;
+                        assoc.IdAss = ass.IdAss;
+                        assoc.nome = ass.nome;
+                        assoc.citta = ass.citta;
+                        assoc.stato = ass.stato;
+                        assoc.via = ass.via;
+                        assoc.tel = ass.tel;
+                        assoc.email = ass.email;
+                        assoc.password = ass.password;
+                        ev.ass = assoc;
+                        l.IdLuogo = model.IdLuogo;
+                        l.via = model.via;
+                        l.citta = model.citta;
+                        l.stato = model.stato;
+                        svo.evento = ev;
+                        svo.luogo = l;
+                        svo.data_i = model.data_i;
+                        svo.data_f = model.data_f;
+                        svo.ora_i = model.ora_i;
+                        svo.ora_f = model.ora_f;
+                        List<Event.Volontario> volontari = webclient.Event_volunteers(svo);
+                        bool r = webclient.Edit_Event(svo);
+                        if (r == true)
+                        {
+                        string body = "The meeting name " + svo.evento.nome + " of " + Data1.ToString("dd/MM/yy") + " was updated by the " + svo.evento.ass.nome;
+                        volontari.ForEach(vol =>
+                        {
+
+                            webclient.Send_Email(vol.nome, vol.email, body, "Meeting Modified");
+                        });
+                        ViewBag.risposta = "Event successfully modified";
+                            ViewBag.url = "../Associazione/Elenco_Riunioni";
+                            ViewBag.link = "Back to events";
+                            return View("Successo");
+                        }
+                    else
+                    {
+                        ViewBag.risposta = "There is an error, try again";
+                        ViewBag.url = "../Associazione/Elenco_Riunioni";
+                        ViewBag.link = "Back to events";
+                        return View("Errore");
+                    }
+
+                }
+                else
+                {
+                    ViewBag.risposta = "There is an error, try again";
+                    ViewBag.url = "../Associazione/Elenco_Riunioni";
+                    ViewBag.link = "Back to events";
+                    return View("Errore");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                ViewBag.risposta = "[Error]: " + ex.Message;
+                ViewBag.risposta = "There is an error, try again";
+                ViewBag.url = "../Associazione/Elenco_Riunioni";
+                ViewBag.link = "Back to events";
+                return View("Successo");
+
+
+            }
+        }
 
         [HttpPost]
         public ActionResult Elimina_Evento(FormCollection form)

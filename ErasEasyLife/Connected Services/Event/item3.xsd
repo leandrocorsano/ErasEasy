@@ -58,10 +58,24 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Delete_Event">
+  <xs:element name="Edit_Event">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="s" nillable="true" type="q7:Svolgimento" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Edit_EventResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Edit_EventResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Delete_Event">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="s" nillable="true" type="q8:Svolgimento" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

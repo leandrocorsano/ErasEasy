@@ -19,31 +19,11 @@ namespace ErasEasyLife.Controllers
         // GET: Volontario/Details/5
         public ActionResult Profilo()
         {
-            //try
-            //{
-
-            //    Volunteer.Volontario v = (Volunteer.Volontario)Session["Volontario"];
-            //    var webclient = new Volunteer.VolunteerClient();
-            //    Volunteer.Volontario vol = webclient.Profile(v.IdVolont);
-            //    ViewData["Nome"] = vol.nome;
-            //    ViewData["Cognome"] = vol.cognome;
-            //     ViewData["Data di nascita"] = vol.data_n
-            //    ViewData["Telefono"] = vol.telefono;
-            //    ViewData["Email"] = vol.email;      
-            //    ViewData["Data iscrizione"] = vol.data_iscr;
-            //    ViewData["Ruolo"] = vol.ruolo;
-            //    ViewData["Associazione"] = vol.ass;
+            
 
             return View("Profilo");
 
 
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //    return View();
-            //}
         }
 
         public ActionResult Login()
@@ -89,24 +69,21 @@ namespace ErasEasyLife.Controllers
                     }
                     else
                     {
-                        ViewBag.risposta = "Wrong user";
-                        ViewBag.url = "Login";
-                        ViewBag.link = "Accedi";
-                        return View("Errore");
+                        ViewBag.message = "Wrong user";
+                        return View();
                     }
 
 
                 }
                 catch
                 {
-                    ViewBag.risposta = "Wrong user";
-                    ViewBag.url = "Login";
-                    ViewBag.link = "Accedi";
-                    return View("Errore");
+                    ViewBag.message = "Wrong user";
+                    return View();
                 }
             }
             else
             {
+                ViewBag.message = "Wrong user";
                 return View();
             }
         }
@@ -173,31 +150,50 @@ namespace ErasEasyLife.Controllers
         [HttpGet]
         public ActionResult Lista_Eventi()
         {
-            DateTime oggi = DateTime.Today;
-            Volunteer.Volontario vol = (Volunteer.Volontario)Session["Volontario"];
+            try
+            {
+                DateTime oggi = DateTime.Today;
+                Volunteer.Volontario vol = (Volunteer.Volontario)Session["Volontario"];
 
-            string cond = " and data_i > '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='riunione' and idass = " + vol.ass.IdAss + " order by data_i";
-            var webclient = new Event.EventClient();
-            List<Event.Svolgimento> eventi = webclient.Show_events(cond);
+                string cond = " and data_i > '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='riunione' and idass = " + vol.ass.IdAss + " order by data_i";
+                var webclient = new Event.EventClient();
+                List<Event.Svolgimento> eventi = webclient.Show_events(cond);
 
-            ViewData["eventi"] = eventi;
-            return View();
+                ViewData["eventi"] = eventi;
+                return View();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.risposta = "Errore:" + ex.Message;
+                ViewBag.url = "../Volontario/Lista_Eventi";
+                ViewBag.link = "Back to events";
+                return View("Errore");
+            }
         }
         [HttpPost]
         public ActionResult Dettagli_Evento(FormCollection form)
         {
+            try
+            {
+                int id = Int32.Parse(form["idev"]);
+                var webclient = new Event.EventClient();
 
-            int id = Int32.Parse(form["idev"]);
-            var webclient = new Event.EventClient();
-
-            Event.Svolgimento e = webclient.Get_event_by_id(id);
-            List<Event.Volontario> volontari = webclient.Event_volunteers(e);
-            ViewData["evento"] = e;
-            ViewData["volontari"] = volontari;
+                Event.Svolgimento e = webclient.Get_event_by_id(id);
+                List<Event.Volontario> volontari = webclient.Event_volunteers(e);
+                ViewData["evento"] = e;
+                ViewData["volontari"] = volontari;
 
 
 
-            return View();
+                return View();
+            }
+            catch(Exception ex)
+            {
+                ViewBag.risposta = "Errore:"+ ex.Message;
+                ViewBag.url = "../Volontario/Lista_Eventi";
+                ViewBag.link = "Back to events";
+                return View("Errore");
+            }
 
 
         }

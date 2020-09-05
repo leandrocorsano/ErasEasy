@@ -26,7 +26,6 @@
     <MetadataFile FileName="item.disco" MetadataType="Disco" ID="ba42cb1c-3fb7-4e3f-8c74-cb259a7aa523" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Server_Admin/?disco" />
     <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="4d782976-bbc5-404f-982f-d854806b25fb" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Server_Admin/?xsd=xsd0" />
     <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="fa21334e-b45d-443b-b838-b29b5f2dcffa" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Server_Admin/?xsd=xsd3" />
-    <MetadataFile FileName="item4.xsd" MetadataType="Schema" ID="efae00af-c849-4ddf-b1c7-49a2701369cf" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Server_Admin/?xsd=xsd4" />
     <MetadataFile FileName="Association.wsdl" MetadataType="Wsdl" ID="37b3741e-62bc-4206-9f13-e78e0e05f449" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Server_Admin/?wsdl" />
     <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="b54d6622-81a7-43ff-a987-a40f4c4bf0de" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Server_Admin/?xsd=xsd1" />
   </Metadata>

@@ -152,12 +152,16 @@ namespace Admin_wcf
             /* N.B. è possibile modificare tutti i campi tranne la password e l'id*/
             //var wcfclient = new DBManager.DBManagerClient(); //mi connetto al server
             var wcfclient = server_conn.getInstance();
-            string valori_evento =  "nome='" + s.evento.nome + "', tipologi='" + s.evento.tipologia + "', min_p='" + s.evento.min_p + "', max_p='" + s.evento.max_p + "', min_v='" + s.evento.min_v + "', max_v='" + s.evento.max_v + "', costo='" + s.evento.costo + "', descrizione='" + s.evento.descrizione + "', idass='" + s.evento.ass.IdAss + "'";
+            string valori_evento =  "nome='" + s.evento.nome + "', tipologia='" + s.evento.tipologia + "', min_p='" + s.evento.min_p + "', max_p='" + s.evento.max_p + "', min_v='" + s.evento.min_v + "', max_v='" + s.evento.max_v + "', costo='" + s.evento.costo + "', descrizione='" + s.evento.descrizione + "', idass='" + s.evento.ass.IdAss + "'";
             string valori_luogo = " citta='" + s.luogo.citta + "', via='" + s.luogo.via + "', stato='" + s.luogo.stato + "'";
+            string valori_svolg = " data_i='" + s.data_i + "', data_f='" + s.data_f + "', ora_i='" + s.ora_i + "', ora_f='"+s.ora_f+"'";
             string query_evento = "UPDATE EVENTO SET "+ valori_evento + " WHERE idev=" + s.evento.IdEv;
-            string query_luogo = "UPDATE LUOGO SET " + valori_evento + " WHERE idluogo=" + s.luogo.IdLuogo;
-
-            string[] query = {query_evento, query_luogo };
+            string query_luogo = "UPDATE LUOGO SET " + valori_luogo + " WHERE idluogo=" + s.luogo.IdLuogo;
+            string query_svolgimento = "UPDATE SVOLGIMENTO SET " + valori_svolg + " WHERE idev=" + s.evento.IdEv;
+            Console.WriteLine(query_evento);
+            Console.WriteLine(query_luogo);
+            Console.WriteLine(query_svolgimento);
+            string[] query = {query_evento, query_luogo, query_svolgimento };
             try
             {
                 bool risultato = wcfclient.DBtransaction(query);
