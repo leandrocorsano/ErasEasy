@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/VolontarioMenu.cshtml";
+    ErasEasyLife.Volunteer.Volontario vol = (ErasEasyLife.Volunteer.Volontario)Session["volontario"];
+
+}
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">Welcome <b> @vol.nome @vol.cognome</b></h1>
+        </div>
+    </div>
+    <div class="row">
+        
+        
+        <div class="col-sm-12">
+            <div class="card">
+                
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a href="@Url.Action("Profilo", "Volontario")"><button type="button" class="btn btn-block bg-secondary btn-lg">Profile</button></a>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="@Url.Action("Modifica_Pass", "Volontario")"><button type="button" class="btn btn-block bg-teal btn-lg">Change Password</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="text-center">Meetings and events</h1>
+        </div>
+        <div class="col-sm-6">
+            <div class="small-box bg-teal ">
+                <div class="inner text-center">
+                    <h1 class="display-2"> @ViewData["n_prossimi_eventi"]</h1>
+
+                    <h3>Next event</h3>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <a href="@Url.Action("Lista_Eventi", "Volontario")" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="small-box bg-secondary ">
+                <div class="inner text-center">
+                    <h1 class="display-2"> @ViewData["n_prossime_riunioni"]</h1>
+
+                    <h3>Next meetings</h3>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <a href="@Url.Action("Lista_riunioni", "Evento")" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="small-box bg-secondary ">
+                <div class="inner text-center">
+                    <h1 class="display-2"> @ViewData["n_mie_riunioni"]</h1>
+
+                    <h3>My meetings of this month</h3>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <a href="@Url.Action("MieRiunioni", "Volontario")" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="small-box bg-teal ">
+                <div class="inner text-center">
+                    <h1 class="display-2"> @ViewData["n_miei_eventi"]</h1>
+
+                    <h3>My events of this month</h3>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <a href="@Url.Action("MieiEventi", "Volontario")" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+       
+

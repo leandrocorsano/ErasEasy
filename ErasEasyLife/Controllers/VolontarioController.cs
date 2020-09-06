@@ -10,12 +10,28 @@ namespace ErasEasyLife.Controllers
 {
     public class VolontarioController : Controller
     {
-        // GET: Volontario
-        public ActionResult Index()
+
+        [HttpGet]
+        public ActionResult Dashboard()
         {
+            var volclient = new Volunteer.VolunteerClient();
+            var eventclient = new Event.EventClient();
+            Volunteer.Volontario vol = (Volunteer.Volontario)Session["volontario"];
+            DateTime oggi = DateTime.Today;
+            string cond = " and data_i >= '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='riunione' and idass=" + vol.ass.IdAss;
+            List<Event.Svolgimento> futuri_eventi = eventclient.Show_events(cond);
+            ViewData["n_prossimi_eventi"] = futuri_eventi.Count();           
+            cond = " and data_i >= '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia='riunione' and idass=" + vol.ass.IdAss;
+            List<Event.Svolgimento> future_riunioni = eventclient.Show_events(cond);
+            ViewData["n_prossime_riunioni"] = future_riunioni.Count();
+            cond = " tipologia!='Riunione' and MONTH(data_i)='" + oggi.Month + "'";
+            Volunteer.Svolgimento[] my_events = volclient.Show_Event(vol.IdVolont, cond);
+            cond = " tipologia='Riunione' and MONTH(data_i)='"+oggi.Month+"'"; //le mie riunioni di questo mese
+            Volunteer.Svolgimento[] my_meetings = volclient.Show_Event(vol.IdVolont, cond);
+            ViewData["n_mie_riunioni"] = my_meetings.Count();
+            ViewData["n_miei_eventi"] = my_events.Count();
             return View();
         }
-
         // GET: Volontario/Details/5
         public ActionResult Profilo()
         {

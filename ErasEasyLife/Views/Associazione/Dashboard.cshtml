@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/AssociazioneMenu.cshtml";
+    ErasEasyLife.Association.Associazione ass = (ErasEasyLife.Association.Associazione)Session["associazione"];
+
+}
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">Welcome <b> @ass.nome</b></h1>
+        </div>
+    </div>
+    <div class="row">
+        
+        
+        <div class="col-sm-12">
+            <div class="card">
+                
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a href="@Url.Action("Profilo", "Associazione")"><button type="button" class="btn btn-block btn-outline-secondary btn-lg">Profile</button></a>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="@Url.Action("Modifica_Pass", "Associazione")"><button type="button" class="btn btn-block btn-outline-info btn-lg">Change Password</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="text-center">Events and Meeting</h1>
+        </div>
+        <div class="col-sm-3">
+            <div class="info-box mb-3 bg-secondary">
+                <span class="info-box-icon"><i class="fas fa-bullhorn"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Next Event</span>
+                    <h1> <span class="info-box-number "><b>@ViewData["n_prossimi_eventi"]</b></span></h1>
+</div>
+
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="info-box mb-3 bg-secondary">
+                <span class="info-box-icon"><i class="fas fa-bullhorn"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Previus Event</span>
+                    <h1> <span class="info-box-number "><b>@ViewData["n_scorsi_eventi"]</b></span></h1>
+</div>
+
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="info-box mb-3 bg-cyan">
+                <span class="info-box-icon"><i class="fas fa-handshake"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Next Meeting</span>
+                    <h1><span class="info-box-number "><b>@ViewData["n_prossime_riunioni"]</b></span></h1>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="info-box mb-3 bg-cyan">
+                <span class="info-box-icon"><i class="fas fa-handshake"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Previous Meeting</span>
+                    <h1><span class="info-box-number "><b>@ViewData["n_scorse_riunioni"]</b></span></h1>
+</div>
+
+            </div>
+        </div>
+      </div>
+    <div class="row mt-0">
+        <div class="col-sm-6">
+            <a href="@Url.Action("Elenco_Eventi", "Associazione")"><button type="button" class="btn btn-block btn-outline-secondary btn-lg">Go to Events</button></a>
+        </div>
+        <div class="col-sm-6 ">
+            <a href="@Url.Action("Elenco_Riunioni", "Associazione")"><button type="button" class="btn btn-block btn-outline-info btn-lg">Go to Meeting</button></a>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <h1 class="text-center">Volunteers</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="small-box bg-info">
+                <div class="inner  text-center">
+                    <h3>@ViewData["n_nuovi_vol"]</h3>
+
+                    <p>New Volunteers</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="small-box bg-secondary">
+                <div class="inner  text-center">
+                    <h3>@ViewData["n_vecchi_vol"]</h3>
+
+                    <p>Old Volunteers</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-universal-access"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+

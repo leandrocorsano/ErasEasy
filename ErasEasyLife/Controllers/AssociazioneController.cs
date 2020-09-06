@@ -429,7 +429,7 @@ namespace ErasEasyLife.Controllers
         {
             var webclient = new Association.AssociationClient();
             Association.Associazione ass = (Association.Associazione)Session["Associazione"];
-            string tipologia = " E.tipologia != 'riunione'";
+            string tipologia = " E.tipologia != 'riunione'  order by S.data_i desc";
             Association.Svolgimento[] listaeventi = webclient.Show_Event(ass.IdAss, tipologia);
             ViewData["eventi"] = listaeventi;
             return View();
@@ -439,7 +439,7 @@ namespace ErasEasyLife.Controllers
         {
             var webclient = new Association.AssociationClient();
             Association.Associazione ass = (Association.Associazione)Session["Associazione"];
-            string tipologia = " E.tipologia = 'riunione'";
+            string tipologia = " E.tipologia = 'riunione' order by S.data_i desc";
             Association.Svolgimento[] listariunioni = webclient.Show_Event(ass.IdAss, tipologia);
             ViewData["riunioni"] = listariunioni;
             return View();
@@ -504,7 +504,35 @@ namespace ErasEasyLife.Controllers
             ViewData["evento"] = e;
             return View();
         }
+        [HttpGet]
+        public ActionResult Dashboard()
+        {
+            var volclient = new Volunteer.VolunteerClient();
+            Association.Associazione ass = (Association.Associazione)Session["associazione"];
+            string condition = " idass=" + ass.IdAss + " and ruolo=''";
+            Volunteer.Volontario[] nuovi_volontari = volclient.Show_volontari(condition);
+            condition = " idass=" + ass.IdAss + " and ruolo!=''";
+            Volunteer.Volontario[] vecchi_volontari = volclient.Show_volontari(condition);
+            ViewData["n_nuovi_vol"] = nuovi_volontari.Count();
+            ViewData["n_vecchi_vol"] = vecchi_volontari.Count();
 
+            var eventclient = new Event.EventClient();
+            DateTime oggi = DateTime.Today;
+            string cond = " and data_i >= '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='riunione' and idass="+ ass.IdAss;
+            List<Event.Svolgimento> futuri_eventi = eventclient.Show_events(cond);
+            string cond1 = " and data_i <'" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='riunione' and idass=" + ass.IdAss;
+            List<Event.Svolgimento> eventi_passati = eventclient.Show_events(cond1);
+            ViewData["n_prossimi_eventi"] = futuri_eventi.Count();
+            ViewData["n_scorsi_eventi"] = eventi_passati.Count();
+            cond = " and data_i >= '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia='riunione' and idass=" + ass.IdAss;
+            List<Event.Svolgimento> future_riunioni = eventclient.Show_events(cond);
+            cond1 = " and data_i <'" + oggi.ToString("yyyy-MM-dd") + "' and tipologia='riunione' and idass=" + ass.IdAss;
+            List<Event.Svolgimento> riunioni_passate = eventclient.Show_events(cond1);
+            ViewData["n_prossime_riunioni"] = future_riunioni.Count();
+            ViewData["n_scorse_riunioni"] = future_riunioni.Count();
+
+            return View();
+        }
         [HttpPost]
         public ActionResult Modifica_Evento(Models.Evento model)
         {

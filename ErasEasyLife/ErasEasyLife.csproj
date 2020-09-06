@@ -2232,13 +2232,12 @@
     <Content Include="Views\Volontario\Lista_Eventi.cshtml" />
     <Content Include="Views\Volontario\Dettagli_Evento.cshtml" />
     <Content Include="Views\Studente\Registra_Uni.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Associazione\Edit_Evento.cshtml" />
     <Content Include="Views\Associazione\Edit_Riunione.cshtml" />
     <Content Include="Views\Associazione\Dettagli_Riunione.cshtml" />
-=======
     <Content Include="Views\Studente\Lista_Uni.cshtml" />
->>>>>>> 07a5bb036047a166e900be26c73584507204a1ad
+    <Content Include="Views\Associazione\Dashboard.cshtml" />
+    <Content Include="Views\Volontario\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
