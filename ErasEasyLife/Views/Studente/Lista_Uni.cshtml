@@ -3,5 +3,49 @@
     ViewBag.Title = "Lista_Uni";
 }
 
-<h2>Lista_Uni</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Universities List</title>
+</head>
+<body>
+    @{ 
+        ErasEasyLife.Student.Studente stud = (ErasEasyLife.Student.Studente)Session["Studente"];
+    }
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">My universities</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        @{
+            foreach (var uni in ViewData["universita"] as IList<ErasEasyLife.Student.Frequentazione>)
+            {
+
+                <div class="col-sm-4">
+                    <div class="card">
+                        <center>
+                            <div class="card-heder ">
+
+                               
+                                <i class="fa-graduation-cap"><i/> @stud.nome @stud.cognome 
+                                @uni.universita @uni.tipo
+                            </div>
+
+                        </center>
+                    </div>
+                </div>
+
+            }
+        }
+
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>
 
