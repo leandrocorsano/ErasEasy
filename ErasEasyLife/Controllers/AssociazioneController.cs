@@ -262,7 +262,7 @@ namespace ErasEasyLife.Controllers
          public ActionResult Elenco()
         {
             var webclient = new Association.AssociationClient();
-            string[] listacitta = webclient.GetCitta("");
+            List<string> listacitta = webclient.GetCitta("");
             ViewData["citta"] = listacitta;
             return View();
         }
@@ -275,9 +275,9 @@ namespace ErasEasyLife.Controllers
                 var webclient = new Association.AssociationClient();
                
                 string cond = "citta='" + model.citta + "'";
-                string[] listacitta = webclient.GetCitta("");
+                List<string> listacitta = webclient.GetCitta("");
                 ViewData["citta"] = listacitta;
-                Association.Associazione[] associazioni = webclient.Show_associations(cond);
+                List<Association.Associazione> associazioni = webclient.Show_associations(cond);
 
                 ViewData["elenco_associazioni"] = associazioni;
                 return View();
@@ -291,7 +291,7 @@ namespace ErasEasyLife.Controllers
                 var webclient = new Volunteer.VolunteerClient();
                 Association.Associazione ass = (Association.Associazione)Session["Associazione"];
                 string cond = "idass=" + ass.IdAss;
-                Volunteer.Volontario[] volontari = webclient.Show_volontari(cond);
+                List<Volunteer.Volontario> volontari = webclient.Show_volontari(cond);
 
                 ViewData["elenco_volontari"] = volontari;
                 return View();
@@ -442,7 +442,7 @@ namespace ErasEasyLife.Controllers
             var webclient = new Association.AssociationClient();
             Association.Associazione ass = (Association.Associazione)Session["Associazione"];
             string tipologia = " E.tipologia != 'riunione'  order by S.data_i desc";
-            Association.Svolgimento[] listaeventi = webclient.Show_Event(ass.IdAss, tipologia);
+            List<Association.Svolgimento> listaeventi = webclient.Show_Event(ass.IdAss, tipologia);
             ViewData["eventi"] = listaeventi;
             return View();
         }
@@ -452,7 +452,7 @@ namespace ErasEasyLife.Controllers
             var webclient = new Association.AssociationClient();
             Association.Associazione ass = (Association.Associazione)Session["Associazione"];
             string tipologia = " E.tipologia = 'riunione' order by S.data_i desc";
-            Association.Svolgimento[] listariunioni = webclient.Show_Event(ass.IdAss, tipologia);
+            List<Association.Svolgimento> listariunioni = webclient.Show_Event(ass.IdAss, tipologia);
             ViewData["riunioni"] = listariunioni;
             return View();
 
@@ -516,15 +516,25 @@ namespace ErasEasyLife.Controllers
             ViewData["evento"] = e;
             return View();
         }
+
+        [HttpGet]
+
+        public ActionResult Logout()
+        {
+
+            Session.Abandon();
+            return RedirectToAction("Login", "Associazione");
+
+        }
         [HttpGet]
         public ActionResult Dashboard()
         {
             var volclient = new Volunteer.VolunteerClient();
             Association.Associazione ass = (Association.Associazione)Session["associazione"];
             string condition = " idass=" + ass.IdAss + " and ruolo=''";
-            Volunteer.Volontario[] nuovi_volontari = volclient.Show_volontari(condition);
+            List<Volunteer.Volontario> nuovi_volontari = volclient.Show_volontari(condition);
             condition = " idass=" + ass.IdAss + " and ruolo!=''";
-            Volunteer.Volontario[] vecchi_volontari = volclient.Show_volontari(condition);
+            List<Volunteer.Volontario> vecchi_volontari = volclient.Show_volontari(condition);
             ViewData["n_nuovi_vol"] = nuovi_volontari.Count();
             ViewData["n_vecchi_vol"] = vecchi_volontari.Count();
 

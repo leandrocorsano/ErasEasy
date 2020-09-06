@@ -192,6 +192,15 @@ namespace ErasEasyLife.Controllers
             }
         }
         [HttpGet]
+
+        public ActionResult Logout()
+        {
+
+            Session.Abandon();
+            return RedirectToAction("Login", "Studente");
+
+        }
+        [HttpGet]
         public ActionResult Registra_Uni()
         {
             var webclient = new Student.StudentClient();

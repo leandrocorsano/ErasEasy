@@ -25,9 +25,9 @@ namespace ErasEasyLife.Controllers
             List<Event.Svolgimento> future_riunioni = eventclient.Show_events(cond);
             ViewData["n_prossime_riunioni"] = future_riunioni.Count();
             cond = " tipologia!='Riunione' and MONTH(data_i)='" + oggi.Month + "'";
-            Volunteer.Svolgimento[] my_events = volclient.Show_Event(vol.IdVolont, cond);
+            List<Volunteer.Svolgimento> my_events = volclient.Show_Event(vol.IdVolont, cond);
             cond = " tipologia='Riunione' and MONTH(data_i)='"+oggi.Month+"'"; //le mie riunioni di questo mese
-            Volunteer.Svolgimento[] my_meetings = volclient.Show_Event(vol.IdVolont, cond);
+            List<Volunteer.Svolgimento> my_meetings = volclient.Show_Event(vol.IdVolont, cond);
             ViewData["n_mie_riunioni"] = my_meetings.Count();
             ViewData["n_miei_eventi"] = my_events.Count();
             return View();
@@ -52,7 +52,7 @@ namespace ErasEasyLife.Controllers
         {
             var webclient = new Association.AssociationClient();
           
-             Association.Associazione [] associazioni= webclient.Show_associations("");
+             List<Association.Associazione> associazioni= webclient.Show_associations("");
             var volclient = new Volunteer.VolunteerClient();
             int id = volclient.Generate_id();
             ViewData["ID"] = id;
@@ -144,7 +144,7 @@ namespace ErasEasyLife.Controllers
             var webclient = new Volunteer.VolunteerClient();
             Volunteer.Volontario vol = (Volunteer.Volontario)Session["Volontario"];
             string tipologia = " E.tipologia != 'riunione'";
-            Volunteer.Svolgimento[] listaeventi = webclient.Show_Event(vol.IdVolont, tipologia);
+            List<Volunteer.Svolgimento> listaeventi = webclient.Show_Event(vol.IdVolont, tipologia);
             ViewData["eventi"] = listaeventi;
             return View();
 
@@ -155,7 +155,7 @@ namespace ErasEasyLife.Controllers
             var webclient = new Volunteer.VolunteerClient();
             Volunteer.Volontario vol = (Volunteer.Volontario)Session["Volontario"];
             string tipologia = " E.tipologia = 'riunione'";
-            Volunteer.Svolgimento[] listariunioni = webclient.Show_Event(vol.IdVolont, tipologia);
+            List<Volunteer.Svolgimento> listariunioni = webclient.Show_Event(vol.IdVolont, tipologia);
             ViewData["riunioni"] = listariunioni;
             return View();
 
@@ -400,6 +400,15 @@ namespace ErasEasyLife.Controllers
         }
 
         [HttpGet]
+
+        public ActionResult Logout()
+        {
+
+            Session.Abandon();
+            return RedirectToAction("Login", "Volontario");
+
+        }
+        [HttpGet]
         // GET: Volontario/Create
         public ActionResult Elenco()
         {
@@ -407,7 +416,7 @@ namespace ErasEasyLife.Controllers
                 var webclient = new Volunteer.VolunteerClient();
                 Volunteer.Volontario vol = (Volunteer.Volontario)Session["Volontario"];
                 string cond = "idvolont!=" + vol.IdVolont + " and idass=" + vol.ass.IdAss + "";
-                Volunteer.Volontario[] volontari = webclient.Show_volontari(cond);
+                List<Volunteer.Volontario> volontari = webclient.Show_volontari(cond);
 
                 ViewData["volontari"] = volontari;
                 return View();

@@ -26,7 +26,7 @@ namespace ErasEasyLife.Controllers
             string cond = " and data_i > '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='riunione' order by data_i";
             var webclient = new Event.EventClient();
             var webclient1 = new Association.AssociationClient();
-            Association.Associazione[] associazioni = webclient1.Show_associations("");
+            List<Association.Associazione> associazioni = webclient1.Show_associations("");
             List<Event.Svolgimento> eventi = webclient.Show_events(cond);
 
             ViewData["eventi"] = eventi;
@@ -55,7 +55,7 @@ namespace ErasEasyLife.Controllers
                 List<Event.Svolgimento> eventi = webclient.Show_events(cond);
                 ViewData["eventi"] = eventi;
                 var webclient1 = new Association.AssociationClient();
-                Association.Associazione[] associazioni = webclient1.Show_associations("");
+                List<Association.Associazione> associazioni = webclient1.Show_associations("");
                 ViewData["associazioni"] = associazioni;
                 return View();
             }

@@ -618,22 +618,22 @@ namespace ErasEasyLife.Association {
         System.Threading.Tasks.Task<bool> Create_eventsAsync(ErasEasyLife.Association.Svolgimento s);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/GetCitta", ReplyAction="http://tempuri.org/IAssociation/GetCittaResponse")]
-        string[] GetCitta(string cond);
+        System.Collections.Generic.List<string> GetCitta(string cond);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/GetCitta", ReplyAction="http://tempuri.org/IAssociation/GetCittaResponse")]
-        System.Threading.Tasks.Task<string[]> GetCittaAsync(string cond);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetCittaAsync(string cond);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/Show_associations", ReplyAction="http://tempuri.org/IAssociation/Show_associationsResponse")]
-        ErasEasyLife.Association.Associazione[] Show_associations(string cond);
+        System.Collections.Generic.List<ErasEasyLife.Association.Associazione> Show_associations(string cond);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/Show_associations", ReplyAction="http://tempuri.org/IAssociation/Show_associationsResponse")]
-        System.Threading.Tasks.Task<ErasEasyLife.Association.Associazione[]> Show_associationsAsync(string cond);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Association.Associazione>> Show_associationsAsync(string cond);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/Show_Event", ReplyAction="http://tempuri.org/IAssociation/Show_EventResponse")]
-        ErasEasyLife.Association.Svolgimento[] Show_Event(int idass, string tipologia);
+        System.Collections.Generic.List<ErasEasyLife.Association.Svolgimento> Show_Event(int idass, string tipologia);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/Show_Event", ReplyAction="http://tempuri.org/IAssociation/Show_EventResponse")]
-        System.Threading.Tasks.Task<ErasEasyLife.Association.Svolgimento[]> Show_EventAsync(int idass, string tipologia);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Association.Svolgimento>> Show_EventAsync(int idass, string tipologia);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/add_ruolo", ReplyAction="http://tempuri.org/IAssociation/add_ruoloResponse")]
         bool add_ruolo(int idvolont, string ruolo);
@@ -723,27 +723,27 @@ namespace ErasEasyLife.Association {
             return base.Channel.Create_eventsAsync(s);
         }
         
-        public string[] GetCitta(string cond) {
+        public System.Collections.Generic.List<string> GetCitta(string cond) {
             return base.Channel.GetCitta(cond);
         }
         
-        public System.Threading.Tasks.Task<string[]> GetCittaAsync(string cond) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetCittaAsync(string cond) {
             return base.Channel.GetCittaAsync(cond);
         }
         
-        public ErasEasyLife.Association.Associazione[] Show_associations(string cond) {
+        public System.Collections.Generic.List<ErasEasyLife.Association.Associazione> Show_associations(string cond) {
             return base.Channel.Show_associations(cond);
         }
         
-        public System.Threading.Tasks.Task<ErasEasyLife.Association.Associazione[]> Show_associationsAsync(string cond) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Association.Associazione>> Show_associationsAsync(string cond) {
             return base.Channel.Show_associationsAsync(cond);
         }
         
-        public ErasEasyLife.Association.Svolgimento[] Show_Event(int idass, string tipologia) {
+        public System.Collections.Generic.List<ErasEasyLife.Association.Svolgimento> Show_Event(int idass, string tipologia) {
             return base.Channel.Show_Event(idass, tipologia);
         }
         
-        public System.Threading.Tasks.Task<ErasEasyLife.Association.Svolgimento[]> Show_EventAsync(int idass, string tipologia) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Association.Svolgimento>> Show_EventAsync(int idass, string tipologia) {
             return base.Channel.Show_EventAsync(idass, tipologia);
         }
         
