@@ -477,7 +477,7 @@ namespace Admin_wcf
             * ------------------------------------------------------*/
 
             var wcfclient = server_conn.getInstance();
-            string cond = "F.idstud=S.idstud and F.iduni=U.iduni and idstud="+s.IdStud.ToString();
+            string cond = "F.idstud=S.idstud and F.iduni=U.iduni and S.idstud="+s.IdStud.ToString();
             List<Frequentazione> univesita = new List<Frequentazione>();
             try
             {
