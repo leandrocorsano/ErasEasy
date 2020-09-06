@@ -50,6 +50,18 @@
   <wsdl:message name="IEvent_Send_Email_OutputMessage">
     <wsdl:part name="parameters" element="tns:Send_EmailResponse" />
   </wsdl:message>
+  <wsdl:message name="IEvent_Generate_id_Luogo_InputMessage">
+    <wsdl:part name="parameters" element="tns:Generate_id_Luogo" />
+  </wsdl:message>
+  <wsdl:message name="IEvent_Generate_id_Luogo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Generate_id_LuogoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEvent_Generate_id_InputMessage">
+    <wsdl:part name="parameters" element="tns:Generate_id" />
+  </wsdl:message>
+  <wsdl:message name="IEvent_Generate_id_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Generate_idResponse" />
+  </wsdl:message>
   <wsdl:portType name="IEvent">
     <wsdl:operation name="Show_events">
       <wsdl:input wsaw:Action="http://tempuri.org/IEvent/Show_events" message="tns:IEvent_Show_events_InputMessage" />
@@ -78,6 +90,14 @@
     <wsdl:operation name="Send_Email">
       <wsdl:input wsaw:Action="http://tempuri.org/IEvent/Send_Email" message="tns:IEvent_Send_Email_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEvent/Send_EmailResponse" message="tns:IEvent_Send_Email_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Generate_id_Luogo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEvent/Generate_id_Luogo" message="tns:IEvent_Generate_id_Luogo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEvent/Generate_id_LuogoResponse" message="tns:IEvent_Generate_id_Luogo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Generate_id">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEvent/Generate_id" message="tns:IEvent_Generate_id_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEvent/Generate_idResponse" message="tns:IEvent_Generate_id_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IEvent" type="tns:IEvent">
@@ -138,6 +158,24 @@
     </wsdl:operation>
     <wsdl:operation name="Send_Email">
       <soap:operation soapAction="http://tempuri.org/IEvent/Send_Email" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Generate_id_Luogo">
+      <soap:operation soapAction="http://tempuri.org/IEvent/Generate_id_Luogo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Generate_id">
+      <soap:operation soapAction="http://tempuri.org/IEvent/Generate_id" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -39,6 +39,32 @@ namespace Admin_wcf
             }
             return 1; /*se non ci sono righe*/
         }
+
+        public int Generate_id_universita()
+        {
+            var wcfclient = server_conn.getInstance();
+            DataSet stud_set = wcfclient.DBselect("iduni", "UNIVERSITA", "iduni>=all(select iduni from UNIVERSITA)");
+            foreach (DataTable table in stud_set.Tables)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    int id = Convert.ToInt32(row["iduni"]);
+                    if (id <= 0)
+                    {
+                        Console.WriteLine("[OK] Id  universita restituito con successo!!");
+                        return 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("[OK] Id  universita restituito con successo!!");
+                        return id + 1;
+                    }
+
+
+                }
+            }
+            return 1; /*se non ci sono righe*/
+        }
         public bool Registration(Studente s)
         {
             var wcfclient = server_conn.getInstance();

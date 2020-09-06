@@ -300,6 +300,11 @@ namespace ErasEasyLife.Controllers
         [HttpGet]
         public ActionResult Crea_Evento()
         {
+            var webclient = new Event.EventClient();
+            int id = webclient.Generate_id();
+            int id1 = webclient.Generate_id_Luogo();
+            ViewData["ID_lu"] = id1;
+            ViewData["ID_ev"] = id;
             return View("Crea_Evento");
         }
         
@@ -373,6 +378,11 @@ namespace ErasEasyLife.Controllers
         [HttpGet]
         public ActionResult Crea_Riunione()
         {
+            var webclient = new Event.EventClient();
+            int id = webclient.Generate_id();
+            int id1 = webclient.Generate_id_Luogo();
+            ViewData["ID_lu"] = id1;
+            ViewData["ID_ev"] = id;
             return View("Crea_Riunione");
         }
         [HttpPost]

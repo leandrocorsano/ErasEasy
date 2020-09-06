@@ -60,6 +60,9 @@ namespace Admin_wcf
         [OperationContract]
         int Generate_id();
 
+        [OperationContract]
+        int Generate_id_universita();
+
 
     }
 }

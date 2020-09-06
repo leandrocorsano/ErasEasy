@@ -1032,6 +1032,18 @@ namespace ErasEasyLife.Event {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Send_Email", ReplyAction="http://tempuri.org/IEvent/Send_EmailResponse")]
         System.Threading.Tasks.Task Send_EmailAsync(string nome, string email, string body_message, string sub);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Generate_id_Luogo", ReplyAction="http://tempuri.org/IEvent/Generate_id_LuogoResponse")]
+        int Generate_id_Luogo();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Generate_id_Luogo", ReplyAction="http://tempuri.org/IEvent/Generate_id_LuogoResponse")]
+        System.Threading.Tasks.Task<int> Generate_id_LuogoAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Generate_id", ReplyAction="http://tempuri.org/IEvent/Generate_idResponse")]
+        int Generate_id();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/Generate_id", ReplyAction="http://tempuri.org/IEvent/Generate_idResponse")]
+        System.Threading.Tasks.Task<int> Generate_idAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1115,6 +1127,22 @@ namespace ErasEasyLife.Event {
         
         public System.Threading.Tasks.Task Send_EmailAsync(string nome, string email, string body_message, string sub) {
             return base.Channel.Send_EmailAsync(nome, email, body_message, sub);
+        }
+        
+        public int Generate_id_Luogo() {
+            return base.Channel.Generate_id_Luogo();
+        }
+        
+        public System.Threading.Tasks.Task<int> Generate_id_LuogoAsync() {
+            return base.Channel.Generate_id_LuogoAsync();
+        }
+        
+        public int Generate_id() {
+            return base.Channel.Generate_id();
+        }
+        
+        public System.Threading.Tasks.Task<int> Generate_idAsync() {
+            return base.Channel.Generate_idAsync();
         }
     }
 }

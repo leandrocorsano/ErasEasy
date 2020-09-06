@@ -246,4 +246,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="Generate_id_universita">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Generate_id_universitaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Generate_id_universitaResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

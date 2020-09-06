@@ -26,7 +26,10 @@ namespace Admin_wcf
         bool Delete_Event(Svolgimento s);
         [OperationContract]
         void Send_Email(string nome, string email, string body_message, string sub);
+        [OperationContract]
+        int Generate_id_Luogo();
 
-
+        [OperationContract]
+        int Generate_id();
     }
 }

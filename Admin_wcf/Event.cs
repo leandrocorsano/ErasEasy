@@ -14,6 +14,56 @@ namespace Admin_wcf
     // NOTA: è possibile utilizzare il comando "Rinomina" del menu "Refactoring" per modificare il nome di classe "Event" nel codice e nel file di configurazione contemporaneamente.
     public class Event : IEvent
     {
+        public int Generate_id()
+        {
+            var wcfclient = server_conn.getInstance();
+            DataSet luo_set = wcfclient.DBselect("idev", "EVENTO", "idev>=all(select idev from EVENTO)");
+            foreach (DataTable table in luo_set.Tables)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    int id = Convert.ToInt32(row["idev"]);
+                    if (id <= 0)
+                    {
+                        Console.WriteLine("[OK] Id  Evento restituito con successo!!");
+                        return 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("[OK] Id  Evento restituito con successo!!");
+                        return id + 1;
+                    }
+
+
+                }
+            }
+            return 1; /*se non ci sono righe*/
+        }
+        public int Generate_id_Luogo()
+        {
+            var wcfclient = server_conn.getInstance();
+            DataSet luo_set = wcfclient.DBselect("idluogo", "LUOGO", "idluogo>=all(select idluogo from LUOGO)");
+            foreach (DataTable table in luo_set.Tables)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    int id = Convert.ToInt32(row["idluogo"]);
+                    if (id <= 0)
+                    {
+                        Console.WriteLine("[OK] Id  luogo restituito con successo!!");
+                        return 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("[OK] Id  luogo restituito con successo!!");
+                        return id + 1;
+                    }
+
+
+                }
+            }
+            return 1; /*se non ci sono righe*/
+        }
         public List<Svolgimento> Show_events(string cond="")
         {
            /*Nella condizione si può mettere la data/ora inizio, data/ora fine, oppure la citta, lo stato , l'id dell associazione, la tipologia*/

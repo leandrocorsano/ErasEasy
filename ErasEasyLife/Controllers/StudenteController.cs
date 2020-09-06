@@ -194,6 +194,9 @@ namespace ErasEasyLife.Controllers
         [HttpGet]
         public ActionResult Registra_Uni()
         {
+            var webclient = new Student.StudentClient();
+            int id = webclient.Generate_id_universita();
+            ViewData["ID"] = id;
             return View();
         }
         [HttpPost]
