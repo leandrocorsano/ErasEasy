@@ -1938,7 +1938,6 @@
     <Content Include="Adminlte\plugins\toastr\toastr.min.css" />
     <Content Include="Adminlte\plugins\toastr\toastr.min.js" />
     <Content Include="Adminlte\video\ErasEasyLife.mp4" />
-    <Content Include="cappello.ico" />
     <Content Include="Connected Services\Association\ErasEasyLife.Association.Associazione.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -2037,6 +2036,7 @@
     <None Include="Connected Services\Association\item2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="icofi.ico" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2272,8 +2272,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>icofi.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />

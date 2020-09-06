@@ -807,10 +807,10 @@ namespace ErasEasyLife.Volunteer {
         System.Threading.Tasks.Task<ErasEasyLife.Volunteer.Associazione> GetAssociazioneAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVolunteer/Show_volontari", ReplyAction="http://tempuri.org/IVolunteer/Show_volontariResponse")]
-        ErasEasyLife.Volunteer.Volontario[] Show_volontari(string cond);
+        System.Collections.Generic.List<ErasEasyLife.Volunteer.Volontario> Show_volontari(string cond);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVolunteer/Show_volontari", ReplyAction="http://tempuri.org/IVolunteer/Show_volontariResponse")]
-        System.Threading.Tasks.Task<ErasEasyLife.Volunteer.Volontario[]> Show_volontariAsync(string cond);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Volunteer.Volontario>> Show_volontariAsync(string cond);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVolunteer/BookEvent", ReplyAction="http://tempuri.org/IVolunteer/BookEventResponse")]
         bool BookEvent(int volontario, int evento);
@@ -819,10 +819,10 @@ namespace ErasEasyLife.Volunteer {
         System.Threading.Tasks.Task<bool> BookEventAsync(int volontario, int evento);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVolunteer/Show_Event", ReplyAction="http://tempuri.org/IVolunteer/Show_EventResponse")]
-        ErasEasyLife.Volunteer.Svolgimento[] Show_Event(int idvol, string tipologia);
+        System.Collections.Generic.List<ErasEasyLife.Volunteer.Svolgimento> Show_Event(int idvol, string tipologia);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVolunteer/Show_Event", ReplyAction="http://tempuri.org/IVolunteer/Show_EventResponse")]
-        System.Threading.Tasks.Task<ErasEasyLife.Volunteer.Svolgimento[]> Show_EventAsync(int idvol, string tipologia);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Volunteer.Svolgimento>> Show_EventAsync(int idvol, string tipologia);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVolunteer/CancelBooking", ReplyAction="http://tempuri.org/IVolunteer/CancelBookingResponse")]
         bool CancelBooking(int volontario, int evento);
@@ -912,11 +912,11 @@ namespace ErasEasyLife.Volunteer {
             return base.Channel.GetAssociazioneAsync(id);
         }
         
-        public ErasEasyLife.Volunteer.Volontario[] Show_volontari(string cond) {
+        public System.Collections.Generic.List<ErasEasyLife.Volunteer.Volontario> Show_volontari(string cond) {
             return base.Channel.Show_volontari(cond);
         }
         
-        public System.Threading.Tasks.Task<ErasEasyLife.Volunteer.Volontario[]> Show_volontariAsync(string cond) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Volunteer.Volontario>> Show_volontariAsync(string cond) {
             return base.Channel.Show_volontariAsync(cond);
         }
         
@@ -928,11 +928,11 @@ namespace ErasEasyLife.Volunteer {
             return base.Channel.BookEventAsync(volontario, evento);
         }
         
-        public ErasEasyLife.Volunteer.Svolgimento[] Show_Event(int idvol, string tipologia) {
+        public System.Collections.Generic.List<ErasEasyLife.Volunteer.Svolgimento> Show_Event(int idvol, string tipologia) {
             return base.Channel.Show_Event(idvol, tipologia);
         }
         
-        public System.Threading.Tasks.Task<ErasEasyLife.Volunteer.Svolgimento[]> Show_EventAsync(int idvol, string tipologia) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Volunteer.Svolgimento>> Show_EventAsync(int idvol, string tipologia) {
             return base.Channel.Show_EventAsync(idvol, tipologia);
         }
         
