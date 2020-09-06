@@ -42,6 +42,9 @@ namespace Admin_wcf
         [OperationContract]
         bool CancelBooking(int volontario, int evento);
 
+        [OperationContract]
+        int Generate_id();
+
 
     }
 }

@@ -51,14 +51,11 @@ namespace ErasEasyLife.Controllers
         public ActionResult Registra()
         {
             var webclient = new Association.AssociationClient();
-            //IList<Association.Associazione> associazioni = new List<Association.Associazione>();
-            //List<Association.Associazione> associazioni = new List<Association.Associazione>();
+          
              Association.Associazione [] associazioni= webclient.Show_associations("");
-            //Association.Associazione [] associazioni = webclient.Show_associations("");
-           /* foreach(var ass in a)
-            {
-                associazioni.Add(ass);
-            }*/
+            var volclient = new Volunteer.VolunteerClient();
+            int id = volclient.Generate_id();
+            ViewData["ID"] = id;
             ViewData["associazioni"] = associazioni;
             return View();
         }
@@ -81,7 +78,7 @@ namespace ErasEasyLife.Controllers
                         Session["Volontario"] = vol; //passo il volontario che è entrato tra le varie pagine web
 
 
-                        return View("Profilo");
+                        return View("Dashboard");
                     }
                     else
                     {

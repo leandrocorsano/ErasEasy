@@ -13,6 +13,31 @@ namespace Admin_wcf
     // NOTA: è possibile utilizzare il comando "Rinomina" del menu "Refactoring" per modificare il nome di classe "Service1" nel codice e nel file di configurazione contemporaneamente.
     public class Volunteer : IVolunteer
     {
+        public int Generate_id()
+        {
+            var wcfclient = server_conn.getInstance();
+            DataSet stud_set = wcfclient.DBselect("idvolont", "VOLONTARIO", "idvolont>=all(select idvolont from VOLONTARIO)");
+            foreach (DataTable table in stud_set.Tables)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    int id = Convert.ToInt32(row["idvolont"]);
+                    if (id <= 0)
+                    {
+                        Console.WriteLine("[OK] Id volontario restituito con successo!!");
+                        return 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("[OK] Id volontario restituito con successo!!");
+                        return id + 1;
+                    }
+
+
+                }
+            }
+            return 1; /*se non ci sono righe*/
+        }
         public bool Registration(Volontario v)
         {
             var wcfclient = server_conn.getInstance();

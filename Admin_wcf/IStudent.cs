@@ -57,6 +57,9 @@ namespace Admin_wcf
         [OperationContract]
         List<Frequentazione> GetUniversity(Studente s);
 
-       
+        [OperationContract]
+        int Generate_id();
+
+
     }
 }

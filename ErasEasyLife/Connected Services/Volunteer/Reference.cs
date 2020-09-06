@@ -829,6 +829,12 @@ namespace ErasEasyLife.Volunteer {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVolunteer/CancelBooking", ReplyAction="http://tempuri.org/IVolunteer/CancelBookingResponse")]
         System.Threading.Tasks.Task<bool> CancelBookingAsync(int volontario, int evento);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVolunteer/Generate_id", ReplyAction="http://tempuri.org/IVolunteer/Generate_idResponse")]
+        int Generate_id();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVolunteer/Generate_id", ReplyAction="http://tempuri.org/IVolunteer/Generate_idResponse")]
+        System.Threading.Tasks.Task<int> Generate_idAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -936,6 +942,14 @@ namespace ErasEasyLife.Volunteer {
         
         public System.Threading.Tasks.Task<bool> CancelBookingAsync(int volontario, int evento) {
             return base.Channel.CancelBookingAsync(volontario, evento);
+        }
+        
+        public int Generate_id() {
+            return base.Channel.Generate_id();
+        }
+        
+        public System.Threading.Tasks.Task<int> Generate_idAsync() {
+            return base.Channel.Generate_idAsync();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "My events";
     Layout = "~/Views/Shared/VolontarioMenu.cshtml";
+
    
     Dictionary<int, string> Mesi = new Dictionary<int, string> { { 1, "Jan" }, { 2, "Feb" },
                                                                         { 3 , "Mar" }, {4, "Avr" }, {5, "May" },
@@ -204,72 +205,83 @@
     @{
         ErasEasyLife.Volunteer.Volontario vol = (ErasEasyLife.Volunteer.Volontario)Session["Volontario"];
     }
+    @if (vol.ruolo != "")
+    {
 
+        <section class="container">
 
-    <section class="container">
-
-        @if (ViewData["eventi"] != null)
-        {
-
-
-            foreach (var E in ViewData["eventi"] as IList<ErasEasyLife.Volunteer.Svolgimento>)
+            @if (ViewData["eventi"] != null)
             {
-                <div class="row">
-                    <article class="card ft-left">
-                        <section class="date">
-                            <time>
-                                @{
-                                    DateTime Date1 = DateTime.Parse(E.data_i);
-                                    DateTime Date2 = DateTime.Parse(E.data_f);
-                                }
-                                <span>@Date1.DayOfWeek.ToString()</span>
 
-                                <span class="Giorno">@Date1.Day.ToString()</span><span>@Mesi[Date1.Month]</span>
-                            </time>
-                        </section>
-                        <section class="card-cont">
-                            <small>@E.evento.tipologia</small>
 
-                            <h2>@E.evento.nome</h2>
-                            <span> <i> @E.evento.ass.nome</i> </span>
-                            <div class="even-date">
-                                <i class="fa fa-calendar"></i>
+                foreach (var E in ViewData["eventi"] as IList<ErasEasyLife.Volunteer.Svolgimento>)
+                {
+                    <div class="row">
+                        <article class="card ft-left">
+                            <section class="date">
                                 <time>
-                                    <span> &nbsp; Start: @Date1.DayOfWeek.ToString() @Date1.Day.ToString()  @Mesi[Date1.Month] @Date1.Year.ToString()  @E.ora_i</span>
-                                    <span> &nbsp; End: @Date2.DayOfWeek.ToString() @Date2.Day.ToString()  @Mesi[Date2.Month] @Date2.Year.ToString()  @E.ora_f</span>
+                                    @{
+                                        DateTime Date1 = DateTime.Parse(E.data_i);
+                                        DateTime Date2 = DateTime.Parse(E.data_f);
+                                    }
+                                    <span>@Date1.DayOfWeek.ToString()</span>
+
+                                    <span class="Giorno">@Date1.Day.ToString()</span><span>@Mesi[Date1.Month]</span>
                                 </time>
+                            </section>
+                            <section class="card-cont">
+                                <small>@E.evento.tipologia</small>
 
-                            </div>
-                            <div class="even-info">
-                                <i class="fa fa-map-marker"></i>
-                                <p>
-                                    &nbsp; @E.luogo.via   &nbsp;  @E.luogo.citta, @E.luogo.stato
-                                </p>
-                                <i class="fa fa-dollar-sign"></i>
-                                <p> &nbsp; Cost: @E.evento.costo &euro; </p>
+                                <h2>@E.evento.nome</h2>
+                                <span> <i> @E.evento.ass.nome</i> </span>
+                                <div class="even-date">
+                                    <i class="fa fa-calendar"></i>
+                                    <time>
+                                        <span> &nbsp; Start: @Date1.DayOfWeek.ToString() @Date1.Day.ToString()  @Mesi[Date1.Month] @Date1.Year.ToString()  @E.ora_i</span>
+                                        <span> &nbsp; End: @Date2.DayOfWeek.ToString() @Date2.Day.ToString()  @Mesi[Date2.Month] @Date2.Year.ToString()  @E.ora_f</span>
+                                    </time>
 
-                            </div>
-                            @using (Html.BeginForm("Dettagli_Evento", "Volontario", FormMethod.Post))
-                            {
+                                </div>
+                                <div class="even-info">
+                                    <i class="fa fa-map-marker"></i>
+                                    <p>
+                                        &nbsp; @E.luogo.via   &nbsp;  @E.luogo.citta, @E.luogo.stato
+                                    </p>
+                                    <i class="fa fa-dollar-sign"></i>
+                                    <p> &nbsp; Cost: @E.evento.costo &euro; </p>
 
-                                <input type="hidden" value="@E.evento.IdEv" name="idev" />
-                                <input type="submit" class="a bg-gradient-green" value="Details" />
+                                </div>
+                                @using (Html.BeginForm("Dettagli_Evento", "Volontario", FormMethod.Post))
+                                {
 
-                            }
+                                    <input type="hidden" value="@E.evento.IdEv" name="idev" />
+                                    <input type="submit" class="a bg-gradient-green" value="Details" />
 
-                        </section>
-                    </article>
-                </div>
+                                }
 
+                            </section>
+                        </article>
+                    </div>
+
+                }
             }
-        }
 
 
 
-    </section>
+        </section>
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">
+            <b>ATTENZIONE! Non hai i privilegi per accedere a questa pagina.</b><br />
+            La tua associazione non ti ha ancora confermato come suo volontario
+        </div>
+
+    }
 </body>
+                                       
 </html>

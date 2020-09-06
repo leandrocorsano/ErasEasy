@@ -74,8 +74,16 @@ namespace DB_Manager
                 {
                    using (var command = DB_conn.getInstance().CreateCommand())
                     {
-                    command.CommandText = "DELETE FROM " + table + " WHERE " + condition + " ;";
-                    Console.WriteLine(command.CommandText);
+                    if (condition != "")
+                    {
+                        command.CommandText = "DELETE FROM " + table + " WHERE " + condition + " ;";
+                    }
+                    else
+                    {
+                    command.CommandText = "DELETE FROM " + table +  " ;";
+
+                    }
+                Console.WriteLine(command.CommandText);
                     try
                     {
                         command.ExecuteNonQuery();

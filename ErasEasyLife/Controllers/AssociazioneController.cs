@@ -67,7 +67,7 @@ namespace ErasEasyLife.Controllers
 
                         //Profilo();
                        
-                        return View("Profilo");
+                        return View("Dashboard");
                     }
                     else
                     {

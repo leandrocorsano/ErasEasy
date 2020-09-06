@@ -65,6 +65,9 @@ namespace ErasEasyLife.Controllers
         // GET: Studente/Create
         public ActionResult Registra()
         {
+            var webclient = new Student.StudentClient();
+            int id = webclient.Generate_id();
+            ViewData["ID"] = id;
             return View();
         }
 
@@ -113,7 +116,7 @@ namespace ErasEasyLife.Controllers
                         Session["Studente"] = stud; //passo lo studente che è entrato tra le varie pagine web
 
 
-                        return View("Profilo");
+                        return View("Dashboard");
                     }
                     else
                     {

@@ -1067,6 +1067,12 @@ namespace ErasEasyLife.Student {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/GetUniversity", ReplyAction="http://tempuri.org/IStudent/GetUniversityResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Student.Frequentazione>> GetUniversityAsync(ErasEasyLife.Student.Studente s);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/Generate_id", ReplyAction="http://tempuri.org/IStudent/Generate_idResponse")]
+        int Generate_id();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStudent/Generate_id", ReplyAction="http://tempuri.org/IStudent/Generate_idResponse")]
+        System.Threading.Tasks.Task<int> Generate_idAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1222,6 +1228,14 @@ namespace ErasEasyLife.Student {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Student.Frequentazione>> GetUniversityAsync(ErasEasyLife.Student.Studente s) {
             return base.Channel.GetUniversityAsync(s);
+        }
+        
+        public int Generate_id() {
+            return base.Channel.Generate_id();
+        }
+        
+        public System.Threading.Tasks.Task<int> Generate_idAsync() {
+            return base.Channel.Generate_idAsync();
         }
     }
 }
