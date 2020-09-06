@@ -16,7 +16,31 @@ namespace Admin_wcf
     [ServiceBehavior]
     public class Association : IAssociation
     {
-
+        public int Generate_id()
+        {
+            var wcfclient = server_conn.getInstance();
+            DataSet ass_set = wcfclient.DBselect("idass", "ASSOCIAZIONE", "idass>=all(select idass from ASSOCIAZIONE)");
+            foreach (DataTable table in ass_set.Tables)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    int id = Convert.ToInt32(row["idass"]);
+                    if (id <= 0)
+                    {
+                        Console.WriteLine("[OK] Id  Associazione restituito con successo!!");
+                        return 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("[OK] Id  Associazione restituito con successo!!");
+                        return id+1;
+                    }
+                   
+                   
+                }
+            }
+            return 1; /*se non ci sono righe*/
+        }
         public bool Registration(Associazione a)
         {
             var wcfclient = server_conn.getInstance();

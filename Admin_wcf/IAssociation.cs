@@ -37,11 +37,14 @@ namespace Admin_wcf
         [OperationContract]
         List<Svolgimento> Show_Event(int idass, string tipologia="");
         
-        /*funzioni che mancano*/
+       
 
         [OperationContract]
         bool add_ruolo(int idvolont, string ruolo);
-        
+        [OperationContract]
+        int Generate_id();
+
+
 
     }
 

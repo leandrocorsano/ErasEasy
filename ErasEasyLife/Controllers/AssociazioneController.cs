@@ -33,7 +33,9 @@ namespace ErasEasyLife.Controllers
        [HttpGet]
         public ActionResult Registra()
         {
-                
+            var webclient = new Association.AssociationClient();
+            int id = webclient.Generate_id();
+            ViewData["ID"] = id;
             return View();
                 
         }

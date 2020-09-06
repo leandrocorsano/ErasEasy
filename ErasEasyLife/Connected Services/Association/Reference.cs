@@ -640,6 +640,12 @@ namespace ErasEasyLife.Association {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/add_ruolo", ReplyAction="http://tempuri.org/IAssociation/add_ruoloResponse")]
         System.Threading.Tasks.Task<bool> add_ruoloAsync(int idvolont, string ruolo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/Generate_id", ReplyAction="http://tempuri.org/IAssociation/Generate_idResponse")]
+        int Generate_id();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/Generate_id", ReplyAction="http://tempuri.org/IAssociation/Generate_idResponse")]
+        System.Threading.Tasks.Task<int> Generate_idAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -747,6 +753,14 @@ namespace ErasEasyLife.Association {
         
         public System.Threading.Tasks.Task<bool> add_ruoloAsync(int idvolont, string ruolo) {
             return base.Channel.add_ruoloAsync(idvolont, ruolo);
+        }
+        
+        public int Generate_id() {
+            return base.Channel.Generate_id();
+        }
+        
+        public System.Threading.Tasks.Task<int> Generate_idAsync() {
+            return base.Channel.Generate_idAsync();
         }
     }
 }

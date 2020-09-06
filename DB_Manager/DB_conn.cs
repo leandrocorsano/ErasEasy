@@ -20,6 +20,7 @@ namespace DB_Manager
         {
             lock (padlock)
             {
+                bool conn=true;
                 if (instance == null)
                 {
                     instance = new MySqlConnection();
@@ -29,7 +30,19 @@ namespace DB_Manager
                       "port=3306;" +
                       "user=sql7353524;" +
                       "password= R7ry1S5L1Z;";
-                    instance.Open();
+                    while (conn==true)
+                    {
+                        try
+                        {
+                            instance.Open();
+                            conn = false;
+                        }
+                        catch (Exception ex)
+                        {
+                            instance.Close();
+                            
+                        }
+                    }
                 }
                 return instance;
             }
