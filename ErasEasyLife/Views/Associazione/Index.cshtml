@@ -1,0 +1,18 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AssociazioneMenu.cshtml";
+}
+<h2>Index</h2>
+
+<div>
+    <h3>@ViewBag.Message</h3>
+    <strong>Nome</strong> : @ViewData["Nome"]<br />
+    <strong>Citta</strong> : @ViewData["Citta"]<br />
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
