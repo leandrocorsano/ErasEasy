@@ -516,6 +516,16 @@ namespace ErasEasyLife.Controllers
             ViewData["evento"] = e;
             return View();
         }
+
+        [HttpGet]
+
+        public ActionResult Logout()
+        {
+
+            Session.Abandon();
+            return RedirectToAction("Login", "Associazione");
+
+        }
         [HttpGet]
         public ActionResult Dashboard()
         {

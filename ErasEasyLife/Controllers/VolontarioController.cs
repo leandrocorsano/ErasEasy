@@ -400,6 +400,15 @@ namespace ErasEasyLife.Controllers
         }
 
         [HttpGet]
+
+        public ActionResult Logout()
+        {
+
+            Session.Abandon();
+            return RedirectToAction("Login", "Volontario");
+
+        }
+        [HttpGet]
         // GET: Volontario/Create
         public ActionResult Elenco()
         {
