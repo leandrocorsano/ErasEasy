@@ -1,22 +1,13 @@
-﻿@{
+﻿@*Pagina generale per tutti gli errori dell'associazione*@
+@{
     Layout = "~/Views/Shared/WhitoutMenu.cshtml";
 }
+    <center>
+        <div>
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.risposta
+            </div>
+            <a href="@ViewBag.url" class="btn bg-gradient-cyan">@ViewBag.link</a>
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
-</head>
-<body>
-    <div>
-        <div class="alert alert-danger" role="alert">
-            @ViewBag.risposta
         </div>
-        <a href="@ViewBag.url" class="btn bg-gradient-cyan">@ViewBag.link</a>
-
-    </div>
-</body>
-</html>
-
+    </center>

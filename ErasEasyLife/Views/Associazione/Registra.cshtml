@@ -1,29 +1,15 @@
-﻿@model ErasEasyLife.Models.Associazione
+﻿@*Registrazione dell'associazione*@
+@model ErasEasyLife.Models.Associazione
 
 @{
     ViewBag.Title = "Registration";
     Layout = "~/Views/Shared/WhitoutMenu.cshtml";
 }
-
-
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Registration</title>
-</head>
-<body>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-
-
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         <center>
-            <div class="card bg-gradient-secondary">
+            <div class="card bg-light">
 
                 <div class="card-header bg-cyan">
 
@@ -109,8 +95,4 @@
         </center>
     }
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-</body>
-</html>
+

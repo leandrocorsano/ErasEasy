@@ -1,47 +1,14 @@
-﻿
+﻿@*Informazione sulla riunione scelta*@
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Meeting Details";
     Layout = "~/Views/Shared/AssociazioneMenu.cshtml";
     ErasEasyLife.Event.Svolgimento s = ViewData["evento"] as ErasEasyLife.Event.Svolgimento;
-    List<ErasEasyLife.Event.Volontario> volontari = ViewData["volontari"] as List<ErasEasyLife.Event.Volontario>;
+    List<ErasEasyLife.Event.Volontario> volontari = ViewData["volontari"] as List<ErasEasyLife.Event.Volontario>; //volontari partecipanti
     int n_volontari = volontari.Count();
+    /*converto in datetime per sfruttare le funzioni sulle date*/
     DateTime Date1 = DateTime.Parse(s.data_i);
     DateTime Date2 = DateTime.Parse(s.data_f);
-    
-    Dictionary<string, string> bandiere = new Dictionary<string, string> {
-                {"Italian", "https://www.countryflags.io/it/shiny/24.png" },
-                {"French", "https://www.countryflags.io/fr/shiny/24.png" },
-                {"German", "https://www.countryflags.io/de/shiny/24.png" },
-                {"English", "https://www.countryflags.io/gb/shiny/24.png" },
-                {"Spanish", "https://www.countryflags.io/es/shiny/24.png" },
-                {"Polish", "https://www.countryflags.io/pl/shiny/24.png" },
-                {"Austrian", "https://www.countryflags.io/at/shiny/24.png" },
-                {"Portuguese", "https://www.countryflags.io/pt/shiny/24.png" },
-                {"Belgian", "https://www.countryflags.io/be/shiny/24.png" },
-                {"Switzerland", "https://www.countryflags.io/ch/shiny/24.png" },
-                {"Albanian", "https://www.countryflags.io/al/shiny/24.png" },
-                {"Vltava", "https://www.countryflags.io/md/shiny/24.png" },
-                {"Greek", "https://www.countryflags.io/gr/shiny/24.png"},
-                {"Montenegrin", "https://www.countryflags.io/me/shiny/24.png" },
-                {"Bulgarian", "https://www.countryflags.io/bg/shiny/24.png" },
-                {"Romanian", "https://www.countryflags.io/ro/shiny/24.png" },
-                {"Swedish", "https://www.countryflags.io/se/shiny/24.png" },
-                {"Finnish", "https://www.countryflags.io/fi/shiny/24.png" },
-                {"Dutch",  "https://www.countryflags.io/nl/shiny/24.png" },
-                {"Danish", "https://www.countryflags.io/dk/shiny/24.png"  },
-                {"Slovak", "https://www.countryflags.io/sk/shiny/24.png" },
-                {"Lithuanian", "https://www.countryflags.io/lt/shiny/24.png" },
-                {"Latvian",  "https://www.countryflags.io/lv/shiny/24.png"},
-                {"Estonian",  "https://www.countryflags.io/ee/shiny/24.png"},
-                {"Hungarian",  "https://www.countryflags.io/hu/shiny/24.png"},
-                {"Norwegian",  "https://www.countryflags.io/no/shiny/24.png" },
-                {"Belarusian", "https://www.countryflags.io/by/shiny/24.png" },
-                {"Slovenian",  "https://www.countryflags.io/si/shiny/24.png" },
-                {"Irish", "https://www.countryflags.io/ie/shiny/24.png"},
-                {"Maltese",  "https://www.countryflags.io/mt/shiny/24.png" },
-                {"Luxembourg", "https://www.countryflags.io/lu/shiny/24.png" },
-                {"Icelandic",  "https://www.countryflags.io/is/shiny/24.png" }
-            };
+ 
     }
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
@@ -72,7 +39,7 @@
         </div>
     </div>
 </div>
-
+@*Pulsanti*@
     <div class="row pb-1">
         <div class="col-sm-5 text-right">
             <a href="@Url.Action("Elenco_eventi", "Associazione")"><button class="a .btn .btn-app bg-secondary"><i class="fas fa-arrow-left"></i>Back</button></a>&nbsp;
@@ -99,8 +66,6 @@
             
         </div>
     </div>
-
-
 
     <div class="row">
         <div class="col-sm-6">

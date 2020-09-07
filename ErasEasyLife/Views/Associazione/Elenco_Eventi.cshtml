@@ -1,8 +1,10 @@
-﻿@{
+﻿@*Lista degli eventi creati/effettuati da un associazione*@
+@{
     ViewBag.Title = "Events";
     Layout = "~/Views/Shared/AssociazioneMenu.cshtml";
   
-    Dictionary<int, string> Mesi = new Dictionary<int, string> { { 1, "Gen" }, { 2, "Feb" },
+    /*converte il numero in parola*/
+    Dictionary<int, string> Mesi = new Dictionary<int, string> { { 1, "Jan" }, { 2, "Feb" },
                                                                         { 3 , "Mar" }, {4, "Apr" }, {5, "Mag" },
                                                                         {6, "Giu" }, {7, "Lug" }, {8, "Ago" } , {9, "Set" } , {10, "Ott" },
                                                                          {11, "Nov" }, {12, "Dic" }   };
@@ -15,14 +17,6 @@
     <meta name="viewport" content="width=device-width" />
     <title>Events list</title>
     <style type="text/css">
-
-        {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            box-sizing: border-box
-        }
-
 
 
         .fl-left {
@@ -253,7 +247,7 @@
                             {
 
                                 <input type="hidden" value="@E.evento.IdEv" name="idev" />
-                                <input type="submit" class="a bg-gradient-green" value="Details" />
+                                <input type="submit" class="a bg-gradient-cyan" value="Details" />
 
                             }
 
@@ -268,9 +262,6 @@
 
     </section>
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
 </body>
 </html>
 

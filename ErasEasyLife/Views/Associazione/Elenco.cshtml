@@ -1,20 +1,11 @@
-﻿@model ErasEasyLife.Models.Associazione
+﻿@*Elenco delle associazioni raggruppate per città*@
+@model ErasEasyLife.Models.Associazione
 @{
     ViewBag.Title = "List";
     Layout = "~/Views/Shared/StudenteMenu.cshtml";
 }
 
-
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Associations list</title>
-</head>
-<body>
-    @if (ViewBag.uni >= 2)
+    @if (ViewBag.uni >= 2) //se lo studente ha registrato almeno 2 università
     {
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
@@ -33,7 +24,7 @@
                             <select class="custom-select" name="@Html.NameFor(model => model.citta)">
 
 
-                                @foreach (var cit in ViewData["citta"] as IEnumerable<string>)
+                                @foreach (var cit in ViewData["citta"] as List<string>)
                                 {
 
                                     <option value="@cit">
@@ -51,11 +42,11 @@
             }
             <div>
 
-                @if (ViewData["elenco_associazioni"] != null)
+                @if (ViewData["elenco_associazioni"] != null) //se l'utente ha inviato il form precedente
                 {
                     <div class="row">
                         @{
-                            foreach (var associazione in ViewData["elenco_associazioni"] as IEnumerable<ErasEasyLife.Association.Associazione>)
+                            foreach (var associazione in ViewData["elenco_associazioni"] as List<ErasEasyLife.Association.Associazione>)
                             {
                                 <div class="col-sm-4">
                                     <div class="card">
@@ -95,5 +86,4 @@
             <br /> @Html.ActionLink("Insert University", "Registra_Uni")
         </div>
     }
-</body>
-</html>
+
