@@ -534,7 +534,7 @@ namespace ErasEasyLife.Controllers
                     svo.ora_f = model.ora_f;
                     bool r = webclient.Create_events(svo);
                     ViewBag.risposta = "Meeting successfully created";
-                    ViewBag.url = "../Associazione/Lista_Riunioni";
+                    ViewBag.url = "../Associazione/Elenco_Riunioni";
                     ViewBag.link = "Go to meetings";
                     return View("Successo");
 
