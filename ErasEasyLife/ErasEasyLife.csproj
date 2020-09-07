@@ -1938,7 +1938,6 @@
     <Content Include="Adminlte\plugins\toastr\toastr.min.css" />
     <Content Include="Adminlte\plugins\toastr\toastr.min.js" />
     <Content Include="Adminlte\video\ErasEasyLife.mp4" />
-    <Content Include="cappello.ico" />
     <Content Include="Connected Services\Association\ErasEasyLife.Association.Associazione.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -2175,8 +2174,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />

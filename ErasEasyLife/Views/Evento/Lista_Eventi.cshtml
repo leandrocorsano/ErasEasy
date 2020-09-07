@@ -211,13 +211,15 @@ h1
     </style>
 </head>
 <body>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h2 class="display-4 text-center">Upcoming Events</h2>
+    @if (ViewBag.uni >= 2)
+    {
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h2 class="display-4 text-center">Upcoming Events</h2>
+            </div>
         </div>
-    </div>
-    
-        @using (Html.BeginForm("Lista_Eventi", "Evento", FormMethod.Post))
+
+        using (Html.BeginForm("Lista_Eventi", "Evento", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
             <div class="form-group">
@@ -248,75 +250,84 @@ h1
 
 
         }
-   
-    <section class="container">
 
-        @if (ViewData["eventi"] != null)
-        {
+        <section class="container">
 
-
-            foreach (var E in ViewData["eventi"] as IList<ErasEasyLife.Event.Svolgimento>)
+            @if (ViewData["eventi"] != null)
             {
-                <div class="row">
-                    <article class="card ft-left">
-                        <section class="date">
-                            <time>
-                                @{
-                                    DateTime Date1 = DateTime.Parse(E.data_i);
-                                    DateTime Date2 = DateTime.Parse(E.data_f);
-                                }
-                                <span>@Date1.DayOfWeek.ToString()</span>
 
-                                <span class="Giorno">@Date1.Day.ToString()</span><span>@Mesi[Date1.Month]</span>
-                            </time>
-                        </section>
-                        <section class="card-cont">
-                            <small>@E.evento.tipologia</small>
 
-                            <h2>@E.evento.nome</h2>
-                            <span> <i> @E.evento.ass.nome</i> </span>
-                            <div class="even-date">
-                                <i class="fa fa-calendar"></i>
+                foreach (var E in ViewData["eventi"] as IList<ErasEasyLife.Event.Svolgimento>)
+                {
+                    <div class="row">
+                        <article class="card ft-left">
+                            <section class="date">
                                 <time>
-                                    <span> &nbsp; Start: @Date1.DayOfWeek.ToString() @Date1.Day.ToString()  @Mesi[Date1.Month] @Date1.Year.ToString()  @E.ora_i</span>
-                                    <span> &nbsp; End: @Date2.DayOfWeek.ToString() @Date2.Day.ToString()  @Mesi[Date2.Month] @Date2.Year.ToString()  @E.ora_f</span>
+                                    @{
+                                        DateTime Date1 = DateTime.Parse(E.data_i);
+                                        DateTime Date2 = DateTime.Parse(E.data_f);
+                                    }
+                                    <span>@Date1.DayOfWeek.ToString()</span>
+
+                                    <span class="Giorno">@Date1.Day.ToString()</span><span>@Mesi[Date1.Month]</span>
                                 </time>
+                            </section>
+                            <section class="card-cont">
+                                <small>@E.evento.tipologia</small>
 
-                            </div>
-                            <div class="even-info">
-                                <i class="fa fa-map-marker"></i>
-                                <p>
-                                    &nbsp; @E.luogo.via   &nbsp;  @E.luogo.citta, @E.luogo.stato
-                                </p>
-                                <i class="fa fa-dollar-sign"></i>
-                                <p>
-                                    &nbsp;<b> Costo:</b>  @E.evento.costo &euro;
-                                </p>
+                                <h2>@E.evento.nome</h2>
+                                <span> <i> @E.evento.ass.nome</i> </span>
+                                <div class="even-date">
+                                    <i class="fa fa-calendar"></i>
+                                    <time>
+                                        <span> &nbsp; Start: @Date1.DayOfWeek.ToString() @Date1.Day.ToString()  @Mesi[Date1.Month] @Date1.Year.ToString()  @E.ora_i</span>
+                                        <span> &nbsp; End: @Date2.DayOfWeek.ToString() @Date2.Day.ToString()  @Mesi[Date2.Month] @Date2.Year.ToString()  @E.ora_f</span>
+                                    </time>
 
-                            </div>
-                            @using (Html.BeginForm("Dettagli", "Evento", FormMethod.Post))
-                            {
-                                
+                                </div>
+                                <div class="even-info">
+                                    <i class="fa fa-map-marker"></i>
+                                    <p>
+                                        &nbsp; @E.luogo.via   &nbsp;  @E.luogo.citta, @E.luogo.stato
+                                    </p>
+                                    <i class="fa fa-dollar-sign"></i>
+                                    <p>
+                                        &nbsp;<b> Costo:</b>  @E.evento.costo &euro;
+                                    </p>
+
+                                </div>
+                                @using (Html.BeginForm("Dettagli", "Evento", FormMethod.Post))
+                                {
+
 
                                     <input type="hidden" value="@E.evento.IdEv" name="idev" />
                                     <input type="submit" class="a bg-gradient-green" value="Details" />
-                                
-                              }
+
+                                }
 
                             </section>
-                    </article>
-                </div>
+                        </article>
+                    </div>
 
+                }
             }
-        }
 
 
 
-    </section>
+        </section>
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">
+            <b>WARNING! You don't have privileges to access the page.</b><br />
+            Your must be inserted minimum 2 universities before (sending university and receiving university).
+            <br /> @Html.ActionLink("Insert University", "Registra_Uni")
+        </div>
+    }
 </body>
 </html>
 

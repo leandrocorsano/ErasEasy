@@ -14,42 +14,44 @@
     <title>Associations list</title>
 </head>
 <body>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4 text-center">Elenco Associazioni</h1>
-        </div>
-    </div>
-
-    <div class="card p-1">
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="form-group">
-                <center>
-                    <div class="input-group mb-2 ">
-                        <select class="custom-select" name="@Html.NameFor(model => model.citta)">
-                        
-
-                            @foreach (var cit in ViewData["citta"] as IEnumerable<string>)
-                            {
-
-                                <option value="@cit">
-                                    @cit
-                                </option>
-                            }
-                        </select>
-                        <div class="input-group-append">
-                            <button type="submit" class="btn bg-gradient-green btn-sm"><i class="fas fa-search"></i></button>
-                        </div>
-                    </div>
-                </center>
-
+    @if (ViewBag.uni >= 2)
+    {
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4 text-center">Elenco Associazioni</h1>
             </div>
-        }
+        </div>
+
+        <div class="card p-1">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    <center>
+                        <div class="input-group mb-2 ">
+                            <select class="custom-select" name="@Html.NameFor(model => model.citta)">
+
+
+                                @foreach (var cit in ViewData["citta"] as IEnumerable<string>)
+                                {
+
+                                    <option value="@cit">
+                                        @cit
+                                    </option>
+                                }
+                            </select>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn bg-gradient-green btn-sm"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </center>
+
+                </div>
+            }
             <div>
 
-              @if (ViewData["elenco_associazioni"] != null)
+                @if (ViewData["elenco_associazioni"] != null)
                 {
                     <div class="row">
                         @{
@@ -59,7 +61,7 @@
                                     <div class="card">
                                         <center>
                                             <div class="card-header bg-green">
-                                            
+
                                                 @associazione.nome
                                             </div>
                                             <div class="card-body bg-light">
@@ -84,5 +86,14 @@
         <div>
             @Html.ActionLink("Back to List", "Index")
         </div>
-    </body>
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">
+            <b>WARNING! You don't have privileges to access the page.</b><br />
+            Your must be inserted minimum 2 universities before (sending university and receiving university).
+            <br /> @Html.ActionLink("Insert University", "Registra_Uni")
+        </div>
+    }
+</body>
 </html>

@@ -8,12 +8,7 @@ namespace ErasEasyLife.Controllers
 {
     public class StudenteController : Controller
     {
-        // GET: Studente
-        public ActionResult Index()
-        {
-
-            return View();
-        }
+       
 
         // GET: Studente/Details/5
         public ActionResult Profilo()
@@ -55,9 +50,11 @@ namespace ErasEasyLife.Controllers
         // GET: Volontario/Create
         public ActionResult Elenco()
         {
-           
-                
-                return View();
+            var webclient = new Student.StudentClient();
+            Student.Studente stud = (Student.Studente)Session["Studente"];
+            List<Student.Frequentazione> listauni = webclient.GetUniversity(stud);
+            ViewBag.uni = listauni.Count();
+            return View();
             }
          
 
@@ -93,6 +90,9 @@ namespace ErasEasyLife.Controllers
                 ViewData["mie_richieste"] = richieste_totali;
                 ViewData["conferme"] = conferme;
                 ViewData["rifiutate"] = amicizie_rifiutate;
+               
+                List<Student.Frequentazione> listauni = webclient.GetUniversity(stud);
+                ViewBag.uni = listauni.Count();
                 return View();
             }
             return View();
@@ -116,7 +116,7 @@ namespace ErasEasyLife.Controllers
                         Session["Studente"] = stud; //passo lo studente che è entrato tra le varie pagine web
 
 
-                        return View("Dashboard");
+                        return RedirectToAction("Dashboard", "Studente");
                     }
                     else
                     {
@@ -315,6 +315,8 @@ namespace ErasEasyLife.Controllers
             Student.Studente stud = (Student.Studente)Session["Studente"];
             List<Student.Svolgimento> listaeventi = webclient.Show_Event(stud.IdStud);
             ViewData["eventi"] = listaeventi;
+            List<Student.Frequentazione> listauni = webclient.GetUniversity(stud);
+            ViewBag.uni = listauni.Count();
             return View();
         }
         [HttpPost]
@@ -504,6 +506,8 @@ namespace ErasEasyLife.Controllers
                 var webclient = new Student.StudentClient();
                 List<Student.Studente> richieste = webclient.My_Friendship_Request(stud);
                 ViewData["richieste"] = richieste;
+                List<Student.Frequentazione> listauni = webclient.GetUniversity(stud);
+                ViewBag.uni = listauni.Count();
                 return View("");
                 
             }
@@ -520,6 +524,8 @@ namespace ErasEasyLife.Controllers
             var webclient = new Student.StudentClient();
             List<Student.Studente> amici = webclient.Show_Friends(stud, "Conferma");
             ViewData["amici"] = amici;
+            List<Student.Frequentazione> listauni = webclient.GetUniversity(stud);
+            ViewBag.uni = listauni.Count();
             return View();
       
         }
@@ -528,6 +534,8 @@ namespace ErasEasyLife.Controllers
         {
             Student.Studente stud = (Student.Studente)Session["studente"];
             var webclient = new Student.StudentClient();
+            List<Student.Frequentazione> listauni = webclient.GetUniversity(stud);
+            ViewBag.uni = listauni.Count();
             List<Student.Studente> richieste_totali = webclient.Show_Friends(stud, "Richiesta");
             List<Student.Studente> richieste_ricevute = webclient.My_Friendship_Request(stud);
             richieste_ricevute.ForEach(x => { richieste_totali.Remove(x); }); //tengo solo le richieste che ho inviato
@@ -604,26 +612,6 @@ namespace ErasEasyLife.Controllers
         }
 
 
-        // GET: Studente/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Studente/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
     }
 }

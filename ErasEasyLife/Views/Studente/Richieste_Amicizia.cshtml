@@ -50,60 +50,72 @@
     <title>Request friendship</title>
 </head>
 <body>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4 text-center">Friend requests</h1>
+    @if (ViewBag.uni >= 2)
+    {
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4 text-center">Friend requests</h1>
+            </div>
         </div>
-    </div>
 
-                <div class="row">
-                    @{
-                        foreach (var studente in ViewData["richieste"] as IList<ErasEasyLife.Student.Studente>)
-                        {
+        <div class="row">
+            @{
+                foreach (var studente in ViewData["richieste"] as IList<ErasEasyLife.Student.Studente>)
+                {
 
-                            <div class="col-sm-4">
-                                <div class="card">
-                                    <center>
-                                        <div class="card-header bg-green">
-                                            <img src="@bandiere[studente.nazionalita]" />
-                                            @studente.nome @studente.cognome
-                                        </div>
-                                        <div class="card-body bg-light">
-                                      
-
-
-
-                                            @using (Html.BeginForm("Conferma_Amicizia", "Studente", FormMethod.Post))
-                                            {
-
-                                                <div class="form-group">
-                                                    <input type="hidden" value="@studente.IdStud" name="idstud" />
-                                                    <input type="submit" class="a bg-gradient-green" value="Confirm request" />
-                                                </div>
-                                            }
-                                            @using (Html.BeginForm("Rimuovi_Amicizia", "Studente", FormMethod.Post))
-                                            {
-
-                                                <div class="form-group">
-                                                    <input type="hidden" value="@studente.IdStud" name="idstud" />
-                                                    <input type="submit" class="a bg-gradient-danger" value="Deny request" />
-                                                </div>
-                                            }
-                                            
-
-                                        </div>
-                                    </center>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <center>
+                                <div class="card-header bg-green">
+                                    <img src="@bandiere[studente.nazionalita]" />
+                                    @studente.nome @studente.cognome
                                 </div>
-                            </div>
+                                <div class="card-body bg-light">
 
-                        }
-                    }
 
-                </div>
-            
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+
+
+                                    @using (Html.BeginForm("Conferma_Amicizia", "Studente", FormMethod.Post))
+                                    {
+
+                                        <div class="form-group">
+                                            <input type="hidden" value="@studente.IdStud" name="idstud" />
+                                            <input type="submit" class="a bg-gradient-green" value="Confirm request" />
+                                        </div>
+                                    }
+                                    @using (Html.BeginForm("Rimuovi_Amicizia", "Studente", FormMethod.Post))
+                                    {
+
+                                        <div class="form-group">
+                                            <input type="hidden" value="@studente.IdStud" name="idstud" />
+                                            <input type="submit" class="a bg-gradient-danger" value="Deny request" />
+                                        </div>
+                                    }
+
+
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+
+                }
+            }
+
+        </div>
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+
+    else
+    {
+    <div class="alert alert-warning" role="alert">
+        <b>WARNING! You don't have privileges to access the page.</b><br />
+        Your must be inserted minimum 2 universities before (sending university and receiving university).
+        <br /> @Html.ActionLink("Insert University", "Registra_Uni")
     </div>
+    }
 </body>
 </html>
 

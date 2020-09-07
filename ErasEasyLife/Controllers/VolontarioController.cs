@@ -78,7 +78,7 @@ namespace ErasEasyLife.Controllers
                         Session["Volontario"] = vol; //passo il volontario che è entrato tra le varie pagine web
 
 
-                        return View("Dashboard");
+                        return RedirectToAction("Dashboard", "Volontario");
                     }
                     else
                     {

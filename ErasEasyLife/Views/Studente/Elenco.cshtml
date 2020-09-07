@@ -1,6 +1,6 @@
 ﻿@model ErasEasyLife.Models.Studente
 @{
-    ViewBag.Title = "Elenco";
+    ViewBag.Title = "Students list";
     Layout = "~/Views/Shared/StudenteMenu.cshtml";
 }
 @{ 
@@ -50,162 +50,174 @@
     <title>Students list</title>
 </head>
 <body>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4 text-center">Students list</h1>
-        </div>
-    </div>
-   
-
-       
-   
-    <div class="card p-1">
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            <div class="form-group">
-                <center>
-                    <div class="input-group mb-2 ">
-                        <select class="custom-select" name="@Html.NameFor(model => model.nazionalita)">
-
-
-                            @foreach (var nazione in nazionalita)
-                            {
-
-                                <option value="@nazione">
-                                    @nazione
-                                </option>
-                            }
-                        </select>
-                        <div class="input-group-append">
-                            <button type="submit" class="btn bg-gradient-green btn-sm"><i class="fas fa-search"></i></button>
-                        </div>
-                    </div>
-                </center>
-
+    @if (ViewBag.uni >= 2)
+    {
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4 text-center">Students list</h1>
             </div>
+        </div>
 
 
 
-        }
-        <div>
 
-            @if(ViewData["studenti"] != null)
+        <div class="card p-1">
+            @using (Html.BeginForm())
             {
-                <div class="row">
-                    @{
-                        foreach (var studente in ViewData["studenti"] as IList<ErasEasyLife.Student.Studente>)
-                        {
-                            bool richiesta_inviata = false;
-                            bool richiesta_ricevuta = false;
-                            bool conferma = false;
-                            <div class="col-sm-4">
-                                <div class="card">
-                                    <center>
-                                        <div class="card-header bg-green">
-                                            <img src="@bandiere[studente.nazionalita]" />
-                                            @studente.nome @studente.cognome
-                                        </div>
-                                        <div class="card-body bg-light">
-                                            <p><i class="fas fa-envelope"></i> @studente.email</p>
-                                            <p><i class="fas fa-city"></i> @studente.citta</p>
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <center>
+                        <div class="input-group mb-2 ">
+                            <select class="custom-select" name="@Html.NameFor(model => model.nazionalita)">
 
-                                            @{
-                                                List<ErasEasyLife.Student.Studente> mie_richieste = ViewData["mie_richieste"] as List<ErasEasyLife.Student.Studente>;
-                                                List<ErasEasyLife.Student.Studente> altri_richieste = ViewData["altri_richieste"] as List<ErasEasyLife.Student.Studente>;
-                                                List<ErasEasyLife.Student.Studente> conferme = ViewData["conferme"] as List<ErasEasyLife.Student.Studente>;
-                                                foreach (var r in mie_richieste)
-                                                {
-                                                    if (r.IdStud == studente.IdStud)
+
+                                @foreach (var nazione in nazionalita)
+                                {
+
+                                    <option value="@nazione">
+                                        @nazione
+                                    </option>
+                                }
+                            </select>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn bg-gradient-green btn-sm"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </center>
+
+                </div>
+
+
+
+            }
+            <div>
+
+                @if (ViewData["studenti"] != null)
+                {
+                    <div class="row">
+                        @{
+                            foreach (var studente in ViewData["studenti"] as IList<ErasEasyLife.Student.Studente>)
+                            {
+                                bool richiesta_inviata = false;
+                                bool richiesta_ricevuta = false;
+                                bool conferma = false;
+                                <div class="col-sm-4">
+                                    <div class="card">
+                                        <center>
+                                            <div class="card-header bg-green">
+                                                <img src="@bandiere[studente.nazionalita]" />
+                                                @studente.nome @studente.cognome
+                                            </div>
+                                            <div class="card-body bg-light">
+                                                <p><i class="fas fa-envelope"></i> @studente.email</p>
+                                                <p><i class="fas fa-city"></i> @studente.citta</p>
+
+                                                @{
+                                                    List<ErasEasyLife.Student.Studente> mie_richieste = ViewData["mie_richieste"] as List<ErasEasyLife.Student.Studente>;
+                                                    List<ErasEasyLife.Student.Studente> altri_richieste = ViewData["altri_richieste"] as List<ErasEasyLife.Student.Studente>;
+                                                    List<ErasEasyLife.Student.Studente> conferme = ViewData["conferme"] as List<ErasEasyLife.Student.Studente>;
+                                                    foreach (var r in mie_richieste)
                                                     {
-                                                        richiesta_ricevuta = false;
-                                                        richiesta_inviata = true;
-                                                    }
-
-                                                }
-                                                foreach (var r in altri_richieste)
-                                                {
-                                                    if (r.IdStud == studente.IdStud)
-                                                    {
-                                                        richiesta_ricevuta = true;
-                                                        richiesta_inviata = false;
-                                                    }
-
-                                                }
-                                                foreach (var c in conferme)
-                                                {
-                                                    if (c.IdStud == studente.IdStud)
-                                                    {
-                                                        conferma = true;
-                                                    }
-
-                                                }
-                                                if (richiesta_ricevuta == true)
-                                                {
-                                                    <p class="text-warning">
-                                                        <b>He has sent you a friend request</b>
-                                                    </p>
-                                                    <a href="@Url.Action("RIchieste_Amicizia", "Studente")">
-                                                        <button class="bg-secondary">Go to the requests</button></a>
-                                                        }
-                                                        else if (richiesta_inviata == true)
+                                                        if (r.IdStud == studente.IdStud)
                                                         {
+                                                            richiesta_ricevuta = false;
+                                                            richiesta_inviata = true;
+                                                        }
+
+                                                    }
+                                                    foreach (var r in altri_richieste)
+                                                    {
+                                                        if (r.IdStud == studente.IdStud)
+                                                        {
+                                                            richiesta_ricevuta = true;
+                                                            richiesta_inviata = false;
+                                                        }
+
+                                                    }
+                                                    foreach (var c in conferme)
+                                                    {
+                                                        if (c.IdStud == studente.IdStud)
+                                                        {
+                                                            conferma = true;
+                                                        }
+
+                                                    }
+                                                    if (richiesta_ricevuta == true)
+                                                    {
+                                                        <p class="text-warning">
+                                                            <b>He has sent you a friend request</b>
+                                                        </p>
+                                                        <a href="@Url.Action("RIchieste_Amicizia", "Studente")">
+                                                            <button class="bg-secondary">Go to the requests</button>
+                                                        </a>
+                                                    }
+                                                    else if (richiesta_inviata == true)
+                                                    {
                                                         <p class="text-green">
                                                             <b>Request sent</b>
                                                         </p>
                                                         using (Html.BeginForm("Annulla_Richiesta", "Studente", FormMethod.Post))
                                                         {
 
-                                                        <div class="form-group">
-                                                            <input type="hidden" value="@studente.IdStud" name="idstud" />
-                                                            <input type="submit" class="a bg-gradient-danger" value="Cancel request" />
-                                                        </div>
+                                                            <div class="form-group">
+                                                                <input type="hidden" value="@studente.IdStud" name="idstud" />
+                                                                <input type="submit" class="a bg-gradient-danger" value="Cancel request" />
+                                                            </div>
                                                         }
-                                                        }
-                                                        else if (conferma == true)
-                                                        {
+                                                    }
+                                                    else if (conferma == true)
+                                                    {
                                                         <div class="alert alert-info" role="alert">
                                                             <b>Friendship confirmed</b>
                                                         </div>
-                                                        }
-                                                        else
-                                                        {
+                                                    }
+                                                    else
+                                                    {
                                                         using (Html.BeginForm("Richiesta_Amicizia", "Studente", FormMethod.Post))
                                                         {
 
-                                                        <div class="form-group">
-                                                            <input type="hidden" value="@studente.IdStud" name="idstud" />
-                                                            <input type="submit" class="a bg-gradient-green" value="Request friendship" />
-                                                        </div>
+                                                            <div class="form-group">
+                                                                <input type="hidden" value="@studente.IdStud" name="idstud" />
+                                                                <input type="submit" class="a bg-gradient-green" value="Request friendship" />
+                                                            </div>
                                                         }
-                                                        }
-                                                        if (studente.instagram != "")
-                                                        {
+                                                    }
+                                                    if (studente.instagram != "")
+                                                    {
                                                         <a href="@studente.instagram"><img src="~/adminlte/img/instagram_logo.png" width="36px" height="36px"></a>
-                                                        }
-                                                        if (studente.facebook != "")
-                                                        {
+                                                    }
+                                                    if (studente.facebook != "")
+                                                    {
                                                         <a href="@studente.facebook"><img src="~/adminlte/img/facebook_logo.png" width="36px" height="36px"></a>
-                                                        }
+                                                    }
 
-                                                        }
+                                                }
 
-</div>
-                                    </center>
+                                            </div>
+                                        </center>
+                                    </div>
                                 </div>
-                            </div>
 
+                            }
                         }
-                    }
 
-                </div>
-            }
+                    </div>
+                }
 
+            </div>
         </div>
-    </div>
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+    else
+    {
+<div class="alert alert-warning" role="alert">
+    <b>WARNING! You don't have privileges to access the page.</b><br />
+    Your must be inserted minimum 2 universities before (sending university and receiving university).
+    <br /> @Html.ActionLink("Insert University", "Registra_Uni")
+</div>
+    }
 </body>
 </html>
 
