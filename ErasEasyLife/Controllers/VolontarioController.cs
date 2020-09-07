@@ -223,7 +223,7 @@ namespace ErasEasyLife.Controllers
                 bool r = webclient1.BookEvent(vol.IdVolont, evento);
                 if (r == true)
                 {
-                    if (e.evento.tipologia == "Riunione")
+                    if (e.evento.tipologia == "riunione")
                     {
                         ViewBag.risposta = "Meeting successfully booked";
                         ViewBag.url = "../Evento/Lista_riunioni";

@@ -18,7 +18,7 @@ namespace ErasEasyLife.Controllers
         /*
          *  CONTROLLER DELL'AREA ASSOCIAZIONE
          *  PRINCIPALI FUNZIONALITA':
-         *  @Riepilo
+         *  @Riepilogo
          *  @Registrazione
          *  @Visualizzazione e modifica dati personali
          *  @Gestione Eventi e volontari
