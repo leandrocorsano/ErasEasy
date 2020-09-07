@@ -477,11 +477,11 @@ namespace Admin_wcf
             * ------------------------------------------------------*/
 
             var wcfclient = server_conn.getInstance();
-            string cond = "F.idstud=S.idstud and F.iduni=U.iduni and idstud="+s.IdStud.ToString();
+            string cond = "F.idstud=S.idstud and F.iduni=U.iduni and S.idstud="+s.IdStud.ToString();
             List<Frequentazione> univesita = new List<Frequentazione>();
             try
             {
-                DataSet uni_set = wcfclient.DBselect("*", "FREQUENTAZIONE as F, STUDENTE as S, UNIVERSITA as U", cond);
+                DataSet uni_set = wcfclient.DBselect("U.iduni, S.idstud, U.nome as nomeuni, S.nome as nomestud, u.citta, u.stato, s.cognome, s.email, s.data_n, s.citta, s.stato, s.nazionalita, s.password, s.instagram, s.facebook", "FREQUENTAZIONE as F, STUDENTE as S, UNIVERSITA as U", cond);
                 foreach (DataTable table in uni_set.Tables)
                 {
                     foreach (DataRow row in table.Rows)
