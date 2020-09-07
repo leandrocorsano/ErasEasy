@@ -28,7 +28,10 @@ namespace ErasEasyLife.Controllers
             var webclient1 = new Association.AssociationClient();
             List<Association.Associazione> associazioni = webclient1.Show_associations("");
             List<Event.Svolgimento> eventi = webclient.Show_events(cond);
-
+            Student.Studente stud = (Student.Studente)Session["studente"];
+            var studclient = new Student.StudentClient();
+            List<Student.Frequentazione> listauni = studclient.GetUniversity(stud);
+            ViewBag.uni = listauni.Count();
             ViewData["eventi"] = eventi;
             ViewData["associazioni"] = associazioni;
             return View();
@@ -57,6 +60,10 @@ namespace ErasEasyLife.Controllers
                 var webclient1 = new Association.AssociationClient();
                 List<Association.Associazione> associazioni = webclient1.Show_associations("");
                 ViewData["associazioni"] = associazioni;
+                Student.Studente stud = (Student.Studente)Session["studente"];
+                var studclient = new Student.StudentClient();
+                List<Student.Frequentazione> listauni = studclient.GetUniversity(stud);
+                ViewBag.uni = listauni.Count();
                 return View();
             }
             return View();

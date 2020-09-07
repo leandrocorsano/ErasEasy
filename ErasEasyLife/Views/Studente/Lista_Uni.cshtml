@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Universities";
+    ViewBag.Title = "My universities";
     Layout = "~/Views/Shared/StudenteMenu.cshtml";
 }
 
@@ -201,7 +201,11 @@
     @{ 
         ErasEasyLife.Student.Studente stud = (ErasEasyLife.Student.Studente)Session["Studente"];
     }
-   
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">My Universities</h1>
+        </div>
+    </div>
         <section class="container">
 
             @if (ViewData["universita"] != null)
@@ -214,8 +218,27 @@
                         <div class="col-sm-6">
                             <article class="card text-center">
                                 <section class="card-header bg-green">
-                                    @stud.nome @stud.cognome 
-                                    
+                                    @if (uni.tipo == "Sending")
+                                    {
+                                        <div>
+                                            <i class="fa fa-plane-departure"></i>
+                                            &nbsp; <b>@uni.tipo univesity</b> 
+
+
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div>
+                                            <i class=" fa fa-plane-arrival"></i>
+
+
+                                            &nbsp; <b>@uni.tipo univesity</b>
+                                        </div>
+
+
+                                    }
+
                                 </section>
                                 <section class="card-body">
                                     
@@ -228,26 +251,7 @@
                                             <i class="fas fa-globe-europe"></i>
                                             &nbsp; <b>State:</b> @uni.universita.stato
                                         </div>
-                                        @if (uni.tipo == "Sending")
-                                        {
-                                            <div>
-                                                <i class="fa fa-plane-departure"></i>
-                                                &nbsp; <b>Type:</b> @uni.tipo
-
-
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div>
-                                                <i class=" fa fa-plane-arrival"></i>
-
-
-                                                &nbsp; <b>Type:</b> @uni.tipo
-                                            </div>
-
-
-                                        }
+                                     
 
 </section>
                         </article>

@@ -66,8 +66,8 @@ namespace ErasEasyLife.Controllers
                         Session["associazione"] = ass; //passo l'associazione che è entrata tra le varie pagine web
 
                         //Profilo();
-                       
-                        return View("Dashboard");
+
+                        return RedirectToAction("Dashboard", "Associazione");
                     }
                     else
                     {
@@ -551,7 +551,7 @@ namespace ErasEasyLife.Controllers
             cond1 = " and data_i <'" + oggi.ToString("yyyy-MM-dd") + "' and tipologia='riunione' and idass=" + ass.IdAss;
             List<Event.Svolgimento> riunioni_passate = eventclient.Show_events(cond1);
             ViewData["n_prossime_riunioni"] = future_riunioni.Count();
-            ViewData["n_scorse_riunioni"] = future_riunioni.Count();
+            ViewData["n_scorse_riunioni"] = riunioni_passate.Count();
 
             return View();
         }

@@ -481,13 +481,13 @@ namespace Admin_wcf
             List<Frequentazione> univesita = new List<Frequentazione>();
             try
             {
-                DataSet uni_set = wcfclient.DBselect("U.iduni, S.idstud, U.nome as nomeuni, S.nome as nomestud, u.citta, u.stato, s.cognome, s.email, s.data_n, s.citta, s.stato, s.nazionalita, s.password, s.instagram, s.facebook", "FREQUENTAZIONE as F, STUDENTE as S, UNIVERSITA as U", cond);
+                DataSet uni_set = wcfclient.DBselect("U.iduni, S.idstud, U.nome as nomeuni, S.nome as nomestud, U.citta as unicitta, U.stato as unistato, S.cognome, S.cellulare, S.email, S.data_n,  F.tipo, S.citta as studcitta, S.stato as studstato, S.nazionalita, S.password, S.instagram, S.facebook", "FREQUENTAZIONE as F, STUDENTE as S, UNIVERSITA as U", cond);
                 foreach (DataTable table in uni_set.Tables)
                 {
                     foreach (DataRow row in table.Rows)
                     {
-                        Universita u = new Universita(Convert.ToInt32(row["iduni"]), row["nome"].ToString(), row["citta"].ToString(), row["stato"].ToString());
-                        Studente stud = new Studente(Convert.ToInt32(row["IdStud"]), row["nome"].ToString(), row["cognome"].ToString(), row["email"].ToString(), row["cellulare"].ToString(), row["data_n"].ToString(), row["citta"].ToString(), row["stato"].ToString(), row["nazionalita"].ToString(), row["password"].ToString(), row["instagram"].ToString(), row["facebook"].ToString());
+                        Universita u = new Universita(Convert.ToInt32(row["iduni"]), row["nomeuni"].ToString(), row["unicitta"].ToString(), row["unistato"].ToString());
+                        Studente stud = new Studente(Convert.ToInt32(row["IdStud"]), row["nomestud"].ToString(), row["cognome"].ToString(), row["email"].ToString(), row["cellulare"].ToString(), row["data_n"].ToString(), row["studcitta"].ToString(), row["studstato"].ToString(), row["nazionalita"].ToString(), row["password"].ToString(), row["instagram"].ToString(), row["facebook"].ToString());
                         Frequentazione f = new Frequentazione(stud, u, row["tipo"].ToString());
                         univesita.Add(f);
                     }

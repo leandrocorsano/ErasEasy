@@ -1,6 +1,6 @@
 ﻿@model ErasEasyLife.Models.Studente
 @{
-    ViewBag.Title = "Elenco Amici";
+    ViewBag.Title = "Friends List";
     Layout = "~/Views/Shared/StudenteMenu.cshtml";
 }
 @{ 
@@ -51,11 +51,13 @@
     <title>Friends List</title>
 </head>
 <body>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4 text-center">I miei amici</h1>
+    @if (ViewBag.uni >= 2)
+    {
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4 text-center">I miei amici</h1>
+            </div>
         </div>
-    </div>
 
         <div class="row">
             @{
@@ -79,9 +81,18 @@
             }
 
         </div>
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+    else
+    {
+<div class="alert alert-warning" role="alert">
+    <b>WARNING! You don't have privileges to access the page.</b><br />
+    Your must be inserted minimum 2 universities before (sending university and receiving university).
+    <br /> @Html.ActionLink("Insert University", "Registra_Uni")
+</div>
+    }
 </body>
 </html>
 
