@@ -2237,6 +2237,8 @@
     <Content Include="Views\Studente\Lista_Uni.cshtml" />
     <Content Include="Views\Associazione\Dashboard.cshtml" />
     <Content Include="Views\Volontario\Dashboard.cshtml" />
+    <Content Include="Views\Volontario\Errore.cshtml" />
+    <Content Include="Views\Studente\Errore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
