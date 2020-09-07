@@ -1,4 +1,7 @@
-﻿using System;
+﻿//=============================================================================
+// Authors: Francesca Rossi, Leandro Corsano
+//=============================================================================
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -11,12 +14,22 @@ using System.Net.Mail;
 
 namespace Admin_wcf
 {
-    // NOTA: è possibile utilizzare il comando "Rinomina" del menu "Refactoring" per modificare il nome di classe "Event" nel codice e nel file di configurazione contemporaneamente.
     public class Event : IEvent
     {
+        /*
+       *  PRINCIPALI FUNZIONALITA':
+       *  @Creazione e gestione di eventi e riunioni
+       *  @Recupero  partecipanti e informazione modifiche
+       *  
+       */
         public int Generate_id()
         {
-            var wcfclient = server_conn.getInstance();
+            /* 
+            * --------------------------------------------------------------------------------
+            * Funzione che recupera l'ultimo id dell'evento  e restituisce l'id successivo
+            * --------------------------------------------------------------------------------
+            */
+            var wcfclient = server_conn.getInstance(); //mi connetto a DB_Manager
             DataSet luo_set = wcfclient.DBselect("idev", "EVENTO", "idev>=all(select idev from EVENTO)");
             foreach (DataTable table in luo_set.Tables)
             {
@@ -41,6 +54,11 @@ namespace Admin_wcf
         }
         public int Generate_id_Luogo()
         {
+            /* 
+            * --------------------------------------------------------------------------------
+            * Funzione che recupera l'ultimo id del luogo del evento e restituisce l'id successivo
+            * --------------------------------------------------------------------------------
+            */
             var wcfclient = server_conn.getInstance();
             DataSet luo_set = wcfclient.DBselect("idluogo", "LUOGO", "idluogo>=all(select idluogo from LUOGO)");
             foreach (DataTable table in luo_set.Tables)
@@ -66,8 +84,13 @@ namespace Admin_wcf
         }
         public List<Svolgimento> Show_events(string cond="")
         {
-           /*Nella condizione si può mettere la data/ora inizio, data/ora fine, oppure la citta, lo stato , l'id dell associazione, la tipologia*/
-           /*Nel caso si voglia una lista di riunioni è necessario mettere nella codizione la tipologia="riunioni"*/
+            /* 
+            * --------------------------------------------------------------------------------
+            * Funzione che restituise la lista di determinati eventi o riunioni
+            * --------------------------------------------------------------------------------
+            */
+            /*Nella condizione si può mettere la data/ora inizio, data/ora fine, oppure la citta, lo stato , l'id dell associazione, la tipologia*/
+            /*Nel caso si voglia una lista di riunioni è necessario mettere nella codizione la tipologia="riunioni"*/
             var wcfclient = server_conn.getInstance();
             string condizione ="S.idev=E.idev and S.idluogo=L.idluogo"+cond;
             List<Svolgimento> eventi = new List<Svolgimento>();
@@ -98,10 +121,14 @@ namespace Admin_wcf
             return eventi;
 
         }
+
         public Svolgimento Get_event_by_id(int id)
         {
-            /*Nella condizione si può mettere la data/ora inizio, data/ora fine, oppure la citta, lo stato , l'id dell associazione, la tipologia*/
-            /*Nel caso si voglia una lista di riunioni è necessario mettere nella codizione la tipologia="riunioni"*/
+            /* 
+            * --------------------------------------------------------------------------------
+            * Funzione che restituisce le informazioni dell'evento corrispondente all'id passato come parametro
+            * --------------------------------------------------------------------------------
+            */
             var wcfclient = server_conn.getInstance();
             string condizione = "S.idev=E.idev and S.idluogo=L.idluogo and E.idev="+id;
             Svolgimento s=null;
@@ -132,10 +159,14 @@ namespace Admin_wcf
             return s;
 
         }
+
         public List<Studente> Event_partecipations(Svolgimento e)
         {
-            /*Nella condizione si può mettere la data/ora inizio, data/ora fine, oppure la citta, lo stato , l'id dell associazione, la tipologia*/
-            /*Nel caso si voglia una lista di riunioni è necessario mettere nella codizione la tipologia="riunioni"*/
+            /* 
+            * --------------------------------------------------------------------------------
+            * Funzione che restituisce la lista degli studenti che partecipano ad un determinato evento
+            * --------------------------------------------------------------------------------
+            */
             var wcfclient = server_conn.getInstance();
             string condizione = "P.idev=" + e.evento.IdEv;
 
@@ -165,10 +196,13 @@ namespace Admin_wcf
 
         }
 
-
         public List<Volontario> Event_volunteers(Svolgimento e)
         {
-            
+            /* 
+            * --------------------------------------------------------------------------------
+            * Funzione che restituisce la lista dei volontari che partecipano ad un evento o ad una riunione
+            * --------------------------------------------------------------------------------
+            */
             var wcfclient = server_conn.getInstance();
             string condizione = "G.idev=" + e.evento.IdEv;
 
@@ -197,10 +231,14 @@ namespace Admin_wcf
             return volontari;
 
         }
+
         public bool Edit_Event(Svolgimento s)
         {
-            /* N.B. è possibile modificare tutti i campi tranne la password e l'id*/
-            //var wcfclient = new DBManager.DBManagerClient(); //mi connetto al server
+            /* 
+            * --------------------------------------------------------------------------------
+            * Funzione che aggiorna un determinato evento o una riunione nel database
+            * --------------------------------------------------------------------------------
+            */
             var wcfclient = server_conn.getInstance();
             string valori_evento =  "nome='" + s.evento.nome + "', tipologia='" + s.evento.tipologia + "', min_p='" + s.evento.min_p + "', max_p='" + s.evento.max_p + "', min_v='" + s.evento.min_v + "', max_v='" + s.evento.max_v + "', costo='" + s.evento.costo + "', descrizione='" + s.evento.descrizione + "', idass='" + s.evento.ass.IdAss + "'";
             string valori_luogo = " citta='" + s.luogo.citta + "', via='" + s.luogo.via + "', stato='" + s.luogo.stato + "'";
@@ -211,7 +249,7 @@ namespace Admin_wcf
             Console.WriteLine(query_evento);
             Console.WriteLine(query_luogo);
             Console.WriteLine(query_svolgimento);
-            string[] query = {query_evento, query_luogo, query_svolgimento };
+            List<string> query = new List<string>() {query_evento, query_luogo, query_svolgimento };
             try
             {
                 bool risultato = wcfclient.DBtransaction(query);
@@ -225,17 +263,21 @@ namespace Admin_wcf
             }
 
         }
+
         public bool Delete_Event(Svolgimento s)
         {
-            /* N.B. è possibile modificare tutti i campi tranne la password e l'id*/
-            //var wcfclient = new DBManager.DBManagerClient(); //mi connetto al server
+            /* 
+            * --------------------------------------------------------------------------------
+            * Funzione che cancella un evento  o una riunione dal DB
+            * --------------------------------------------------------------------------------
+            */
             var wcfclient = server_conn.getInstance();
             string query_svolgimento = "DELETE FROM SVOLGIMENTO WHERE idev=" + s.evento.IdEv;
             string query_evento = "DELETE FROM EVENTO WHERE idev=" + s.evento.IdEv;
             string query_luogo = "DELETE FROM LUOGO WHERE idluogo=" + s.luogo.IdLuogo;
             string query_partecipaz = "DELETE FROM PARTECIPAZIONE WHERE idev=" + s.evento.IdEv;
             string query_gestione = "DELETE FROM GESTIONE WHERE idev=" + s.evento.IdEv;
-            string[] query = { query_svolgimento, query_evento, query_luogo, query_partecipaz, query_gestione };
+            List<string> query =new List<string> () { query_svolgimento, query_evento, query_luogo, query_partecipaz, query_gestione };
             try
             {
                 bool risultato = wcfclient.DBtransaction(query);
@@ -249,12 +291,20 @@ namespace Admin_wcf
             }
 
         }
+
         public void Send_Email(string nome, string email, string body_message, string sub)
         {
+            /* 
+            * --------------------------------------------------------------------------------
+            * Funzione che si occupa di inviare un email
+            * Utilizzata per avvisare i partecipanti di un evento/riunione quando tale avvenimento 
+            * viene cancellato o modificato
+            * --------------------------------------------------------------------------------
+            */
             var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";
             var message = new MailMessage();
-            message.To.Add(new MailAddress(email));  // replace with valid value 
-            message.From = new MailAddress("progetto.erasmus2020@gmail.com");  // replace with valid value
+            message.To.Add(new MailAddress(email));  
+            message.From = new MailAddress("progetto.erasmus2020@gmail.com"); 
             message.Subject = "ErasEasyLife: "+ sub;
             message.Body = string.Format(body, nome, email , body_message);
             message.IsBodyHtml = true;

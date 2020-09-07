@@ -1,4 +1,7 @@
-﻿using System;
+﻿//=============================================================================
+// Authors: Francesca Rossi, Leandro Corsano
+//=============================================================================
+using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System.Linq;
@@ -9,70 +12,17 @@ using System.Data;
 
 namespace DB_Manager
 {
-    // NOTA: è possibile utilizzare il comando "Rinomina" del menu "Refactoring" per modificare il nome di classe "DBManager" nel codice e nel file di configurazione contemporaneamente.
     public class DBManager : IDBManager
     {
-        //private MySqlConnection connessione;
 
-        //public DBManager()
-        //{
-        //    this.connessione = this.DBconnection();
-        //}
-        //public MySqlConnection DBconnection()
-        //{
-
-        //    //string connectionString = "Server=tcp:progett.database.windows.net,1433;Initial Catalog=DB_Ereasylife;Persist Security Info=False;User ID=francesca;Password=Borsa.cometa99;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-        //    var builder = new MySqlConnectionStringBuilder
-        //    {
-        //        Server = "sql7.freesqldatabase.com",
-        //        Database = "sql7353524",
-        //        UserID = "sql7353524",
-        //        Password = "R7ry1S5L1Z",
-        //        //SslMode = MySqlSslMode.Required,
-        //    };
-        //    using (var conn = new MySqlConnection(builder.ConnectionString))
-        //    {
-        //        Console.WriteLine("Opening connection");
-        //        //await conn.OpenAsync();
-        //        try
-        //        {
-        //            conn.Open();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Console.WriteLine(ex.Message);
-        //        }
-        //        Console.WriteLine("State: {0}", conn.State);
-        //        Console.WriteLine("ConnectionString: {0}",
-        //            conn.ConnectionString);
-        //        /*using (var command = conn.CreateCommand())
-        //        {
-        //            command.CommandText = @"INSERT INTO Studente (IdStud, Nome, Cognome, Data_n) VALUES (@id, @nome, @cognome, @data)";
-        //            command.Parameters.AddWithValue("@id", 1);
-        //            command.Parameters.AddWithValue("@nome", "Prova");
-        //            command.Parameters.AddWithValue("@cognome", "Pippo");
-        //            command.Parameters.AddWithValue("@data", "1999-10-20");
-        //            try
-        //            {
-        //                command.ExecuteNonQuery();
-        //            }
-        //            catch (Exception ex1)
-        //            {
-        //                Console.WriteLine(ex1.Message);
-        //            }
-                    
-        //            //Console.WriteLine(String.Format("Number of rows inserted={0}", rowCount));
-        //        }*/
-
-
-
-        //        return conn;
-        //        }
-        //    }
-
-                public bool DBdelete(string table, string condition)
+        public bool DBdelete(string table, string condition)
                 {
-                   using (var command = DB_conn.getInstance().CreateCommand())
+                  /* 
+                 * --------------------------------------------------------------------------------
+                 * Funzione che genera ed esegue una query di delete in database
+                 * --------------------------------------------------------------------------------
+                 */
+            using (var command = DB_conn.getInstance().CreateCommand())
                     {
                     if (condition != "")
                     {
@@ -95,14 +45,16 @@ namespace DB_Manager
                     }
                     return true; //rimozione andata a buon fine
 
-
-                
-
                     }
                 }
                 
         public bool DBinsert(string table, string values, string field = "")
         {
+                /* 
+                 * --------------------------------------------------------------------------------
+                 * Funzione che genera ed esegue una query di insert in database
+                 * --------------------------------------------------------------------------------
+                 */
             using (var command = DB_conn.getInstance().CreateCommand())
             {
                 command.CommandText = "INSERT INTO " + table + " (" + field + ")  VALUES (" + values + ");";
@@ -126,7 +78,11 @@ namespace DB_Manager
 
         public DataSet DBselect( string campi, string tabella, string condizione="")
         {
-            /*funzione che implementa in maniera astratta una query di selezione nel DB 18/06*/
+            /* 
+            * --------------------------------------------------------------------------------
+            * Funzione che genera ed esegue una query di select in database
+            * --------------------------------------------------------------------------------
+            */
             DataSet ds1 = new DataSet();
             using (var command = DB_conn.getInstance().CreateCommand())
                     {
@@ -150,14 +106,15 @@ namespace DB_Manager
 
                     }
         }   
-            
-            
-            
-  
 
-               public bool DBupdate(string table, string setter, string condition)
-               {
-                    using (var command = DB_conn.getInstance().CreateCommand())
+        public bool DBupdate(string table, string setter, string condition)
+        {
+            /* 
+            * --------------------------------------------------------------------------------
+            * Funzione che genera ed esegue una query di update in database
+            * --------------------------------------------------------------------------------
+            */
+            using (var command = DB_conn.getInstance().CreateCommand())
                     {
                     command.CommandText = "UPDATE " + table + " SET " + setter + " WHERE " + condition;
                         Console.WriteLine(command.CommandText);
@@ -175,9 +132,14 @@ namespace DB_Manager
                     }
                }    
             
-                public bool DBtransaction(List<string> query)
-               {
-                    using (var command = DB_conn.getInstance().CreateCommand())
+        public bool DBtransaction(List<string> query)
+         {
+            /* 
+            * --------------------------------------------------------------------------------
+            * Funzione che genera  una transazione in database
+            * --------------------------------------------------------------------------------
+            */
+            using (var command = DB_conn.getInstance().CreateCommand())
                     {
                         MySqlTransaction transazione;
                         transazione=DB_conn.getInstance().BeginTransaction();
@@ -203,10 +165,7 @@ namespace DB_Manager
                             transazione.Rollback();
                             throw;
                         }
-                    return true; //transazione andato a buon fine    
-
-                        
-                    
+                    return true; //transazione andata a buon fine    
 
                     }
                } 

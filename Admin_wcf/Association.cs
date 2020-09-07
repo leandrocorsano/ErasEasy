@@ -1,4 +1,6 @@
-﻿//using Admin_wcf.Classi;
+﻿//=============================================================================
+// Authors: Francesca Rossi, Leandro Corsano
+//=============================================================================
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +14,24 @@ using Admin_wcf.Classi;
 
 namespace Admin_wcf
 {
-    // NOTA: è possibile utilizzare il comando "Rinomina" del menu "Refactoring" per modificare il nome di classe "Server_Admin" nel codice e nel file di configurazione contemporaneamente.
+    
     [ServiceBehavior]
     public class Association : IAssociation
     {
+        /*
+        *  PRINCIPALI FUNZIONALITA':
+        *  @Visualizzazione e modifica dati personali
+        *  @Creazione e visualizzazione dell'evento
+        *  @Gestione ruolo volontario
+        *  
+        */
         public int Generate_id()
         {
+           /* 
+           * --------------------------------------------------------------------------------
+           * Funzione che recupera l'ultimo id dell'associazione e restituisce l'id successivo
+           * --------------------------------------------------------------------------------
+           */
             var wcfclient = server_conn.getInstance();
             DataSet ass_set = wcfclient.DBselect("idass", "ASSOCIAZIONE", "idass>=all(select idass from ASSOCIAZIONE)");
             foreach (DataTable table in ass_set.Tables)
@@ -41,8 +55,14 @@ namespace Admin_wcf
             }
             return 1; /*se non ci sono righe*/
         }
+
         public bool Registration(Associazione a)
         {
+            /* 
+            * --------------------------------------------------------------------------------
+            * Funzione che registra l'associazione in database
+            * --------------------------------------------------------------------------------
+            */
             var wcfclient = server_conn.getInstance();
             string valori = "" + a.IdAss + ",'" + a.nome + "','" + a.citta + "', '" + a.stato + "','" + a.via + "','" + a.tel + "','" + a.email + "','" + a.password + "'";
             bool risultato;
@@ -61,6 +81,11 @@ namespace Admin_wcf
 
         public Associazione Login(string email, string password)
         {
+           /* 
+           * --------------------------------------------------------------------------------
+           * Funzione che controlla la presenza dell'associazione in database e ne restituisce i dati
+           * --------------------------------------------------------------------------------
+           */
             var wcfclient = server_conn.getInstance();
             string cond = "email='" + email+ "' and password='"+password+"'";
             Associazione a = null;
@@ -71,6 +96,7 @@ namespace Admin_wcf
                 {
                     foreach (DataRow row in table.Rows)
                     {
+                        /*conversione dei dati recuperati dal database*/
                         a = new Associazione(Convert.ToInt32(row["IdAss"]), row["nome"].ToString(), row["citta"].ToString(), row["stato"].ToString(), row["via"].ToString(), row["tel"].ToString(), row["email"].ToString(), row["password"].ToString());
                         Console.WriteLine("[OK] Login  Associazione avvenuto con successo!!");
                         return a;
@@ -91,9 +117,13 @@ namespace Admin_wcf
 
         }
 
-   
         public Associazione Profile(int id)
         {
+           /* 
+           * --------------------------------------------------------------------------------
+           * Funzione che restituisce il profilo di una determinata associazione
+           * --------------------------------------------------------------------------------
+           */
             var wcfclient = server_conn.getInstance();
             string cond = "IdAss=" + id.ToString();
             Associazione a = null;
@@ -119,10 +149,13 @@ namespace Admin_wcf
             
         }
 
-      
-
         public bool UpdatePassword(int id, string new_password)
         {
+           /* 
+           * --------------------------------------------------------------------------------
+           * Funzione che aggiorna la password di una determinata associazione
+           * --------------------------------------------------------------------------------
+           */
             var wcfclient = server_conn.getInstance();
             string set = "password='" + new_password+"'";
             string condizione = "IdAss=" + id.ToString();
@@ -141,6 +174,11 @@ namespace Admin_wcf
 
         public bool UpdateProfile(Associazione a)
         {
+            /* 
+           * --------------------------------------------------------------------------------
+           * Funzione che aggiorna i dati di una determinata associazione
+           * --------------------------------------------------------------------------------
+           */
             /* N.B. è possibile modificare tutti i campi tranne la password e l'id*/
             var wcfclient = server_conn.getInstance();
             string condizione = "IdAss=" + a.IdAss;
@@ -157,18 +195,22 @@ namespace Admin_wcf
                 throw;
             }
         }
+
         public bool Create_events(Svolgimento s)
         {
-            /* N.B. è possibile modificare tutti i campi tranne la password e l'id*/
-            //var wcfclient = new DBManager.DBManagerClient(); //mi connetto al server
-            var wcfclient = server_conn.getInstance();
+           /* 
+           * --------------------------------------------------------------------------------
+           * Funzione per l'inserimento di un nuovo evento nel database
+           * --------------------------------------------------------------------------------
+           */
+            var wcfclient = server_conn.getInstance(); //connessione a DB_Manager
             string valori_evento = "" + s.evento.IdEv + ",'" + s.evento.nome + "','" + s.evento.tipologia + "', '" + s.evento.min_p + "','" + s.evento.max_p + "','" + s.evento.min_v + "','" + s.evento.max_v + "','" + s.evento.costo + "','"+ s.evento.descrizione + "','"+ s.evento.ass.IdAss + "'";
             string valori_luogo = "" + s.luogo.IdLuogo + ", '" + s.luogo.citta + "', '" + s.luogo.via + "','" + s.luogo.stato + "'";
             string valori_svolgim=""+s.evento.IdEv+", "+s.luogo.IdLuogo+", '"+s.ora_i+"', '"+s.ora_f+"', '"+s.data_i+"','"+s.data_f+"'";
             string insert_evento = "INSERT INTO EVENTO(`idev`, `nome`, `tipologia`, `min_p`, `max_p`, `min_v`, `max_v`, `costo`, `descrizione`, `idass`) VALUES (" + valori_evento + ")";
             string insert_luogo = "INSERT INTO LUOGO(`idluogo`, `citta`, `via`, `stato`) VALUES (" + valori_luogo + ")";
             string insert_svolgim = "INSERT INTO SVOLGIMENTO(`idev`, `idluogo`, `ora_i`, `ora_f`, `data_i`, `data_f`) VALUES (" + valori_svolgim + ")";
-            string [] query = { insert_evento, insert_luogo, insert_svolgim };
+            List<string> query = new List<string> () { insert_evento, insert_luogo, insert_svolgim };
             
             try
             {
@@ -183,10 +225,14 @@ namespace Admin_wcf
             }
            
         }
-      
 
-        public List<string>GetCitta(string cond = "")
+        public List<string> GetCitta(string cond = "")
         {
+           /* 
+          * --------------------------------------------------------------------------------
+          * Funzione che recupera le città in cui operano le varie associazioni presenti in DB
+          * --------------------------------------------------------------------------------
+          */
             var wcfclient = server_conn.getInstance();
             List<string>citta = new List<string>();
             try
@@ -211,8 +257,14 @@ namespace Admin_wcf
             return citta;
 
         }
+
         public List<Associazione> Show_associations(string cond="")
         {
+          /* 
+          * --------------------------------------------------------------------------------
+          * Funzione che mostra una lista di tutte le associazioni presenti in DB
+          * --------------------------------------------------------------------------------
+          */
             var wcfclient = server_conn.getInstance();
             List<Associazione> associazioni = new List<Associazione>();
             try
@@ -236,10 +288,11 @@ namespace Admin_wcf
             }
             return associazioni;
         }
+
         public List<Svolgimento> Show_Event(int idass, string tipologia = "")
         {
             /* ---------------------------------------------------
-             * Eventi che ha creato una determita associazione
+             * Lista di Eventi che ha creato una determita associazione
              * ------------------------------------------------------*/
             string cond = "E.idass=" + idass + " and S.idev=E.idev and S.idluogo=L.idluogo and" + tipologia;
             var wcfclient = server_conn.getInstance();
@@ -272,8 +325,13 @@ namespace Admin_wcf
 
         }
 
-        public bool add_ruolo(int idvolont, string ruolo)
+        public bool Add_ruolo(int idvolont, string ruolo)
         {
+         /* 
+          * --------------------------------------------------------------------------------
+          * Funzione per aggiungere o modificare il ruolo di un volontario
+          * --------------------------------------------------------------------------------
+          */
             var wcfclient = server_conn.getInstance();
             string cond = "idvolont=" + idvolont;
             string modify = "ruolo='" + ruolo + "'";

@@ -1,4 +1,7 @@
-﻿using System;
+﻿//=============================================================================
+// Authors: Francesca Rossi, Leandro Corsano
+//=============================================================================
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,11 +14,11 @@ namespace Admin_wcf
     class Program
     {
         static void Main(string[] args)
-        { //Student stud = new Student();
+        { 
             try
             {
                 
-               // Association ass = new Association();
+              /*crezione ed avvio dei servizi*/
                 ServiceHost ServerAssociazione = new ServiceHost(typeof(Association));
                 ServiceHost ServerVolontario = new ServiceHost(typeof(Volunteer));
                 ServiceHost ServerStudente = new ServiceHost(typeof(Student));
@@ -30,6 +33,7 @@ namespace Admin_wcf
                 Console.WriteLine("Server Evento attivo, premi un tasto per interrompere");
 
                 Console.ReadLine();
+                /*Chiusura dei serivizi*/
                 ServerAssociazione.Close();
                 ServerVolontario.Close();
                 ServerStudente.Close();

@@ -1,4 +1,7 @@
-﻿using System;
+﻿//=============================================================================
+// Authors: Francesca Rossi, Leandro Corsano
+//=============================================================================
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -8,7 +11,6 @@ using Admin_wcf.Classi;
 
 namespace Admin_wcf
 {
-    // NOTA: è possibile utilizzare il comando "Rinomina" del menu "Refactoring" per modificare il nome di interfaccia "IStudent" nel codice e nel file di configurazione contemporaneamente.
     [ServiceContract]
     public interface IStudent
     {
@@ -26,6 +28,12 @@ namespace Admin_wcf
 
         [OperationContract]
         bool UpdatePassword(int id, string new_password);
+
+        [OperationContract]
+        bool University_Registration(Frequentazione f);
+
+        [OperationContract]
+        List<Frequentazione> GetUniversity(Studente s);
 
         [OperationContract]
         List<Studente> Show_students(string cond = "");
@@ -50,12 +58,6 @@ namespace Admin_wcf
 
         [OperationContract]
         bool Delete_Friendship(int stud1, int stud2);
-
-        [OperationContract]
-        bool University_Registration(Frequentazione f);
-
-        [OperationContract]
-        List<Frequentazione> GetUniversity(Studente s);
 
         [OperationContract]
         int Generate_id();

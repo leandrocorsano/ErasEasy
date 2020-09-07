@@ -40,10 +40,10 @@ namespace Admin_wcf.DBManager {
         System.Threading.Tasks.Task<bool> DBupdateAsync(string table, string setter, string condition);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBManager/DBtransaction", ReplyAction="http://tempuri.org/IDBManager/DBtransactionResponse")]
-        bool DBtransaction(string[] query);
+        bool DBtransaction(System.Collections.Generic.List<string> query);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBManager/DBtransaction", ReplyAction="http://tempuri.org/IDBManager/DBtransactionResponse")]
-        System.Threading.Tasks.Task<bool> DBtransactionAsync(string[] query);
+        System.Threading.Tasks.Task<bool> DBtransactionAsync(System.Collections.Generic.List<string> query);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -105,11 +105,11 @@ namespace Admin_wcf.DBManager {
             return base.Channel.DBupdateAsync(table, setter, condition);
         }
         
-        public bool DBtransaction(string[] query) {
+        public bool DBtransaction(System.Collections.Generic.List<string> query) {
             return base.Channel.DBtransaction(query);
         }
         
-        public System.Threading.Tasks.Task<bool> DBtransactionAsync(string[] query) {
+        public System.Threading.Tasks.Task<bool> DBtransactionAsync(System.Collections.Generic.List<string> query) {
             return base.Channel.DBtransactionAsync(query);
         }
     }

@@ -62,11 +62,11 @@
   <wsdl:message name="IAssociation_Show_Event_OutputMessage">
     <wsdl:part name="parameters" element="tns:Show_EventResponse" />
   </wsdl:message>
-  <wsdl:message name="IAssociation_add_ruolo_InputMessage">
-    <wsdl:part name="parameters" element="tns:add_ruolo" />
+  <wsdl:message name="IAssociation_Add_ruolo_InputMessage">
+    <wsdl:part name="parameters" element="tns:Add_ruolo" />
   </wsdl:message>
-  <wsdl:message name="IAssociation_add_ruolo_OutputMessage">
-    <wsdl:part name="parameters" element="tns:add_ruoloResponse" />
+  <wsdl:message name="IAssociation_Add_ruolo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Add_ruoloResponse" />
   </wsdl:message>
   <wsdl:message name="IAssociation_Generate_id_InputMessage">
     <wsdl:part name="parameters" element="tns:Generate_id" />
@@ -111,9 +111,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAssociation/Show_Event" message="tns:IAssociation_Show_Event_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAssociation/Show_EventResponse" message="tns:IAssociation_Show_Event_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="add_ruolo">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAssociation/add_ruolo" message="tns:IAssociation_add_ruolo_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAssociation/add_ruoloResponse" message="tns:IAssociation_add_ruolo_OutputMessage" />
+    <wsdl:operation name="Add_ruolo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssociation/Add_ruolo" message="tns:IAssociation_Add_ruolo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssociation/Add_ruoloResponse" message="tns:IAssociation_Add_ruolo_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Generate_id">
       <wsdl:input wsaw:Action="http://tempuri.org/IAssociation/Generate_id" message="tns:IAssociation_Generate_id_InputMessage" />
@@ -203,8 +203,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="add_ruolo">
-      <soap:operation soapAction="http://tempuri.org/IAssociation/add_ruolo" style="document" />
+    <wsdl:operation name="Add_ruolo">
+      <soap:operation soapAction="http://tempuri.org/IAssociation/Add_ruolo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -1,4 +1,7 @@
-﻿using System;
+﻿//=============================================================================
+// Authors: Francesca Rossi, Leandro Corsano
+//=============================================================================
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +14,7 @@ using MySql.Data.MySqlClient;
 
 namespace Admin_wcf
 {
-    /* classe singleton che permette la connesione con il DBmanager*/
+    /* classe singleton che permette la connesione con il DB_Manager*/
     class server_conn
     {
         private static DBManager.DBManagerClient instance = null;
