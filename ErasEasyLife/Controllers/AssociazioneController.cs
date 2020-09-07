@@ -97,7 +97,7 @@ namespace ErasEasyLife.Controllers
 
                     ViewBag.risposta = "Successfully registered";
                     ViewBag.url = "Login";
-                    ViewBag.link = "Accedi";
+                    ViewBag.link = "Sign in";
                     return View("Successo");
                 }
 

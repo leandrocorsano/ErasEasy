@@ -172,7 +172,7 @@ namespace ErasEasyLife.Controllers
 
                     ViewBag.risposta = "Successfully registered";
                     ViewBag.url = "Login";
-                    ViewBag.link = "Accedi";
+                    ViewBag.link = "Sign in";
 
                     return View("Successo");
 
@@ -332,7 +332,7 @@ namespace ErasEasyLife.Controllers
                 {
                     ViewBag.risposta = "Event successfully booked";
                     ViewBag.url = "../Evento/Lista_eventi";
-                    ViewBag.link = "Torna agli eventi";
+                    ViewBag.link = "Back to events";
                     return View("Successo");
                 }
                 else
@@ -359,7 +359,7 @@ namespace ErasEasyLife.Controllers
                 {
                     ViewBag.risposta = "Booking successfully cancelled";
                     ViewBag.url = "../Evento/Lista_eventi";
-                    ViewBag.link = "Torna agli eventi";
+                    ViewBag.link = "Back to events";
                     return View("Successo");
                 }
                 else
@@ -386,7 +386,7 @@ namespace ErasEasyLife.Controllers
                 {
                     ViewBag.risposta = "Friend request succesfully sent";
                     ViewBag.url = "../Studente/Elenco";
-                    ViewBag.link = "Torna all'elenco studenti";
+                    ViewBag.link = "Back to students list";
                     return View("Successo");
                 }
                 else
@@ -413,14 +413,14 @@ namespace ErasEasyLife.Controllers
                 {
                     ViewBag.risposta = "Hai annullato la richiesta d'amicizia";
                     ViewBag.url = "../Studente/Elenco";
-                    ViewBag.link = "Torna all'elenco";
+                    ViewBag.link = "Back to list";
                     return View("Successo");
                 }
                 else
                 {
                     ViewBag.risposta = "Qualcosa è andato storto, riprova!";
                     ViewBag.url = "../Studente/Elenco";
-                    ViewBag.link = "Torna all'elenco";
+                    ViewBag.link = "Back to list";
                     return View("Errore");
                 }
             }
@@ -429,7 +429,7 @@ namespace ErasEasyLife.Controllers
                 Console.WriteLine(ex.Message);
                 ViewBag.risposta = "Qualcosa è andato storto, riprova!";
                 ViewBag.url = "../Studente/Elenco";
-                ViewBag.link = "Torna all'elenco";
+                ViewBag.link = "Back to list";
                 return View("Errore");
             }
         }
@@ -446,7 +446,7 @@ namespace ErasEasyLife.Controllers
                 {
                     ViewBag.risposta = "Friend request confirmed!";
                     ViewBag.url = "../Studente/Elenco";
-                    ViewBag.link = "Torna all'elenco studenti";
+                    ViewBag.link = "Back to students list";
                     return View("Successo");
                 }
                 else
@@ -475,14 +475,14 @@ namespace ErasEasyLife.Controllers
                 {
                     ViewBag.risposta = "Richiesta di amicizia rifiutata";
                     ViewBag.url = "../Studente/Elenco";
-                    ViewBag.link = "Torna alle richieste";
+                    ViewBag.link = "Back to requests";
                     return View("Successo");
                 }
                 else
                 {
                     ViewBag.risposta = "Qualcosa è andato storto, riprova!";
                     ViewBag.url = "../Studente/Elenco";
-                    ViewBag.link = "Torna all'elenco";
+                    ViewBag.link = "Back to list";
                     return View("Errore");
                 }
             }
@@ -491,7 +491,7 @@ namespace ErasEasyLife.Controllers
                 Console.WriteLine(ex.Message);
                 ViewBag.risposta = "Qualcosa è andato storto, riprova!";
                 ViewBag.url = "../Studente/Elenco";
-                ViewBag.link = "Torna all'elenco";
+                ViewBag.link = "Back to list";
                 return View("Errore");
             }
         }

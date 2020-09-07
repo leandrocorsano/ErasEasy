@@ -117,13 +117,13 @@ namespace ErasEasyLife.Controllers
                     {
                         ViewBag.risposta = "Meeting successfully cancelled";
                         ViewBag.url = "../Evento/Lista_riunioni";
-                        ViewBag.link = "Torna alle riunioni";
+                        ViewBag.link = "Back to meetings";
                     }
                     else
                     {
                         ViewBag.risposta = "Event successfully cancelled";
                         ViewBag.url = "../Volontario/Lista_Eventi";
-                        ViewBag.link = "Torna agli eventi";
+                        ViewBag.link = "Back to events";
                     }
                     return View("Successo");
                 }
@@ -287,7 +287,7 @@ namespace ErasEasyLife.Controllers
 
                     ViewBag.risposta = "Successfully registered";
                     ViewBag.url = "Login";
-                    ViewBag.link = "Accedi";
+                    ViewBag.link = "Sign in";
 
                     return View("Successo");
 

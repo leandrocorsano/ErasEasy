@@ -2036,7 +2036,6 @@
     <None Include="Connected Services\Association\item2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="ico.ico" />
     <Content Include="iconaF.ico" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
