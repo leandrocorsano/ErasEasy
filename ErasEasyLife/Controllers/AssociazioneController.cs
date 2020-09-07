@@ -362,7 +362,7 @@ namespace ErasEasyLife.Controllers
                 try
                 {
                     var webclient = new Association.AssociationClient();
-                    bool r = webclient.Add_ruolo(model.IdVolont, model.ruolo);
+                    bool r = webclient.add_ruolo(model.IdVolont, model.ruolo);
                     if (r == true)
                     {
 
