@@ -1,10 +1,11 @@
-﻿@model ErasEasyLife.Models.Evento
+﻿@*Pagina di modifica di un evento*@
+@model ErasEasyLife.Models.Evento
 
 @{
     ViewBag.Title = "Edit Event";
     Layout = "~/Views/Shared/AssociazioneMenu.cshtml";
     ErasEasyLife.Association.Associazione ass = (ErasEasyLife.Association.Associazione)Session["Associazione"];
-    ErasEasyLife.Event.Svolgimento s = ViewData["evento"] as ErasEasyLife.Event.Svolgimento;
+    ErasEasyLife.Event.Svolgimento s = ViewData["evento"] as ErasEasyLife.Event.Svolgimento; //recupero l'evento da modificare
     DateTime Data1 = DateTime.Parse(s.data_i);
     DateTime Data2 = DateTime.Parse(s.data_f);
 }
@@ -201,14 +202,6 @@
                         @Html.ValidationMessageFor(model => model.stato, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-
-
-
-
-
-
-
             </div>
         </div>
         <div class="form-group">
@@ -219,6 +212,4 @@
 
     }
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+ 

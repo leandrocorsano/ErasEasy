@@ -1,15 +1,18 @@
-﻿
+﻿@*Informazioni dettagliate relative ad un evento*@
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Event Details";
     Layout = "~/Views/Shared/AssociazioneMenu.cshtml";
     ErasEasyLife.Event.Svolgimento s = ViewData["evento"] as ErasEasyLife.Event.Svolgimento;
+    /*recupero studenti e volontari partecipanti all'evento*/
     List<ErasEasyLife.Event.Studente> studenti = ViewData["studenti"] as List<ErasEasyLife.Event.Studente>;
     List<ErasEasyLife.Event.Volontario> volontari = ViewData["volontari"] as List<ErasEasyLife.Event.Volontario>;
     int n_studenti = studenti.Count();
     int n_volontari = volontari.Count();
+    /* Sfrutto le funzioni delle date */
     DateTime Date1 = DateTime.Parse(s.data_i);
     DateTime Date2 = DateTime.Parse(s.data_f);
     
+    /*per l'inconcina della bandiera per gli studenti partecipanti */
     Dictionary<string, string> bandiere = new Dictionary<string, string> {
                 {"Italian", "https://www.countryflags.io/it/shiny/24.png" },
                 {"French", "https://www.countryflags.io/fr/shiny/24.png" },
@@ -51,6 +54,7 @@
         </div>
     </div>
 @{ 
+    /*Modifico il colore a seconda dei psti disponibili*/
     string color1;
     if(n_studenti>0)
     {
@@ -91,7 +95,7 @@
         </div>
     </div>
 </div>
-
+@*Pulsanti *@
     <div class="row pb-1">
         <div class="col-sm-5 text-right">
             <a href="@Url.Action("Elenco_eventi", "Associazione")"><button class="a .btn .btn-app bg-secondary"><i class="fas fa-arrow-left"></i>Back</button></a>&nbsp;
@@ -118,9 +122,6 @@
             
         </div>
     </div>
-
-
-
     <div class="row">
 
         <div class="col-sm-6">
@@ -133,7 +134,7 @@
 
                         @foreach (var stud in studenti)
                         {
-
+                           /*elenco studenti partecipanti*/
                             <li class="list-group-item">
                                 <img src="@bandiere[stud.nazionalita]" /> &nbsp; @stud.nome @stud.cognome &nbsp;
                                 <a href="mailto:@stud.email"><i class="fas fa-envelope"></i></a>
@@ -154,7 +155,7 @@
 
                         @foreach (var vol in volontari)
                         {
-
+                         /*elenco volontari partecipanti*/
                             <li class="list-group-item">
                                 <i class="fas fa-user"></i> @vol.nome @vol.cognome &nbsp;
                                 <a href="mailto:@vol.email"><i class="fas fa-envelope"></i></a>

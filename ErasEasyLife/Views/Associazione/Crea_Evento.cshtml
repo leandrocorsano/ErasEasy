@@ -1,20 +1,11 @@
-﻿@model ErasEasyLife.Models.Evento
+﻿@*form per l'inserimento di  un evento*@ 
+@model ErasEasyLife.Models.Evento
 
 @{
+    ViewBag.Title = "Create Event";
     Layout = "~/Views/Shared/AssociazioneMenu.cshtml";
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create event</title>
-</head>
-<body>
-    @{
-        ErasEasyLife.Association.Associazione ass = (ErasEasyLife.Association.Associazione)Session["Associazione"];
-    }
+    ErasEasyLife.Association.Associazione ass = (ErasEasyLife.Association.Associazione)Session["Associazione"];
+ }
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4 text-center">Create a new event</h1>
@@ -225,8 +216,3 @@
         </div>
     }
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-</body>
-</html>

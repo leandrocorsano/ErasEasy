@@ -1,19 +1,11 @@
-﻿@model ErasEasyLife.Models.Evento
+﻿@*form per l'inserimento di una riunione*@
+@model ErasEasyLife.Models.Evento
 
 @{
+     ViewBag.Title = "Create Meeting";
     Layout = "~/Views/Shared/AssociazioneMenu.cshtml";
-}
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create meeting</title>
-</head>
-<body>
-    @{
-        ErasEasyLife.Association.Associazione ass = (ErasEasyLife.Association.Associazione)Session["Associazione"];
+   ErasEasyLife.Association.Associazione ass = (ErasEasyLife.Association.Associazione)Session["Associazione"];
     }
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
@@ -37,9 +29,9 @@
                     <div class="col">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
-                            @Html.LabelFor(model => model.IdEv, htmlAttributes: new { @class = "control-label"   })
+                            @Html.LabelFor(model => model.IdEv, htmlAttributes: new { @class = "control-label" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.IdEv, new { htmlAttributes = new { @class = "form-control", Value=@ViewData["Id_ev"], @Readonly="readonly" } })
+                                @Html.EditorFor(model => model.IdEv, new { htmlAttributes = new { @class = "form-control", Value = @ViewData["Id_ev"], @Readonly = "readonly" } })
                                 @Html.ValidationMessageFor(model => model.IdEv, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -97,17 +89,17 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.data_f, new { htmlAttributes = new { @class = "form-control", Value = 0, type ="hidden" } })
+                                @Html.EditorFor(model => model.data_f, new { htmlAttributes = new { @class = "form-control", Value = 0, type = "hidden" } })
                                 @Html.ValidationMessageFor(model => model.data_f, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                  
+
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.min_p, new { htmlAttributes = new { @class = "form-control", Value = 0, type = "hidden" } })
                                 @Html.ValidationMessageFor(model => model.min_p, "", new { @class = "text-danger" })
@@ -116,7 +108,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-              
+
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.max_p, new { htmlAttributes = new { @class = "form-control", Value = 0, type = "hidden" } })
                                 @Html.ValidationMessageFor(model => model.max_p, "", new { @class = "text-danger" })
@@ -184,7 +176,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.IdLuogo, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.IdLuogo, new { htmlAttributes = new { @class = "form-control" , Value=@ViewData["Id_lu"], @Readonly="readonly" } })
+                        @Html.EditorFor(model => model.IdLuogo, new { htmlAttributes = new { @class = "form-control", Value = @ViewData["Id_lu"], @Readonly = "readonly" } })
                         @Html.ValidationMessageFor(model => model.IdLuogo, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -192,7 +184,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.via, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.via, new { htmlAttributes = new { @class = "form-control", Value = ass.via} })
+                        @Html.EditorFor(model => model.via, new { htmlAttributes = new { @class = "form-control", Value = ass.via } })
                         @Html.ValidationMessageFor(model => model.via, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -210,14 +202,6 @@
                         @Html.ValidationMessageFor(model => model.stato, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-
-
-
-
-
-
-
             </div>
         </div>
         <div class="form-group">
@@ -227,8 +211,3 @@
         </div>
     }
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-</body>
-</html>
