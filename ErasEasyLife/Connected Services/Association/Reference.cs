@@ -635,11 +635,11 @@ namespace ErasEasyLife.Association {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/Show_Event", ReplyAction="http://tempuri.org/IAssociation/Show_EventResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<ErasEasyLife.Association.Svolgimento>> Show_EventAsync(int idass, string tipologia);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/add_ruolo", ReplyAction="http://tempuri.org/IAssociation/add_ruoloResponse")]
-        bool add_ruolo(int idvolont, string ruolo);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/Add_ruolo", ReplyAction="http://tempuri.org/IAssociation/Add_ruoloResponse")]
+        bool Add_ruolo(int idvolont, string ruolo);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/add_ruolo", ReplyAction="http://tempuri.org/IAssociation/add_ruoloResponse")]
-        System.Threading.Tasks.Task<bool> add_ruoloAsync(int idvolont, string ruolo);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/Add_ruolo", ReplyAction="http://tempuri.org/IAssociation/Add_ruoloResponse")]
+        System.Threading.Tasks.Task<bool> Add_ruoloAsync(int idvolont, string ruolo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssociation/Generate_id", ReplyAction="http://tempuri.org/IAssociation/Generate_idResponse")]
         int Generate_id();
@@ -747,12 +747,12 @@ namespace ErasEasyLife.Association {
             return base.Channel.Show_EventAsync(idass, tipologia);
         }
         
-        public bool add_ruolo(int idvolont, string ruolo) {
-            return base.Channel.add_ruolo(idvolont, ruolo);
+        public bool Add_ruolo(int idvolont, string ruolo) {
+            return base.Channel.Add_ruolo(idvolont, ruolo);
         }
         
-        public System.Threading.Tasks.Task<bool> add_ruoloAsync(int idvolont, string ruolo) {
-            return base.Channel.add_ruoloAsync(idvolont, ruolo);
+        public System.Threading.Tasks.Task<bool> Add_ruoloAsync(int idvolont, string ruolo) {
+            return base.Channel.Add_ruoloAsync(idvolont, ruolo);
         }
         
         public int Generate_id() {

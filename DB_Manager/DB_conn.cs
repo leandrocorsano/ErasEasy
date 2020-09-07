@@ -1,4 +1,7 @@
-﻿using System;
+﻿//=============================================================================
+// Authors: Francesca Rossi, Leandro Corsano
+//=============================================================================
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +13,7 @@ namespace DB_Manager
 {
     class DB_conn
     {
+        /*classe singleton che permette la connesione con il Database*/
         private static MySqlConnection instance = null;
 
         private static readonly object padlock = new object();

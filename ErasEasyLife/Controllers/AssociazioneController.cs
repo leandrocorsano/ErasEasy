@@ -362,7 +362,7 @@ namespace ErasEasyLife.Controllers
                 try
                 {
                     var webclient = new Association.AssociationClient();
-                    bool r = webclient.add_ruolo(model.IdVolont, model.ruolo);
+                    bool r = webclient.Add_ruolo(model.IdVolont, model.ruolo);
                     if (r == true)
                     {
 
@@ -465,7 +465,7 @@ namespace ErasEasyLife.Controllers
                         svo.ora_f = model.ora_f;
                         bool r = webclient.Create_events(svo);
                         ViewBag.risposta = "Event successfully created";
-                        ViewBag.url = "../Associazione/Lista_Eventi";
+                        ViewBag.url = "../Associazione/Elenco_Eventi";
                         ViewBag.link = "Go to events";
                         return View("Successo");
                     }
@@ -534,7 +534,7 @@ namespace ErasEasyLife.Controllers
                     svo.ora_f = model.ora_f;
                     bool r = webclient.Create_events(svo);
                     ViewBag.risposta = "Meeting successfully created";
-                    ViewBag.url = "../Associazione/Lista_Riunioni";
+                    ViewBag.url = "../Associazione/Elenco_Riunioni";
                     ViewBag.link = "Go to meetings";
                     return View("Successo");
 

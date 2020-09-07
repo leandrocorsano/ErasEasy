@@ -131,7 +131,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="add_ruolo">
+  <xs:element name="Add_ruolo">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idvolont" type="xs:int" />
@@ -139,10 +139,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="add_ruoloResponse">
+  <xs:element name="Add_ruoloResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="add_ruoloResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="Add_ruoloResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

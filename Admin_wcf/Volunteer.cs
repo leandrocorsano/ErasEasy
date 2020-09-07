@@ -1,4 +1,7 @@
-﻿using Admin_wcf.Classi;
+﻿//=============================================================================
+// Authors: Francesca Rossi, Leandro Corsano
+//=============================================================================
+using Admin_wcf.Classi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +13,22 @@ using System.Data;
 
 namespace Admin_wcf
 {
-    // NOTA: è possibile utilizzare il comando "Rinomina" del menu "Refactoring" per modificare il nome di classe "Service1" nel codice e nel file di configurazione contemporaneamente.
     public class Volunteer : IVolunteer
     {
+        /*
+       *  PRINCIPALI FUNZIONALITA':
+       *  @Visualizzazione e modifica dati personali
+       *  @Partecipazione e disdetta a eventi e riunioni
+       *  
+       *  
+       */
         public int Generate_id()
         {
+           /* 
+          * --------------------------------------------------------------------------------
+          * Funzione che recupera l'ultimo id del volontario e restituisce l'id successivo
+          * --------------------------------------------------------------------------------
+          */
             var wcfclient = server_conn.getInstance();
             DataSet stud_set = wcfclient.DBselect("idvolont", "VOLONTARIO", "idvolont>=all(select idvolont from VOLONTARIO)");
             foreach (DataTable table in stud_set.Tables)
@@ -38,8 +52,14 @@ namespace Admin_wcf
             }
             return 1; /*se non ci sono righe*/
         }
+
         public bool Registration(Volontario v)
         {
+          /* 
+          * --------------------------------------------------------------------------------
+          * Funzione che inserisce un nuovo volontario in database
+          * --------------------------------------------------------------------------------
+          */
             var wcfclient = server_conn.getInstance();
             string valori = "" + v.IdVolont + ",'" + v.nome + "','" + v.cognome + "','" + v.data_n + "','" + v.email + "','" + v.telefono + "','" + v.data_iscr + "','" + v.password + "','" + v.ruolo + "','" + v.ass.IdAss+"'";
             bool risultato;
@@ -58,6 +78,12 @@ namespace Admin_wcf
 
         public Volontario Login(string email, string password)
         {
+          /* 
+          * --------------------------------------------------------------------------------
+          * Funzione che controlla che un utente sia presente in db e se presente
+          * ne restituisce i suoi dati
+          * --------------------------------------------------------------------------------
+          */
             var wcfclient = server_conn.getInstance();
             string cond = "email='" + email + "' and password='" + password + "'";
             Volontario v = null;
@@ -91,16 +117,20 @@ namespace Admin_wcf
 
         }
 
-
         public Volontario Profile(int id)
         {
+          /* 
+          * --------------------------------------------------------------------------------
+          * Funzione che restituisce i dati personali di un determinato volontario
+          * --------------------------------------------------------------------------------
+          */
             var wcfclient = server_conn.getInstance();
             string cond = "idvolont=" + id.ToString();
             Volontario v = null;
             try
             {
                 DataSet ass_set = wcfclient.DBselect("*", "VOLONTARIO", cond);
-                Association ass = new Association();
+                Association ass = new Association(); //Creo un oggetto association che mi permette di recuperare i dati dell'associazione del volontario
                 foreach (DataTable table in ass_set.Tables)
                 {
                     foreach (DataRow row in table.Rows)
@@ -123,10 +153,13 @@ namespace Admin_wcf
 
         }
 
-
-
         public bool UpdatePassword(int id, string new_password)
         {
+          /* 
+          * --------------------------------------------------------------------------------
+          * Funzione che aggiorna la password di un determinato volontario
+          * --------------------------------------------------------------------------------
+          */
             var wcfclient = server_conn.getInstance();
             string set = "password='" + new_password + "'";
             string condizione = "idvolont=" + id.ToString();
@@ -147,8 +180,12 @@ namespace Admin_wcf
 
         public bool UpdateProfile(Volontario v)
         {
+          /* 
+          * --------------------------------------------------------------------------------
+          * Funzione che aggiorna i dati personali di un volontario
+          * --------------------------------------------------------------------------------
+          */
             /* N.B. è possibile modificare tutti i campi tranne la password e l'id*/
-            //var wcfclient = new DBManager.DBManagerClient(); //mi connetto al server
             var wcfclient = server_conn.getInstance();
             string condizione = "idvolont=" + v.IdVolont;
             string set = "nome='" + v.nome + "', cognome='" + v.cognome + "', email='" + v.email + "',tel='" + v.telefono + "',ruolo='" + v.ruolo + "',data_iscrizione='" + v.data_iscr + "'";
@@ -165,8 +202,13 @@ namespace Admin_wcf
 
             }
         }
+
         public Associazione GetAssociazione(int id)
-        {
+        { /* 
+           * --------------------------------------------------------------------------------
+           * Funzione che recupera un determinata associazione dato l'id del volontario
+           * --------------------------------------------------------------------------------
+           */
             var wcfclient = server_conn.getInstance();
             string cond = "idass=" + id.ToString();
             Associazione a = null;
@@ -196,8 +238,14 @@ namespace Admin_wcf
 
 
         }
+
         public List<Volontario> Show_volontari(string cond = "")
         {
+          /* 
+          * --------------------------------------------------------------------------------
+          * Funzione che recupera la lista dei valontari data una determinata condizione
+          * --------------------------------------------------------------------------------
+          */
             var wcfclient = server_conn.getInstance();
             List<Volontario> volontari = new List<Volontario>();
             try
@@ -224,8 +272,14 @@ namespace Admin_wcf
             }
             return volontari;
         }
+
         public bool BookEvent(int volontario, int evento)
         {
+           /* 
+          * --------------------------------------------------------------------------------
+          * Funzione che permette la prenotazione di un evento o di una riunione
+          * --------------------------------------------------------------------------------
+          */
             var wcfclient = server_conn.getInstance();
             string valori = "" + volontario + "," + evento + "";
             bool risultato;
@@ -242,11 +296,13 @@ namespace Admin_wcf
             }
             return risultato;
         }
+
         public List<Svolgimento> Show_Event(int idvol, string tipologia = "")
         {
             /* ---------------------------------------------------
              * Eventi che ha gestisto/gestirà un volontario
-             * ------------------------------------------------------*/
+             * ------------------------------------------------------
+             */
             string cond = "E.idev=G.idev and G.idvolont=" + idvol + " and S.idev=E.idev and S.idluogo=L.idluogo and" + tipologia;
             var wcfclient = server_conn.getInstance();
             Association ass = new Association();
@@ -277,11 +333,13 @@ namespace Admin_wcf
             return eventi;
 
         }
+
         public bool CancelBooking(int volontario, int evento)
         {
             /* ---------------------------------------------------
             * Funzione che permette di disdire un evento
-            * ------------------------------------------------------*/
+            * ------------------------------------------------------
+            */
 
             var wcfclient = server_conn.getInstance();
             string valori = "idvolont=" + volontario + " and idev=" + evento;
@@ -300,46 +358,6 @@ namespace Admin_wcf
             return risultato;
         }
     
-    }
-    
-    [DataContract]
-    public class Volontario
-    {
-        public Volontario(int IdVolont, string nome, string cognome, string data_n, string email, string telefono, string data_iscr, string password, Associazione ass, string ruolo = "")
-        {
-            this.IdVolont = IdVolont;
-            this.nome = nome;
-            this.cognome = cognome;
-            this.data_n = data_n;
-            this.email = email;
-            this.telefono = telefono;
-            this.data_iscr = data_iscr;
-            this.password = password;
-            this.ruolo = ruolo;
-            this.ass = ass; //associazione
-
-        }
-        [DataMember]
-        public int IdVolont { get; set; }
-        [DataMember]
-        public string nome { get; set; }
-        [DataMember]
-        public string cognome { get; set; }
-        [DataMember]
-        public string data_n { get; set; }
-        [DataMember]
-        public string email { get; set; }
-        [DataMember]
-        public string telefono { get; set; }
-        [DataMember]
-        public string data_iscr { get; set; }
-        [DataMember]
-        public string password { get; set; }
-        [DataMember]
-        public string ruolo { get; set; }
-        [DataMember]
-        public Associazione ass { get; set; }
-
     }
 
 }

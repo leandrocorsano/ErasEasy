@@ -1,4 +1,7 @@
-﻿using System;
+﻿//=============================================================================
+// Authors: Francesca Rossi, Leandro Corsano
+//=============================================================================
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,10 +16,10 @@ namespace DB_Manager
     {
         static void Main(string[] args)
         {
-            //DBManager prova = new DBManager();
             
             try
             {
+                /*Creo ed avvio il server del database*/
                 ServiceHost DBmanager = new ServiceHost(typeof(DBManager));
                 DBmanager.Open();
                 Console.WriteLine("Server database attivo, premi un tasto per interrompere");

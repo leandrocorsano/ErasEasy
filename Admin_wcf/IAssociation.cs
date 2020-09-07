@@ -1,4 +1,7 @@
-﻿using System;
+﻿//=============================================================================
+// Authors: Francesca Rossi, Leandro Corsano
+//=============================================================================
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -9,10 +12,10 @@ using MySql.Data.MySqlClient;
 
 namespace Admin_wcf
 {
-    // NOTA: è possibile utilizzare il comando "Rinomina" del menu "Refactoring" per modificare il nome di interfaccia "IServer_Admin" nel codice e nel file di configurazione contemporaneamente.
     [ServiceContract]
     public interface IAssociation
     {
+
         [OperationContract]
         bool Registration(Associazione a);
 
@@ -30,17 +33,18 @@ namespace Admin_wcf
 
         [OperationContract]
         bool Create_events(Svolgimento s);
-        [OperationContract]
-        List<string> GetCitta(string cond = "");
-        [OperationContract]
-        List<Associazione> Show_associations(string cond="");//la cond si usa nel caso vogliamo mostrare associazioni particolari
-        [OperationContract]
-        List<Svolgimento> Show_Event(int idass, string tipologia="");
-        
-       
 
         [OperationContract]
-        bool add_ruolo(int idvolont, string ruolo);
+        List<string> GetCitta(string cond = "");
+
+        [OperationContract]
+        List<Associazione> Show_associations(string cond="");//la cond si usa nel caso vogliamo mostrare associazioni particolari
+        
+        [OperationContract]
+        List<Svolgimento> Show_Event(int idass, string tipologia="");
+
+        [OperationContract]
+        bool Add_ruolo(int idvolont, string ruolo);
         [OperationContract]
         int Generate_id();
 
