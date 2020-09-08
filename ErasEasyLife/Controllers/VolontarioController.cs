@@ -13,6 +13,17 @@ namespace ErasEasyLife.Controllers
 {
     public class VolontarioController : Controller
     {
+        /*
+       *  CONTROLLER DELL'AREA VOLONTARIO
+       *  PRINCIPALI FUNZIONALITA':
+       *  @Riepilogo
+       *  @Registrazione
+       *  @Visualizzazione e modifica dati personali
+       *  @Visualizzazione e prenotazione eventi
+       */
+
+
+
         //riepilogo
         [HttpGet]
         public ActionResult Dashboard()
@@ -373,13 +384,17 @@ namespace ErasEasyLife.Controllers
                 {
                     if (e.evento.tipologia == "riunione")
                     {
-                        ViewBag.risposta = "Meeting successfully booked";
+                        string body = "You have successfully booked the meeting name " + e.evento.nome;
+                        evclient.Send_Email(vol.nome, vol.email, body, "Meeting Booked");
+                        ViewBag.risposta = "Meeting successfully booked. Check your mail.";
                         ViewBag.url = "../Evento/Lista_riunioni";
                         ViewBag.link = "Back to meetings";
                     }
                     else
                     {
-                        ViewBag.risposta = "Event successfully booked";
+                        string body = "You have successfully booked the event name " + e.evento.nome;
+                        evclient.Send_Email(vol.nome, vol.email, body, "Event Booked");
+                        ViewBag.risposta = "Event successfully booked. Check your mail.";
                         ViewBag.url = "../Volontario/Lista_Eventi";
                         ViewBag.link = "Back to events";
                     }

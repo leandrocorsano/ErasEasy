@@ -293,9 +293,13 @@ namespace ErasEasyLife.Controllers
         public ActionResult Elenco()
         {
             /* Recupero dal server la lista delle citta dove sono presenti le associazioni iscritte*/
-            var webclient = new Association.AssociationClient();
-            List<string> listacitta = webclient.GetCitta("");
+            var assclient = new Association.AssociationClient();
+            List<string> listacitta = assclient.GetCitta("");
             ViewData["citta"] = listacitta;
+            var studclient = new Student.StudentClient();
+            Student.Studente stud = (Student.Studente)Session["Studente"];
+            List<Student.Frequentazione> listauni = studclient.GetUniversity(stud);
+            ViewBag.uni = listauni.Count(); //controllo che l'utente abbia registrato le università
             return View();
         }
 
@@ -305,14 +309,18 @@ namespace ErasEasyLife.Controllers
             if (ModelState.IsValidField("citta"))
             {
                 /*Recupero dal server la lista delle associazioni presenti nella città selezionata dallo studente */
-                var webclient = new Association.AssociationClient();
+                var assclient = new Association.AssociationClient();
                
                 string cond = "citta='" + model.citta + "'";
-                List<string> listacitta = webclient.GetCitta("");
+                List<string> listacitta = assclient.GetCitta("");
                 ViewData["citta"] = listacitta;
-                List<Association.Associazione> associazioni = webclient.Show_associations(cond);
-
+                List<Association.Associazione> associazioni = assclient.Show_associations(cond);
                 ViewData["elenco_associazioni"] = associazioni;
+
+                var studclient = new Student.StudentClient();
+                Student.Studente stud = (Student.Studente)Session["Studente"];
+                List<Student.Frequentazione> listauni = studclient.GetUniversity(stud);
+                ViewBag.uni = listauni.Count(); //controllo che l'utente abbia registrato le università
                 return View();
             }
             else
