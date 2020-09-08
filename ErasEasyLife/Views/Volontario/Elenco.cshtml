@@ -1,20 +1,12 @@
-﻿@{
+﻿@*Colleghi del volontario collegato*@
+@{
     ViewBag.Title = "Volunteers";
     Layout = "~/Views/Shared/VolontarioMenu.cshtml";
     ErasEasyLife.Volunteer.Volontario v = (ErasEasyLife.Volunteer.Volontario)Session["volontario"];
 }
 
-
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ViewBag.Title</title>
-</head>
 <body>
-    @if (v.ruolo != "")
+    @if (v.ruolo != "") //controllo che il volontario sia approvato
     {
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
@@ -67,5 +59,4 @@
         </div>
 
     }
-</body>
-</html>
+

@@ -74,12 +74,15 @@ namespace ErasEasyLife.Models
 
         [DisplayName("Password")]
         public string password { get; set; }
+
         [DataMember]
-        
         [DisplayName("Instagram")]
+        [Url]
         public string instagram { get; set; }
+
         [DataMember]
         [DisplayName("Facebook")]
+        [Url]
         public string facebook { get; set; }
     
     }

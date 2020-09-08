@@ -1,11 +1,12 @@
-﻿@model ErasEasyLife.Models.Studente
+﻿@*Lista degli studenti e possibilità di richiedere l'amicizia*@
+@model ErasEasyLife.Models.Studente
 @{
     ViewBag.Title = "Students list";
     Layout = "~/Views/Shared/StudenteMenu.cshtml";
 }
-@{ 
-    
-    List<string> nazionalita = new List<string>() {"--Choose nationality---", "Italian", "French", "English", "German", "Spanish","Polish", "Austrian", "Portuguese", "Belgian", "Switzerla", "Albanian", "Vltava", "Greek", "Montenegrin", "Bulgarian", "Romanian", "Swedish", "Finnish", "Dutch", "Danish", "Slovak", "Lithuanian", "Latvian", "Estonian", "Hungarian", "Norwegian", "Belarusian", "Slovenian", "Irish", "Maltese", "Luxembourg", "Icelandic" };
+@{
+
+    List<string> nazionalita = new List<string>() { "--Choose nationality---", "Italian", "French", "English", "German", "Spanish", "Polish", "Austrian", "Portuguese", "Belgian", "Switzerla", "Albanian", "Vltava", "Greek", "Montenegrin", "Bulgarian", "Romanian", "Swedish", "Finnish", "Dutch", "Danish", "Slovak", "Lithuanian", "Latvian", "Estonian", "Hungarian", "Norwegian", "Belarusian", "Slovenian", "Irish", "Maltese", "Luxembourg", "Icelandic" };
     Dictionary<string, string> bandiere = new Dictionary<string, string> {
               {"Italian", "https://www.countryflags.io/it/shiny/24.png" },
                 {"French", "https://www.countryflags.io/fr/shiny/24.png" },
@@ -42,14 +43,7 @@
             };
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Students list</title>
-</head>
-<body>
     @if (ViewBag.uni >= 2)
     {
         <div class="jumbotron jumbotron-fluid">
@@ -116,7 +110,7 @@
                                                     List<ErasEasyLife.Student.Studente> mie_richieste = ViewData["mie_richieste"] as List<ErasEasyLife.Student.Studente>;
                                                     List<ErasEasyLife.Student.Studente> altri_richieste = ViewData["altri_richieste"] as List<ErasEasyLife.Student.Studente>;
                                                     List<ErasEasyLife.Student.Studente> conferme = ViewData["conferme"] as List<ErasEasyLife.Student.Studente>;
-                                                    foreach (var r in mie_richieste)
+                                                    foreach (var r in mie_richieste) //controlli vari per fare apparire il pulsante/ messaggio giusto
                                                     {
                                                         if (r.IdStud == studente.IdStud)
                                                         {
@@ -212,12 +206,11 @@
     }
     else
     {
-<div class="alert alert-warning" role="alert">
-    <b>WARNING! You don't have privileges to access the page.</b><br />
-    Your must be inserted minimum 2 universities before (sending university and receiving university).
-    <br /> @Html.ActionLink("Insert University", "Registra_Uni")
-</div>
+        <div class="alert alert-warning" role="alert">
+            <b>WARNING! You don't have privileges to access the page.</b><br />
+            Your must be inserted minimum 2 universities before (sending university and receiving university).
+            <br /> @Html.ActionLink("Insert University", "Registra_Uni")
+        </div>
     }
-</body>
-</html>
+
 
