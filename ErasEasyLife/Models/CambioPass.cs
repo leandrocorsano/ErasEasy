@@ -1,4 +1,7 @@
-﻿using System;
+﻿//=============================================================================
+// Authors: Francesca Rossi, Leandro Corsano
+//=============================================================================
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,12 +15,9 @@ namespace ErasEasyLife.Models
     [DataContract]
     public class CambioPass
     {
-        //[DataMember]
-        //[Required]
-        //[DataType(DataType.Password)]
-        //[DisplayName("Password attuale")]
-
-        //public string password { get; set; }
+        /*
+        *  Model utilizzato per il cambio password
+        */
         [DataMember]
         [Required]
         [DataType(DataType.Password)]

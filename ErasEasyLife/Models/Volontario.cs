@@ -1,4 +1,7 @@
-﻿using System;
+﻿//=============================================================================
+// Authors: Francesca Rossi, Leandro Corsano
+//=============================================================================
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,7 +18,9 @@ namespace ErasEasyLife.Models
 
     public class Volontario
     {
-
+        /*
+        *  Model per l'inserimento del volontario
+        */
         [DataMember]
         [Required(ErrorMessage ="Required volunteer ID")]
         [DisplayName("ID")]

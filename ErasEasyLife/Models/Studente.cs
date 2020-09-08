@@ -1,4 +1,7 @@
-﻿using System;
+﻿//=============================================================================
+// Authors: Francesca Rossi, Leandro Corsano
+//=============================================================================
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +17,9 @@ namespace ErasEasyLife.Models
     [DataContract]
     public class Studente
     {
+        /*
+        *  Model contente i campi dello studente nel db
+        */
 
         [DataMember]
         [Required(ErrorMessage ="Required student ID")]
