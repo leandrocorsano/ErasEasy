@@ -16,6 +16,8 @@
     @{
 
         ErasEasyLife.Volunteer.Volontario vol = (ErasEasyLife.Volunteer.Volontario)Session["Volontario"];
+        DateTime Date1 = DateTime.Parse(vol.data_n);
+        DateTime Date2 = DateTime.Parse(vol.data_iscr);
 
     }
     <div class="container">
@@ -28,9 +30,9 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><div class="row"><div class="col-6"><b>First Name</b></div><div class="col-6">@vol.nome</div></div></li>
                 <li class="list-group-item"><div class="row"><div class="col-6"><b>Last Name</b></div><div class="col-6">@vol.cognome</div></div></li>
-                <li class="list-group-item"><div class="row"><div class="col-6"><b>Date of birth</b></div><div class="col-6">@vol.data_n</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Date of birth</b></div><div class="col-6">@Date1.ToString("dd/MM/yyy") </div></div></li>
                 <li class="list-group-item"><div class="row"><div class="col-6"><b>Phone</b></div><div class="col-6">@vol.telefono</div></div></li>
-                <li class="list-group-item"><div class="row"><div class="col-6"><b>Registration </b></div><div class="col-6">@vol.data_iscr</div></div></li>
+                <li class="list-group-item"><div class="row"><div class="col-6"><b>Registration </b></div><div class="col-6">@Date2.ToString("dd/MM/yyy")</div></div></li>
                 <li class="list-group-item"><div class="row"><div class="col-6"><b>Email</b></div><div class="col-6">@vol.email</div></div></li>
                 <li class="list-group-item"><div class="row"><div class="col-6"><b>Role</b></div><div class="col-6">@vol.ruolo</div></div></li>
                 <li class="list-group-item"><div class="row"><div class="col-6"><b>Association</b></div><div class="col-6">@vol.ass.nome</div></div></li>
