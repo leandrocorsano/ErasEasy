@@ -264,7 +264,9 @@ namespace ErasEasyLife.Controllers
                     {
                         Session["Associazione"] = ass; //creo la nuova session
                     }
-                    ViewBag.risposta = "Password successfully updated";
+                    ViewBag.risposta = "Password Successfully updated";
+                    ViewBag.url = "../Associazione/Profilo";
+                    ViewBag.link = "Go to profile";
                     return View("Successo");
 
                 }
