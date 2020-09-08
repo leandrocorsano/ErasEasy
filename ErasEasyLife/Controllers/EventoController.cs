@@ -74,7 +74,7 @@ namespace ErasEasyLife.Controllers
                 ViewBag.uni = listauni.Count(); //controllo che lo studente abbia il permesso per accedervi
                 return View();
             }
-            return View() //ritorno la pagina del get con gli errori sul model
+            return View(); //ritorno la pagina del get con gli errori sul model
         }
         
         [HttpGet]
