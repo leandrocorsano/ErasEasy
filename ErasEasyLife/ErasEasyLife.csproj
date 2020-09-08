@@ -2235,6 +2235,7 @@
     <Content Include="Views\Volontario\Dashboard.cshtml" />
     <Content Include="Views\Volontario\Errore.cshtml" />
     <Content Include="Views\Studente\Errore.cshtml" />
+    <Content Include="Views\Associazione\Errore_Sessione.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
