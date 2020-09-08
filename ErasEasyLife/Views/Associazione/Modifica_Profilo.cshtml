@@ -1,17 +1,13 @@
 ﻿@model ErasEasyLife.Models.Associazione
 
 @{
+    ViewBag.Title = "Edit Profile";
     Layout = "~/Views/Shared/AssociazioneMenu.cshtml";
 }
 
 <!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit Profile</title>
-</head>
-<body>
+
     @{
         ErasEasyLife.Association.Associazione ass = (ErasEasyLife.Association.Associazione)Session["Associazione"];
     }
@@ -95,11 +91,7 @@
                         </div>
                     </div>
                 </div>
+                </div>
             </center>
                 }
 
-                <div>
-                    @Html.ActionLink("Back to List", "Index")
-                </div>
-    </body>
-</html>

@@ -195,8 +195,11 @@ namespace ErasEasyLife.Controllers
                     stud.password = model.password;
                     stud.instagram = model.instagram;
                     stud.facebook = model.facebook;
-                    Session["Studente"] = stud;
                     bool r = webclient.UpdateProfile(stud);
+                    if(r==true)
+                    {
+                        Session["Studente"] = stud;
+                    }
                     ViewBag.risposta = "Profile Successfully updated";
                     ViewBag.url = "../Studente/Profilo";
                     ViewBag.link = "Go to profile";

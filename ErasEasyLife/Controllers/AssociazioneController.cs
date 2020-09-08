@@ -263,8 +263,12 @@ namespace ErasEasyLife.Controllers
                         ass.tel = model.tel;
                         ass.email = model.email;
                         ass.via = model.via;
-                        Session["Associazione"] = ass;
+                        
                         bool r = webclient.UpdateProfile(ass);
+                        if(r==true)
+                        {
+                            Session["Associazione"] = ass;
+                        }
                         ViewBag.risposta = "Profile successfully updated";
 
                         return View("Profilo");
