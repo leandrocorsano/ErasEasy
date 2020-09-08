@@ -1,4 +1,7 @@
-﻿using System;
+﻿//=============================================================================
+// Authors: Francesca Rossi, Leandro Corsano
+//=============================================================================
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +15,10 @@ namespace ErasEasyLife.Models
     [DataContract]
     public class Evento
     {
+        /*
+        *  Model contente i campi di evento, 
+        *  luogo e svolgimento, per la registrazione di un evento /riunione
+        */
         [DataMember]
         [Required(ErrorMessage = "Required event number")]
         [DisplayName("Event number")]

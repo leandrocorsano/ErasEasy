@@ -462,11 +462,20 @@ namespace Admin_wcf
         public List<Studente> Show_Friends(Studente stud, string state)
         {
             /* ---------------------------------------------------
-            * Funzione che permette di vedere l'elenco degli amici 
+            * 
+            * Funzione che permette di vedere tutti i movimenti nella community da parte di 
+            * un determinato studente 
+            * esempio (richieste inviate, amicizie ....)
+            * N.B. eseguo un duplice controllo in database perchè lo studente potrebbe essere nel idstud1 
+            * ovvero colui che invia una richiesta, oppure nell'idstud 2 ovvero colui che riceve la richiesta
+            * e può confermare l'amicizia
+            * Uno studente con un altro amico può trovarsi solo in 3 casi, è nella prima lista (chiede l'amicizia), 
+            * nella secodonda lista(riceve un'amicizia) oppure in nessuna dei due (lo studente non ha ancora avuto contatti con l'altro studente)
             * ------------------------------------------------------
             */
 
             var wcfclient = server_conn.getInstance();
+            /*controllo se lo studente ha inviato lui un amicizia*/
             string cond = "A.idstud2=S.idstud and A.idstud1=" + stud.IdStud.ToString() + " and A.Stato='" +state+"'";
             List<Studente> studenti = new List<Studente>();
             try
@@ -477,10 +486,11 @@ namespace Admin_wcf
                     foreach (DataRow row in table.Rows)
                     {
                         Studente s = new Studente(Convert.ToInt32(row["IdStud"]), row["nome"].ToString(), row["cognome"].ToString(), row["email"].ToString(), row["cellulare"].ToString(), row["data_n"].ToString(), row["citta"].ToString(), row["stato"].ToString(), row["nazionalita"].ToString(), row["password"].ToString(), row["instagram"].ToString(), row["facebook"].ToString());
-                        studenti.Add(s);
+                        studenti.Add(s); //"prima lista"
 
                     }
                 }
+                /*controllo se lo studente ha ricevuto un amicizia*/
                 cond = "A.idstud1=S.idstud and A.idstud2=" + stud.IdStud.ToString() + " and A.Stato='" + state + "'";
                 DataSet stud_set1 = wcfclient.DBselect("*", "AMICIZIA as A, STUDENTE as S", cond);
                 foreach (DataTable table in stud_set1.Tables)
@@ -488,7 +498,7 @@ namespace Admin_wcf
                     foreach (DataRow row in table.Rows)
                     {
                         Studente s = new Studente(Convert.ToInt32(row["IdStud"]), row["nome"].ToString(), row["cognome"].ToString(), row["email"].ToString(), row["cellulare"].ToString(), row["data_n"].ToString(), row["citta"].ToString(), row["stato"].ToString(), row["nazionalita"].ToString(), row["password"].ToString(), row["instagram"].ToString(), row["facebook"].ToString());
-                        studenti.Add(s);
+                        studenti.Add(s); //"seconda lista"
 
                     }
                 }
@@ -500,7 +510,7 @@ namespace Admin_wcf
                 throw;
 
             }
-            return studenti;
+            return studenti; 
 
         }
 

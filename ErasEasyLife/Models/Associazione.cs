@@ -1,4 +1,7 @@
-﻿using System;
+﻿//=============================================================================
+// Authors: Francesca Rossi, Leandro Corsano
+//=============================================================================
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,12 +10,16 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 /* https://referencesource.microsoft.com/#System.ComponentModel.DataAnnotations */
+
 namespace ErasEasyLife.Models
 {
     [Serializable]
     [DataContract]
     public class Associazione
     {
+        /*
+        *  Campi dell'associazione presenti nel database
+        */
         [DataMember]
         [Required(ErrorMessage = "Required association ID")]
         [DisplayName("ID")]
@@ -50,7 +57,6 @@ namespace ErasEasyLife.Models
         [DisplayName("Password")]
         [MinLength(6, ErrorMessage = "Password must contain at least 6 alphanumeric characters")]
         [RegularExpression(@"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}", ErrorMessage = "Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number, and must be at least 6 characters long")]
-        //[PasswordPropertyText] //per mettere gli asterischi
         public string password { get; set; }
     }
 }

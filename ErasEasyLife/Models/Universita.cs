@@ -1,4 +1,7 @@
-﻿using System;
+﻿//=============================================================================
+// Authors: Francesca Rossi, Leandro Corsano
+//=============================================================================
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,6 +18,9 @@ namespace ErasEasyLife.Models
 
     public class Universita
     {
+        /*
+        *  Model per la registrazione dell'università
+        */
         [DataMember]
         [Required(ErrorMessage = "Required University ID")]
         [DisplayName("ID")]
