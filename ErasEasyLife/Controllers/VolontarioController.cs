@@ -190,7 +190,7 @@ namespace ErasEasyLife.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                if (ModelState.IsValidField("telefono")&& ModelState.IsValidField("email"))
                 {
                     var webclient = new Volunteer.VolunteerClient();
                     Volunteer.Volontario vol = new Volunteer.Volontario();
@@ -205,8 +205,11 @@ namespace ErasEasyLife.Controllers
                     vol.password = model.password;
                     vol.ruolo = model.ruolo;
                     vol.ass = assoc;
-                    Session["Volontario"] = vol; //aggiorno la sessione
                     bool r = webclient.UpdateProfile(vol);
+                    if(r==true)
+                    {
+                        Session["Volontario"] = vol; //aggiorno la sessione
+                    }
                     ViewBag.risposta = "Profile Successfully updated";
                     ViewBag.url = "../Volontario/Profilo";
                     ViewBag.link = "Go to profile";
