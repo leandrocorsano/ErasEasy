@@ -31,7 +31,7 @@ namespace ErasEasyLife.Controllers
         {
 
             DateTime oggi = DateTime.Today; // mi salvo la data attuale per prendere gli eventi successivi
-            string cond = " and data_i > '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='riunione' order by data_i";
+            string cond = " and data_i > '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='meeting' order by data_i";
             var webclient = new Event.EventClient();
             var webclient1 = new Association.AssociationClient();
             List<Association.Associazione> associazioni = webclient1.Show_associations("");
@@ -54,12 +54,12 @@ namespace ErasEasyLife.Controllers
                 string cond;
                 if (model.IdAss == 0) //l'utente ha selezionato "tutte le associazioni"
                 {
-                    cond = " and data_i > '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='riunione' order by data_i";
+                    cond = " and data_i > '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='meeting' order by data_i";
                 }
                 else
                 {
                     
-                    cond = " and data_i > '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='riunione' and idass="+model.IdAss+" order by data_i";
+                    cond = " and data_i > '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='meeting' and idass="+model.IdAss+" order by data_i";
 
                 }
                 var webclient = new Event.EventClient();           
@@ -83,7 +83,7 @@ namespace ErasEasyLife.Controllers
             /* mostra le  riunioni dell'associazione di cui fa parte il volontario loggato*/
             DateTime oggi = DateTime.Today;
             Volunteer.Volontario vol = (Volunteer.Volontario)Session["Volontario"]; // dal volontario loggato poi recupero l'associazione in automatico
-            string cond = " and data_i > '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia ='riunione' and idass = " + vol.ass.IdAss + "  order by data_i";
+            string cond = " and data_i > '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia ='meeting' and idass = " + vol.ass.IdAss + "  order by data_i";
             var webclient = new Event.EventClient();
             List<Event.Svolgimento> riunioni = webclient.Show_events(cond);
             ViewData["riunioni"] = riunioni;

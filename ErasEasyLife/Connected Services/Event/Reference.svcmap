@@ -24,12 +24,11 @@
     <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Event/" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Event.wsdl" MetadataType="Wsdl" ID="9641c357-f077-4ac9-ab38-6fecae4baa5f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Event/?wsdl" />
-    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="4270315b-7eaf-4e2e-9024-9c2b264f833c" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Event/?disco" />
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="dc862888-134a-4ac9-8de2-7ab92d101f20" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Event/?xsd=xsd3" />
     <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="b89e8920-2eb1-41a4-9d31-d5ea6c15bafe" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Event/?xsd=xsd2" />
     <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="962282d8-e961-4c36-b684-67496d30978e" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Event/?xsd=xsd1" />
     <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="5940c0ef-57a1-4c12-a24f-5f5352fc5f6d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Event/?xsd=xsd0" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="4270315b-7eaf-4e2e-9024-9c2b264f833c" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Event/?disco" />
+    <MetadataFile FileName="Event.wsdl" MetadataType="Wsdl" ID="9641c357-f077-4ac9-ab38-6fecae4baa5f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Admin_wcf/Event/?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

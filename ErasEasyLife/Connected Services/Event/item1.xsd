@@ -77,4 +77,25 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Studente" nillable="true" type="tns:Studente" />
+  <xs:complexType name="ArrayOfVolontario">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Volontario" nillable="true" type="tns:Volontario" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVolontario" nillable="true" type="tns:ArrayOfVolontario" />
+  <xs:complexType name="Volontario">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdVolont" type="xs:int" />
+      <xs:element minOccurs="0" name="ass" nillable="true" type="tns:Associazione" />
+      <xs:element minOccurs="0" name="cognome" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="data_iscr" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="data_n" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nome" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ruolo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="telefono" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Volontario" nillable="true" type="tns:Volontario" />
 </xs:schema>

@@ -1974,9 +1974,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\Event\Event.wsdl" />
-    <None Include="Connected Services\Event\item.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\Event\item1.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -2011,9 +2008,6 @@
     <None Include="Connected Services\Volunteer\item.disco" />
     <None Include="Connected Services\Volunteer\configuration91.svcinfo" />
     <None Include="Connected Services\Volunteer\configuration.svcinfo" />
-    <None Include="Connected Services\Volunteer\item3.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\Volunteer\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
