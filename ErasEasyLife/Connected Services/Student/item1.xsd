@@ -73,6 +73,34 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="University_Registration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="f" nillable="true" type="q5:Frequentazione" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="University_RegistrationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="University_RegistrationResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUniversity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="s" nillable="true" type="q6:Studente" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUniversityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="GetUniversityResult" nillable="true" type="q7:ArrayOfFrequentazione" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="Show_students">
     <xs:complexType>
       <xs:sequence>
@@ -83,7 +111,7 @@
   <xs:element name="Show_studentsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="Show_studentsResult" nillable="true" type="q5:ArrayOfStudente" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="Show_studentsResult" nillable="true" type="q8:ArrayOfStudente" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -112,7 +140,7 @@
   <xs:element name="Show_EventResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="Show_EventResult" nillable="true" type="q6:ArrayOfSvolgimento" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="Show_EventResult" nillable="true" type="q9:ArrayOfSvolgimento" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -165,7 +193,7 @@
   <xs:element name="Show_Friends">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="stud" nillable="true" type="q7:Studente" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="stud" nillable="true" type="q10:Studente" />
         <xs:element minOccurs="0" name="state" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -173,21 +201,21 @@
   <xs:element name="Show_FriendsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="Show_FriendsResult" nillable="true" type="q8:ArrayOfStudente" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="Show_FriendsResult" nillable="true" type="q11:ArrayOfStudente" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="My_Friendship_Request">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="stud" nillable="true" type="q9:Studente" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="stud" nillable="true" type="q12:Studente" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="My_Friendship_RequestResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="My_Friendship_RequestResult" nillable="true" type="q10:ArrayOfStudente" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="My_Friendship_RequestResult" nillable="true" type="q13:ArrayOfStudente" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -203,34 +231,6 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="Delete_FriendshipResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="University_Registration">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="f" nillable="true" type="q11:Frequentazione" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="University_RegistrationResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="University_RegistrationResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetUniversity">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="s" nillable="true" type="q12:Studente" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetUniversityResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi" minOccurs="0" name="GetUniversityResult" nillable="true" type="q13:ArrayOfFrequentazione" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

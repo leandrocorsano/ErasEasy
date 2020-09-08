@@ -362,7 +362,7 @@ namespace ErasEasyLife.Controllers
                 try
                 {
                     var webclient = new Association.AssociationClient();
-                    bool r = webclient.add_ruolo(model.IdVolont, model.ruolo);
+                    bool r = webclient.Add_ruolo(model.IdVolont, model.ruolo);
                     if (r == true)
                     {
 
@@ -421,7 +421,7 @@ namespace ErasEasyLife.Controllers
                     /* converto la data, per usufruire di tutte le funzionalità */
                     DateTime Data1 = DateTime.Parse(model.data_i);
                     DateTime Data2 = DateTime.Parse(model.data_f);
-                    if (model.tipologia == "Riunione") //controllo che l'evento non sia una riunione
+                    if (model.tipologia == "riunione") //controllo che l'evento non sia una riunione
                     {
                         ViewBag.risposta = "You can't create a meeting in this page";
                         ViewBag.url = "Crea_Evento";
@@ -698,11 +698,11 @@ namespace ErasEasyLife.Controllers
                 {
                     DateTime Data1 = DateTime.Parse(model.data_i);
                     DateTime Data2 = DateTime.Parse(model.data_f);
-                    if (model.tipologia == "Riunione") //controllo che l'utente non abbia cambiato la tipologia in riunione
+                    if (model.tipologia == "riunione") //controllo che l'utente non abbia cambiato la tipologia in riunione
                     {
                         ViewBag.risposta = "You can't create a meeting in this page";
                         ViewBag.url = "Elenco_Eventi";
-                        ViewBag.link = "Back to list event";
+                        ViewBag.link = "Back to events list";
                         return View("Errore");
                     }
                     else if (Data1 > Data2)
@@ -869,14 +869,14 @@ namespace ErasEasyLife.Controllers
                         });
                         ViewBag.risposta = "Event successfully modified";
                         ViewBag.url = "../Associazione/Elenco_Riunioni";
-                        ViewBag.link = "Back to events";
+                        ViewBag.link = "Back to meetings";
                         return View("Successo");
                     }
                     else
                     {
                         ViewBag.risposta = "There is an error, try again";
                         ViewBag.url = "../Associazione/Elenco_Riunioni";
-                        ViewBag.link = "Back to events";
+                        ViewBag.link = "Back to meetings";
                         return View("Errore");
                     }
 
@@ -885,7 +885,7 @@ namespace ErasEasyLife.Controllers
                 {
                     ViewBag.risposta = "There is an error, try again";
                     ViewBag.url = "../Associazione/Elenco_Riunioni";
-                    ViewBag.link = "Back to events";
+                    ViewBag.link = "Back to meetings";
                     return View("Errore");
                 }
             }
@@ -895,7 +895,7 @@ namespace ErasEasyLife.Controllers
                 ViewBag.risposta = "Exception: " + ex.Message;
                 ViewBag.risposta = "There is an error, try again";
                 ViewBag.url = "../Associazione/Elenco_Riunioni";
-                ViewBag.link = "Back to events";
+                ViewBag.link = "Back to meetings";
                 return View("Successo");
 
 
@@ -920,7 +920,7 @@ namespace ErasEasyLife.Controllers
                 if (r == true)
                 {
                     /*Messaggio di output + invio mail ai partecipanti*/
-                    if (e.evento.tipologia == "Riunione")
+                    if (e.evento.tipologia == "riunione")
                     {
                         string body = "The meeting name "+e.evento.nome+" of " + data.ToString("dd/MM/yy") + " was canceled by the " + e.evento.ass.nome;
                         volontari.ForEach(vol =>
@@ -951,7 +951,7 @@ namespace ErasEasyLife.Controllers
                 }
                 else
                 {
-                    ViewBag.risposta = "There was an errore, Try again!";
+                    ViewBag.risposta = "There was an error, Try again!";
                     ViewBag.url = "../Associazione/Elenco_Eventi";
                     ViewBag.link = "Back to list";
                     return View("Errore");

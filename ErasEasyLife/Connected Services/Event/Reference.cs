@@ -800,7 +800,7 @@ namespace ErasEasyLife.Event {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Volontario", Namespace="http://schemas.datacontract.org/2004/07/Admin_wcf")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Volontario", Namespace="http://schemas.datacontract.org/2004/07/Admin_wcf.Classi")]
     [System.SerializableAttribute()]
     public partial class Volontario : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         

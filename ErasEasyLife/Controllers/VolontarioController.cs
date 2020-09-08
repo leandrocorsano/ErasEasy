@@ -24,9 +24,9 @@ namespace ErasEasyLife.Controllers
             cond = " and data_i >= '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia='riunione' and idass=" + vol.ass.IdAss;
             List<Event.Svolgimento> future_riunioni = eventclient.Show_events(cond);
             ViewData["n_prossime_riunioni"] = future_riunioni.Count();
-            cond = " tipologia!='Riunione' and MONTH(data_i)='" + oggi.Month + "'";
+            cond = " tipologia!='riunione' and MONTH(data_i)='" + oggi.Month + "'";
             List<Volunteer.Svolgimento> my_events = volclient.Show_Event(vol.IdVolont, cond);
-            cond = " tipologia='Riunione' and MONTH(data_i)='"+oggi.Month+"'"; //le mie riunioni di questo mese
+            cond = " tipologia='riunione' and MONTH(data_i)='"+oggi.Month+"'"; //le mie riunioni di questo mese
             List<Volunteer.Svolgimento> my_meetings = volclient.Show_Event(vol.IdVolont, cond);
             ViewData["n_mie_riunioni"] = my_meetings.Count();
             ViewData["n_miei_eventi"] = my_events.Count();
@@ -113,15 +113,15 @@ namespace ErasEasyLife.Controllers
                 bool r = webclient1.CancelBooking(vol.IdVolont, evento);
                 if (r == true)
                 {
-                    if (e.evento.tipologia == "Riunione")
+                    if (e.evento.tipologia == "riunione")
                     {
-                        ViewBag.risposta = "Meeting successfully cancelled";
+                        ViewBag.risposta = "Partecipation successfully cancelled";
                         ViewBag.url = "../Evento/Lista_riunioni";
                         ViewBag.link = "Back to meetings";
                     }
                     else
                     {
-                        ViewBag.risposta = "Event successfully cancelled";
+                        ViewBag.risposta = "Partecipation successfully cancelled";
                         ViewBag.url = "../Volontario/Lista_Eventi";
                         ViewBag.link = "Back to events";
                     }
