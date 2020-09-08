@@ -41,17 +41,17 @@ namespace ErasEasyLife.Controllers
             /*Recupero dal server gli eventi passati e futuri*/
             var eventclient = new Event.EventClient();
             DateTime oggi = DateTime.Today;
-            string cond = " and data_i >= '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='riunione' and idass=" + ass.IdAss;
+            string cond = " and data_i >= '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='meeting' and idass=" + ass.IdAss;
             List<Event.Svolgimento> futuri_eventi = eventclient.Show_events(cond);
-            string cond1 = " and data_i <'" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='riunione' and idass=" + ass.IdAss;
+            string cond1 = " and data_i <'" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='meeting' and idass=" + ass.IdAss;
             List<Event.Svolgimento> eventi_passati = eventclient.Show_events(cond1);
             ViewData["n_prossimi_eventi"] = futuri_eventi.Count();
             ViewData["n_scorsi_eventi"] = eventi_passati.Count();
 
             /*Recupero dal server le riunioni passate e future*/
-            cond = " and data_i >= '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia='riunione' and idass=" + ass.IdAss;
+            cond = " and data_i >= '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia='meeting' and idass=" + ass.IdAss;
             List<Event.Svolgimento> future_riunioni = eventclient.Show_events(cond);
-            cond1 = " and data_i <'" + oggi.ToString("yyyy-MM-dd") + "' and tipologia='riunione' and idass=" + ass.IdAss;
+            cond1 = " and data_i <'" + oggi.ToString("yyyy-MM-dd") + "' and tipologia='meeting' and idass=" + ass.IdAss;
             List<Event.Svolgimento> riunioni_passate = eventclient.Show_events(cond1);
             ViewData["n_prossime_riunioni"] = future_riunioni.Count();
             ViewData["n_scorse_riunioni"] = riunioni_passate.Count();
@@ -429,7 +429,7 @@ namespace ErasEasyLife.Controllers
                     /* converto la data, per usufruire di tutte le funzionalità */
                     DateTime Data1 = DateTime.Parse(model.data_i);
                     DateTime Data2 = DateTime.Parse(model.data_f);
-                    if (model.tipologia == "riunione") //controllo che l'evento non sia una riunione
+                    if (model.tipologia == "meeting") //controllo che l'evento non sia una riunione
                     {
                         ViewBag.risposta = "You can't create a meeting in this page";
                         ViewBag.url = "Crea_Evento";
@@ -568,7 +568,7 @@ namespace ErasEasyLife.Controllers
             /*Recupero tutti gli eventi che ha creato l'associazione autenticata dal server*/
             var webclient = new Association.AssociationClient();
             Association.Associazione ass = (Association.Associazione)Session["Associazione"];
-            string tipologia = " E.tipologia != 'riunione'  order by S.data_i desc";
+            string tipologia = " E.tipologia != 'meeting'  order by S.data_i desc";
             List<Association.Svolgimento> listaeventi = webclient.Show_Event(ass.IdAss, tipologia);
             ViewData["eventi"] = listaeventi;
             return View();
@@ -580,7 +580,7 @@ namespace ErasEasyLife.Controllers
             /* Recupero tutti gli eventi che ha creato l'associazione autenticata dal server*/
             var webclient = new Association.AssociationClient();
             Association.Associazione ass = (Association.Associazione)Session["Associazione"];
-            string tipologia = " E.tipologia = 'riunione' order by S.data_i desc";
+            string tipologia = " E.tipologia = 'meeting' order by S.data_i desc";
             List<Association.Svolgimento> listariunioni = webclient.Show_Event(ass.IdAss, tipologia);
             ViewData["riunioni"] = listariunioni;
             return View();
@@ -706,7 +706,7 @@ namespace ErasEasyLife.Controllers
                 {
                     DateTime Data1 = DateTime.Parse(model.data_i);
                     DateTime Data2 = DateTime.Parse(model.data_f);
-                    if (model.tipologia == "riunione") //controllo che l'utente non abbia cambiato la tipologia in riunione
+                    if (model.tipologia == "meeting") //controllo che l'utente non abbia cambiato la tipologia in riunione
                     {
                         ViewBag.risposta = "You can't create a meeting in this page";
                         ViewBag.url = "Elenco_Eventi";
@@ -928,7 +928,7 @@ namespace ErasEasyLife.Controllers
                 if (r == true)
                 {
                     /*Messaggio di output + invio mail ai partecipanti*/
-                    if (e.evento.tipologia == "riunione")
+                    if (e.evento.tipologia == "meeting")
                     {
                         string body = "The meeting name "+e.evento.nome+" of " + data.ToString("dd/MM/yy") + " was canceled by the " + e.evento.ass.nome;
                         volontari.ForEach(vol =>

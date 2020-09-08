@@ -33,16 +33,16 @@ namespace ErasEasyLife.Controllers
             Volunteer.Volontario vol = (Volunteer.Volontario)Session["volontario"];
             DateTime oggi = DateTime.Today;
             /*recupero i prossimi eventi  e le prossime riunioni*/
-            string cond = " and data_i >= '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='riunione' and idass=" + vol.ass.IdAss;
+            string cond = " and data_i >= '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='meeting' and idass=" + vol.ass.IdAss;
             List<Event.Svolgimento> futuri_eventi = eventclient.Show_events(cond);
             ViewData["n_prossimi_eventi"] = futuri_eventi.Count();           
-            cond = " and data_i >= '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia='riunione' and idass=" + vol.ass.IdAss;
+            cond = " and data_i >= '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia='meeting' and idass=" + vol.ass.IdAss;
             List<Event.Svolgimento> future_riunioni = eventclient.Show_events(cond);
             ViewData["n_prossime_riunioni"] = future_riunioni.Count();
             /*recupero i miei eventi  e le miei riunioni di questo mese*/
-            cond = " tipologia!='Riunione' and MONTH(data_i)='" + oggi.Month + "'";
+            cond = " tipologia!='meeting' and MONTH(data_i)='" + oggi.Month + "'";
             List<Volunteer.Svolgimento> my_events = volclient.Show_Event(vol.IdVolont, cond);
-            cond = " tipologia='Riunione' and MONTH(data_i)='"+oggi.Month+"'"; //le mie riunioni di questo mese
+            cond = " tipologia='meeting' and MONTH(data_i)='"+oggi.Month+"'"; //le mie riunioni di questo mese
             List<Volunteer.Svolgimento> my_meetings = volclient.Show_Event(vol.IdVolont, cond);
             ViewData["n_mie_riunioni"] = my_meetings.Count();
             ViewData["n_miei_eventi"] = my_events.Count();
@@ -282,7 +282,7 @@ namespace ErasEasyLife.Controllers
             /* eventi a cui un volontario ha partecipato/parteciperà  */
             var webclient = new Volunteer.VolunteerClient();
             Volunteer.Volontario vol = (Volunteer.Volontario)Session["Volontario"];
-            string tipologia = " E.tipologia != 'riunione'";
+            string tipologia = " E.tipologia != 'meeting'";
             List<Volunteer.Svolgimento> listaeventi = webclient.Show_Event(vol.IdVolont, tipologia);
             ViewData["eventi"] = listaeventi;
             return View();
@@ -295,7 +295,7 @@ namespace ErasEasyLife.Controllers
             /*Riunioni a cui un volontario ha partecipato/parteciperà */
             var webclient = new Volunteer.VolunteerClient();
             Volunteer.Volontario vol = (Volunteer.Volontario)Session["Volontario"];
-            string tipologia = " E.tipologia = 'riunione'";
+            string tipologia = " E.tipologia = 'meeting'";
             List<Volunteer.Svolgimento> listariunioni = webclient.Show_Event(vol.IdVolont, tipologia);
             ViewData["riunioni"] = listariunioni;
             return View();
@@ -310,7 +310,7 @@ namespace ErasEasyLife.Controllers
             {
                 DateTime oggi = DateTime.Today;
                 Volunteer.Volontario vol = (Volunteer.Volontario)Session["Volontario"];
-                string cond = " and data_i > '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='riunione' and idass = " + vol.ass.IdAss + " order by data_i";
+                string cond = " and data_i > '" + oggi.ToString("yyyy-MM-dd") + "' and tipologia!='meeting' and idass = " + vol.ass.IdAss + " order by data_i";
                 var webclient = new Event.EventClient();
                 List<Event.Svolgimento> eventi = webclient.Show_events(cond);
                 ViewData["eventi"] = eventi;
@@ -382,7 +382,7 @@ namespace ErasEasyLife.Controllers
                 bool r = volclient.BookEvent(vol.IdVolont, evento);
                 if (r == true)
                 {
-                    if (e.evento.tipologia == "riunione")
+                    if (e.evento.tipologia == "meeting")
                     {
                         string body = "You have successfully booked the meeting name " + e.evento.nome;
                         evclient.Send_Email(vol.nome, vol.email, body, "Meeting Booked");
@@ -431,7 +431,7 @@ namespace ErasEasyLife.Controllers
                 bool r = volclient.CancelBooking(vol.IdVolont, evento);
                 if (r == true)
                 {
-                    if (e.evento.tipologia == "Riunione")
+                    if (e.evento.tipologia == "meeting")
                     {
                         ViewBag.risposta = "Meeting successfully cancelled";
                         ViewBag.url = "../Evento/Lista_riunioni";
