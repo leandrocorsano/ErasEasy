@@ -1,0 +1,14 @@
+﻿@*Pagina errore della sessione *@
+@{
+    ViewBag.Title = "Errore Sessione";
+    Layout = "~/Views/Shared/WhitoutMenu.cshtml";
+}
+<center>
+    <div>
+        <div class="alert alert-danger" role="alert">
+            You must be logged or the session is expired. Sign in here
+        </div>
+        <a href="../Associazione/Login" class="btn bg-gradient-green">Sign in</a>
+
+    </div>
+</center>

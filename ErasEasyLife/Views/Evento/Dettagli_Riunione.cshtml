@@ -1,10 +1,10 @@
-﻿
+﻿@*Dettagli di una riunione*@
 @{
     ViewBag.Title = "Meeting details";
     Layout = "~/Views/Shared/VolontarioMenu.cshtml";
     ErasEasyLife.Event.Svolgimento s = ViewData["evento"] as ErasEasyLife.Event.Svolgimento;
     List<ErasEasyLife.Event.Volontario> volontari = ViewData["volontari"] as List<ErasEasyLife.Event.Volontario>;
-    int posti_rimasti = s.evento.max_v - volontari.Count();
+    int posti_rimasti = s.evento.max_v - volontari.Count(); //numero di posti rimasti disponibili
     ErasEasyLife.Volunteer.Volontario volontario_entrato = (ErasEasyLife.Volunteer.Volontario)Session["volontario"];
     DateTime Date1 = DateTime.Parse(s.data_i);
     DateTime Date2 = DateTime.Parse(s.data_f);
@@ -16,7 +16,7 @@
             prenotato = true;
         }
     }
-   
+
 }
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
@@ -40,6 +40,7 @@
 
         <h3>Available places</h3>
     </div>
+    @*Pulsanti*@
     <div class="small-box-footer">
         <div class="row ">
             <div class="col-6 text-right">
@@ -83,8 +84,8 @@
                 <blockquote class="blockquote " style="border-left: .2rem solid green;"><i class="fas fa-file-alt"></i>&nbsp; @s.evento.descrizione</blockquote>
                 <p><i class="fas fa-map-marked-alt"></i><b> &nbsp; Place:</b> @s.luogo.via (@s.luogo.citta, @s.luogo.stato)</p>
                 <p><i class="fas fa-calendar-check"></i><b> &nbsp; Start:</b> @Date1.ToString("dd/MM/yyy")  time @s.ora_i</p>
-                
-                
+
+
 
             </div>
         </div>
@@ -101,8 +102,8 @@
                     {
 
                         <li class="list-group-item">
-                             <i class="fas fa-user"></i>@vol.nome @vol.cognome 
-                            
+                            <i class="fas fa-user"></i>@vol.nome @vol.cognome
+
                         </li>
 
                     }

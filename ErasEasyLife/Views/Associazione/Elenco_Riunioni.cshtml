@@ -16,14 +16,18 @@
 
 
     <section class="container">
-
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h2 class="display-4 text-center">Upcoming Meeting</h2>
+            </div>
+        </div>
         @if (ViewData["riunioni"] != null)
         {
 
             <div class="row">
                 @foreach (var E in ViewData["riunioni"] as List<ErasEasyLife.Association.Svolgimento>
                     )
-                    {
+                {
 
                     <div class="col-sm-6">
                         <article class="card text-center">
@@ -68,13 +72,13 @@
                         </article>
                     </div>
 
-                    }
-                </div>
-                    }
+                }
+            </div>
+        }
 
 
 
-        </section>
+    </section>
 
 
 
