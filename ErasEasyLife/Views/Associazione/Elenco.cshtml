@@ -1,7 +1,7 @@
 ﻿@*Elenco delle associazioni raggruppate per città*@
 @model ErasEasyLife.Models.Associazione
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "Associations ";
     Layout = "~/Views/Shared/StudenteMenu.cshtml";
 }
 
@@ -9,7 +9,7 @@
     {
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <h1 class="display-4 text-center">Elenco Associazioni</h1>
+                <h1 class="display-4 text-center">Associations List</h1>
             </div>
         </div>
 
@@ -74,9 +74,7 @@
 
             </div>
         </div>
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+       
     }
     else
     {

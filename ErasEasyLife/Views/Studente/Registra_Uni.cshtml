@@ -1,16 +1,16 @@
-﻿@model ErasEasyLife.Models.Universita
+﻿@*Registrazione delle università*@
+@model ErasEasyLife.Models.Universita
 
 @{
+    ViewBag.Title = "Univesity Registration";
     Layout = "~/Views/Shared/StudenteMenu.cshtml";
+    //lista per scegliere il tipo di università
     List<string> type = new List<string>() {
         "--Select Type---", "Sending",
         "Receiving" };
     ViewBag.Title = "University Registration";
 }
 
-<!DOCTYPE html>
-<html>
-<body>
     @{ 
         ErasEasyLife.Student.Studente stud = (ErasEasyLife.Student.Studente)Session["Studente"];
     }
@@ -86,9 +86,3 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-</body>
-</html>

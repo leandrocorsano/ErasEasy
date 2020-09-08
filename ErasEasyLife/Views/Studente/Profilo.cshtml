@@ -1,17 +1,9 @@
-﻿
+﻿@*Restituisce i dati dello studente*@
 @{
     ViewBag.Title = "Profile";
     Layout = "~/Views/Shared/StudenteMenu.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Profile</title>
-</head>
-<body>
     @{
 
         ErasEasyLife.Student.Studente stud = (ErasEasyLife.Student.Studente)Session["Studente"];
@@ -38,5 +30,4 @@
             </ul>
         </div>
     </div>
-</body>
-</html>
+

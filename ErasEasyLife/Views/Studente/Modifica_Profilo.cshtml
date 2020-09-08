@@ -1,18 +1,12 @@
-﻿@model ErasEasyLife.Models.Studente
+﻿@*Modifica profilo dello studente*@
+@model ErasEasyLife.Models.Studente
 
 @{
-   Layout = "~/Views/Shared/StudenteMenu.cshtml";
+    ViewBag.Title = "Update Profilo";
+    Layout = "~/Views/Shared/StudenteMenu.cshtml";
 
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit Profile</title>
-</head>
-<body>
     @{
         ErasEasyLife.Student.Studente stud = (ErasEasyLife.Student.Studente)Session["Studente"];
         DateTime Data = DateTime.Parse(stud.data_n);
@@ -146,9 +140,3 @@
             </div>
         </center>
             }
-
-            <div>
-                @Html.ActionLink("Back to List", "Index")
-            </div>
-    </body>
-</html>

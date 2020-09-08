@@ -1,13 +1,13 @@
-﻿@model ErasEasyLife.Models.Studente
+﻿
+@*
+   Login dello studente 
+*@@model ErasEasyLife.Models.Studente
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/WhitoutMenu.cshtml";
 }
 
-
-
     <center>
-
         <div class="login-card-body">
             <div class="card-body  ">
 
@@ -31,11 +31,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-                    <!-- /.col -->
                     <div class="col-4">
 
                         <button type="submit" class="btn bg-green btn-block">Sign in</button>
@@ -47,9 +42,8 @@
                     <a href="@Url.Action("Index", "Home")" class="text-white"><i class="fas fa-arrow-left"></i>Back</button></a>
                 </div>
             </div>
-            <!-- /.login-card-body -->
         </div>
-        @if (ViewBag.message != null)
+        @if (ViewBag.message != null) ///mostro un eventuale messaggio di errore
         {
         <div class="alert alert-danger mt-3" role="alert" style="width:40%">
             @ViewBag.message

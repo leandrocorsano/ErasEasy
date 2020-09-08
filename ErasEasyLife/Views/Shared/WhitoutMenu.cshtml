@@ -1,13 +1,7 @@
-﻿
-@{
-    Layout = null;
-}
+﻿@*Template senza menu condiviso *@
 
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -20,7 +14,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <style type="text/css">
-
+        /*CSS per il login*/
 
         .login-card-body {
             width: 40%;
@@ -31,18 +25,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </style>
 </head>
 <body>
-   <div class="wrapper">
-            <!-- Main content -->
-            <div class="content">
-                <div class="container-fluid">
-            @RenderBody()
-                </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content -->
+    <div class="wrapper">
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                @RenderBody()
+            </div><!-- /.container-fluid -->
         </div>
-        <!-- /.content-wrapper -->
-        
-
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
     <!-- REQUIRED SCRIPTS -->
     <!-- @Scripts.Render("~/bundles/jquery")-->
     @Scripts.Render("~/bundles/bootstrap")

@@ -1,4 +1,5 @@
-﻿@model ErasEasyLife.Models.Studente
+﻿@*Richieste di amicizia*@
+@model ErasEasyLife.Models.Studente
 @{
     ViewBag.Title = "Friend requests";
     Layout = "~/Views/Shared/StudenteMenu.cshtml";
@@ -42,14 +43,6 @@
             };
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Request friendship</title>
-</head>
-<body>
     @if (ViewBag.uni >= 2)
     {
         <div class="jumbotron jumbotron-fluid">
@@ -116,6 +109,5 @@
         <br /> @Html.ActionLink("Insert University", "Registra_Uni")
     </div>
     }
-</body>
-</html>
+
 

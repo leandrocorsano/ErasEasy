@@ -1,7 +1,10 @@
-﻿@model ErasEasyLife.Models.Studente
+﻿@*Registra i dati dello studente*@
+@model ErasEasyLife.Models.Studente
 
 @{
+    ViewBag.Title = "Registration";
     Layout = "~/Views/Shared/WhitoutMenu.cshtml";
+    //Lista per la nazionalità dello studente
     List<string> nazionalita = new List<string>() {
         "--Select Nationality---", "Italian",
                 "French",
@@ -36,18 +39,6 @@
                 "Luxembourg",
                 "Icelandic" };
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Registration</title>
-</head>
-<body>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-
 
     @using (Html.BeginForm())
     {
@@ -169,14 +160,12 @@
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Register" class="btn bg-green btn-default" />
                     </div>
+                    <div class="col-4 mt-2">
+                        <a href="@Url.Action("Index", "Home")" class="text-white"><i class="fas fa-arrow-left"></i>Back</a>
+                    </div>
                 </div>
             </div>
         </div>
     </center>
     }
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-</body>
-</html>
