@@ -1,17 +1,12 @@
-﻿@model ErasEasyLife.Models.CambioPass
+﻿@*Modifica password del volontario*@
+@model ErasEasyLife.Models.CambioPass
 
 @{
+    ViewBag.Title = "Modifica Password";
     Layout = "~/Views/Shared/VolontarioMenu.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Change Password</title>
-</head>
-<body>
     @{
         ErasEasyLife.Volunteer.Volontario vol = (ErasEasyLife.Volunteer.Volontario)Session["Volontario"];
 
@@ -59,5 +54,4 @@
             <div>
                 @Html.ActionLink("Back to List", "Index")
             </div>
-</body>
-</html>
+

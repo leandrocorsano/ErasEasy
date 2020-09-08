@@ -1,21 +1,10 @@
-﻿
+﻿@*Pagina di registrazione del volontario*@
 @model ErasEasyLife.Models.Volontario
 
 @{
+    ViewBag.Title = "Registration";
     Layout = "~/Views/Shared/WhitoutMenu.cshtml";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Registration</title>
-</head>
-<body>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-
 
     @using (Html.BeginForm())
     {
@@ -108,7 +97,7 @@
                         <div class="col-md-10">
                             <select name="@Html.NameFor(model => model.ass)">
 
-
+                                @*Lista delle associazioni*@
                                 @foreach (var associazione in ViewData["associazioni"] as IEnumerable<ErasEasyLife.Association.Associazione>)
                                 {
 
@@ -132,8 +121,3 @@
         </center>
     }
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-</body>
-</html>

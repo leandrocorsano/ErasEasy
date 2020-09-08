@@ -1,11 +1,12 @@
-﻿
+﻿@*Dettagli dell'evento nel volontario*@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/VolontarioMenu.cshtml";
     ErasEasyLife.Event.Svolgimento s = ViewData["evento"] as ErasEasyLife.Event.Svolgimento;
     List<ErasEasyLife.Event.Volontario> volontari = ViewData["volontari"] as List<ErasEasyLife.Event.Volontario>;
-    int posti_rimasti = s.evento.max_v - volontari.Count();
-    ErasEasyLife.Volunteer.Volontario  studente_entrato = (ErasEasyLife.Volunteer.Volontario)Session["volontario"];
+    int posti_rimasti = s.evento.max_v - volontari.Count(); //posti disponibili
+    ErasEasyLife.Volunteer.Volontario studente_entrato = (ErasEasyLife.Volunteer.Volontario)Session["volontario"];
+    /*sfrutto le funzionalità delle date*/
     DateTime Date1 = DateTime.Parse(s.data_i);
     DateTime Date2 = DateTime.Parse(s.data_f);
     bool prenotato = false; //mi dice se ho già prenotato quest'evento
@@ -16,16 +17,16 @@
             prenotato = true;
         }
     }
-       
-    }
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4 text-center">@s.evento.nome</h1>
-        </div>
+
+}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4 text-center">@s.evento.nome</h1>
     </div>
-@{ 
+</div>
+@{
     string color;
-    if(posti_rimasti>0)
+    if (posti_rimasti > 0)
     {
         color = "bg-success";
     }
@@ -34,80 +35,80 @@
         color = "bg-danger";
     }
 }
-    <div class="small-box @color">
-        <div class="inner text-center">
-            <h1 class="display-2"> @posti_rimasti</h1>
+<div class="small-box @color">
+    <div class="inner text-center">
+        <h1 class="display-2"> @posti_rimasti</h1>
 
-            <h3>Posti disponibili</h3>
-        </div>
-        <div class="small-box-footer">
-            <div class="row ">
-                <div class="col-6 text-right">
-                    <a href="@Url.Action("Lista_Eventi", "Evento")" ><button class="a .btn .btn-app "><i class="fas fa-arrow-left"></i>Back</button></a>&nbsp;
-                </div>
-                <div class="col-6 text-left">
-
-                    @if (prenotato)
-                    {
-                        using (Html.BeginForm("Elimina_partecipazione", "Volontario", FormMethod.Post))
-                        {
-
-                            <input type="hidden" value="@s.evento.IdEv" name="idev" />
-                            <button type="submit" class="a .btn .btn-app " ><i class="fas fa-trash-alt"></i>Cancel partecipation</button>
-
-                        }
-                    }
-                    else if (posti_rimasti > 0)
-                    {
-                        using (Html.BeginForm("Partecipa", "Volontario", FormMethod.Post))
-                        {
-
-                            <input type="hidden" value="@s.evento.IdEv" name="idev" />
-                            <button type="submit" class="a .btn .btn-app "><i class="fas fa-check-square"></i>Partecipate</button>
-
-                        }
-
-                    }
-                </div>
-            </div>
-
-        </div>
+        <h3>Posti disponibili</h3>
     </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-header bg-teal text-center">
-                    <h3> Informations</h3>
-                </div>
-                <div class="card-body">
-                    <blockquote class="blockquote " style="border-left: .2rem solid green;"><i class="fas fa-file-alt"></i>&nbsp; @s.evento.descrizione</blockquote>
-                    <p><i class="fas fa-map-marked-alt"></i><b> &nbsp; Place:</b> @s.luogo.via (@s.luogo.citta, @s.luogo.stato)</p>
-                    <p><i class="fas fa-calendar-check"></i><b> &nbsp; Start:</b> @Date1.ToString("dd/MM/yyy")  time @s.ora_i</p>
-                    <p><i class="fas fa-calendar-times"></i><b> &nbsp; End:</b> @Date2.ToString("dd/MM/yyy") time @s.ora_f</p>
-                    <p><i class="fas fa-dollar-sign"></i><b> &nbsp; Cost:</b> @s.evento.costo &euro; </p>
+    <div class="small-box-footer">
+        <div class="row ">
+            <div class="col-6 text-right">
+                <a href="@Url.Action("Lista_Eventi", "Evento")"><button class="a .btn .btn-app "><i class="fas fa-arrow-left"></i>Back</button></a>&nbsp;
+            </div>
+            <div class="col-6 text-left">
 
-                </div>
+                @if (prenotato)
+                {
+                    using (Html.BeginForm("Elimina_partecipazione", "Volontario", FormMethod.Post))
+                    {
+
+                        <input type="hidden" value="@s.evento.IdEv" name="idev" />
+                        <button type="submit" class="a .btn .btn-app "><i class="fas fa-trash-alt"></i>Cancel partecipation</button>
+
+                    }
+                }
+                else if (posti_rimasti > 0)
+                {
+                    using (Html.BeginForm("Partecipa", "Volontario", FormMethod.Post))
+                    {
+
+                        <input type="hidden" value="@s.evento.IdEv" name="idev" />
+                        <button type="submit" class="a .btn .btn-app "><i class="fas fa-check-square"></i>Partecipate</button>
+
+                    }
+
+                }
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-header bg-teal text-center">
-                    <h3> Partecipating Volunteers</h3>
-                </div>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
 
-                        @foreach (var vol in volontari)
-                        {
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header bg-teal text-center">
+                <h3> Informations</h3>
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote " style="border-left: .2rem solid green;"><i class="fas fa-file-alt"></i>&nbsp; @s.evento.descrizione</blockquote>
+                <p><i class="fas fa-map-marked-alt"></i><b> &nbsp; Place:</b> @s.luogo.via (@s.luogo.citta, @s.luogo.stato)</p>
+                <p><i class="fas fa-calendar-check"></i><b> &nbsp; Start:</b> @Date1.ToString("dd/MM/yyy")  time @s.ora_i</p>
+                <p><i class="fas fa-calendar-times"></i><b> &nbsp; End:</b> @Date2.ToString("dd/MM/yyy") time @s.ora_f</p>
+                <p><i class="fas fa-dollar-sign"></i><b> &nbsp; Cost:</b> @s.evento.costo &euro; </p>
 
-                            <li class="list-group-item">
-                                 @vol.nome @vol.cognome 
-                                
-                            </li>
-
-                        }
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header bg-teal text-center">
+                <h3> Partecipating Volunteers</h3>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+
+                    @foreach (var vol in volontari)
+                    {
+
+                        <li class="list-group-item">
+                            @vol.nome @vol.cognome
+
+                        </li>
+
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -487,7 +487,7 @@ namespace ErasEasyLife.Controllers
                     bool r = volclient.BookEvent(vol.IdVolont, evento);
                     if (r == true)
                     {
-                        if (e.evento.tipologia == "meeting")
+                        if (e.evento.tipologia =="meeting")
                         {
                             string body = "You have successfully booked the meeting name " + e.evento.nome;
                             evclient.Send_Email(vol.nome, vol.email, body, "Meeting Booked");
